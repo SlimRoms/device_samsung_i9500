@@ -512,6 +512,12 @@ service immvibed /system/bin/immvibed
     group shell
     oneshot
 
+# Synapse Kernel Control
+service perseusinit /sbin/perseus.sh
+    class core
+    user root
+    oneshot
+
 # SA, System SW, SAMSUNG
 service bugreport /system/bin/bugmailer.sh -v
     class main
