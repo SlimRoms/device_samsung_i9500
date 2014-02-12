@@ -38,31 +38,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     init.recovery.universal5410.rc
 
-# Synapse Init files
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/rootdir/res/synapse:root/res/synapse \
-    $(LOCAL_PATH)/rootdir/res/synapse/config.json.generate.io:root/res/synapse/config.json.generate.io \
-    $(LOCAL_PATH)/rootdir/res/synapse/config.json.generate.qos:root/res/synapse/config.json.generate.qos \
-    $(LOCAL_PATH)/rootdir/res/synapse/actions:root/res/synapse/actions \
-    $(LOCAL_PATH)/rootdir/res/synapse/actions/voltage:root/res/synapse/actions/voltage \
-    $(LOCAL_PATH)/rootdir/res/synapse/actions/gpuvolt:root/res/synapse/actions/gpuvolt \
-    $(LOCAL_PATH)/rootdir/res/synapse/actions/colour:root/res/synapse/actions/colour \
-    $(LOCAL_PATH)/rootdir/res/synapse/actions/cpuvolt:root/res/synapse/actions/cpuvolt \
-    $(LOCAL_PATH)/rootdir/res/synapse/actions/charge-source:root/res/synapse/actions/charge-source \
-    $(LOCAL_PATH)/rootdir/res/synapse/actions/bracket-option:root/res/synapse/actions/bracket-option \
-    $(LOCAL_PATH)/rootdir/res/synapse/actions/led:root/res/synapse/actions/led \
-    $(LOCAL_PATH)/rootdir/res/synapse/actions/generic.native:root/res/synapse/actions/generic.native \
-    $(LOCAL_PATH)/rootdir/res/synapse/actions/generic:root/res/synapse/actions/generic \
-    $(LOCAL_PATH)/rootdir/res/synapse/config.json.generate.cpu:root/res/synapse/config.json.generate.cpu \
-    $(LOCAL_PATH)/rootdir/res/synapse/config.json.generate.battery:root/res/synapse/config.json.generate.battery \
-    $(LOCAL_PATH)/rootdir/res/synapse/uci:root/res/synapse/uci \
-    $(LOCAL_PATH)/rootdir/res/synapse/config.json.generate.audio:root/res/synapse/config.json.generate.audio \
-    $(LOCAL_PATH)/rootdir/res/synapse/config.json.generate.gpu:root/res/synapse/config.json.generate.gpu \
-    $(LOCAL_PATH)/rootdir/res/synapse/config.json.generate.led:root/res/synapse/config.json.generate.led \
-    $(LOCAL_PATH)/rootdir/res/synapse/config.json.generate.screen:root/res/synapse/config.json.generate.screen \
-    $(LOCAL_PATH)/rootdir/res/synapse/config.json.generate:root/res/synapse/config.json.generate \
-    $(LOCAL_PATH)/rootdir/sbin/perseus.sh:root/sbin/perseus.sh
-
 # Audio
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/audio_policy.conf:system/etc/audio_policy.conf
@@ -116,8 +91,6 @@ PRODUCT_COPY_FILES += \
 # Keystore
 PRODUCT_PACKAGES += \
     keystore.exynos5
-
-PRODUCT_TAGS += dalvik.gc.type-precise
 
 # Lights
 PRODUCT_PACKAGES += \
@@ -186,15 +159,6 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.cwm.enable_key_repeat=true \
     ro.cwm.repeatable_keys=114,115
-
-# Props from Samsung ROM
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.ril.hsxpa=1 \
-    ro.ril.gprsclass=10
-
-# dex-opt to cache
-PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.dexopt-data-only=0
 
 # System properties
 PRODUCT_PROPERTY_OVERRIDES += \
