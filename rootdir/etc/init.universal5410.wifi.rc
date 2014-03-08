@@ -1,16 +1,31 @@
 # Wi-Fi init file
 
 on post-fs-data
-    mkdir /data/misc/wifi 0770 wifi wifi
+    # Create the directories used by the Wireless subsystem
+    mkdir /data/misc/wifi 0770 wifi system
     mkdir /data/misc/wifi/sockets 0770 wifi wifi
-    mkdir /data/misc/wifi/wpa_supplicant 0770 wifi wifi
-    mkdir /data/misc/dhcp 0770 dhcp dhcp
+    chown wifi wifi /data/misc/wifi/wpa_supplicant 0770 wifi wifi
+    mkdir /data/misc/dhcp 0775 dhcp dhcp
     chown dhcp dhcp /data/misc/dhcp
 
     # for WIFI TRP/TIS
-    write /data/.psm.info 1
     chown system root /data/.psm.info
-    chmod 0660 /data/.psm.info
+    chmod 0664 /data/.psm.info
+
+    # for WIFI Antena Selection
+    chown system root /data/.ant.info
+    chmod 0664 /data/.ant.info
+
+    # for WIFI Version
+    write /data/.wifiver.info 0
+    chown system root /data/.wifiver.info
+    chmod 0666 /data/.wifiver.info
+
+    # for WIFI Cert
+    chmod 0664 /data/.bustxglom.info
+    chmod 0664 /data/.roamoff.info
+    chmod 0664 /data/.frameburst.info
+    chmod 0664 /data/.txbf.info
 
     # for WIFI MAC address
     mkdir /efs/wifi 0775 radio system
@@ -64,6 +79,11 @@ service dhcpcd_p2p /system/bin/dhcpcd -aABKL
     disabled
     oneshot
 
+service dhcpcd_bt-pan /system/bin/dhcpcd -BKLG
+    class late_start
+    disabled
+    oneshot
+
 service iprenew_wlan0 /system/bin/dhcpcd -n
     class main
     disabled
@@ -71,5 +91,10 @@ service iprenew_wlan0 /system/bin/dhcpcd -n
 
 service iprenew_p2p /system/bin/dhcpcd -n
     class main
+    disabled
+    oneshot
+
+service iprenew_bt-pan /system/bin/dhcpcd -n
+    class late_start
     disabled
     oneshot
