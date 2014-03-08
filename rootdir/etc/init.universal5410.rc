@@ -43,6 +43,7 @@ on init
     mkdir /efs 0771 radio system
     symlink /dev/block/mmcblk0p13 /dev/mbin0
     restorecon /dev/mbin0
+    symlink /sys/devices/platform/s5p-ehci/ehci_power /dev/ehci_power
 
 # Vibetonz
     export VIBE_PIPE_PATH /dev/pipes
@@ -59,7 +60,9 @@ on post-fs
     chmod 0664 /sys/block/mmcblk0/bkops_en
 
 on post-fs-data
-    mkdir /data/media 0775 media_rw media_rw
+    # we will remap this as /mnt/sdcard with the sdcard fuse tool
+    mkdir /data/media 0770 media_rw media_rw
+    chown media_rw media_rw /data/media
 
 # SA, System SW, SAMSUNG create log directory
     mkdir /data/log 0775 system log
@@ -169,6 +172,7 @@ on boot
     chown system radio /sys/class/sensors/accelerometer_sensor/reactive_alert
     chown system radio /sys/class/sensors/accelerometer_sensor/vendor
     chown system radio /sys/class/sensors/accelerometer_sensor/name
+    chown system radio /sys/class/sensors/accelerometer_sensor/selftest
 # Proximity_sensor
     chown system radio /sys/class/sensors/proximity_sensor/state
     chown system radio /sys/class/sensors/proximity_sensor/raw_data
@@ -201,22 +205,19 @@ on boot
     chown system radio /sys/class/sensors/magnetic_sensor/raw_data
     chown system radio /sys/class/sensors/magnetic_sensor/vendor
     chown system radio /sys/class/sensors/magnetic_sensor/name
-# uv_sensor
-    chown system radio /sys/class/sensors/uv_sensor/vendor
-    chown system radio /sys/class/sensors/uv_sensor/name
-    chown system radio /sys/class/sensors/uv_sensor/raw_data
-    chown system radio /sys/class/sensors/uv_sensor/power_on
-    chown system radio /sys/class/sensors/uv_sensor/power_off
 # gesture_sensor
     chown system radio /sys/class/sensors/gesture_sensor/vendor
     chown system radio /sys/class/sensors/gesture_sensor/name
     chown system radio /sys/class/sensors/gesture_sensor/raw_data
+    chown system radio /sys/class/sensors/gesture_sensor/ir_current
+    chown system radio /sys/class/sensors/gesture_sensor/selftest
 # Temphumidity_sensor
     chown system radio /sys/class/sensors/temphumidity_sensor/vendor
     chown system radio /sys/class/sensors/temphumidity_sensor/name
     chown system radio /sys/class/sensors/temphumidity_sensor/engine_ver
     chown system radio /sys/class/sensors/temphumidity_sensor/engine_ver2
     chown system radio /sys/class/sensors/temphumidity_sensor/send_accuracy
+
 # SensorHub
     chown system radio /sys/class/sensors/ssp_sensor/enable
     chown system radio /sys/class/sensors/ssp_sensor/mcu_rev
@@ -227,9 +228,6 @@ on boot
     chown system radio /sys/class/sensors/ssp_sensor/mcu_sleep_test
     chown system radio /sys/class/sensors/ssp_sensor/ori_poll_delay
     chown system radio /sys/class/sensors/ssp_sensor/mag_poll_delay
-# Gesture_sensor
-    chown system radio /sys/class/sensors/gesture_sensor/ir_current
-    chown system radio /sys/class/sensors/gesture_sensor/selftest
 
 # IR_LED
     chown system radio /sys/class/sec/sec_ir/ir_send
@@ -280,13 +278,10 @@ on boot
     chown system radio /sys/class/host_notify/usb_otg/booster
     chmod 0660 /sys/class/host_notify/usb_otg/booster
 
-# Broadcom NFC
-    mkdir /data/bcmnfc
-    mkdir /data/bcmnfc/param
-    chmod 0700 /data/bcmnfc
-    chmod 0700 /data/bcmnfc/param
-    chown nfc nfc /data/bcmnfc
-    chown nfc nfc /data/bcmnfc/param
+# GPIO DVS
+    chown radio system /sys/class/secgpio_check/secgpio_check_all/gpioinit_check
+    chown radio system /sys/class/secgpio_check/secgpio_check_all/gpiosleep_check
+    chown radio system /sys/class/secgpio_check/secgpio_check_all/checked_sleepGPIO
 
 # PMS DVFS
     chown radio system /sys/power/cpufreq_table
@@ -300,6 +295,28 @@ on boot
     chmod 0664 /sys/class/devfreq/exynos5-busfreq-mif/en_monitoring
     chmod 0664 /sys/class/devfreq/exynos5-busfreq-int/en_monitoring
 
+# SSRM
+    chown radio system /sys/class/lcd/panel/siop_enable
+    chown radio system /sys/class/graphics/fb0/lcdfreq/level
+    chown radio system /sys/devices/platform/pvrsrvkm.0/sgx_dvfs_min_lock
+    chown radio system /sys/devices/platform/pvrsrvkm.0/sgx_dvfs_max_lock
+    chown radio system /sys/devices/platform/pvrsrvkm.0/sgx_dvfs_table
+    chown radio system /sys/class/devfreq/exynos5-busfreq-mif/min_freq
+    chown radio system /sys/class/devfreq/exynos5-busfreq-mif/max_freq
+    chown radio system /sys/class/devfreq/exynos5-busfreq-mif/freq_table
+    chown radio system /sys/devices/system/cpu/cpufreq/ondemand/up_threshold_h
+    chown radio system /sys/devices/system/cpu/cpufreq/ondemand/game_mode
+    chmod 0660 /sys/class/lcd/panel/siop_enable
+    chmod 0660 /sys/class/graphics/fb0/lcdfreq/level
+    chmod 0660 /sys/devices/platform/pvrsrvkm.0/sgx_dvfs_min_lock
+    chmod 0660 /sys/devices/platform/pvrsrvkm.0/sgx_dvfs_max_lock
+    chmod 0660 /sys/devices/platform/pvrsrvkm.0/sgx_dvfs_table
+    chmod 0660 /sys/class/devfreq/exynos5-busfreq-mif/min_freq
+    chmod 0660 /sys/class/devfreq/exynos5-busfreq-mif/max_freq
+    chmod 0660 /sys/class/devfreq/exynos5-busfreq-mif/freq_table
+    chmod 0660 /sys/devices/system/cpu/cpufreq/ondemand/up_threshold_h
+    chmod 0660 /sys/devices/system/cpu/cpufreq/ondemand/game_mode
+
 # Ondemand
     chown radio system /sys/devices/system/cpu/cpufreq/ondemand/up_threshold_h
     chmod 0664 /sys/devices/system/cpu/cpufreq/ondemand/up_threshold_h
@@ -309,6 +326,18 @@ on boot
     chmod 0664 /sys/devices/system/cpu/cpufreq/ondemand/conservative_step
     chown radio system /sys/devices/system/cpu/cpufreq/ondemand/up_conservative_mode
     chmod 0664 /sys/devices/system/cpu/cpufreq/ondemand/up_conservative_mode
+    chown radio system /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate
+    chmod 0664 /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate
+    chown radio system /sys/devices/system/cpu/cpufreq/ondemand/up_threshold_l
+    chmod 0664 /sys/devices/system/cpu/cpufreq/ondemand/up_threshold_l
+    chown radio system /sys/devices/system/cpu/cpufreq/ondemand/up_step_level_l
+    chmod 0664 /sys/devices/system/cpu/cpufreq/ondemand/up_step_level_l
+    chown radio system /sys/devices/system/cpu/cpufreq/ondemand/up_threshold
+    chmod 0664 /sys/devices/system/cpu/cpufreq/ondemand/up_threshold
+    chown radio system /sys/devices/system/cpu/cpufreq/ondemand/up_step_level_b
+    chmod 0664 /sys/devices/system/cpu/cpufreq/ondemand/up_step_level_b
+    chown radio system /sys/devices/system/cpu/cpufreq/ondemand/sampling_down_factor
+    chmod 0664 /sys/devices/system/cpu/cpufreq/ondemand/sampling_down_factor
 
 # Core Control
     chown radio system /sys/devices/system/cpu/cpu0/cpuidle/state1/disable
@@ -319,44 +348,6 @@ on boot
     chmod 0660 /sys/devices/system/cpu/cpu1/cpuidle/state1/disable
     chmod 0660 /sys/devices/system/cpu/cpu2/cpuidle/state1/disable
     chmod 0660 /sys/devices/system/cpu/cpu3/cpuidle/state1/disable
-
-# Core temp sensor
-    chown radio system /sys/devices/platform/exynos5-tmu/temp
-    chown radio system /sys/devices/platform/exynos5-tmu/curr_temp
-
-# Quadrant Benchmark
-    chown radio system /sys/class/thermal/thermal_zone0/boost_mode
-    chown radio system /sys/class/devfreq/exynos5-busfreq-mif/min_freq
-    chown radio system /sys/class/devfreq/exynos5-busfreq-int/min_freq
-    chown radio system /sys/devices/system/cpu/cpufreq/iks-cpufreq/min_freq
-    chown radio system /sys/devices/system/cpu/cpufreq/iks-cpufreq/max_freq
-    chown radio system /sys/devices/system/cpu/cpufreq/iks-cpufreq/freq_table
-    chown radio system /sys/devices/system/cpu/cpufreq/iks-cpufreq/max_eagle_count
-    chown radio system /sys/devices/platform/pvrsrvkm.0/sgx_dvfs_max_lock
-    chown radio system /sys/devices/platform/pvrsrvkm.0/sgx_dvfs_min_lock
-    chown radio system /sys/devices/platform/pvrsrvkm.0/sgx_dvfs_table
-    chown radio system /sys/class/devfreq/exynos5-busfreq-mif/freq_table
-    chown radio system /sys/class/devfreq/exynos5-busfreq-mif/min_freq
-    chown radio system /sys/class/devfreq/exynos5-busfreq-mif/max_freq
-    chown radio system /sys/devices/system/cpu/cpufreq/ondemand/up_threshold_h
-    chmod 0664 /sys/class/thermal/thermal_zone0/boost_mode
-    chmod 0664 /sys/class/devfreq/exynos5-busfreq-mif/min_freq
-    chmod 0664 /sys/class/devfreq/exynos5-busfreq-int/min_freq
-    chmod 0664 /sys/devices/system/cpu/cpufreq/iks-cpufreq/min_freq
-    chmod 0664 /sys/devices/system/cpu/cpufreq/iks-cpufreq/max_freq
-    chmod 0664 /sys/devices/system/cpu/cpufreq/iks-cpufreq/freq_table
-    chmod 0664 /sys/devices/system/cpu/cpufreq/iks-cpufreq/max_eagle_count
-    chmod 0664 /sys/devices/platform/pvrsrvkm.0/sgx_dvfs_max_lock
-    chmod 0664 /sys/devices/platform/pvrsrvkm.0/sgx_dvfs_min_lock
-    chmod 0664 /sys/devices/platform/pvrsrvkm.0/sgx_dvfs_table
-    chmod 0664 /sys/class/devfreq/exynos5-busfreq-mif/freq_table
-    chmod 0664 /sys/class/devfreq/exynos5-busfreq-mif/min_freq
-    chmod 0664 /sys/class/devfreq/exynos5-busfreq-mif/max_freq
-    chmod 0664 /sys/devices/system/cpu/cpufreq/ondemand/up_threshold_h
-
-# game_mode
-    chown radio system /sys/devices/system/cpu/cpufreq/ondemand/game_mode
-    chmod 0664 /sys/devices/system/cpu/cpufreq/ondemand/game_mode
 
 # AMOLED Color Adjustment
     chown radio system /sys/class/power_supply/battery/temp
@@ -379,6 +370,14 @@ on boot
     chown system system /dev/usb_mtp_gadget
 
     chown system system /sys/class/timed_output/vibrator/enable
+
+# Broadcom NFC
+    mkdir /data/bcmnfc
+    mkdir /data/bcmnfc/param
+    chmod 0700 /data/bcmnfc
+    chmod 0700 /data/bcmnfc/param
+    chown nfc nfc /data/bcmnfc
+    chown nfc nfc /data/bcmnfc/param
 
 # Torch
     chown system system /sys/class/leds/torch-sec1/brightness
@@ -432,14 +431,29 @@ on fs
 # create data/gps for GPS daemon
     chown root system /sys/class/sec/gps/GPS_PWR_EN/value
     chmod 0664 /sys/class/sec/gps/GPS_PWR_EN/value
-    mkdir /data/gps 771 system system
-    chown system system /data/gps
+    mkdir /data/system 0771 system system
+    chown system system /data/system
+    mkdir /data/system/gps 0771 system system
+    chown system system /data/system/gps
 
 # delete gps Factory file
     rm /data/gps_started
     rm /data/glonass_started
     rm /data/smd_started
     rm /data/sv_cno.info
+
+# For Absolute Persistence Partition
+    mkdir /persdata 0755 system system
+    mkdir /persdata/absolute 0750 system system
+
+    wait /dev/block/platform/dw_mmc.0/by-name/PERSDATA
+    check_fs /dev/block/platform/dw_mmc.0/by-name/PERSDATA ext4
+    mount ext4 /dev/block/platform/dw_mmc.0/by-name/PERSDATA /persdata/absolute nosuid nodev barrier=1
+
+    chown system system /persdata
+    chmod 0755 /persdata
+    chown system system /persdata/absolute
+    chmod 0750 /persdata/absolute
 
 # create filesystem if necessary
 service setup_fs /system/bin/setup_fs \
@@ -473,16 +487,10 @@ service fuse_usbdisk /system/bin/sdcard -u 1023 -g 1023 /mnt/media_rw/usbdisk /s
     class late_start
     disabled
 
-service cpboot-daemon /system/bin/cbd -d -p 13
+service cpboot-daemon /system/bin/cbd -d -txmm626 -bh -mh -p 13
     class main
     user root
     group radio cache inet misc audio sdcard_rw log sdcard_r shell
-
-#sensorhubservice start
-service sensorhubservice /system/bin/sensorhubservice
-    class main
-    user system
-    group input
 
 # GPS
 service gpsd /system/bin/gpsd -c /system/etc/gps.xml
@@ -493,13 +501,6 @@ service gpsd /system/bin/gpsd -c /system/etc/gps.xml
 service camera_id /system/bin/sh /system/etc/init.exynos.cam.sh
     class main
     user root
-    oneshot
-
-# Vibetonz
-service immvibed /system/bin/immvibed
-    class core
-    user shell
-    group shell
     oneshot
 
 # SA, System SW, SAMSUNG
