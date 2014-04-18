@@ -107,6 +107,10 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml \
     $(LOCAL_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml
 
+# OTA Updater
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/prebuilt/app/GooManager.apk:system/app/GooManager.apk
+
 # Misc
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory

@@ -8,3 +8,8 @@ debug.sf.swaprect=0
 rild.libpath=/system/lib/libsec-ril.so
 rild.libargs=-d /dev/ttyS0
 nfc.app_log_level=2
+
+# GooManager OTA Update
+ro.goo.developerid=Alberto96
+ro.goo.rom=I9500CM11
+ro.goo.version=1
