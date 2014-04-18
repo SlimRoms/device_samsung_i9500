@@ -70,8 +70,8 @@ PRODUCT_PACKAGES += \
 
 # Charger
 PRODUCT_PACKAGES += \
-	charger \
-	charger_res_images
+    charger \
+    charger_res_images
 
 # GPS
 PRODUCT_COPY_FILES += \
@@ -222,4 +222,4 @@ $(call inherit-product-if-exists, vendor/samsung/i9500/i9500-vendor.mk)
 
 # Recovery Options
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.cwm.forbid_format=/efs,/boot \
+    ro.cwm.forbid_format=/efs,/boot
