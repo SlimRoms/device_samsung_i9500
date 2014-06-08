@@ -15,4 +15,4 @@ ro.ril.hsxpa=4
 # GooManager OTA Update
 ro.goo.developerid=Alberto96
 ro.goo.rom=I9500CM11
-ro.goo.version=1
+ro.goo.version=2
