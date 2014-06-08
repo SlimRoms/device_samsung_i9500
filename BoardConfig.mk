@@ -42,6 +42,7 @@ TARGET_CPU_ABI2 := armeabi
 TARGET_CPU_SMP := true
 TARGET_CPU_VARIANT := cortex-a15
 TARGET_USE_SAMSUNG_BIONIC_OPTIMIZATION := true
+COMMON_GLOBAL_CFLAGS += -DLIBM_NEON_OPTIMIZATION
 
 # bionic libc options
 ARCH_ARM_USE_MEMCPY_ALIGNMENT := true
@@ -63,12 +64,25 @@ BOARD_HAVE_BLUETOOTH_BCM := true
 BOARD_BLUEDROID_VENDOR_CONF := $(LOCAL_PATH)/bluetooth/libbt_vndcfg.txt
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
 
-# Boot animation
+# Boot Animation
 TARGET_BOOTANIMATION_PRELOAD := true
 TARGET_BOOTANIMATION_TEXTURE_CACHE := true
 
-# Support RSC on PVR
+# Graphics
+USE_OPENGL_RENDERER := true
+BOARD_EGL_CFG := $(LOCAL_PATH)/configs/egl.cfg
+NUM_FRAMEBUFFER_SURFACE_BUFFERS := 5
+COMMON_GLOBAL_CFLAGS += -DUSES_PVR_GPU
 BOARD_USES_PVR_RSC := true
+
+# [HACK] Currently, SGX supports only HAL_PIXEL_FORMAT_BGRA_8888.
+BOARD_USE_BGRA_8888 := true
+
+# [HACK] It will be removed after updating s3c-fb driver.
+BOARD_USE_WAIT_DEQUEUE_FENCE := false
+
+# [HACK] It will be removed after implementing FENCE SYNC.
+BOARD_USE_FENCE_SYNC := true
 
 # Camera
 BOARD_USE_MHB_ION := true
@@ -87,32 +101,15 @@ COMMON_GLOBAL_CFLAGS += -DSAMSUNG_CAMERA_HARDWARE
 COMMON_GLOBAL_CFLAGS += -DSAMSUNG_DVFS
 COMMON_GLOBAL_CFLAGS += -DUSE_CHAR_BUFFERS
 COMMON_GLOBAL_CFLAGS += -DUSE_CONVERT_WITH_ROTATE
-COMMON_GLOBAL_CFLAGS += -DUSES_PVR_GPU
-COMMON_GLOBAL_CFLAGS += -DLIBM_NEON_OPTIMIZATION
 
-# FIMG2D Optimization
-BOARD_USES_SKIA_FIMGAPI := true
-BOARD_USES_NEON_BLITANTIH := true
-
-# Graphics
-USE_OPENGL_RENDERER := true
-BOARD_EGL_CFG := $(LOCAL_PATH)/configs/egl.cfg
-NUM_FRAMEBUFFER_SURFACE_BUFFERS := 5
-
-#G3D
-#[HACK] Currently, SGX supports only HAL_PIXEL_FORMAT_BGRA_8888.
-BOARD_USE_BGRA_8888 := true
-
-# [HACK] It will be removed after updating s3c-fb driver.
-BOARD_USE_WAIT_DEQUEUE_FENCE := false
-
-# [HACK] It will be removed after implementing FENCE SYNC.
-BOARD_USE_FENCE_SYNC := true
+# FIMG2D Optimization (temp. disabled due to 4.4.3 changes)
+# BOARD_USES_SKIA_FIMGAPI := true
+# BOARD_USES_NEON_BLITANTIH := true
 
 # Media
 COMMON_GLOBAL_CFLAGS += -DUSE_NATIVE_SEC_NV12TILED # use format from fw/native
 
-#SurfaceFlinger
+# SurfaceFlinger
 BOARD_USES_SYNC_MODE_FOR_MEDIA := true
 
 # HWCServices
@@ -167,8 +164,6 @@ BOARD_RECOVERY_SWIPE := true
 # Charging mode
 BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/power_supply/battery/batt_lp_charging
 BOARD_BATTERY_DEVICE_NAME := battery
-
-# Suspend in charger to disable capacitive keys
 BOARD_CHARGER_ENABLE_SUSPEND := true
 
 # Releasetools
