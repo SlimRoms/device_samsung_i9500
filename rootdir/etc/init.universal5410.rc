@@ -69,8 +69,6 @@ on post-fs-data
 # SEAndroid Restore context for efs files
     restorecon_recursive /efs
 
-    setprop vold.post_fs_data_done 1
-
 on boot
     mount debugfs /sys/kernel/debug /sys/kernel/debug
 
