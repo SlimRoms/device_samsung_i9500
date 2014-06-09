@@ -31,9 +31,10 @@ on init
     mkdir /efs 0771 radio system
     symlink /dev/block/mmcblk0p13 /dev/mbin0
     restorecon /dev/mbin0
-    symlink /sys/devices/platform/s5p-ehci/ehci_power /dev/ehci_power
 
     symlink /dev/block/mmcblk0p8 /dev/block/param
+    
+    symlink /sys/devices/platform/s5p-ehci/ehci_power /dev/ehci_power
 
 on fs
     mount_all /fstab.universal5410
@@ -444,9 +445,6 @@ on property:init.svc.bootanim=stopped
     # start gpsd late to prevent it from changing /data/system
     start gpsd
     start camera_id
-    # Overwrite ActivityManager's low memory killer settings
-    write /sys/module/lowmemorykiller/parameters/adj "2,4,7,8,9,12"
-    write /sys/module/lowmemorykiller/parameters/minfree "15360,18432,21504,23040,24576,30720"
 
 on property:ro.dumpstate.dmesg=1
     write /proc/sys/kernel/dmesg_restrict 0
