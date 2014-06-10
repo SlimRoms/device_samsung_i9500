@@ -38,7 +38,7 @@ on init
 
 on fs
     mount_all /fstab.universal5410
-
+    
     setprop ro.crypto.fuse_sdcard true
 
 on post-fs-data
@@ -49,9 +49,11 @@ on post-fs-data
 
 # create data/gps for GPS daemon
     mkdir /data/system/gps 771 gps system
+    chown system system /data/system
 
 # restore permissions for gps
     mkdir /data/system 0775 system system
+    chown system system /data/system/gps
 
 # Broadcom NFC
     mkdir /data/bcmnfc 0700 nfc nfc
@@ -104,6 +106,15 @@ on boot
 # Increased technology maximums should be reflected here.
     write /proc/sys/net/core/rmem_max 1220608
     write /proc/sys/net/core/wmem_max 1220608
+    
+# mobicore
+    mkdir /data/app/mcRegistry 0775 system system
+    chmod 0700 /dev/mobicore
+    chmod 0666 /dev/mobicore-user
+    chmod 0660 /dev/s5p-smem
+    chown system system /dev/mobicore
+    chown radio system /dev/mobicore-user
+    chown system system /dev/s5p-smem
 
 # Permissions for bluetooth
     setprop ro.bt.bdaddr_path "/efs/bluetooth/bt_addr"
@@ -309,6 +320,10 @@ on boot
     chmod 0664 /sys/devices/system/cpu/cpufreq/ondemand/sampling_down_factor
 
 # Core Control
+    chown radio system /dev/b.L_operator
+    chmod 0660 /dev/b.L_operator
+    chown radio system /dev/bL_status
+    chmod 0660 /dev/bL_status
     chown radio system /sys/devices/system/cpu/cpu0/cpuidle/state1/disable
     chown radio system /sys/devices/system/cpu/cpu1/cpuidle/state1/disable
     chown radio system /sys/devices/system/cpu/cpu2/cpuidle/state1/disable
@@ -377,6 +392,10 @@ on boot
 # GPS
     chown root system /sys/class/sec/gps/GPS_PWR_EN/value
     chmod 0664 /sys/class/sec/gps/GPS_PWR_EN/value
+    rm /data/gps_started
+    rm /data/glonass_started
+    rm /data/smd_started
+    rm /data/sv_cno.info
 
 # MTP device permission
     chmod 0660 /dev/usb_mtp_gadget
@@ -405,7 +424,7 @@ service pvrsrvctl /system/vendor/bin/pvrsrvctl --start --no-module
 service sdcard /system/bin/sdcard -u 1023 -g 1023 -l /data/media /mnt/shell/emulated
     class late_start
 
-service fuse_sdcard1 /system/bin/sdcard -u 1023 -g 1023 /mnt/media_rw/sdcard1 /storage/sdcard1
+service fuse_sdcard1 /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_rw/sdcard1 /storage/sdcard1
     class late_start
     disabled
 
@@ -413,7 +432,7 @@ service fuse_usbdisk /system/bin/sdcard -u 1023 -g 1023 /mnt/media_rw/usbdisk /s
     class late_start
     disabled
 
-service cpboot-daemon /system/bin/cbd -d -t xmm626 -b h -m h -p 13
+service cpboot-daemon /sbin/cbd -d -txmm626 -bh -mh -p 13
     class main
     user root
     group radio cache inet misc audio sdcard_rw log sdcard_r shell
@@ -440,6 +459,12 @@ service iprenew_bt-pan /system/bin/dhcpcd -n
     class main
     disabled
     oneshot
+    
+# MobiCore startup
+service mobicore /system/bin/mcDriverDaemon -r /system/app/FFFFFFFF000000000000000000000001.drbin -r /system/app/mcRegistry/ffffffffd0000000000000000000000a.tlbin
+    class core
+    user system
+    group system
 
 on property:init.svc.bootanim=stopped
     # start gpsd late to prevent it from changing /data/system
