@@ -38,7 +38,6 @@ on init
 
 on fs
     mount_all /fstab.universal5410
-    
     setprop ro.crypto.fuse_sdcard true
 
 on post-fs-data
@@ -71,6 +70,9 @@ on post-fs-data
 
 # SEAndroid Restore context for efs files
     restorecon_recursive /efs
+    
+# Set indication (checked by vold) that we have finished this action
+    setprop vold.post_fs_data_done 1
 
 on boot
     mount debugfs /sys/kernel/debug /sys/kernel/debug
@@ -426,11 +428,11 @@ service pvrsrvctl /system/vendor/bin/pvrsrvctl --start --no-module
 service sdcard /system/bin/sdcard -u 1023 -g 1023 -l /data/media /mnt/shell/emulated
     class late_start
 
-service fuse_sdcard1 /system/bin/sdcard -u 1023 -g 1023 /mnt/media_rw/sdcard1 /storage/sdcard1
+service fuse_sdcard1 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/sdcard1 /storage/sdcard1
     class late_start
     disabled
 
-service fuse_usbdisk /system/bin/sdcard -u 1023 -g 1023 /mnt/media_rw/usbdisk /storage/usbdisk
+service fuse_usbdisk /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/usbdisk /storage/usbdisk
     class late_start
     disabled
 

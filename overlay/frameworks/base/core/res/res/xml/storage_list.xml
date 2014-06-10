@@ -36,8 +36,9 @@
 
     <!-- internal emulated storage -->
     <storage android:storageDescription="@string/storage_internal"
-             android:emulated="true"
              android:primary="true"
+             android:removable="false"
+             android:emulated="true"
              android:mtpReserve="100" />
 
     <!-- external SD card storage -->
@@ -50,6 +51,7 @@
     <storage android:mountPoint="/storage/usbdisk"
              android:storageDescription="@string/storage_usb"
              android:primary="false"
-             android:removable="true" />
+             android:removable="true"
+             android:emulated="false" />
 
 </StorageList>
