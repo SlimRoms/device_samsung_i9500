@@ -1,6 +1,6 @@
 [
     {
-        "repository": "SlimRoms/android_hardware_samsung",
+        "repository": "SlimRoms/hardware_samsung",
         "target_path": "hardware/samsung",
         "branch": "kk4.4"
     },
@@ -25,7 +25,7 @@
         "branch": "cm-11.0"
     },
     {
-        "repository": "SlimRoms/android_kernel_samsung_exynos5410",
+        "repository": "SlimRoms/kernel_samsung_exynos5410",
         "target_path": "kernel/samsung/exynos5410",
         "branch": "kk4.4"
     }
