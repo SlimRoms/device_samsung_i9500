@@ -485,6 +485,3 @@ on property:ro.debuggable=1
     chmod 666 /sys/class/mhl/timing
 on property:ro.debuggable=1
     chmod 666 /sys/class/mhl/swing
-
-service charger /charger
-    class charger
