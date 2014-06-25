@@ -73,16 +73,9 @@ USE_OPENGL_RENDERER := true
 BOARD_EGL_CFG := $(LOCAL_PATH)/configs/egl.cfg
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 5
 COMMON_GLOBAL_CFLAGS += -DUSES_PVR_GPU
-BOARD_USES_PVR_RSC := true
 
 # [HACK] Currently, SGX supports only HAL_PIXEL_FORMAT_BGRA_8888.
 BOARD_USE_BGRA_8888 := true
-
-# [HACK] It will be removed after updating s3c-fb driver.
-BOARD_USE_WAIT_DEQUEUE_FENCE := false
-
-# [HACK] It will be removed after implementing FENCE SYNC.
-BOARD_USE_FENCE_SYNC := true
 
 # Camera
 BOARD_USE_MHB_ION := true
@@ -108,9 +101,6 @@ COMMON_GLOBAL_CFLAGS += -DUSE_CONVERT_WITH_ROTATE
 
 # Media
 COMMON_GLOBAL_CFLAGS += -DUSE_NATIVE_SEC_NV12TILED # use format from fw/native
-
-# SurfaceFlinger
-BOARD_USES_SYNC_MODE_FOR_MEDIA := true
 
 # HWCServices
 BOARD_USES_HWC_SERVICES := true
