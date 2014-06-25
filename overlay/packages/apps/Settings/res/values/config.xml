@@ -15,10 +15,7 @@
 -->
 
 <resources>
-
-    <string name="additional_system_update" translatable="false">com.s0up.goomanager</string>
-    <string name="additional_system_update_menu" translatable="false">com.s0up.goomanager.GooManagerActivity</string>
-
+	
     <!-- Volume Rocker Wake -->
     <bool name="config_show_volumeRockerWake">true</bool>
 

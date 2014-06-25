@@ -11,8 +11,3 @@ nfc.app_log_level=2
 ro.ril.hsdpa.category=14
 ro.ril.hsupa.category=6
 ro.ril.hsxpa=4
-
-# GooManager OTA Update
-ro.goo.developerid=Alberto96
-ro.goo.rom=I9500CM11
-ro.goo.version=3
