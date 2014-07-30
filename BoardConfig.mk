@@ -89,9 +89,6 @@ NUM_FRAMEBUFFER_SURFACE_BUFFERS := 5
 # Media
 COMMON_GLOBAL_CFLAGS += -DUSE_NATIVE_SEC_NV12TILED # use format from fw/native
 
-# CMHW
-BOARD_HARDWARE_CLASS += device/samsung/i9500/cmhw
-
 # NFC
 BOARD_NFC_HAL_SUFFIX := universal5410
 
