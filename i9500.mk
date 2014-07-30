@@ -164,14 +164,39 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.cwm.enable_key_repeat=true \
     ro.cwm.repeatable_keys=114,115
 
+# The OpenGL ES API level that is natively supported by this device.
+# This is a 16.16 fixed point number
+PRODUCT_PROPERTY_OVERRIDES += \
+	ro.opengles.version=131072
+
+# Disable SELinux	
+PRODUCT_PROPERTY_OVERRIDES += \
+	ro.build.selinux=0
+    
+# Development & ADB authentication settings
+ADDITIONAL_DEFAULT_PROPERTIES += \
+	ro.debuggable=1 \
+	ro.adb.secure=0 \
+	ro.secure=0 \
+	ro.allow.mock.location=0 \
+	ro.build.selinux=0
+
 # System properties
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.opengles.version=131072 \
     wifi.interface=wlan0
 
 # Dalvik properties
 PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.dexopt-data-only=0
+    
+# Extended JNI checks
+# The extended JNI checks will cause the system to run more slowly, but they can spot a variety of nasty bugs 
+# before they have a chance to cause problems.
+# Default=true for development builds, set by android buildsystem.
+PRODUCT_PROPERTY_OVERRIDES += \
+	ro.kernel.android.checkjni=0 \
+	dalvik.vm.checkjni=0 \
+	dalvik.vm.checkjni=false
 
 # Permissions
 PRODUCT_COPY_FILES += \
