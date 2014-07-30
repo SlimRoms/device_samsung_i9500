@@ -3,7 +3,7 @@
 #
 
 ## System ##
-persist.sys.root_access=3
+persist.sys.root_access=2
 
 ## Graphics ##
 ro.zygote.disable_gl_preload=1
