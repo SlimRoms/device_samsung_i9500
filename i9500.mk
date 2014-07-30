@@ -169,7 +169,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.opengles.version=131072 \
     wifi.interface=wlan0
 
-# System properties
+# Dalvik properties
 PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.dexopt-data-only=0
 
