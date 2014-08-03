@@ -36,6 +36,9 @@ bin/gpsd
 lib/hw/gps.default.so
 lib/libwrappergps.so
 
+# IR
+lib/hw/consumerir.default.so
+
 # HWC
 vendor/lib/hw/gralloc.exynos5.so
 
