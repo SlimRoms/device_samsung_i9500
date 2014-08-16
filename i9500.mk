@@ -156,6 +156,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     persist.sys.usb.config=mtp,adb
 
+# Enable Multi Thread Dalvik
+PRODUCT_PROPERTY_OVERRIDES += \
+   persist.sys.dalvik.multithread=true
+
 # Enable repeatable keys in CWM
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.cwm.enable_key_repeat=true \
