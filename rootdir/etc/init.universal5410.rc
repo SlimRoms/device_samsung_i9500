@@ -529,7 +529,6 @@ service mobicore /system/bin/mcDriverDaemon \
 on property:init.svc.bootanim=stopped
     # start gpsd late to prevent it from changing /data/system
     start gpsd
-    start camera_id
 
 on property:ro.dumpstate.dmesg=1
     write /proc/sys/kernel/dmesg_restrict 0
