@@ -116,4 +116,4 @@
         <MediaCodec name="OMX.google.vp8.encoder" type="video/x-vnd.on2.vp8" />
         
     </Encoders>
-</MediaCodecs>
+</CodecList>
