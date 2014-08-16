@@ -50,7 +50,8 @@ PRODUCT_PACKAGES += \
     audio.usb.default \
     audio.r_submix.default \
     mixer_paths.xml \
-    tinymix
+    tinymix \
+    tinyplay
 
 # Bluetooth
 PRODUCT_COPY_FILES += \
