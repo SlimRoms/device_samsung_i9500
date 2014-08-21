@@ -174,15 +174,16 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Disable SELinux	
 PRODUCT_PROPERTY_OVERRIDES += \
-	ro.build.selinux=0
+	ro.build.selinux=0 \
+	persist.sys.root_access=3
     
 # Development & ADB authentication settings
 ADDITIONAL_DEFAULT_PROPERTIES += \
-	ro.debuggable=1 \
 	ro.adb.secure=0 \
-	ro.secure=0 \
 	ro.allow.mock.location=0 \
-	ro.build.selinux=0
+	ro.build.selinux=0 \
+	ro.debuggable=1 \
+	ro.secure=0
 
 # System properties
 PRODUCT_PROPERTY_OVERRIDES += \
