@@ -453,7 +453,7 @@ on boot
 
 # Torch
     chown system system /sys/class/leds/torch-sec1/brightness
-    chmod 0660 /sys/class/leds/torch-sec1/brightness
+    chmod 0666 /sys/class/leds/torch-sec1/brightness
 
 # Exynos 5410 settings
     write /sys/devices/system/cpu/sched_mc_power_savings 2
