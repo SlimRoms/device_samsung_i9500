@@ -18,7 +18,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
 LOCAL_PATH := device/samsung/i9500
 
-# overlays
+# Overlays
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
 # Boot animation
@@ -110,6 +110,10 @@ PRODUCT_PACKAGES += \
 # MobiCore
 PRODUCT_PACKAGES += \
 	mcDriverDaemon
+	
+# IR
+PRODUCT_PACKAGES += \
+	consumerir.universal5410
 
 # NFC
 PRODUCT_PACKAGES += \
