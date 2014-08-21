@@ -7,12 +7,12 @@ on post-fs-data
     mkdir /data/misc/dhcp 0770 dhcp dhcp
     chown dhcp dhcp /data/misc/dhcp
 
-    # for WIFI TRP/TIS
+# for WIFI TRP/TIS
     write /data/.psm.info 1
     chown system root /data/.psm.info
     chmod 0660 /data/.psm.info
 
-    # for WIFI MAC address
+# for WIFI MAC address
     mkdir /efs/wifi 0775 radio system
     chown system system /efs/wifi/.mac.info
     chmod 0664 /efs/wifi/.mac.info
