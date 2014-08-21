@@ -227,9 +227,16 @@ on boot
     chown system radio /sys/class/sensors/ssp_sensor/mcu_sleep_test
     chown system radio /sys/class/sensors/ssp_sensor/ori_poll_delay
     chown system radio /sys/class/sensors/ssp_sensor/mag_poll_delay
+
 # IR_LED
-    chown system radio /sys/class/sec/sec_ir/ir_send
-    chown system radio /sys/class/sec/sec_ir/ir_send_result
+    chown system system /sys/class/sec/sec_ir/check_ir
+    chown system system /sys/class/sec/sec_ir/ir_send_result
+    chown system system /sys/class/sec/sec_ir/ir_send
+    chown system system /sys/class/sec/sec_ir/irda_test
+    chmod 0660 /sys/class/sec/sec_ir/check_ir
+    chmod 0660 /sys/class/sec/sec_ir/ir_send_result
+    chmod 0660 /sys/class/sec/sec_ir/ir_send
+    chmod 0660 /sys/class/sec/sec_ir/irda_test
 
 # Permissions for Barcode Emul
     chown system radio /sys/class/sec/sec_barcode_emul/barcode_send
@@ -244,7 +251,7 @@ on boot
     chown system radio /sys/class/camera/front/front_camfw
     chown system radio /sys/class/camera/front/front_camtype
 
-# SVC LED
+# LEDs
     chown system system /sys/class/sec/led/led_r
     chown system system /sys/class/sec/led/led_g
     chown system system /sys/class/sec/led/led_b
@@ -252,12 +259,15 @@ on boot
     chown system system /sys/class/leds/led_r/brightness
     chown system system /sys/class/leds/led_g/brightness
     chown system system /sys/class/leds/led_b/brightness
+    
     chown system system /sys/class/leds/led_r/delay_on
     chown system system /sys/class/leds/led_g/delay_on
     chown system system /sys/class/leds/led_b/delay_on
+    
     chown system system /sys/class/leds/led_r/delay_off
     chown system system /sys/class/leds/led_g/delay_off
     chown system system /sys/class/leds/led_b/delay_off
+    
     chown system system /sys/class/leds/led_r/blink
     chown system system /sys/class/leds/led_g/blink
     chown system system /sys/class/leds/led_b/blink
