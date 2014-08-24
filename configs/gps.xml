@@ -25,12 +25,15 @@
        SuplUT2Seconds="20"
        SuplUT3Seconds="20"
        SuplVersion="1"
+       TcpConnectionTimeout="20"
 
        LbsEnable="true"
        LbsServer="BCMLS2.glpals.com"
+       LbsPort="7275"
        HttpSyncLto="true"
        LbsCellEnable="false"
        LtoDir="/data/system/gps/"
+       LtoSyncThresholdDays="1"
 
        IgnoreJniTime="true"
        AssertEnabled="false"
@@ -38,7 +41,7 @@
 
   <gll
        LogPriMask="LOG_INFO"
-       LogFacMask="LOG_GLLIO | LOG_RAWDATA | LOG_GLLAPI | LOG_NMEA"
+       LogFacMask="LOG_GLLIO | LOG_GLLAPI | LOG_NMEA | LOG_RAWDATA"
        FrqPlan="FRQ_PLAN_26MHZ_2PPM_26MHZ_300PPB"
        RfType="GL_RF_47521_BRCM_EXT_LNA"
        WarmStandbyTimeout1Seconds="10"
