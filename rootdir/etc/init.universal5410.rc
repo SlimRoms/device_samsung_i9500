@@ -116,14 +116,8 @@ on boot
     write /sys/block/mmcblk0/queue/add_random 0
     write /sys/block/mmcblk1/queue/add_random 0
     
-# Permissions for Mobicore
+# Added for Mobicore
     mkdir /data/app/mcRegistry 0775 system system
-    chmod 0700 /dev/mobicore
-    chmod 0666 /dev/mobicore-user
-    chmod 0660 /dev/s5p-smem
-    chown system system /dev/mobicore
-    chown radio system /dev/mobicore-user
-    chown system system /dev/s5p-smem
 
 # Permissions for Bluetooth
     setprop ro.bt.bdaddr_path "/efs/bluetooth/bt_addr"
