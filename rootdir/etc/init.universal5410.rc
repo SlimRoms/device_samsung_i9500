@@ -20,15 +20,18 @@ on init
     export EMULATED_STORAGE_TARGET /storage/emulated
     export SECONDARY_STORAGE /storage/sdcard1:/storage/usbdisk
 
-# for backwards compatibility
+# For backwards compatibility
+# Emulated Internal Storage
     symlink /storage/emulated/legacy /sdcard
     symlink /storage/emulated/legacy /mnt/sdcard
     symlink /storage/emulated/legacy /storage/sdcard0
     symlink /mnt/shell/emulated/0 /storage/emulated/legacy
-    
+
+# External Storage    
     symlink /storage/sdcard1 /external_sd
     symlink /storage/sdcard1 /mnt/external_sd
     
+# USB External Storage
     symlink /storage/usbdisk /usbdisk
     symlink /storage/usbdisk /mnt/usbdisk
 
@@ -46,8 +49,8 @@ on fs
 
 on post-fs
     chown system system /sys/block/mmcblk0/queue/scheduler
-    chmod 0664 /sys/block/mmcblk0/queue/scheduler
     chown system system /sys/block/mmcblk1/queue/scheduler
+    chmod 0664 /sys/block/mmcblk0/queue/scheduler
     chmod 0664 /sys/block/mmcblk1/queue/scheduler
 
 # Increase max readahead size to 512 KB
@@ -122,19 +125,18 @@ on boot
 # Permissions for Bluetooth
     setprop ro.bt.bdaddr_path "/efs/bluetooth/bt_addr"
     chown bluetooth bluetooth ro.bt.bdaddr_path
-    chmod 0660 /sys/class/rfkill/rfkill0/state
+    
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
+    chmod 0660 /sys/class/rfkill/rfkill0/state
 
 # Permissions for Touchscreen
-    chmod 0666 /sys/class/sec/tsp/cmd
-    chmod 0666 /sys/class/sec/tsp/cmd_result
-    chmod 0666 /sys/class/sec/tsp/cmd_list
     chown system radio /sys/class/sec/tsp/cmd
     chown system radio /sys/class/sec/tsp/cmd_result
     chown system radio /sys/class/sec/tsp/cmd_list
-    chown system radio /sys/class/sec/sec_touchkey/glove_mode
-    chown system radio /sys/class/sec/sec_touchkey/flip_mode
+    chmod 0666 /sys/class/sec/tsp/cmd
+    chmod 0666 /sys/class/sec/tsp/cmd_result
+    chmod 0666 /sys/class/sec/tsp/cmd_list
 
 # Permissions for Touchkeys
     chown system radio /sys/class/sec/sec_touchkey/enable_disable
@@ -149,10 +151,12 @@ on boot
     chown system radio /sys/class/sec/sec_touchkey/touchkey_firm_update
     chown system radio /sys/class/sec/sec_touchkey/touch_sensitivity
     chown system radio /sys/class/sec/sec_touchkey/touchkey_threshold
-    chown system system /sys/devices/virtual/sec/sec_touchkey/brightness
-
+    chown system radio /sys/class/sec/sec_touchkey/glove_mode
+    chown system radio /sys/class/sec/sec_touchkey/flip_mode
     chown root system /sys/class/sec/sec_touchkey/keypad_enable
     chmod 0660 /sys/class/sec/sec_touchkey/keypad_enable
+    
+    chown system system /sys/devices/virtual/sec/sec_touchkey/brightness
 
 # Permissions for GPIO Keys
     chown radio system /sys/class/sec/sec_key/wakeup_keys
@@ -239,8 +243,11 @@ on boot
 # Permissions for Camera
     chown system radio /sys/class/camera/rear/rear_camfw
     chown system radio /sys/class/camera/rear/rear_camtype
+    
     chown system radio /sys/class/camera/flash/rear_flash
+    
 #    chown system radio /sys/class/camera/rear/isp_core
+
     chown system radio /sys/class/camera/front/front_camfw
     chown system radio /sys/class/camera/front/front_camtype
 
@@ -248,7 +255,7 @@ on boot
     chown system system /sys/class/sec/led/led_r
     chown system system /sys/class/sec/led/led_g
     chown system system /sys/class/sec/led/led_b
-
+    
     chown system system /sys/class/leds/led_r/brightness
     chown system system /sys/class/leds/led_g/brightness
     chown system system /sys/class/leds/led_b/brightness
@@ -264,7 +271,7 @@ on boot
     chown system system /sys/class/leds/led_r/blink
     chown system system /sys/class/leds/led_g/blink
     chown system system /sys/class/leds/led_b/blink
-
+    
     chown system system /sys/class/sec/led/led_pattern
     chown system system /sys/class/sec/led/led_blink
     chown system system /sys/class/sec/led/led_br_lev
@@ -301,53 +308,51 @@ on boot
     chmod 0660 /sys/devices/platform/pvrsrvkm.0/sgx_dvfs_max_lock
     chmod 0660 /sys/devices/platform/pvrsrvkm.0/sgx_dvfs_table
     
-    chown radio system /sys/class/lcd/panel/siop_enable
-    chown radio system /sys/class/graphics/fb0/lcdfreq/level
+# Permissions for Exynos 5 BUS    
     chown radio system /sys/class/devfreq/exynos5-busfreq-mif/min_freq
     chown radio system /sys/class/devfreq/exynos5-busfreq-mif/max_freq
     chown radio system /sys/class/devfreq/exynos5-busfreq-mif/freq_table
-    chmod 0660 /sys/class/lcd/panel/siop_enable
-    chmod 0660 /sys/class/graphics/fb0/lcdfreq/level
     chmod 0660 /sys/class/devfreq/exynos5-busfreq-mif/min_freq
     chmod 0660 /sys/class/devfreq/exynos5-busfreq-mif/max_freq
     chmod 0660 /sys/class/devfreq/exynos5-busfreq-mif/freq_table
 
 # Permissions for Ondemand CPU Governor
     chown radio system /sys/devices/system/cpu/cpufreq/ondemand/up_threshold_h
-    chmod 0664 /sys/devices/system/cpu/cpufreq/ondemand/up_threshold_h
     chown radio system /sys/devices/system/cpu/cpufreq/ondemand/high_freq_zone
-    chmod 0664 /sys/devices/system/cpu/cpufreq/ondemand/high_freq_zone
     chown radio system /sys/devices/system/cpu/cpufreq/ondemand/conservative_step
-    chmod 0664 /sys/devices/system/cpu/cpufreq/ondemand/conservative_step
     chown radio system /sys/devices/system/cpu/cpufreq/ondemand/up_conservative_mode
-    chmod 0664 /sys/devices/system/cpu/cpufreq/ondemand/up_conservative_mode
     chown radio system /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate
-    chmod 0664 /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate
     chown radio system /sys/devices/system/cpu/cpufreq/ondemand/up_threshold_l
-    chmod 0664 /sys/devices/system/cpu/cpufreq/ondemand/up_threshold_l
     chown radio system /sys/devices/system/cpu/cpufreq/ondemand/up_step_level_l
-    chmod 0664 /sys/devices/system/cpu/cpufreq/ondemand/up_step_level_l
     chown radio system /sys/devices/system/cpu/cpufreq/ondemand/up_threshold
-    chmod 0664 /sys/devices/system/cpu/cpufreq/ondemand/up_threshold
     chown radio system /sys/devices/system/cpu/cpufreq/ondemand/up_step_level_b
-    chmod 0664 /sys/devices/system/cpu/cpufreq/ondemand/up_step_level_b
     chown radio system /sys/devices/system/cpu/cpufreq/ondemand/sampling_down_factor
-    chmod 0664 /sys/devices/system/cpu/cpufreq/ondemand/sampling_down_factor
-    chown radio system /sys/devices/system/cpu/cpufreq/ondemand/up_threshold_h#
-    chmod 0660 /sys/devices/system/cpu/cpufreq/ondemand/up_threshold_h
+    chown radio system /sys/devices/system/cpu/cpufreq/ondemand/up_threshold_h
     chown radio system /sys/devices/system/cpu/cpufreq/ondemand/game_mode
+    chmod 0664 /sys/devices/system/cpu/cpufreq/ondemand/up_threshold_h
+    chmod 0664 /sys/devices/system/cpu/cpufreq/ondemand/high_freq_zone
+    chmod 0664 /sys/devices/system/cpu/cpufreq/ondemand/conservative_step
+    chmod 0664 /sys/devices/system/cpu/cpufreq/ondemand/up_conservative_mode
+    chmod 0664 /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate
+    chmod 0664 /sys/devices/system/cpu/cpufreq/ondemand/up_threshold_l
+    chmod 0664 /sys/devices/system/cpu/cpufreq/ondemand/up_step_level_l
+    chmod 0664 /sys/devices/system/cpu/cpufreq/ondemand/up_threshold
+    chmod 0664 /sys/devices/system/cpu/cpufreq/ondemand/up_step_level_b
+    chmod 0664 /sys/devices/system/cpu/cpufreq/ondemand/sampling_down_factor
+    chmod 0660 /sys/devices/system/cpu/cpufreq/ondemand/up_threshold_h
     chmod 0660 /sys/devices/system/cpu/cpufreq/ondemand/game_mode
 
 # Permissions for Core Control
     chown radio system /dev/b.L_operator
-    chmod 0660 /dev/b.L_operator
     chown radio system /dev/bL_status
+    chmod 0660 /dev/b.L_operator
     chmod 0660 /dev/bL_status
 
 # Permissions for AMOLED Color Adjustment
     chown radio system /sys/class/power_supply/battery/temp
-    chown radio system /sys/class/lcd/panel/temperature
     chmod 0664 /sys/class/power_supply/battery/temp
+    
+    chown radio system /sys/class/lcd/panel/temperature
     chmod 0664 /sys/class/lcd/panel/temperature
 
 # Permissions for CPU Idle
@@ -355,23 +360,25 @@ on boot
     chown radio system /sys/devices/system/cpu/cpu1/cpuidle/state1/disable
     chown radio system /sys/devices/system/cpu/cpu2/cpuidle/state1/disable
     chown radio system /sys/devices/system/cpu/cpu3/cpuidle/state1/disable
+    chown system radio /sys/devices/system/cpu/cpu0/cpuidle/state2/disable
     chmod 0660 /sys/devices/system/cpu/cpu0/cpuidle/state1/disable
     chmod 0660 /sys/devices/system/cpu/cpu1/cpuidle/state1/disable
     chmod 0660 /sys/devices/system/cpu/cpu2/cpuidle/state1/disable
     chmod 0660 /sys/devices/system/cpu/cpu3/cpuidle/state1/disable
-    chown system radio /sys/devices/system/cpu/cpu0/cpuidle/state2/disable
+    
     chown system radio /sys/module/cpuidle/parameters/enable_mask
-
+    
     chown system radio /sys/module/asv_exynos/parameters/asv_group
 
 # Permissions for Terminal Mode
+	chown system system /sys/class/android_usb/android0/terminal_version
     chmod 0660 /sys/class/android_usb/android0/terminal_version
-    chown system system /sys/class/android_usb/android0/terminal_version
 
 # Permissions for Radio
     chown radio radio /sys/devices/virtual/misc/multipdp/waketime
-    chmod 0660 /sys/devices/virtual/misc/umts_dm0/dm_state
+    
     chown radio system /sys/devices/virtual/misc/umts_dm0/dm_state
+    chmod 0660 /sys/devices/virtual/misc/umts_dm0/dm_state
 
 # Permissions for Screen Backlight
     chown system system /sys/class/backlight/panel/brightness
@@ -381,8 +388,11 @@ on boot
     chown system radio /sys/class/lcd/panel/lcd_type
     chown system system /sys/class/lcd/panel/power_reduce
     chown system system /sys/class/lcd/panel/siop_enable
-    chown system system /sys/class/graphics/fb0/lcdfreq/level
     chown system system /sys/class/lcd/panel/temperature
+    chmod 0660 /sys/class/lcd/panel/siop_enable
+    
+    chown system system /sys/class/graphics/fb0/lcdfreq/level
+    chmod 0660 /sys/class/graphics/fb0/lcdfreq/level
 
 # Permissions for MDNIe
     chown system system /sys/class/mdnie/mdnie/mode
@@ -440,27 +450,27 @@ on boot
     rm /data/sv_cno.info
 
 # Permissions for MTP Device
+	chown system system /dev/usb_mtp_gadget
     chmod 0660 /dev/usb_mtp_gadget
-    chown system system /dev/usb_mtp_gadget
 
 # Permissions for Vibrator
     chown system system /sys/class/timed_output/vibrator/enable
-    chmod 0644 /sys/class/timed_output/vibrator/pwm_value
     chown system system /sys/class/timed_output/vibrator/pwm_value
-    chmod 0644 /sys/class/timed_output/vibrator/pwm_max
     chown system system /sys/class/timed_output/vibrator/pwm_max
-    chmod 0644 /sys/class/timed_output/vibrator/pwm_min
     chown system system /sys/class/timed_output/vibrator/pwm_min
-    chmod 0644 /sys/class/timed_output/vibrator/pwm_default
     chown system system /sys/class/timed_output/vibrator/pwm_default
-    chmod 0644 /sys/class/timed_output/vibrator/pwm_threshold
     chown system system /sys/class/timed_output/vibrator/pwm_threshold
+    chmod 0644 /sys/class/timed_output/vibrator/pwm_value
+    chmod 0644 /sys/class/timed_output/vibrator/pwm_max
+    chmod 0644 /sys/class/timed_output/vibrator/pwm_min
+    chmod 0644 /sys/class/timed_output/vibrator/pwm_default
+    chmod 0644 /sys/class/timed_output/vibrator/pwm_threshold
 
 # Permissions for Torch
     chown system camera /sys/class/leds/torch-sec1/brightness
     chmod 0660 /sys/class/leds/torch-sec1/brightness
 
-# Exynos 5410 settings
+# Exynos 5410 Settings
     write /sys/devices/system/cpu/sched_mc_power_savings 2
     write /proc/sys/kernel/randomize_va_space 0
     write /sys/devices/platform/pvrsrvkm.0/sgx_dvfs_max_lock 532
