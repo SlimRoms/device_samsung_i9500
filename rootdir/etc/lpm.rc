@@ -42,7 +42,7 @@ on charger
 on boot
 	class_start core
 
-# Reduce Screen Brightness
+# Reduce and Lock Screen Brightness while charging
 	chown system system /sys/class/backlight/panel/brightness
 	write /sys/class/backlight/panel/brightness 10
 	chmod 444 /sys/class/backlight/panel/brightness
