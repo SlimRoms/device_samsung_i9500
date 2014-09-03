@@ -46,6 +46,9 @@ on init
     symlink /dev/block/mmcblk0p8 /dev/block/param
     
     symlink /sys/devices/platform/s5p-ehci/ehci_power /dev/ehci_power
+    
+# enable pulsing led on boot
+	write /sys/class/sec/led/led_pattern 6
 
 on fs
     mount_all /fstab.universal5410
@@ -555,6 +558,8 @@ on property:sys.boot_completed=1
     write /sys/block/mmcblk0/queue/scheduler row
 # start gpsd late to prevent it from changing /data/system
     start gpsd
+# disable pulsing led on boot complete
+	exec /system/bin/sh /system/etc/init.led.sh
 
 # start for TZPR provisioning version check app
 on property:sys.mobicoredaemon.enable=true

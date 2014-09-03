@@ -28,6 +28,7 @@ TARGET_SCREEN_WIDTH := 1080
 # Ramdisk
 PRODUCT_PACKAGES += \
 	fstab.universal5410 \
+	init.led.sh \
 	init.universal5410.rc \
 	init.universal5410.usb.rc \
 	init.universal5410.wifi.rc \
