@@ -299,9 +299,9 @@
              channels="2" />
     </EncoderProfile>
 
+    <ImageEncoding quality="100" />
     <ImageEncoding quality="95" />
-    <ImageEncoding quality="80" />
-    <ImageEncoding quality="70" />
+    <ImageEncoding quality="90" />
     <ImageDecoding memCap="20000000" />
 
 	  </CamcorderProfiles>
@@ -519,9 +519,9 @@
              channels="2" />
     </EncoderProfile>
 
+    <ImageEncoding quality="100" />
     <ImageEncoding quality="95" />
-    <ImageEncoding quality="80" />
-    <ImageEncoding quality="70" />
+    <ImageEncoding quality="90" />
     <ImageDecoding memCap="20000000" />
 
     </CamcorderProfiles>
