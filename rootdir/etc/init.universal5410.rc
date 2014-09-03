@@ -480,6 +480,7 @@ on boot
     write /sys/devices/platform/pvrsrvkm.0/sgx_dvfs_min_lock 177
     write /sys/class/devfreq/exynos5-busfreq-mif/polling_interval 50
     write /sys/class/devfreq/exynos5-busfreq-mif/time_in_state/upthreshold 70
+    write /sys/class/thermal/thermal_zone0/boost_mode 2
 
 ###
 # Services begin here
