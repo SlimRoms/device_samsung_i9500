@@ -559,7 +559,7 @@ on property:sys.boot_completed=1
 # start gpsd late to prevent it from changing /data/system
 	start gpsd
 # disable pulsing led on boot complete
-	exec /system/bin/sh /system/etc/init.led.sh
+	exec /system/bin/sh /init.led.sh
 
 # start for TZPR provisioning version check app
 on property:sys.mobicoredaemon.enable=true
