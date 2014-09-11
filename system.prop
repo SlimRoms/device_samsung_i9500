@@ -34,4 +34,9 @@ ro.ril.hsxpa=3
 nfc.app_log_level=2
 
 ## Memory ##
+
+# Assets Purging
 persist.sys.purgeable_assets=1
+
+# KSM
+ro.ksm.default=1
