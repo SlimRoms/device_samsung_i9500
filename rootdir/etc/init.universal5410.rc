@@ -476,14 +476,26 @@ on boot
 	chown system camera /sys/class/leds/torch-sec1/brightness
 	chmod 0660 /sys/class/leds/torch-sec1/brightness
 
-# Exynos 5410 Settings
+# GearCM Tweaks (from Perseus)
 	write /sys/devices/system/cpu/sched_mc_power_savings 2
 	write /proc/sys/kernel/randomize_va_space 0
-	write /sys/devices/platform/pvrsrvkm.0/sgx_dvfs_max_lock 532
-	write /sys/devices/platform/pvrsrvkm.0/sgx_dvfs_min_lock 177
 	write /sys/class/devfreq/exynos5-busfreq-mif/polling_interval 50
 	write /sys/class/devfreq/exynos5-busfreq-mif/time_in_state/upthreshold 70
+
+# Set proper GPU DVFS values
+	write /sys/devices/platform/pvrsrvkm.0/sgx_dvfs_max_lock 532
+	write /sys/devices/platform/pvrsrvkm.0/sgx_dvfs_min_lock 177
+	
+# Reduce CPU throttling
 	write /sys/class/thermal/thermal_zone0/boost_mode 1
+	
+# Set higher global charging values while screen is on
+	write /sys/devices/platform/sec-battery/siop_input_limit 1500
+	write /sys/devices/platform/sec-battery/siop_charge_limit 1300
+	
+# Set higher USB charging values using USB 3.0 capabilities
+	write /sys/devices/platform/sec-battery/sdp_input_curr 1000
+	write /sys/devices/platform/sec-battery/sdp_chrg_curr 1000
 
 ###
 # Services begin here
