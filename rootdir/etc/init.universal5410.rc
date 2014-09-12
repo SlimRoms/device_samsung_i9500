@@ -24,7 +24,7 @@ on init
 	export EMULATED_STORAGE_TARGET /storage/emulated
 	export SECONDARY_STORAGE /storage/sdcard1:/storage/usbdisk
 
-# For backwards compatibility
+# Symlinks for backwards compatibility
 # Emulated Internal Storage
 	symlink /storage/emulated/legacy /sdcard
 	symlink /storage/emulated/legacy /mnt/sdcard
@@ -47,7 +47,7 @@ on init
 
 	symlink /sys/devices/platform/s5p-ehci/ehci_power /dev/ehci_power
 
-# enable pulsing led on boot
+# Enable pulsing led on boot
 	write /sys/class/sec/led/led_pattern 6
 
 on fs
@@ -117,8 +117,8 @@ on boot
 # 4.3 needs this
 	chmod 0644 /proc/cmdline
 
-# Flash storage isn't a good entropy source, and only causes locking
-# overhead in the kernel. Turn it off.
+# Flash storage isn't a good entropy source, and only causes
+# locking overhead in the kernel. Turn it off.
 	write /sys/block/mmcblk0/queue/add_random 0
 	write /sys/block/mmcblk1/queue/add_random 0
 
@@ -251,8 +251,6 @@ on boot
 	chown system radio /sys/class/camera/rear/rear_camtype
 
 	chown system radio /sys/class/camera/flash/rear_flash
-
-#	chown system radio /sys/class/camera/rear/isp_core
 
 	chown system radio /sys/class/camera/front/front_camfw
 	chown system radio /sys/class/camera/front/front_camtype
@@ -552,14 +550,14 @@ service iprenew_bt-pan /system/bin/dhcpcd -n
 	disabled
 	oneshot
 
-# service for TZPR provisioning version check app
+# TZPR provisioning version check app
 service scranton_RD /system/bin/scranton_RD
 	class main
 	user root
 	disabled
 	oneshot
 
-# Workaround for broken incall audio
+# Workaround for broken in-call audio
 service bootsnd /system/bin/tinyplay /system/etc/sound/silence.wav -D 0 -d 0 -p 880
 	class late_start
 	user root
@@ -568,16 +566,17 @@ service bootsnd /system/bin/tinyplay /system/etc/sound/silence.wav -D 0 -d 0 -p 
 
 on property:sys.boot_completed=1
 	write /sys/block/mmcblk0/queue/scheduler row
-# start gpsd late to prevent it from changing /data/system
+# Start gpsd late to prevent it from changing /data/system
 	start gpsd
-# disable pulsing led on boot complete
+# Disable pulsing led on boot complete
 	exec /system/bin/sh /init.led.sh
 
-# start for TZPR provisioning version check app
+# Start TZPR provisioning version check app but only
+# if sys.mobicoredaemon.enable property is set.
 on property:sys.mobicoredaemon.enable=true
 	start scranton_RD
 
-# MobiCore startup
+# MobiCore
 service mobicore /system/bin/mcDriverDaemon \
 	-r /system/vendor/firmware/mcRegistry/FFFFFFFF000000000000000000000001.drbin \
 	-r /system/vendor/firmware/mcRegistry/ffffffffd0000000000000000000000a.tlbin
@@ -596,7 +595,5 @@ on property:ro.data.large_tcp_window_size=true
 # MHL
 on property:ro.debuggable=1
 	chmod 666 /sys/class/mhl/hdcp_support
-on property:ro.debuggable=1
 	chmod 666 /sys/class/mhl/timing
-on property:ro.debuggable=1
 	chmod 666 /sys/class/mhl/swing
