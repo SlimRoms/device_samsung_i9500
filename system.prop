@@ -3,14 +3,22 @@
 #
 
 ## Graphics ##
+
+# Disable GL Library Preload
 ro.zygote.disable_gl_preload=1
+
+# Disable Swaprect
 debug.sf.swaprect=0
+
+# Force GPU Rendering
 persist.sys.ui.hw=1
 
 ## Screen ##
+
+# 1080p Screen Density
 ro.sf.lcd_density=480
 
-## RIL ##
+## Radio ##
 
 # Samsung RIL Config
 rild.libpath=/system/lib/libsec-ril.so
@@ -30,13 +38,13 @@ ro.ril.hsxpa=3
 
 ## NFC ##
 
-# Debug Level
+# Reduce Debug Level
 nfc.app_log_level=2
 
 ## Memory ##
 
-# Assets Purging
+# Enable Assets Purging
 persist.sys.purgeable_assets=1
 
-# KSM
+# Enable KSM
 ro.ksm.default=1

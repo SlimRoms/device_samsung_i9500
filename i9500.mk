@@ -41,15 +41,15 @@ PRODUCT_PACKAGES += \
 
 # Audio
 PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/configs/audio_policy.conf:system/etc/audio_policy.conf \
-	$(LOCAL_PATH)/configs/audio_effects.conf:system/vendor/etc/audio_effects.conf \
+	$(LOCAL_PATH)/audio/audio_policy.conf:system/etc/audio_policy.conf \
+	$(LOCAL_PATH)/audio/audio_effects.conf:system/vendor/etc/audio_effects.conf \
 	$(LOCAL_PATH)/audio/silence.wav:system/etc/sound/silence.wav
 
 PRODUCT_PACKAGES += \
 	audio.a2dp.default \
 	audio.primary.universal5410 \
-	audio.usb.default \
 	audio.r_submix.default \
+	audio.usb.default \
 	mixer_paths.xml \
 	tinymix \
 	tinyplay
@@ -76,11 +76,11 @@ PRODUCT_PACKAGES += \
 
 # GPS
 PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/configs/gps.cer:system/etc/gps.cer \
-	$(LOCAL_PATH)/configs/gps.conf:system/etc/gps.conf \
-	$(LOCAL_PATH)/configs/gps.xml:system/etc/gps.xml
+	$(LOCAL_PATH)/gps/gps.cer:system/etc/gps.cer \
+	$(LOCAL_PATH)/gps/gps.conf:system/etc/gps.conf \
+	$(LOCAL_PATH)/gps/gps.xml:system/etc/gps.xml
 
-# HW composer
+# HW Composer
 PRODUCT_PACKAGES += \
 	hwcomposer.exynos5 \
 	libion
@@ -99,12 +99,12 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
 	lights.universal5410
 
-# Media profile
+# Media
 PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml \
 	$(LOCAL_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml
 
-# Misc
+# USB
 PRODUCT_PACKAGES += \
 	com.android.future.usb.accessory
 
@@ -147,15 +147,14 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
 	libsecril-client \
 	libsecril-client-sap
-	
-# RIL
+
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.telephony.ril_class=SamsungExynos4RIL \
 	mobiledata.interfaces=pdp0,wlan0,gprs,ppp0 \
 	ro.telephony.call_ring.multiple=false \
 	ro.telephony.call_ring.delay=3000
 
-# Samsung
+# Samsung STK
 PRODUCT_PACKAGES += \
 	SamsungServiceMode
 
@@ -163,10 +162,13 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
 	Torch
 
-# Wifi
+# Wi-Fi
 PRODUCT_PACKAGES += \
 	libnetcmdiface \
 	macloader
+	
+PRODUCT_PROPERTY_OVERRIDES += \
+	wifi.interface=wlan0
 
 # Set default USB interface
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
@@ -176,7 +178,7 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
 	persist.sys.dalvik.multithread=true
 
-# Enable repeatable keys in CWM
+# Enable Repeatable Keys in CWM
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.cwm.enable_key_repeat=true \
 	ro.cwm.repeatable_keys=114,115
@@ -188,7 +190,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Disable SELinux	
 PRODUCT_PROPERTY_OVERRIDES += \
-	ro.build.selinux=0 \
+	ro.build.selinux=0
+	
+# Enable Root for ADB & Apps	
+PRODUCT_PROPERTY_OVERRIDES += \
 	persist.sys.root_access=3
 
 # Development & ADB authentication settings
@@ -199,11 +204,7 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
 	ro.debuggable=1 \
 	ro.secure=0
 
-# System properties
-PRODUCT_PROPERTY_OVERRIDES += \
-	wifi.interface=wlan0
-
-# Dalvik properties
+# Dalvik
 PRODUCT_PROPERTY_OVERRIDES += \
 	dalvik.vm.dexopt-data-only=0
 
@@ -213,10 +214,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Default=true for development builds, set by android buildsystem.
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.kernel.android.checkjni=0 \
-	dalvik.vm.checkjni=0 \
 	dalvik.vm.checkjni=false
 
-# Permissions
+# Hardware Permissions
 PRODUCT_COPY_FILES += \
 	frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
 	frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
@@ -251,6 +251,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_AAPT_CONFIG := normal hdpi xhdpi xxhdpi
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 
+# Recovery Options
+PRODUCT_PROPERTY_OVERRIDES += \
+	ro.cwm.forbid_format=/efs,/boot
+	
 # call dalvik heap config
 $(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-dalvik-heap.mk)
 
@@ -262,7 +266,3 @@ $(call inherit-product-if-exists, vendor/samsung/i9500/i9500-vendor.mk)
 
 # call bcm wlan config
 $(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/config/config-bcm.mk)
-
-# Recovery Options
-PRODUCT_PROPERTY_OVERRIDES += \
-	ro.cwm.forbid_format=/efs,/boot
