@@ -556,6 +556,11 @@ service scranton_RD /system/bin/scranton_RD
 	user root
 	disabled
 	oneshot
+	
+service sensorhubservice /system/bin/sensorhubservice
+    class main
+    user system
+    group input
 
 # Workaround for broken in-call audio
 service bootsnd /system/bin/tinyplay /system/etc/sound/silence.wav -D 0 -d 0 -p 880
