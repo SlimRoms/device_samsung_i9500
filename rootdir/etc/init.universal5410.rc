@@ -575,6 +575,11 @@ on property:sys.boot_completed=1
 	start gpsd
 # Disable pulsing led on boot complete
 	exec /system/bin/sh /init.led.sh
+# Configure the cpu-boost module
+    write /sys/module/cpu_boost/parameters/boost_ms 10
+    write /sys/module/cpu_boost/parameters/sync_threshold 1500000
+    write /sys/module/cpu_boost/parameters/input_boost_freq 1200000
+    write /sys/module/cpu_boost/parameters/input_boost_ms 40
 
 # Start TZPR provisioning version check app but only
 # if sys.mobicoredaemon.enable property is set.
