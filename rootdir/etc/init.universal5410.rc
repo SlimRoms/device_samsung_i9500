@@ -495,6 +495,9 @@ on boot
 	write /sys/devices/platform/sec-battery/sdp_input_curr 1000
 	write /sys/devices/platform/sec-battery/sdp_chrg_curr 1000
 
+# Set Standard mDNIe mode	
+	write /sys/class/mdnie/mdnie/mode 0
+
 ###
 # Services begin here
 ###
