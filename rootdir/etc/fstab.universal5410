@@ -16,4 +16,4 @@
 /devices/platform/dw_mmc.2/mmc_host/mmc2	auto			auto		defaults																	voldmanaged=sdcard1:auto,noemulatedsd
 
 # USB storage
-/devices/platform/s5p-ehci					auto			auto		defaults																	voldmanaged=usbdisk:auto
+/devices/platform/exynos-dwc3.0/exynos-xhci.0   auto			auto		defaults																	voldmanaged=usbdisk:auto
