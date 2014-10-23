@@ -497,6 +497,15 @@ on boot
 
 # Set Standard mDNIe mode	
 	write /sys/class/mdnie/mdnie/mode 0
+	
+# Configure Interactive CPU Governor
+    write /sys/devices/system/cpu/cpufreq/interactive/above_hispeed_delay "20000 1000000:40000 1500000:20000"
+    write /sys/devices/system/cpu/cpufreq/interactive/check_fast_target_loads "50 1000000:66"
+    write /sys/devices/system/cpu/cpufreq/interactive/go_hispeed_load 9999999
+    write /sys/devices/system/cpu/cpufreq/interactive/io_is_busy 0
+    write /sys/devices/system/cpu/cpufreq/interactive/min_sample_time 40000
+    write /sys/devices/system/cpu/cpufreq/interactive/sampling_down_factor 100000
+    write /sys/devices/system/cpu/cpufreq/interactive/target_loads 85
 
 ###
 # Services begin here
