@@ -53,6 +53,12 @@ on init
 on fs
 	mount_all /fstab.universal5410
 	setprop ro.crypto.fuse_sdcard true
+	
+# Replace CM DRM Server with Samsung's one
+	rm /system/bin/drmserver
+	copy /system/bin/drmserver.samsung /system/bin/drmserver
+	chown root shell /system/bin/drmserver
+	chmod 0755 /system/bin/drmserver
 
 on post-fs
 	chown system system /sys/block/mmcblk0/queue/scheduler
@@ -91,8 +97,13 @@ on post-fs-data
 	mkdir /efs/.files/.dm33 0775 media system
 	mkdir /efs/.files/.mp301 0775 media system
 
+# Added for Samsung DRM
+	mkdir /system/etc/security/.drm 0775 root root
+	mkdir /efs/drm 0774 drm system
+	mkdir /efs/drm/sdrm 0774 drm system
+	mkdir /efs/drm/sdrm/data_agent 0774 drm system
+
 # Added for TZ Playready DRM Support
-	mkdir /efs/drm 0700 drm system
 	mkdir /efs/drm/playready 0775 drm system
 
 # SEAndroid Restore context for efs files
@@ -140,6 +151,8 @@ on boot
 	chown system radio /sys/class/sec/tsp/cmd
 	chown system radio /sys/class/sec/tsp/cmd_result
 	chown system radio /sys/class/sec/tsp/cmd_list
+	chown system system /sys/class/input/input1/enabled
+	chmod 0660 /sys/class/input/input1/enabled
 	chmod 0666 /sys/class/sec/tsp/cmd
 	chmod 0666 /sys/class/sec/tsp/cmd_result
 	chmod 0666 /sys/class/sec/tsp/cmd_list
@@ -499,13 +512,13 @@ on boot
 	write /sys/class/mdnie/mdnie/mode 0
 	
 # Configure Interactive CPU Governor
-    write /sys/devices/system/cpu/cpufreq/interactive/above_hispeed_delay "20000 1000000:40000 1500000:20000"
-    write /sys/devices/system/cpu/cpufreq/interactive/check_fast_target_loads "50 1000000:66"
-    write /sys/devices/system/cpu/cpufreq/interactive/go_hispeed_load 9999999
-    write /sys/devices/system/cpu/cpufreq/interactive/io_is_busy 0
-    write /sys/devices/system/cpu/cpufreq/interactive/min_sample_time 40000
-    write /sys/devices/system/cpu/cpufreq/interactive/sampling_down_factor 100000
-    write /sys/devices/system/cpu/cpufreq/interactive/target_loads 85
+	write /sys/devices/system/cpu/cpufreq/interactive/above_hispeed_delay "20000 1000000:40000 1500000:20000"
+	write /sys/devices/system/cpu/cpufreq/interactive/check_fast_target_loads "50 1000000:66"
+	write /sys/devices/system/cpu/cpufreq/interactive/go_hispeed_load 9999999
+	write /sys/devices/system/cpu/cpufreq/interactive/io_is_busy 0
+	write /sys/devices/system/cpu/cpufreq/interactive/min_sample_time 40000
+	write /sys/devices/system/cpu/cpufreq/interactive/sampling_down_factor 100000
+	write /sys/devices/system/cpu/cpufreq/interactive/target_loads 85
 
 ###
 # Services begin here
@@ -570,9 +583,9 @@ service scranton_RD /system/bin/scranton_RD
 	oneshot
 	
 service sensorhubservice /system/bin/sensorhubservice
-    class main
-    user system
-    group input
+	class main
+	user system
+	group input
 
 # Workaround for broken in-call audio
 service bootsnd /system/bin/tinyplay /system/etc/sound/silence.wav -D 0 -d 0 -p 880
