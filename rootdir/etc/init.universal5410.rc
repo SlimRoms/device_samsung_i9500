@@ -53,12 +53,6 @@ on init
 on fs
 	mount_all /fstab.universal5410
 	setprop ro.crypto.fuse_sdcard true
-	
-# Replace CM DRM Server with Samsung's one
-	rm /system/bin/drmserver
-	copy /system/bin/drmserver.samsung /system/bin/drmserver
-	chown root shell /system/bin/drmserver
-	chmod 0755 /system/bin/drmserver
 
 on post-fs
 	chown system system /sys/block/mmcblk0/queue/scheduler
