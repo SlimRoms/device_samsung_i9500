@@ -13,6 +13,9 @@ debug.sf.swaprect=0
 # Force GPU Rendering
 persist.sys.ui.hw=1
 
+# Prefer 16bpp Transparency
+persist.sys.prefer_16bpp=1
+
 ## Screen ##
 
 # 1080p Screen Density
@@ -48,6 +51,3 @@ persist.sys.purgeable_assets=1
 
 # Enable Kernel Samepage Merging
 ro.ksm.default=1
-
-# Prefer 16bpp Transparency
-persist.sys.prefer_16bpp=1
