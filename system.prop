@@ -43,8 +43,11 @@ nfc.app_log_level=2
 
 ## Memory ##
 
-# Enable Assets Purging
+# Allow purging of assets
 persist.sys.purgeable_assets=1
 
-# Enable KSM
+# Enable Kernel Samepage Merging
 ro.ksm.default=1
+
+# Prefer 16bpp Transparency
+persist.sys.prefer_16bpp=1
