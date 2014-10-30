@@ -583,6 +583,14 @@ service bootsnd /system/bin/tinyplay /system/etc/sound/silence.wav -D 0 -d 0 -p 
 	group audio
 	oneshot
 
+# MobiCore
+service mobicore /system/bin/mcDriverDaemon \
+	-r /system/vendor/firmware/mcRegistry/FFFFFFFF000000000000000000000001.drbin \
+	-r /system/vendor/firmware/mcRegistry/ffffffffd0000000000000000000000a.tlbin
+	class core
+	user system
+	group system
+
 on property:sys.boot_completed=1
 	write /sys/block/mmcblk0/queue/scheduler row
 # Start gpsd late to prevent it from changing /data/system
@@ -595,14 +603,6 @@ on property:sys.boot_completed=1
 on property:sys.mobicoredaemon.enable=true
 	start scranton_RD
 
-# MobiCore
-service mobicore /system/bin/mcDriverDaemon \
-	-r /system/vendor/firmware/mcRegistry/FFFFFFFF000000000000000000000001.drbin \
-	-r /system/vendor/firmware/mcRegistry/ffffffffd0000000000000000000000a.tlbin
-	class core
-	user system
-	group system
-
 on property:ro.dumpstate.dmesg=1
 	write /proc/sys/kernel/dmesg_restrict 0
 
@@ -613,6 +613,6 @@ on property:ro.data.large_tcp_window_size=true
 
 # MHL
 on property:ro.debuggable=1
-	chmod 666 /sys/class/mhl/hdcp_support
-	chmod 666 /sys/class/mhl/timing
-	chmod 666 /sys/class/mhl/swing
+	chmod 0666 /sys/class/mhl/hdcp_support
+	chmod 0666 /sys/class/mhl/timing
+	chmod 0666 /sys/class/mhl/swing
