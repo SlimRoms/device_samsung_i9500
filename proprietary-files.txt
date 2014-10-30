@@ -34,7 +34,7 @@ vendor/lib/egl/libGLESv2_POWERVR_SGX544_115.so:vendor/lib/egl/libGLESv2_POWERVR_
 # GPS
 bin/gpsd:bin/gpsd
 lib/libwrappergps.so:lib/libwrappergps.so
-lib/hw/gps.universal5410.so:lib/hw/gps.universal5410.so
+lib/hw/gps.default.so:lib/hw/gps.universal5410.so
 
 # Display
 vendor/lib/hw/gralloc.exynos5.so:vendor/lib/hw/gralloc.exynos5.so
