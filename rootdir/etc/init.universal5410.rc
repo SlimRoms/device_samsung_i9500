@@ -494,10 +494,6 @@ on boot
 # Reduce CPU throttling
 	write /sys/class/thermal/thermal_zone0/boost_mode 1
 	
-# Set higher global charging values while screen is on
-	write /sys/devices/platform/sec-battery/siop_input_limit 1500
-	write /sys/devices/platform/sec-battery/siop_charge_limit 1300
-	
 # Set higher USB charging values using USB 3.0 capabilities
 	write /sys/devices/platform/sec-battery/sdp_input_curr 1000
 	write /sys/devices/platform/sec-battery/sdp_chrg_curr 1000
