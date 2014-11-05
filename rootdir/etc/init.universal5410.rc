@@ -149,7 +149,7 @@ on boot
 	chmod 0666 /sys/class/sec/tsp/cmd_result
 	chmod 0666 /sys/class/sec/tsp/cmd_list
 
-# Permissions for JF3G PowerHAL
+# Permissions for JA3G PowerHAL
 	chown system system /sys/class/input/input1/enabled
 	chown system system /sys/class/input/input14/enabled
 	chown system system /sys/class/input/input15/enabled
