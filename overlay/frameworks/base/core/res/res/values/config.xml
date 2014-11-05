@@ -153,27 +153,23 @@
 
          Must be overridden in platform specific overlays -->
     <integer-array name="config_autoBrightnessLevels">
-        <item>6</item>
-        <item>10</item>
+        <item>5</item>
         <item>15</item>
-        <item>20</item>
-        <item>40</item>
-        <item>60</item>
-        <item>80</item>
+        <item>50</item>
         <item>100</item>
-        <item>120</item>
-        <item>240</item>
-        <item>480</item>
-        <item>960</item>
-        <item>1920</item>
-        <item>2880</item>
-        <item>3840</item>
-        <item>7680</item>
-        <item>15360</item>
-        <item>30720</item>
-        <item>61440</item>
-        <item>121200</item>
+        <item>200</item>
+        <item>400</item>
+        <item>1000</item>
+        <item>2000</item>
+        <item>3000</item>
+        <item>5000</item>
+        <item>10000</item>
+        <item>30000</item>
     </integer-array>
+
+    <!-- Minimum screen brightness setting allowed by the power manager.
+         The user is forbidden from setting the brightness below this level. -->
+    <integer name="config_screenBrightnessSettingMinimum">2</integer>
 
     <!-- Screen brightness used to dim the screen when the user activity
          timeout expires.  May be less than the minimum allowed brightness setting
@@ -185,27 +181,19 @@
          than the size of the config_autoBrightnessLevels array.
          This must be overridden in platform specific overlays -->
     <integer-array name="config_autoBrightnessLcdBacklightValues">
-        <item>40</item>
-        <item>50</item>
-        <item>60</item>
-        <item>70</item>
-        <item>80</item>
-        <item>90</item>
-        <item>100</item>
-        <item>110</item>
-        <item>120</item>
-        <item>130</item>
-        <item>140</item>
-        <item>150</item>
-        <item>160</item>
-        <item>170</item>
-        <item>185</item>
-        <item>200</item>
-        <item>215</item>
-        <item>225</item>
-        <item>235</item>
-        <item>245</item>
-        <item>255</item>
+        <item>25</item>   <!-- 0-5 -->
+        <item>32</item>   <!-- 5-15 -->
+        <item>41</item>   <!-- 15-50 -->
+        <item>52</item>   <!-- 50-100 -->
+        <item>62</item>   <!-- 100-200 -->
+        <item>69</item>   <!-- 200-400 -->
+        <item>78</item>   <!-- 400-1000 -->
+        <item>88</item>   <!-- 1000-2000 -->
+        <item>134</item>  <!-- 2000-3000 -->
+        <item>178</item>  <!-- 3000-5000 -->
+        <item>225</item>  <!-- 5000-10000 -->
+        <item>255</item>  <!-- 10000-30000 -->
+        <item>255</item>  <!-- 30000+ -->
     </integer-array>
 
     <!-- Array of output values for button backlight corresponding to the LUX values
@@ -213,54 +201,38 @@
          than the size of the config_autoBrightnessLevels array.
          This must be overridden in platform specific overlays -->
     <integer-array name="config_autoBrightnessButtonBacklightValues">
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
+        <item>255</item>   <!-- 0-5 -->
+        <item>255</item>   <!-- 5-15 -->
+        <item>255</item>   <!-- 15-50 -->
+        <item>255</item>   <!-- 50-100 -->
+        <item>255</item>   <!-- 100-200 -->
+        <item>255</item>   <!-- 200-400 -->
+        <item>255</item>   <!-- 400-1000 -->
+        <item>255</item>   <!-- 1000-2000 -->
+        <item>255</item>  <!-- 2000-3000 -->
+        <item>255</item>  <!-- 3000-5000 -->
+        <item>255</item>  <!-- 5000-10000 -->
+        <item>255</item>  <!-- 10000-30000 -->
+        <item>255</item>  <!-- 30000+ -->
     </integer-array>
 
     <!-- Array of output values for keyboard backlight corresponding to the LUX values
         in the config_autoBrightnessLevels array. This array should have size one greater
         than the size of the config_autoBrightnessLevels array. -->
-    <integer-array name="config_autoBrightnessKeyboardBacklightValues">
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
+    <integer-array name="config_autoBrightnessButtonBacklightValues">
+        <item>255</item>   <!-- 0-5 -->
+        <item>255</item>   <!-- 5-15 -->
+        <item>255</item>   <!-- 15-50 -->
+        <item>255</item>   <!-- 50-100 -->
+        <item>255</item>   <!-- 100-200 -->
+        <item>255</item>   <!-- 200-400 -->
+        <item>255</item>   <!-- 400-1000 -->
+        <item>255</item>   <!-- 1000-2000 -->
+        <item>255</item>  <!-- 2000-3000 -->
+        <item>255</item>  <!-- 3000-5000 -->
+        <item>255</item>  <!-- 5000-10000 -->
+        <item>255</item>  <!-- 10000-30000 -->
+        <item>255</item>  <!-- 30000+ -->
     </integer-array>
 
     <!-- Boolean indicating if current platform supports BLE peripheral mode -->
@@ -295,6 +267,9 @@
 
     <!-- Boolean to enable STK functionality on Samsung phones -->
     <bool name="config_samsung_stk">true</bool>
+
+    <!-- Panel auto-brightness configuration value -->
+    <integer name="config_panelAutoBrightnessValue">1</integer>
 
     <!-- Enable flashlight -->
     <bool name="config_enableTorch">true</bool>
