@@ -24,4 +24,7 @@
 
     <!-- Allow HDR and ZSL together -->
     <bool name="enableHDRWithZSL">true</bool>
+    
+    <!-- Opt-out of threaded camera startup -->
+    <bool name="enableThreadedCameraStartup">false</bool>
 </resources>
