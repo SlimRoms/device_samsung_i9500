@@ -91,7 +91,7 @@ struct pcm_config pcm_config_in = {
 
 struct pcm_config pcm_config_sco = {
     .channels = 1,
-    .rate = 16000,
+    .rate = 8000,
     .period_size = 128,
     .period_count = 2,
     .format = PCM_FORMAT_S16_LE,
