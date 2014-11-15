@@ -335,8 +335,8 @@ INPUT_CHANNEL_MAP {
       <path name="speaker" />
       <ctl name="AIF2 Mode" value="Master" />
       <ctl name="Speaker Digital Volume" value="112" />
-      <ctl name="SPKOUTL Input 1 Volume" value="29" />
-      <ctl name="SPKOUTL Input 2 Volume" value="29" />
+      <ctl name="SPKOUTL Input 1 Volume" value="32" />
+      <ctl name="SPKOUTL Input 2 Volume" value="32" />
       <ctl name="SPKOUTL Input 3" value="none" />
   </path>
 
