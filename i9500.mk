@@ -162,6 +162,12 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
 	Torch
 
+# ANT+
+PRODUCT_PACKAGES += \
+	AntHalService \
+	com.dsi.ant.antradio_library \
+	libantradio
+
 # Wi-Fi
 PRODUCT_PACKAGES += \
 	libnetcmdiface \
@@ -169,6 +175,11 @@ PRODUCT_PACKAGES += \
 	
 PRODUCT_PROPERTY_OVERRIDES += \
 	wifi.interface=wlan0
+
+# IPv6 tethering
+PRODUCT_PACKAGES += \
+	ebtables \
+	ethertypes
 
 # Set default USB interface
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
@@ -215,12 +226,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.kernel.android.checkjni=0 \
 	dalvik.vm.checkjni=false
-
-# ANT+
-PRODUCT_PACKAGES += \
-	AntHalService \
-	com.dsi.ant.antradio_library \
-	libantradio
 
 # Hardware Permissions
 PRODUCT_COPY_FILES += \
