@@ -210,7 +210,7 @@ INPUT_CHANNEL_MAP {
 
   <path name="speaker">
     <ctl name="SPK Switch" value="1" />
-    <ctl name="Speaker Digital Volume" value="118" />
+    <ctl name="Speaker Digital Volume" value="112" />
     <ctl name="SPKOUTL Input 1 Volume" value="32" />
     <ctl name="SPKOUTL Input 2 Volume" value="32" />
     <ctl name="SPKOUTL Input 3 Volume" value="32" />
@@ -260,7 +260,7 @@ INPUT_CHANNEL_MAP {
     <ctl name="Main Mic Switch" value="1" />
     <ctl name="LHPF1 Input 1" value="IN1L" />
     <ctl name="IN1L Volume" value="25" />
-    <ctl name="IN1L Digital Volume" value="128" />
+    <ctl name="IN1L Digital Volume" value="150" />
     <ctl name="LHPF1 Input 1 Volume" value="32" />
   </path>
 
@@ -268,7 +268,7 @@ INPUT_CHANNEL_MAP {
     <ctl name="Sub Mic Switch" value="1" />
     <ctl name="LHPF2 Input 1" value="IN2L" />
     <ctl name="IN2L Volume" value="23" />
-    <ctl name="IN2L Digital Volume" value="128" />
+    <ctl name="IN2L Digital Volume" value="150" />
     <ctl name="LHPF2 Input 1 Volume" value="32" />
   </path>
 
@@ -276,7 +276,7 @@ INPUT_CHANNEL_MAP {
     <ctl name="3rd Mic Switch" value="1" />
     <ctl name="LHPF1 Input 1" value="IN2R" />
     <ctl name="IN2R Volume" value="23" />
-    <ctl name="IN2R Digital Volume" value="128" />
+    <ctl name="IN2R Digital Volume" value="150" />
     <ctl name="LHPF1 Input 1 Volume" value="32" />
   </path>
 
@@ -288,7 +288,7 @@ INPUT_CHANNEL_MAP {
     <ctl name="HPOUT1R Input 3 Volume" value="6" />
     <ctl name="LHPF1 Input 1" value="IN1R" />
     <ctl name="IN1R Volume" value="25" />
-    <ctl name="IN1R Digital Volume" value="128" />
+    <ctl name="IN1R Digital Volume" value="150" />
     <ctl name="LHPF1 Input 1 Volume" value="32" />
   </path>
 
@@ -316,7 +316,7 @@ INPUT_CHANNEL_MAP {
   <path name="voice-earpiece">
       <path name="earpiece" />
       <ctl name="AIF2 Mode" value="Slave" />
-      <ctl name="EPOUT Digital Volume" value="128" />
+      <ctl name="EPOUT Digital Volume" value="108" />
       <ctl name="EPOUT DRE Switch" value="0" />
       <ctl name="EPOUT Input 3" value="ASRC2L" />
   </path>
@@ -334,9 +334,9 @@ INPUT_CHANNEL_MAP {
   <path name="media-speaker">
       <path name="speaker" />
       <ctl name="AIF2 Mode" value="Master" />
-      <ctl name="Speaker Digital Volume" value="118" />
-      <ctl name="SPKOUTL Input 1 Volume" value="32" />
-      <ctl name="SPKOUTL Input 2 Volume" value="32" />
+      <ctl name="Speaker Digital Volume" value="112" />
+      <ctl name="SPKOUTL Input 1 Volume" value="29" />
+      <ctl name="SPKOUTL Input 2 Volume" value="29" />
       <ctl name="SPKOUTL Input 3" value="none" />
   </path>
 
@@ -384,7 +384,7 @@ INPUT_CHANNEL_MAP {
   <path name="communication-earpiece">
       <path name="earpiece" />
       <ctl name="AIF2 Mode" value="Master" />
-      <ctl name="EPOUT Digital Volume" value="112" />
+      <ctl name="EPOUT Digital Volume" value="108" />
       <ctl name="EPOUT DRE Switch" value="1" />
       <ctl name="EPOUT Input 3" value="none" />
   </path>
