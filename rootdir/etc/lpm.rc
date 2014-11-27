@@ -37,10 +37,12 @@ sysclktz 0
 # Required by KNOX bootloader
 on charger
 	class_start core
+	setprop sys.usb.config mass_storage
 
 # Required by KNOX-free bootloader
 on boot
 	class_start core
+	setprop sys.usb.config mass_storage
 
 # Reduce and Lock Screen Brightness while charging
 	chown system system /sys/class/backlight/panel/brightness
