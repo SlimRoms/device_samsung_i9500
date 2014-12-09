@@ -114,6 +114,10 @@ BOARD_USES_FB_PHY_LINEAR := false
 # CMHW
 BOARD_HARDWARE_CLASS += device/samsung/i9500/cmhw
 
+# Compatibility with pre-lollipop / legacy blobs
+TARGET_NEEDS_BIONIC_MD5 := true
+TARGET_NEEDS_NON_PIE_SUPPORT := true
+
 # Graphics
 USE_OPENGL_RENDERER := true
 BOARD_EGL_CFG := $(LOCAL_PATH)/configs/egl.cfg
