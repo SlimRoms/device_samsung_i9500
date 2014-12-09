@@ -39,5 +39,5 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
 	BUILD_FINGERPRINT="samsung/ja3gxx/ja3g:4.4.2/KOT49H/I9500XXUFNI2:user/release-keys" \
 	PRIVATE_BUILD_DESC="ja3gxx-user 4.4.2 KOT49H I9500XXUFNI2 release-keys"
 
-# GearCM boot animation
+# Lighter CM boot animation
 PRODUCT_BOOTANIMATION := device/samsung/i9500/bootanimation.zip
