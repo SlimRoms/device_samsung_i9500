@@ -16,7 +16,6 @@ lib/libexynoscamera.so:lib/libexynoscamera.so
 lib/libvdis.so:lib/libvdis.so
 
 # PowerVR GPU
-vendor/bin/pvrsrvctl:vendor/bin/pvrsrvctl
 vendor/lib/libglslcompiler.so:vendor/lib/libglslcompiler.so
 vendor/lib/libIMGegl.so:vendor/lib/libIMGegl.so
 vendor/lib/liboclcompiler.so:vendor/lib/liboclcompiler.so
