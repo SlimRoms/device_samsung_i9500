@@ -9,8 +9,8 @@
 
 /dev/block/platform/dw_mmc.0/by-name/EFS				/efs			ext4		noatime,nosuid,nodev,noauto_da_alloc,errors=panic					wait,check
 
-/dev/block/platform/dw_mmc.0/by-name/BOOT				/boot			emmc		defaults															defaults
-/dev/block/platform/dw_mmc.0/by-name/RECOVERY			/recovery		emmc		defaults															defaults
+/dev/block/platform/dw_mmc.0/by-name/BOOT				/boot			emmc		defaults															recoveryonly
+/dev/block/platform/dw_mmc.0/by-name/RECOVERY			/recovery		emmc		defaults															recoveryonly
 
 # SD card
 /devices/platform/dw_mmc.2/mmc_host/mmc2				auto			auto		defaults															voldmanaged=sdcard1:auto,noemulatedsd
