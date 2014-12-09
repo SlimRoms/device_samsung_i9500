@@ -68,6 +68,9 @@ TARGET_BOOTANIMATION_TEXTURE_CACHE := true
 # ANT+
 BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
 
+# Enable Minikin text layout engine (will be the default soon)
+USE_MINIKIN := true
+
 # Camera
 BOARD_NEEDS_MEMORYHEAPION := true
 BOARD_CAMERA_MSG_MGMT := true

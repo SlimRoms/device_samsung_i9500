@@ -59,6 +59,9 @@ PRODUCT_PACKAGES += \
 	camera.universal5410 \
 	libhwjpeg
 
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+	camera2.portability.force_api=1
+	
 # Filesystem management tools
 PRODUCT_PACKAGES += \
 	make_ext4fs \
@@ -97,6 +100,10 @@ PRODUCT_PACKAGES += \
 
 # Media
 PRODUCT_COPY_FILES += \
+	frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
+	frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
+	frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml \
+	frameworks/av/media/libstagefright/data/media_codecs_ffmpeg.xml:system/etc/media_codecs_ffmpeg.xml \
 	$(LOCAL_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml \
 	$(LOCAL_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml
 
@@ -139,6 +146,10 @@ PRODUCT_PACKAGES += \
 	libOMX.Exynos.AVC.Encoder \
 	libstagefrighthw
 
+# Default to AwesomePlayer
+PRODUCT_PROPERTY_OVERRIDES += \
+	media.stagefright.use-awesome=true
+	
 # Radio
 PRODUCT_PACKAGES += \
 	libsecril-client \
@@ -154,10 +165,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PACKAGES += \
 	SamsungServiceMode
 
-# Torch
-PRODUCT_PACKAGES += \
-	Torch
-
 # ANT+
 PRODUCT_PACKAGES += \
 	AntHalService \
@@ -166,6 +173,9 @@ PRODUCT_PACKAGES += \
 
 # Wi-Fi
 PRODUCT_PACKAGES += \
+	libwpa_client \
+	wpa_supplicant \
+	wpa_supplicant.conf \
 	libnetcmdiface \
 	macloader
 	
