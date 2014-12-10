@@ -44,10 +44,14 @@ __BEGIN_DECLS
  *
  * GRALLOC_MODULE_API_VERSION_0_2:
  * Add support for flexible YCbCr format with (*lock_ycbcr)() method.
+ *
+ * GRALLOC_MODULE_API_VERSION_0_3:
+ * Add support for fence passing to/from lock/unlock.
  */
 
 #define GRALLOC_MODULE_API_VERSION_0_1  HARDWARE_MODULE_API_VERSION(0, 1)
 #define GRALLOC_MODULE_API_VERSION_0_2  HARDWARE_MODULE_API_VERSION(0, 2)
+#define GRALLOC_MODULE_API_VERSION_0_3  HARDWARE_MODULE_API_VERSION(0, 3)
 
 #define GRALLOC_DEVICE_API_VERSION_0_1  HARDWARE_DEVICE_API_VERSION(0, 1)
 
@@ -121,17 +125,20 @@ enum {
      */
     GRALLOC_USAGE_PROTECTED             = 0x00004000,
 
+    /* buffer may be used as a cursor */
+    GRALLOC_USAGE_CURSOR                = 0x00008000,
+
     /* implementation-specific private usage flags */
     GRALLOC_USAGE_PRIVATE_0             = 0x10000000,
     GRALLOC_USAGE_PRIVATE_1             = 0x20000000,
     GRALLOC_USAGE_PRIVATE_2             = 0x40000000,
     GRALLOC_USAGE_PRIVATE_3             = 0x80000000,
     GRALLOC_USAGE_PRIVATE_MASK          = 0xF0000000,
-    GRALLOC_USAGE_INTERNAL_ONLY         = 0x10000000, 
-    GRALLOC_USAGE_EXTERNAL_FLEXIBLE     = 0x20000000, 
-    GRALLOC_USAGE_EXTERNAL_BLOCK        = 0x40000000, 
-    GRALLOC_USAGE_EXTERNAL_ONLY         = 0x80000000, 
-    GRALLOC_USAGE_EXTERNAL_VIRTUALFB    = 0x00400000, 
+    GRALLOC_USAGE_INTERNAL_ONLY         = 0x10000000,
+    GRALLOC_USAGE_EXTERNAL_FLEXIBLE     = 0x20000000,
+    GRALLOC_USAGE_EXTERNAL_BLOCK        = 0x40000000,
+    GRALLOC_USAGE_EXTERNAL_ONLY         = 0x80000000,
+    GRALLOC_USAGE_EXTERNAL_VIRTUALFB    = 0x00400000,
     GRALLOC_USAGE_PRIVATE_NONSECURE     = 0x02000000,
 
 #ifdef EXYNOS4_ENHANCEMENTS
@@ -146,12 +153,6 @@ enum {
     /* SEC Private usage , for Overlay path at HWC */
     GRALLOC_USAGE_HWC_HWOVERLAY         = 0x20000000,
 #endif
-};
-
-enum {
-    /* Gralloc perform enums */
-    GRALLOC_MODULE_PERFORM_UPDATE_BUFFER_GEOMETRY = 0,
-    GRALLOC_MODULE_PERFORM_PRIVATE_START
 };
 
 /*****************************************************************************/
@@ -271,8 +272,53 @@ typedef struct gralloc_module_t {
             int l, int t, int w, int h,
             struct android_ycbcr *ycbcr);
 
+    /*
+     * The (*lockAsync)() method is like the (*lock)() method except
+     * that the buffer's sync fence object is passed into the lock
+     * call instead of requiring the caller to wait for completion.
+     *
+     * The gralloc implementation takes ownership of the fenceFd and
+     * is responsible for closing it when no longer needed.
+     *
+     * Added in GRALLOC_MODULE_API_VERSION_0_3.
+     */
+    int (*lockAsync)(struct gralloc_module_t const* module,
+            buffer_handle_t handle, int usage,
+            int l, int t, int w, int h,
+            void** vaddr, int fenceFd);
+
+    /*
+     * The (*unlockAsync)() method is like the (*unlock)() method
+     * except that a buffer sync fence object is returned from the
+     * lock call, representing the completion of any pending work
+     * performed by the gralloc implementation.
+     *
+     * The caller takes ownership of the fenceFd and is responsible
+     * for closing it when no longer needed.
+     *
+     * Added in GRALLOC_MODULE_API_VERSION_0_3.
+     */
+    int (*unlockAsync)(struct gralloc_module_t const* module,
+            buffer_handle_t handle, int* fenceFd);
+
+    /*
+     * The (*lockAsync_ycbcr)() method is like the (*lock_ycbcr)()
+     * method except that the buffer's sync fence object is passed
+     * into the lock call instead of requiring the caller to wait for
+     * completion.
+     *
+     * The gralloc implementation takes ownership of the fenceFd and
+     * is responsible for closing it when no longer needed.
+     *
+     * Added in GRALLOC_MODULE_API_VERSION_0_3.
+     */
+    int (*lockAsync_ycbcr)(struct gralloc_module_t const* module,
+            buffer_handle_t handle, int usage,
+            int l, int t, int w, int h,
+            struct android_ycbcr *ycbcr, int fenceFd);
+
     /* reserved for future use */
-    void* reserved_proc[6];
+    void* reserved_proc[3];
 } gralloc_module_t;
 
 /*****************************************************************************/
