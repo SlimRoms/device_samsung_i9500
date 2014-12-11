@@ -171,6 +171,25 @@ TARGET_RECOVERY_PIXEL_FORMAT := BGRA_8888
 TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_RECOVERY_SWIPE := true
 
+# SELinux
+BOARD_SEPOLICY_DIRS += \
+    device/samsung/i9500/sepolicy
+
+BOARD_SEPOLICY_UNION := \
+    file_contexts \
+	bluetooth.te \
+    device.te \
+	dhcp.te \
+    domain.te \
+    gpsd.te \
+	init_shell.te \
+    mediaserver.te \
+	pvrsrvinit.te \
+	rild.te \
+    surfaceflinger.te \
+    system.te \
+	vold.te
+
 # Charging mode
 BOARD_BATTERY_DEVICE_NAME := battery
 BOARD_CHARGER_ENABLE_SUSPEND := true
