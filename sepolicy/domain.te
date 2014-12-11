@@ -1,4 +1,0 @@
-dontaudit domain rootfs:chr_file { read write };
-
-## /dev/rfkill for wpa_supp
-allow wpa rfkill_device:chr_file rw_file_perms;
