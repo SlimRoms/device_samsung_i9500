@@ -61,7 +61,7 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 	camera2.portability.force_api=1
-	
+
 # Filesystem management tools
 PRODUCT_PACKAGES += \
 	make_ext4fs \
@@ -88,7 +88,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
 	pvrsrvctl \
 	libcorkscrew
-	
+
 # Keylayouts
 PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/idc/sec_touchscreen.idc:system/usr/idc/sec_touchscreen.idc \
@@ -119,7 +119,7 @@ PRODUCT_PACKAGES += \
 # MobiCore
 PRODUCT_PACKAGES += \
 	mcDriverDaemon
-	
+
 # IR
 PRODUCT_PACKAGES += \
 	consumerir.universal5410
@@ -154,7 +154,7 @@ PRODUCT_PACKAGES += \
 # Default to AwesomePlayer
 PRODUCT_PROPERTY_OVERRIDES += \
 	media.stagefright.use-awesome=true
-	
+
 # Radio
 PRODUCT_PACKAGES += \
 	libsecril-client \
@@ -226,10 +226,6 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
 	ro.debuggable=1 \
 	ro.secure=0
 
-# Dalvik
-PRODUCT_PROPERTY_OVERRIDES += \
-	dalvik.vm.dexopt-data-only=0
-
 # Extended JNI checks
 # The extended JNI checks will cause the system to run more slowly, but they can spot a variety of nasty bugs 
 # before they have a chance to cause problems.
@@ -269,7 +265,7 @@ PRODUCT_COPY_FILES += \
 
 # Power
 PRODUCT_PACKAGES += \
-    power.universal5410
+	power.universal5410
 
 # Device uses high-density artwork where available
 PRODUCT_AAPT_CONFIG := normal hdpi xhdpi xxhdpi
