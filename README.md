@@ -4,6 +4,4 @@ Copyright 2014, The CyanogenMod Project / GearCM
 
 V CM 12 STATUS V
 
-Not working yet : NFC, RIL & Torch
-
-Working : everything else
+Not working yet : Torch
