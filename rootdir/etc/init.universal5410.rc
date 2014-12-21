@@ -336,30 +336,44 @@ on boot
 	chmod 0660 /sys/class/devfreq/exynos5-busfreq-mif/freq_table
 
 # Permissions for Ondemand CPU Governor
-	chown radio system /sys/devices/system/cpu/cpufreq/ondemand/up_threshold_h
-	chown radio system /sys/devices/system/cpu/cpufreq/ondemand/high_freq_zone
-	chown radio system /sys/devices/system/cpu/cpufreq/ondemand/conservative_step
-	chown radio system /sys/devices/system/cpu/cpufreq/ondemand/up_conservative_mode
-	chown radio system /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate
-	chown radio system /sys/devices/system/cpu/cpufreq/ondemand/up_threshold_l
-	chown radio system /sys/devices/system/cpu/cpufreq/ondemand/up_step_level_l
-	chown radio system /sys/devices/system/cpu/cpufreq/ondemand/up_threshold
-	chown radio system /sys/devices/system/cpu/cpufreq/ondemand/up_step_level_b
-	chown radio system /sys/devices/system/cpu/cpufreq/ondemand/sampling_down_factor
-	chown radio system /sys/devices/system/cpu/cpufreq/ondemand/up_threshold_h
-	chown radio system /sys/devices/system/cpu/cpufreq/ondemand/game_mode
-	chmod 0664 /sys/devices/system/cpu/cpufreq/ondemand/up_threshold_h
-	chmod 0664 /sys/devices/system/cpu/cpufreq/ondemand/high_freq_zone
-	chmod 0664 /sys/devices/system/cpu/cpufreq/ondemand/conservative_step
-	chmod 0664 /sys/devices/system/cpu/cpufreq/ondemand/up_conservative_mode
-	chmod 0664 /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate
-	chmod 0664 /sys/devices/system/cpu/cpufreq/ondemand/up_threshold_l
-	chmod 0664 /sys/devices/system/cpu/cpufreq/ondemand/up_step_level_l
-	chmod 0664 /sys/devices/system/cpu/cpufreq/ondemand/up_threshold
-	chmod 0664 /sys/devices/system/cpu/cpufreq/ondemand/up_step_level_b
-	chmod 0664 /sys/devices/system/cpu/cpufreq/ondemand/sampling_down_factor
+	chown system system /sys/devices/system/cpu/cpufreq/ondemand/boost_mode
+	chown system system /sys/devices/system/cpu/cpufreq/ondemand/conservative_step
+	chown system system /sys/devices/system/cpu/cpufreq/ondemand/cpu_utilization
+	chown system system /sys/devices/system/cpu/cpufreq/ondemand/down_step_level
+	chown system system /sys/devices/system/cpu/cpufreq/ondemand/high_freq_zone
+	chown system system /sys/devices/system/cpu/cpufreq/ondemand/ignore_nice_load
+	chown system system /sys/devices/system/cpu/cpufreq/ondemand/up_threshold_h
+	chown system system /sys/devices/system/cpu/cpufreq/ondemand/io_is_busy
+	chown system system /sys/devices/system/cpu/cpufreq/ondemand/max_freq_blank
+	chown system system /sys/devices/system/cpu/cpufreq/ondemand/power_save_bias
+	chown system system /sys/devices/system/cpu/cpufreq/ondemand/sampling_down_factor
+	chown system system /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate
+	chown system system /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate_min
+	chown system system /sys/devices/system/cpu/cpufreq/ondemand/up_conservative_mod
+	chown system system /sys/devices/system/cpu/cpufreq/ondemand/up_step_level_b
+	chown system system /sys/devices/system/cpu/cpufreq/ondemand/up_step_level_l
+	chown system system /sys/devices/system/cpu/cpufreq/ondemand/up_threshold
+	chown system system /sys/devices/system/cpu/cpufreq/ondemand/up_threshold_h
+	chown system system /sys/devices/system/cpu/cpufreq/ondemand/up_threshold_l
+	chmod 0660 /sys/devices/system/cpu/cpufreq/ondemand/boost_mode
+	chmod 0660 /sys/devices/system/cpu/cpufreq/ondemand/conservative_step
+	chmod 0660 /sys/devices/system/cpu/cpufreq/ondemand/cpu_utilization
+	chmod 0660 /sys/devices/system/cpu/cpufreq/ondemand/down_step_level
+	chmod 0660 /sys/devices/system/cpu/cpufreq/ondemand/high_freq_zone
+	chmod 0660 /sys/devices/system/cpu/cpufreq/ondemand/ignore_nice_load
 	chmod 0660 /sys/devices/system/cpu/cpufreq/ondemand/up_threshold_h
-	chmod 0660 /sys/devices/system/cpu/cpufreq/ondemand/game_mode
+	chmod 0660 /sys/devices/system/cpu/cpufreq/ondemand/io_is_busy
+	chmod 0660 /sys/devices/system/cpu/cpufreq/ondemand/max_freq_blank
+	chmod 0660 /sys/devices/system/cpu/cpufreq/ondemand/power_save_bias
+	chmod 0660 /sys/devices/system/cpu/cpufreq/ondemand/sampling_down_factor
+	chmod 0660 /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate
+	chmod 0660 /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate_min
+	chmod 0660 /sys/devices/system/cpu/cpufreq/ondemand/up_conservative_mod
+	chmod 0660 /sys/devices/system/cpu/cpufreq/ondemand/up_step_level_b
+	chmod 0660 /sys/devices/system/cpu/cpufreq/ondemand/up_step_level_l
+	chmod 0660 /sys/devices/system/cpu/cpufreq/ondemand/up_threshold
+	chmod 0660 /sys/devices/system/cpu/cpufreq/ondemand/up_threshold_h
+	chmod 0660 /sys/devices/system/cpu/cpufreq/ondemand/up_threshold_l
 
 # Permissions for Core Control
 	chown radio system /dev/b.L_operator
