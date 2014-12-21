@@ -2,6 +2,8 @@ Device configuration for Samsung Galaxy S4 Exynos (GT-I9500)
 
 Copyright 2014, The CyanogenMod Project / GearCM
 
-V CM 12 STATUS V
+\/ \/ \/ GearCM 12 STATUS \/ \/ \/
 
-Not working yet : Torch
+Not Working yet: 
+
+* Torch
