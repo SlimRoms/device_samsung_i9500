@@ -7,14 +7,8 @@
 # Disable GL Library Preload
 ro.zygote.disable_gl_preload=1
 
-# Disable Swaprect
-debug.sf.swaprect=0
-
 # Force GPU Rendering
 persist.sys.ui.hw=1
-
-# Prefer 16bpp Transparency
-persist.sys.prefer_16bpp=1
 
 ## Screen ##
 
