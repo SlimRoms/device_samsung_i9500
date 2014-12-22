@@ -8,3 +8,7 @@ Not Working yet:
 
 * Torch (requires CM Sources fix)
 * GPS (requires new vendor blobs)
+
+Working but unstable: 
+
+* ART Runtime (not device related, Google is working on it)
