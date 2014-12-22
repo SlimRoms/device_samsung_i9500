@@ -6,4 +6,5 @@ Copyright 2014, The CyanogenMod Project / GearCM
 
 Not Working yet: 
 
-* Torch
+* Torch (requires CM Sources fix)
+* GPS (requires new vendor blobs)
