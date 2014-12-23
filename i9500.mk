@@ -279,6 +279,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # call dalvik heap config
 $(call inherit-product-if-exists, device/samsung/i9500/configs/phone-xxhdpi-2048-dalvik-heap.mk)
 
+# ART Config
+PRODUCT_PROPERTY_OVERRIDES += \
+	persist.sys.dalvik.vm.lib.2=libart.so \
+	dalvik.vm.isa.arm.features=div
+
 # call hwui memory config
 $(call inherit-product-if-exists, device/samsung/i9500/configs/phone-xxhdpi-2048-hwui-memory.mk)
 
