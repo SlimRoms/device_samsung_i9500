@@ -155,6 +155,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PROPERTY_OVERRIDES += \
 	media.stagefright.use-awesome=true
 
+# Extra Apps
+PRODUCT_PACKAGES += \
+	Screencast
+
 # Radio
 PRODUCT_PACKAGES += \
 	libsecril-client \
