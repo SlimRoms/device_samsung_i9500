@@ -9,7 +9,3 @@ Current build version: 20141224
 Not Working yet: 
 
 * Torch (requires CM Sources fix)
-
-Working but unstable: 
-
-* ART Runtime (not device related, Google is working on it)
