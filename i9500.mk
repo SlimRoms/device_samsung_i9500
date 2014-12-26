@@ -31,7 +31,7 @@ PRODUCT_PACKAGES += \
 	lpm.rc \
 	ueventd.universal5410.rc
 
-# Recovery
+# Recovery Ramdisk
 PRODUCT_PACKAGES += \
 	init.recovery.universal5410.rc
 
@@ -70,7 +70,6 @@ PRODUCT_PACKAGES += \
 
 # Charger
 PRODUCT_PACKAGES += \
-	charger \
 	charger_res_images
 
 # GPS
@@ -153,6 +152,7 @@ PRODUCT_PACKAGES += \
 
 # Default to AwesomePlayer
 PRODUCT_PROPERTY_OVERRIDES += \
+	persist.sys.media.use-awesome=true \
 	media.stagefright.use-awesome=true
 
 # Extra Apps
@@ -201,10 +201,6 @@ PRODUCT_PACKAGES += \
 # Set default USB interface
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 	persist.sys.usb.config=mtp,adb
-
-# Enable Multithreaded Dexopt
-PRODUCT_PROPERTY_OVERRIDES += \
-	persist.sys.dalvik.multithread=true
 
 # Enable Repeatable Keys in CWM
 PRODUCT_PROPERTY_OVERRIDES += \
