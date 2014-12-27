@@ -533,6 +533,34 @@ on boot
 	write /sys/devices/system/cpu/cpufreq/interactive/sampling_down_factor 100000
 	write /sys/devices/system/cpu/cpufreq/interactive/target_loads 85
 
+on charger
+# Set cpu governor to powersave while in charging mode
+	write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor powersave
+	write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor powersave
+	write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor powersave
+	write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor powersave
+	
+# Set lowest frequencies
+	write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 250000
+	write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 250000
+	write /sys/devices/system/cpu/cpufreq/iks-cpufreq/max_freq 250000
+	write /sys/devices/system/cpu/cpufreq/iks-cpufreq/min_freq 250000
+
+	write /sys/devices/platform/pvrsrvkm.0/sgx_dvfs_max_lock 177
+
+	write /sys/class/devfreq/exynos5-busfreq-mif/max_freq 400000
+
+# EHCI runtime enable for LPA
+	write /sys/devices/platform/s5p-ehci/power/control auto
+
+# Do not set any USB mode while charging
+	setprop sys.usb.config none
+
+# Reduce and Lock Screen Brightness while charging
+	chown system system /sys/class/backlight/panel/brightness
+	write /sys/class/backlight/panel/brightness 10
+	chmod 0444 /sys/class/backlight/panel/brightness
+
 ###
 # Services begin here
 ###
@@ -620,6 +648,10 @@ service mobicore /system/bin/mcDriverDaemon \
 	class core
 	user system
 	group system
+
+service battery_charger /charger
+	class charger
+	critical
 
 on property:sys.boot_completed=1
 	write /sys/block/mmcblk0/queue/scheduler row
