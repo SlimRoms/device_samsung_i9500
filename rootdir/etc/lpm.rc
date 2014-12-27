@@ -43,7 +43,7 @@ sysclktz 0
 
 	write /sys/devices/platform/pvrsrvkm.0/sgx_dvfs_max_lock 177
 
-	write /sys/class/devfreq/exynos5-busfreq-mif/max_freq 100000
+	write /sys/class/devfreq/exynos5-busfreq-mif/max_freq 400000
 
 # EHCI runtime enable for LPA
 	write /sys/devices/platform/s5p-ehci/power/control auto
