@@ -149,11 +149,6 @@ PRODUCT_PACKAGES += \
 	libOMX.Exynos.AVC.Encoder \
 	libstagefrighthw
 
-# Default to AwesomePlayer
-PRODUCT_PROPERTY_OVERRIDES += \
-	persist.sys.media.use-awesome=true \
-	media.stagefright.use-awesome=true
-
 # Extra Apps
 PRODUCT_PACKAGES += \
 	Screencast
