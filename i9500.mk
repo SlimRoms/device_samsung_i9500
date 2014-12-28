@@ -176,11 +176,12 @@ PRODUCT_PACKAGES += \
 
 # Wi-Fi
 PRODUCT_PACKAGES += \
-	libwpa_client \
 	hostapd \
-	dhcpcd.conf \
+	hostapd_default.conf \
 	wpa_supplicant \
 	wpa_supplicant.conf \
+	libwpa_client \
+	dhcpcd.conf \
 	libnetcmdiface \
 	macloader
 	
