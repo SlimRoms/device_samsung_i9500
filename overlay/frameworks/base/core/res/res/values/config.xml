@@ -149,18 +149,6 @@
     <!-- Does the battery LED support multiple colors? Used to decide if the user can change the colors -->
     <bool name="config_multiColorBatteryLed">true</bool>
 
-    <!-- Control the behavior when the user long presses the home button.
-            0 - Nothing
-            1 - Menu key
-            2 - Recent apps view in SystemUI
-            3 - Launch assist intent
-            4 - Voice Search
-            5 - In-app Search
-         This needs to match the constants in
-         policy/src/com/android/internal/policy/impl/PhoneWindowManager.java
-    -->
-    <integer name="config_longPressOnHomeBehavior">2</integer>
-
     <!-- Hardware 'face' keys present on the device, stored as a bit field.
          This integer should equal the sum of the corresponding value for each
          of the following keys present:
@@ -275,7 +263,7 @@
     <!-- Array of output values for keyboard backlight corresponding to the LUX values
         in the config_autoBrightnessLevels array. This array should have size one greater
         than the size of the config_autoBrightnessLevels array. -->
-    <integer-array name="config_autoBrightnessButtonBacklightValues">
+    <integer-array name="config_autoBrightnessKeyboardBacklightValues">
         <item>255</item>   <!-- 0-5 -->
         <item>255</item>   <!-- 5-15 -->
         <item>255</item>   <!-- 15-50 -->
