@@ -32,6 +32,7 @@
        LbsPort="7275"
        HttpSyncLto="true"
        LbsCellEnable="false"
+	   ltoFileName="lto2.dat"
        LtoDir="/data/system/gps/"
        LtoSyncThresholdDays="1"
 
