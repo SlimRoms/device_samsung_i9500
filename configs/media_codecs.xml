@@ -16,10 +16,6 @@
      limitations under the License.
 -->
 <MediaCodecs>
-
-    <!-- Import Google Codecs  -->
-    <Include href="media_codecs_google_audio.xml" />
-    <Include href="media_codecs_google_telephony.xml" />
 	
     <Decoders>
 		
@@ -54,7 +50,11 @@
             <Quirk name="decoder-ignores-streamcorrupt-error" />
             <Quirk name="video-controller-check-enable" />
         </MediaCodec>
-		
+
+    <!-- Import Google Codecs  -->
+    <Include href="media_codecs_google_audio.xml" />
+    <Include href="media_codecs_google_telephony.xml" />
+	
     </Decoders>
 
     <Encoders>
