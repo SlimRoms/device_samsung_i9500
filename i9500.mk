@@ -49,6 +49,9 @@ PRODUCT_PACKAGES += \
 	tinymix \
 	tinyplay
 
+PRODUCT_PROPERTY_OVERRIDES += \
+	audio.offload.disable=1
+
 # Bluetooth
 PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/bluetooth/bcm4335_prepatch.hcd:system/vendor/firmware/bcm4335_prepatch.hcd
