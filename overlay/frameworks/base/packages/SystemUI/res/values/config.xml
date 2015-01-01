@@ -29,4 +29,6 @@
     config_flashDevice and config_torchBrightness too -->
     <bool translatable="false" name="config_useCameraInterface">false</bool>
 
+    <bool name="config_status_bar_scrim_behind_use_src">false</bool>
+
 </resources>
