@@ -197,7 +197,7 @@ PRODUCT_PACKAGES += \
 
 # Set default USB interface
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-	persist.sys.usb.config=mtp,adb
+	persist.sys.usb.config=mtp
 
 # Enable Repeatable Keys in CWM
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -215,12 +215,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	
 # Enable Root for ADB & Apps	
 PRODUCT_PROPERTY_OVERRIDES += \
-	persist.sys.root_access=3
+	persist.sys.root_access=1
 
 # Development & ADB authentication settings
 ADDITIONAL_DEFAULT_PROPERTIES += \
 	ro.adb.secure=0 \
-	ro.allow.mock.location=0 \
 	ro.build.selinux=0 \
 	ro.debuggable=1 \
 	ro.secure=0
