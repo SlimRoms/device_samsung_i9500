@@ -46,8 +46,7 @@
              android:storageDescription="@string/storage_sd_card"
              android:primary="false"
              android:removable="true"
-             android:emulated="false"
-             android:allowMassStorage="true" />
+             android:emulated="false" />
 
     <!-- external usb storage -->
     <storage android:mountPoint="/storage/usbdisk"
