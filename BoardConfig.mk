@@ -52,7 +52,6 @@ TARGET_KERNEL_CONFIG := cyanogenmod_i9500_defconfig
 TARGET_KERNEL_SOURCE := kernel/samsung/exynos5410
 
 # Audio
-COMMON_GLOBAL_CFLAGS += -DSAMPLE_RATE_48K
 BOARD_HAVE_PRE_KITKAT_AUDIO_POLICY_BLOB := true
 
 # Bluetooth
