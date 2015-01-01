@@ -499,8 +499,8 @@ on boot
 	chmod 0644 /sys/class/timed_output/vibrator/pwm_threshold
 
 # Permissions for Torch
-	chown system camera /sys/class/leds/torch-sec1/brightness
-	chmod 0660 /sys/class/leds/torch-sec1/brightness
+	chown system system /sys/class/leds/torch-sec1/brightness
+	chmod 0667 /sys/class/leds/torch-sec1/brightness
 
 # GearCM Tweaks (from Perseus)
 	write /sys/devices/system/cpu/sched_mc_power_savings 2

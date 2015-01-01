@@ -29,6 +29,12 @@
     config_flashDevice and config_torchBrightness too -->
     <bool translatable="false" name="config_useCameraInterface">false</bool>
 
+    <!-- Torch led brightness value for led on (1 - 255). Usable with config_useCameraInterface=false -->
+    <integer name="config_torchBrightness">255</integer>
+
+    <!-- Defines the sysfs path to the torch led to be used as a flashlight. Usable with config_useCameraInterface=false -->
+    <string name="config_flashDevice">/sys/class/leds/torch-sec1/brightness</string>
+
     <bool name="config_status_bar_scrim_behind_use_src">false</bool>
 
 </resources>
