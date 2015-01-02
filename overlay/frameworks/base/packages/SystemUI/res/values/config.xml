@@ -35,6 +35,13 @@
     <!-- Defines the sysfs path to the torch led to be used as a flashlight. Usable with config_useCameraInterface=false -->
     <string name="config_flashDevice">/sys/class/leds/torch-sec1/brightness</string>
 
+	<!-- Our GPU with KK Blobs doesn't like it -->
     <bool name="config_status_bar_scrim_behind_use_src">false</bool>
 
+    <!-- Doze: does this device support STATE_DOZE and STATE_DOZE_SUSPEND?  -->
+    <bool name="doze_display_state_supported">true</bool>
+
+    <!-- Doze: should the pickup sensor be used as a pulse signal? -->
+    <bool name="doze_pulse_on_pick_up">true</bool>
+	
 </resources>
