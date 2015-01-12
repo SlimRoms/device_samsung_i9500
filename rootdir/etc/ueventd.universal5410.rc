@@ -112,4 +112,4 @@
 # Mobicore
 /dev/mobicore             0700   system     system
 /dev/mobicore-user        0666   radio      system
-/dev/s5p-smem             0660   system     system
+/dev/s5p-smem             0660   drm        drmrpc
