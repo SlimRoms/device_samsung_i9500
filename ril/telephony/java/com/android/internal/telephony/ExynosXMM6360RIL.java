@@ -52,62 +52,98 @@ public class ExynosXMM6360RIL extends RIL implements CommandsInterface {
     public void getGsmBroadcastConfig(Message response) {
         Rlog.v(RILJ_LOG_TAG, "ExynosXMM6360RIL: getGsmBroadcastConfig");
 
-        CommandException e = new CommandException(CommandException.Error.REQUEST_NOT_SUPPORTED);
-        AsyncResult.forMessage(response, null, e);
-        response.sendToTarget();
+        if (response != null) {
+            CommandException e = new CommandException(CommandException.Error.REQUEST_NOT_SUPPORTED);
+            AsyncResult.forMessage(response, null, e);
+            response.sendToTarget();
+        }
     }
 
     @Override
     public void setGsmBroadcastConfig(SmsBroadcastConfigInfo[] config, Message response) {
         Rlog.v(RILJ_LOG_TAG, "ExynosXMM6360RIL: setGsmBroadcastConfig");
 
-        CommandException e = new CommandException(CommandException.Error.REQUEST_NOT_SUPPORTED);
-        AsyncResult.forMessage(response, null, e);
-        response.sendToTarget();
+        if (response != null) {
+            CommandException e = new CommandException(CommandException.Error.REQUEST_NOT_SUPPORTED);
+            AsyncResult.forMessage(response, null, e);
+            response.sendToTarget();
+        }
     }
 
     @Override
     public void setGsmBroadcastActivation(boolean activate, Message response) {
         Rlog.v(RILJ_LOG_TAG, "ExynosXMM6360RIL: setGsmBroadcastActivation");
 
-        CommandException e = new CommandException(CommandException.Error.REQUEST_NOT_SUPPORTED);
-        AsyncResult.forMessage(response, null, e);
-        response.sendToTarget();
+        if (response != null) {
+            CommandException e = new CommandException(CommandException.Error.REQUEST_NOT_SUPPORTED);
+            AsyncResult.forMessage(response, null, e);
+            response.sendToTarget();
+        }
     }
 
     @Override
     public void getCdmaBroadcastConfig(Message response) {
         Rlog.v(RILJ_LOG_TAG, "ExynosXMM6360RIL: getCdmaBroadcastConfig");
 
-        CommandException e = new CommandException(CommandException.Error.REQUEST_NOT_SUPPORTED);
-        AsyncResult.forMessage(response, null, e);
-        response.sendToTarget();
+        if (response != null) {
+            CommandException e = new CommandException(CommandException.Error.REQUEST_NOT_SUPPORTED);
+            AsyncResult.forMessage(response, null, e);
+            response.sendToTarget();
+        }
     }
 
     @Override
     public void setCdmaBroadcastConfig(CdmaSmsBroadcastConfigInfo[] configs, Message response) {
         Rlog.v(RILJ_LOG_TAG, "ExynosXMM6360RIL: setCdmaBroadcastConfig");
 
-        CommandException e = new CommandException(CommandException.Error.REQUEST_NOT_SUPPORTED);
-        AsyncResult.forMessage(response, null, e);
-        response.sendToTarget();
+        if (response != null) {
+            CommandException e = new CommandException(CommandException.Error.REQUEST_NOT_SUPPORTED);
+            AsyncResult.forMessage(response, null, e);
+            response.sendToTarget();
+        }
     }
 
     @Override
     public void setCdmaBroadcastActivation(boolean activate, Message response) {
         Rlog.v(RILJ_LOG_TAG, "ExynosXMM6360RIL: setCdmaBroadcastActivation");
 
-        CommandException e = new CommandException(CommandException.Error.REQUEST_NOT_SUPPORTED);
-        AsyncResult.forMessage(response, null, e);
-        response.sendToTarget();
+        if (response != null) {
+            CommandException e = new CommandException(CommandException.Error.REQUEST_NOT_SUPPORTED);
+            AsyncResult.forMessage(response, null, e);
+            response.sendToTarget();
+        }
     }
 
     @Override
     public void getCellInfoList(Message result) {
         Rlog.v(RILJ_LOG_TAG, "ExynosXMM6360RIL: getCellInfoList");
 
-        CommandException e = new CommandException(CommandException.Error.REQUEST_NOT_SUPPORTED);
-        AsyncResult.forMessage(result, null, e);
-        result.sendToTarget();
+        if (result != null) {
+            CommandException e = new CommandException(CommandException.Error.REQUEST_NOT_SUPPORTED);
+            AsyncResult.forMessage(result, null, e);
+            result.sendToTarget();
+        }
+    }
+
+    @Override
+    public void setDataAllowed(boolean allowed, Message result) {
+        Rlog.v(RILJ_LOG_TAG, "ExynosXMM6360RIL: setDataAllowed");
+
+        if (result != null) {
+            CommandException e = new CommandException(CommandException.Error.REQUEST_NOT_SUPPORTED);
+            AsyncResult.forMessage(result, null, e);
+            result.sendToTarget();
+        }
+    }
+
+    @Override
+    public void setCellInfoListRate(int rateInMillis, Message response) {
+        Rlog.v(RILJ_LOG_TAG, "ExynosXMM6360RIL: setCellInfoListRate");
+
+        if (response != null) {
+            CommandException e = new CommandException(CommandException.Error.REQUEST_NOT_SUPPORTED);
+            AsyncResult.forMessage(response, null, e);
+            response.sendToTarget();
+        }
     }
 }
