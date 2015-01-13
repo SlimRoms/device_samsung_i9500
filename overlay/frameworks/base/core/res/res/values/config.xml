@@ -33,16 +33,16 @@
     <string-array translatable="false" name="networkAttributes">
         <item>"wifi,1,1,1,-1,true"</item>
         <item>"mobile,0,0,0,-1,true"</item>
-        <item>"mobile_mms,2,0,2,180000,true"</item>
+        <item>"mobile_mms,2,0,2,60000,true"</item>
         <item>"mobile_supl,3,0,2,60000,true"</item>
         <item>"mobile_dun,4,0,2,60000,true"</item>
         <item>"mobile_hipri,5,0,3,60000,true"</item>
-        <item>"bluetooth,7,7,0,-1,true"</item>
         <item>"mobile_fota,10,0,2,60000,true"</item>
-        <item>"mobile_ims,11,0,2,-1,true"</item>
+        <item>"mobile_ims,11,0,2,60000,true"</item>
         <item>"mobile_cbs,12,0,2,60000,true"</item>
-        <item>"wifi_p2p,13,1,0,-1,true"</item>
-        <item>"mobile_bip,17,0,2,60000,true"</item>
+        <item>"mobile_ia,14,0,2,-1,true"</item>
+        <item>"bluetooth,7,7,2,-1,true"</item>
+        <item>"ethernet,9,9,9,-1,true"</item>
     </string-array>
 
     <!-- This string array should be overridden by the device to present a list of radio
@@ -167,10 +167,6 @@
          config to 7. -->
     <integer name="config_deviceHardwareWakeKeys">65</integer>
 
-    <!-- Minimum screen brightness setting allowed by the power manager.
-         The user is forbidden from setting the brightness below this level. -->
-    <integer name="config_screenBrightnessSettingMinimum">15</integer>
-
     <!-- Screen brightness used to dim the screen while dozing in a very low power state.
          May be less than the minimum allowed brightness setting
          that can be set by the user. -->
@@ -196,18 +192,14 @@
 
          Must be overridden in platform specific overlays -->
     <integer-array name="config_autoBrightnessLevels">
-        <item>5</item>
-        <item>15</item>
-        <item>50</item>
+        <item>9</item>
+        <item>30</item>
         <item>100</item>
-        <item>200</item>
-        <item>400</item>
-        <item>1000</item>
-        <item>2000</item>
-        <item>3000</item>
-        <item>5000</item>
+        <item>325</item>
+        <item>1250</item>
+        <item>3500</item>
         <item>10000</item>
-        <item>30000</item>
+        <item>20000</item>
     </integer-array>
 
     <!-- Array of output values for LCD backlight corresponding to the LUX values
@@ -215,19 +207,15 @@
          than the size of the config_autoBrightnessLevels array.
          This must be overridden in platform specific overlays -->
     <integer-array name="config_autoBrightnessLcdBacklightValues">
-        <item>25</item>   <!-- 0-5 -->
-        <item>32</item>   <!-- 5-15 -->
-        <item>41</item>   <!-- 15-50 -->
-        <item>52</item>   <!-- 50-100 -->
-        <item>62</item>   <!-- 100-200 -->
-        <item>69</item>   <!-- 200-400 -->
-        <item>78</item>   <!-- 400-1000 -->
-        <item>88</item>   <!-- 1000-2000 -->
-        <item>134</item>  <!-- 2000-3000 -->
-        <item>178</item>  <!-- 3000-5000 -->
-        <item>225</item>  <!-- 5000-10000 -->
-        <item>255</item>  <!-- 10000-30000 -->
-        <item>255</item>  <!-- 30000+ -->
+        <item>18</item>   <!-- 0-9 -->
+        <item>30</item>   <!-- 10-30 -->
+        <item>59</item>   <!-- 31-100 -->
+        <item>74</item>   <!-- 101-325 -->
+        <item>92</item>   <!-- 326-1250 -->
+        <item>118</item>  <!-- 1251-3500 -->
+        <item>155</item>  <!-- 3501-10000 -->
+        <item>222</item>  <!-- 10001-20000 -->
+        <item>255</item>  <!-- 20001+ -->
     </integer-array>
 
     <!-- Array of output values for button backlight corresponding to the LUX values
@@ -235,38 +223,30 @@
          than the size of the config_autoBrightnessLevels array.
          This must be overridden in platform specific overlays -->
     <integer-array name="config_autoBrightnessButtonBacklightValues">
-        <item>255</item>   <!-- 0-5 -->
-        <item>255</item>   <!-- 5-15 -->
-        <item>255</item>   <!-- 15-50 -->
-        <item>255</item>   <!-- 50-100 -->
-        <item>255</item>   <!-- 100-200 -->
-        <item>255</item>   <!-- 200-400 -->
-        <item>255</item>   <!-- 400-1000 -->
-        <item>255</item>   <!-- 1000-2000 -->
-        <item>255</item>  <!-- 2000-3000 -->
-        <item>255</item>  <!-- 3000-5000 -->
-        <item>255</item>  <!-- 5000-10000 -->
-        <item>255</item>  <!-- 10000-30000 -->
-        <item>255</item>  <!-- 30000+ -->
+        <item>255</item>   <!-- 0-9 -->
+        <item>255</item>   <!-- 10-30 -->
+        <item>255</item>   <!-- 31-100 -->
+        <item>255</item>   <!-- 101-325 -->
+        <item>255</item>   <!-- 326-1250 -->
+        <item>255</item>  <!-- 1251-3500 -->
+        <item>255</item>  <!-- 3501-10000 -->
+        <item>255</item>  <!-- 10001-20000 -->
+        <item>255</item>  <!-- 20001+ -->
     </integer-array>
 
     <!-- Array of output values for keyboard backlight corresponding to the LUX values
         in the config_autoBrightnessLevels array. This array should have size one greater
         than the size of the config_autoBrightnessLevels array. -->
     <integer-array name="config_autoBrightnessKeyboardBacklightValues">
-        <item>255</item>   <!-- 0-5 -->
-        <item>255</item>   <!-- 5-15 -->
-        <item>255</item>   <!-- 15-50 -->
-        <item>255</item>   <!-- 50-100 -->
-        <item>255</item>   <!-- 100-200 -->
-        <item>255</item>   <!-- 200-400 -->
-        <item>255</item>   <!-- 400-1000 -->
-        <item>255</item>   <!-- 1000-2000 -->
-        <item>255</item>  <!-- 2000-3000 -->
-        <item>255</item>  <!-- 3000-5000 -->
-        <item>255</item>  <!-- 5000-10000 -->
-        <item>255</item>  <!-- 10000-30000 -->
-        <item>255</item>  <!-- 30000+ -->
+        <item>255</item>   <!-- 0-9 -->
+        <item>255</item>   <!-- 10-30 -->
+        <item>255</item>   <!-- 31-100 -->
+        <item>255</item>   <!-- 101-325 -->
+        <item>255</item>   <!-- 326-1250 -->
+        <item>255</item>  <!-- 1251-3500 -->
+        <item>255</item>  <!-- 3501-10000 -->
+        <item>255</item>  <!-- 10001-20000 -->
+        <item>255</item>  <!-- 20001+ -->
     </integer-array>
 
     <!-- Boolean indicating if current platform supports BLE peripheral mode -->
@@ -285,7 +265,6 @@
     <!-- Dream of notifications -->
     <string name="config_dozeComponent">com.android.systemui/com.android.systemui.doze.DozeService</string>
     <bool name="config_dozeAfterScreenOff">true</bool>
-    <bool name="config_powerDecoupleAutoSuspendModeFromDisplay">true</bool>
     <bool name="config_powerDecoupleInteractiveModeFromDisplay">true</bool>
 	
     <!-- Base "touch slop" value used by ViewConfiguration as a
@@ -309,16 +288,21 @@
          If no value is found for the rat-name in use, the system default will be applied.
     -->
     <string-array name="config_mobile_tcp_buffers">
-        <item>lte:524288,1048576,5120000,262144,524288,1220608</item>
-        <item>hspap:4096,174760,1572864,4096,16384,1220608</item>
-        <item>hspa:4096,174760,1572864,4096,16384,1220608</item>
-        <item>hsupa:4096,174760,1572864,4096,16384,1220608</item>
-        <item>hsdpa:4096,174760,1572864,4096,16384,1220608</item>
-        <item>umts:4096,174760,1572864,4096,16384,110208</item>
-        <item>edge:4093,26280,35040,4096,16384,35040</item>
-        <item>gprs:4092,8760,11680,4096,8760,11680</item>
-        <item>evdo_b:4094,87380,262144,4096,16384,262144</item>
+        <item>umts:131072,262144,1452032,4096,16384,399360</item>
+        <item>hspa:131072,262144,2441216,4096,16384,399360</item>
+        <item>hsupa:131072,262144,2441216,4096,16384,399360</item>
+        <item>hsdpa:131072,262144,2441216,4096,16384,399360</item>
+        <item>hspap:131072,262144,2441216,4096,16384,399360</item>
+        <item>edge:16384,32768,131072,4096,16384,65536</item>
+        <item>gprs:4096,8192,24576,4096,8192,24576</item>
+        <item>1xrtt:16384,32768,131070,4096,16384,102400</item>
+        <item>evdo:131072,262144,1048576,4096,16384,524288</item>
+        <item>lte:524288,1048576,8388608,262144,524288,4194304</item>
     </string-array>
+
+    <!-- Configure wifi tcp buffersizes in the form:
+         rmem_min,rmem_def,rmem_max,wmem_min,wmem_def,wmem_max -->
+    <string name="config_wifi_tcp_buffers" translatable="false">524288,2097152,4194304,262144,524288,1048576</string>
 
     <!-- Whether WiFi display is supported by this device.
          There are many prerequisites for this feature to work correctly.
