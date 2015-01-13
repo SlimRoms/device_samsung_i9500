@@ -28,6 +28,7 @@ import android.os.Message;
 import android.os.Parcel;
 import android.os.SystemProperties;
 import android.os.SystemClock;
+import android.os.Registrant;
 import android.provider.Settings;
 import android.text.TextUtils;
 import android.telephony.SmsMessage;
@@ -426,7 +427,7 @@ public class ExynosXMM6360RIL extends RIL implements CommandsInterface {
     @Override
     public void setOnCatProactiveCmd(Handler h, int what, Object obj) {
         mCatProCmdRegistrant = new Registrant (h, what, obj);
-		
+
         if (mCatProCmdBuffer != null) {
             mCatProCmdRegistrant.notifyRegistrant(new AsyncResult (null, mCatProCmdBuffer, null));
             mCatProCmdBuffer = null;
