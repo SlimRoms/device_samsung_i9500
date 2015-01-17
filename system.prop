@@ -37,11 +37,3 @@ ro.ril.hsxpa=3
 
 # Reduce Debug Level
 nfc.app_log_level=2
-
-## Memory ##
-
-# Allow purging of assets
-persist.sys.purgeable_assets=1
-
-# Enable Kernel Samepage Merging
-ro.ksm.default=1
