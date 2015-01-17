@@ -21,6 +21,10 @@ LOCAL_PATH := device/samsung/i9500
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
+# Boot animation
+TARGET_SCREEN_HEIGHT := 960
+TARGET_SCREEN_WIDTH := 540
+
 # Ramdisk
 PRODUCT_PACKAGES += \
 	fstab.universal5410 \
