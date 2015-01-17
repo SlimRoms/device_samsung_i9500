@@ -81,7 +81,7 @@ TARGET_USES_LOGD := false
 
 # Camera
 BOARD_NEEDS_MEMORYHEAPION := true
-COMMON_GLOBAL_CFLAGS += -DNEEDS_VECTORIMPL_SYMBOLS
+TARGET_RELEASE_CPPFLAGS += -DNEEDS_VECTORIMPL_SYMBOLS
 
 # OMX
 BOARD_USE_STOREMETADATA := true
@@ -144,6 +144,18 @@ WIFI_DRIVER_FW_PATH_STA          := "/system/etc/wifi/bcmdhd_sta.bin"
 WIFI_DRIVER_FW_PATH_AP           := "/system/etc/wifi/bcmdhd_apsta.bin"
 WIFI_DRIVER_FW_PATH_P2P          := "/system/etc/wifi/bcmdhd_p2p.bin"
 WIFI_BAND                        := 802_11_ABG
+
+CONFIG_EAP_TLS                   := true
+CONFIG_EAP_TTLS                  := true
+CONFIG_EAP_PEAP                  := true
+CONFIG_EAP_MD5                   := true
+CONFIG_EAP_MSCHAPV2              := true
+CONFIG_EAP_SIM                   := true
+CONFIG_EAP_LEAP                  := true
+CONFIG_EAP_PSK                   := true
+CONFIG_EAP_AKA                   := true
+CONFIG_EAP_PWD                   := true
+CONFIG_EAP_IKEV2                 := true
 
 # Filesystems
 BOARD_BOOTIMAGE_PARTITION_SIZE := 8392704
