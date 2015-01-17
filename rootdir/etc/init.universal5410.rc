@@ -516,9 +516,9 @@ on boot
 	
 	write /sys/class/thermal/thermal_zone0/boost_mode 1
 
-# Set higher USB charging values using USB 3.0 capabilities
-	write /sys/devices/platform/sec-battery/sdp_input_curr 1000
-	write /sys/devices/platform/sec-battery/sdp_chrg_curr 1000
+# Set higher USB charging values as AC ones
+	write /sys/devices/platform/sec-battery/sdp_input_curr 1500
+	write /sys/devices/platform/sec-battery/sdp_chrg_curr 1300
 
 # Set Standard mDNIe mode	
 	write /sys/class/mdnie/mdnie/mode 0
