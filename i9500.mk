@@ -88,6 +88,11 @@ PRODUCT_PACKAGES += \
 	hwcomposer.exynos5 \
 	libion
 
+# GPU
+PRODUCT_PACKAGES += \
+	pvrsrvctl \
+	libcorkscrew
+
 # Keylayouts
 PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/idc/sec_touchscreen.idc:system/usr/idc/sec_touchscreen.idc \
