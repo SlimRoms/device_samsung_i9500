@@ -98,7 +98,7 @@
 /dev/bL_status            0660   radio      system
 
 # NFC
-/dev/bcm2079x             0600   nfc        nfc
+/dev/bcm2079x             0660   nfc        nfc
 
 # BT lock
 /dev/btlock               0600   bluetooth  bluetooth
@@ -109,7 +109,7 @@
 # Vibetonz
 /dev/tspdrv               0660   root       shell
 
-# Mobicore
-/dev/mobicore             0700   system     system
-/dev/mobicore-user        0666   radio      system
+# DRM
+/dev/mobicore             0600   drmrpc     drmrpc
+/dev/mobicore-user        0660   drm        drmrpc
 /dev/s5p-smem             0660   drm        drmrpc
