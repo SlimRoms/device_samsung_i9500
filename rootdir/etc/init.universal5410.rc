@@ -523,10 +523,6 @@ on boot
 
 	write /sys/class/misc/wolfson_control/switch_eq_speaker 1
 
-# Configure Blinking LED Driver
-	write /sys/class/sec/led/led_lowpower_current 5
-	write /sys/class/sec/led/led_highpower_current 40
-
 # Balanced values while booting
 	write /sys/devices/platform/pvrsrvkm.0/sgx_dvfs_min_lock 177
 	write /sys/devices/platform/pvrsrvkm.0/sgx_dvfs_max_lock 350
