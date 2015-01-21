@@ -285,7 +285,7 @@ public class ExynosXMM6360RIL extends RIL implements CommandsInterface {
             case RIL_REQUEST_ACKNOWLEDGE_INCOMING_GSM_SMS_WITH_PDU: ret = responseVoid(p); break;
             case RIL_REQUEST_STK_SEND_ENVELOPE_WITH_STATUS: ret = responseICC_IO(p); break;
             case RIL_REQUEST_VOICE_RADIO_TECH: ret = responseInts(p); break;
-			
+
             default:
                 throw new RuntimeException("Unrecognized solicited response: " + rr.mRequest);
             }} catch (Throwable tr) {
@@ -353,7 +353,7 @@ public class ExynosXMM6360RIL extends RIL implements CommandsInterface {
     @Override
     public void dial(String address, int clirMode, UUSInfo uusInfo, Message result) {
         RILRequest rr;
-		
+
         if (PhoneNumberUtils.isEmergencyNumber(address)) {
             dialEmergencyCall(address, clirMode, result);
             return;
@@ -379,7 +379,7 @@ public class ExynosXMM6360RIL extends RIL implements CommandsInterface {
 
     public void dialEmergencyCall(String address, int clirMode, Message result) {
         RILRequest rr;
-		
+
         Rlog.v(RILJ_LOG_TAG, "Emergency dial: " + address);
 
         rr = RILRequest.obtain(RIL_REQUEST_DIAL_EMERGENCY, result);
@@ -398,9 +398,9 @@ public class ExynosXMM6360RIL extends RIL implements CommandsInterface {
         int response = p.readInt();
 
         switch(response) {
-            case RIL_UNSOL_STK_PROACTIVE_COMMAND: 
+            case RIL_UNSOL_STK_PROACTIVE_COMMAND:
                 Object ret = responseString(p);
-				
+
                 if (RILJ_LOGD) unsljLogRet(response, ret);
 
                 if (mCatProCmdRegistrant != null) {
@@ -419,7 +419,7 @@ public class ExynosXMM6360RIL extends RIL implements CommandsInterface {
 
                 // Forward responses that we are not overriding to the super class
                 super.processUnsolicited(p);
-				
+
                 return;
         }
     }
@@ -537,7 +537,7 @@ public class ExynosXMM6360RIL extends RIL implements CommandsInterface {
         rr.mParcel.writeString(smscPDU);
         rr.mParcel.writeString(pdu);
     }
-	
+
     /**
      * The RIL can't handle the RIL_REQUEST_SEND_SMS_EXPECT_MORE
      * request properly, so we use RIL_REQUEST_SEND_SMS instead.
@@ -545,13 +545,13 @@ public class ExynosXMM6360RIL extends RIL implements CommandsInterface {
     @Override
     public void sendSMSExpectMore(String smscPDU, String pdu, Message result) {
         Rlog.v(RILJ_LOG_TAG, "ExynosXMM6360RIL: sendSMSExpectMore");
-	
+
         RILRequest rr = RILRequest.obtain(RIL_REQUEST_SEND_SMS, result);
         constructGsmSendSmsRilRequest(rr, smscPDU, pdu);
-		
+
         if (RILJ_LOGD) riljLog(rr.serialString() + "> " + requestToString(rr.mRequest));
-		
+
         send(rr);
     }
-	
+
 }

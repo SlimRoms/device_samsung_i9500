@@ -203,11 +203,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 	persist.sys.usb.config=mtp
 
-# Enable Repeatable Keys in CWM
-PRODUCT_PROPERTY_OVERRIDES += \
-	ro.cwm.enable_key_repeat=true \
-	ro.cwm.repeatable_keys=114,115
-
 # The OpenGL ES API level that is natively supported by this device.
 # This is a 16.16 fixed point number
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -273,10 +268,6 @@ PRODUCT_PACKAGES += \
 # Device uses high-density artwork where available
 PRODUCT_AAPT_CONFIG := normal hdpi xhdpi xxhdpi
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
-
-# Recovery Options
-PRODUCT_PROPERTY_OVERRIDES += \
-	ro.cwm.forbid_format=/efs,/boot
 	
 # call dalvik heap config
 $(call inherit-product-if-exists, device/samsung/i9500/configs/phone-xxhdpi-2048-dalvik-heap.mk)
