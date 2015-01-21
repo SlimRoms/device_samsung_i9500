@@ -231,6 +231,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	ro.kernel.android.checkjni=0 \
 	dalvik.vm.checkjni=false
 
+# ART Optimizations for Cortex-A15
+PRODUCT_PROPERTY_OVERRIDES += \
+	dalvik.vm.isa.arm.features=lpae,div
+
 # Hardware Permissions
 PRODUCT_COPY_FILES += \
 	external/ant-wireless/antradio-library/com.dsi.ant.antradio_library.xml:system/etc/permissions/com.dsi.ant.antradio_library.xml \
