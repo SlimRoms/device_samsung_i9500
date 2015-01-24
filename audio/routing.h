@@ -46,7 +46,7 @@ enum {
 enum {
     ES325_MODE_DEFAULT,
     ES325_MODE_LEVEL,
-    ES325_NUM_MODES
+    ES325_NUM_MODES,
 };
 
 struct route_config {
@@ -59,21 +59,21 @@ struct route_config {
 /* TODO: Figure out whether voice routes need to set ES325 presets */
 const struct route_config voice_speaker = {
     "voice-speaker",
-    "voice-main-mic",
+    "voice-speaker-main-mic",
     { ES325_PRESET_OFF,
       ES325_PRESET_OFF }
 };
 
 const struct route_config voice_earpiece = {
     "voice-earpiece",
-    "voice-main-mic",
+    "voice-earpiece-main-mic",
     { ES325_PRESET_OFF,
       ES325_PRESET_OFF }
 };
 
 const struct route_config voice_headphones = {
     "voice-headphones",
-    "voice-main-mic",
+    "voice-headphones-main-mic",
     { ES325_PRESET_OFF,
       ES325_PRESET_OFF }
 };
@@ -243,7 +243,7 @@ const struct route_config * const route_configs[IN_SOURCE_TAB_SIZE]
         &bluetooth_sco,             /* OUT_DEVICE_BT_SCO */
         &voice_headphones,          /* OUT_DEVICE_SPEAKER_AND_HEADSET */
         &voice_earpiece             /* OUT_DEVICE_SPEAKER_AND_EARPIECE */
-    }
+    },
 };
 
 #endif
