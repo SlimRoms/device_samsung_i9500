@@ -54,7 +54,7 @@ INPUT_CHANNEL_MAP {
   <!-- VPS(stereo) -->
   <ctl name="HPOUT2L Input 1" value="AIF1RX1" />
   <ctl name="HPOUT2R Input 1" value="AIF1RX2" />
-  <ctl name="OUT2 Digital Switch" value="1" />
+  <ctl name="HPOUT2 Digital Switch" value="1" />
 
   <!-- BT <-AP(use input 1) -->
   <!-- ASRC2(RX domain) -->
@@ -242,7 +242,7 @@ INPUT_CHANNEL_MAP {
 
   <path name="dock">
     <ctl name="VPS Switch" value="1" />
-    <ctl name="OUT2 Digital Volume" value="124" />
+    <ctl name="HPOUT2 Digital Volume" value="124" />
     <ctl name="HPOUT2L Input 1 Volume" value="32" />
     <ctl name="HPOUT2R Input 1 Volume" value="32" />
   </path>
