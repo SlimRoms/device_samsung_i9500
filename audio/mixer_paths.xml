@@ -266,8 +266,8 @@ INPUT_CHANNEL_MAP {
     <ctl name="LHPF1 Input 1" value="IN1L" />
     <ctl name="AIF2TX1 Input 1" value="ASRC1L" />
     <ctl name="AIF2TX2 Input 1" value="ASRC1R" />
-    <ctl name="IN1L Volume" value="25" />
-    <ctl name="IN1L Digital Volume" value="128" />
+    <ctl name="IN1L Volume" value="31" />
+    <ctl name="IN1L Digital Volume" value="136" />
     <ctl name="LHPF1 Input 1 Volume" value="32" />
   </path>
 
@@ -476,8 +476,8 @@ INPUT_CHANNEL_MAP {
       <path name="aif2-stereo-mic" />
       <path name="builtin-mic" />
       <path name="back-mic" />
-      <ctl name="IN1L Volume" value="25" />
-      <ctl name="IN1L Digital Volume" value="128" />
+      <ctl name="IN1L Volume" value="31" />
+      <ctl name="IN1L Digital Volume" value="136" />
       <ctl name="LHPF1 Input 1 Volume" value="32" />
       <ctl name="IN2L Volume" value="25" />
       <ctl name="IN2L Digital Volume" value="128" />
@@ -488,7 +488,7 @@ INPUT_CHANNEL_MAP {
       <path name="channel-left" />
       <path name="aif2-stereo-mic" />
       <path name="headset-in" />
-      <ctl name="IN1R Volume" value="25" />
+      <ctl name="IN1R Volume" value="30" />
       <ctl name="IN1R Digital Volume" value="128" />
       <ctl name="HPOUT1L Input 1 Volume" value="6" />
       <ctl name="HPOUT1R Input 1 Volume" value="6" />
@@ -499,8 +499,8 @@ INPUT_CHANNEL_MAP {
       <path name="channel-left" />
       <path name="aif2-stereo-mic" />
       <path name="builtin-mic" />
-      <ctl name="IN1L Volume" value="18" />
-      <ctl name="IN1L Digital Volume" value="128" />
+      <ctl name="IN1L Volume" value="31" />
+      <ctl name="IN1L Digital Volume" value="136" />
       <ctl name="LHPF1 Input 1 Volume" value="32" />
   </path>
 
@@ -526,8 +526,8 @@ INPUT_CHANNEL_MAP {
       <path name="channel-left" />
       <path name="aif2-stereo-mic" />
       <path name="builtin-mic" />
-      <ctl name="IN1L Volume" value="18" />
-      <ctl name="IN1L Digital Volume" value="128" />
+      <ctl name="IN1L Volume" value="31" />
+      <ctl name="IN1L Digital Volume" value="136" />
       <ctl name="LHPF1 Input 1 Volume" value="32" />
   </path>
 
@@ -535,8 +535,8 @@ INPUT_CHANNEL_MAP {
       <path name="channel-left" />
       <path name="aif2-stereo-mic" />
       <path name="builtin-mic" />
-      <ctl name="IN1L Volume" value="25" />
-      <ctl name="IN1L Digital Volume" value="128" />
+      <ctl name="IN1L Volume" value="31" />
+      <ctl name="IN1L Digital Volume" value="136" />
       <ctl name="LHPF1 Input 1 Volume" value="32" />
   </path>
 
