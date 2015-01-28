@@ -512,17 +512,6 @@ on boot
 	write /sys/class/devfreq/exynos5-busfreq-mif/polling_interval 50
 	write /sys/class/devfreq/exynos5-busfreq-mif/time_in_state/upthreshold 70
 
-# Configure Arizona Sound Control
-	write /sys/class/misc/wolfson_control/eq_sp_freqs "0x0FA4 0x0404 0x0170 0x1DB9 0xF233 0x040B 0x08B6 0x1977 0xF45E 0x040A 0x114C 0x0B43 0xF7FA 0x040A 0x1F97 0xF41A 0x0400 0x1068"
-
-	write /sys/class/misc/wolfson_control/eq_sp_gain_1 -5
-	write /sys/class/misc/wolfson_control/eq_sp_gain_2 1
-	write /sys/class/misc/wolfson_control/eq_sp_gain_3 0
-	write /sys/class/misc/wolfson_control/eq_sp_gain_4 4
-	write /sys/class/misc/wolfson_control/eq_sp_gain_5 3
-
-	write /sys/class/misc/wolfson_control/switch_eq_speaker 1
-
 # Balanced values while booting
 	write /sys/devices/platform/pvrsrvkm.0/sgx_dvfs_min_lock 177
 	write /sys/devices/platform/pvrsrvkm.0/sgx_dvfs_max_lock 350
