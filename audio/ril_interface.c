@@ -74,7 +74,7 @@ static int ril_connect_if_required(struct ril_handle *ril)
         return 0;
 
     if (_ril_connect(ril->client) != RIL_CLIENT_ERR_SUCCESS) {
-        ALOGE("ril_connect() failed: %s", strerror(errno));
+        ALOGE("ril_connect() failed");
         return -1;
     }
 
