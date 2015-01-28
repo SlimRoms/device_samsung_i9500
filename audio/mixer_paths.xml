@@ -331,7 +331,7 @@ INPUT_CHANNEL_MAP {
   <path name="voice-earpiece">
       <path name="earpiece" />
       <ctl name="AIF2 Mode" value="Slave" />
-      <ctl name="EPOUT Digital Volume" value="112" />
+      <ctl name="EPOUT Digital Volume" value="128" />
       <ctl name="EPOUT Input 1 Volume" value="32" />
       <ctl name="EPOUT Input 2 Volume" value="32" />
       <ctl name="EPOUT Input 3 Volume" value="32" />
@@ -367,7 +367,7 @@ INPUT_CHANNEL_MAP {
   <path name="media-earpiece">
       <path name="earpiece" />
       <ctl name="AIF2 Mode" value="Master" />
-      <ctl name="EPOUT Digital Volume" value="112" />
+      <ctl name="EPOUT Digital Volume" value="128" />
       <ctl name="EPOUT DRE Switch" value="1" />
       <ctl name="EPOUT Input 3" value="none" />
       <ctl name="SPKOUTL Input 3" value="none" />
@@ -424,7 +424,7 @@ INPUT_CHANNEL_MAP {
   <path name="communication-earpiece">
       <path name="earpiece" />
       <ctl name="AIF2 Mode" value="Master" />
-      <ctl name="EPOUT Digital Volume" value="112" />
+      <ctl name="EPOUT Digital Volume" value="128" />
       <ctl name="EPOUT Input 1 Volume" value="32" />
       <ctl name="EPOUT Input 2 Volume" value="32" />
       <ctl name="EPOUT DRE Switch" value="1" />
