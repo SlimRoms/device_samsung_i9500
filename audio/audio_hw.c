@@ -1586,7 +1586,7 @@ static int adev_open_output_stream(struct audio_hw_device *dev,
         type = OUTPUT_HDMI;
     } else if (flags & AUDIO_OUTPUT_FLAG_DEEP_BUFFER) {
         out->config = pcm_config_deep;
-        out->pcm_device = PCM_DEVICE_DEEP;
+        out->pcm_device = PCM_DEVICE;
         type = OUTPUT_DEEP_BUF;
     } else {
         out->config = pcm_config_fast;
