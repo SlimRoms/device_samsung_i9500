@@ -797,7 +797,7 @@ static int start_input_stream(struct stream_in *in)
     struct audio_device *adev = in->dev;
 
     in->pcm = pcm_open(PCM_CARD,
-                       PCM_DEVICE,
+                       PCM_DEVICE_IN,
                        PCM_IN,
                        &pcm_config_in);
     if (in->pcm && !pcm_is_ready(in->pcm)) {
