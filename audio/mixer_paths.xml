@@ -104,9 +104,9 @@ INPUT_CHANNEL_MAP {
   <ctl name="AIF1TX1 Input 2" value="ASRC2L" />
   <ctl name="AIF1TX2 Input 2" value="ASRC2R" />
 
-  <!-- LHPF1 & 2 filter
-  <ctl name="LHPF1 Coefficients" value="130Hz" />
-  <ctl name="LHPF2 Coefficients" value="130Hz" /> -->
+  <!-- LHPF1 & 2 filter  -->
+  <ctl name="LHPF1 COEFF FILTER" value="64Hz" />
+  <ctl name="LHPF2 COEFF FILTER" value="64Hz" />
 
   <!-- Common digital volume -->
   <ctl name="AIF1TX1 Input 1 Volume" value="32" />
