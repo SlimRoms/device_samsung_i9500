@@ -59,7 +59,6 @@
     <!-- Route all mics via LHPF1 -->
     <ctl name="LHPF1 Mode" value="High-pass" />
     <ctl name="LHPF2 Mode" value="High-pass" />
-	<ctl name="LHPF3 Mode" value="High-pass" />
 
     <!-- BT mic->CP -->
     <ctl name="AIF2TX1 Input 2" value="AIF3RX1" />
@@ -189,15 +188,15 @@
     <!-- ### Scenario ### -->
 
     <path name="scenario-earpiece-default">
-
+      <!-- None -->
     </path>
 
     <path name="scenario-earpiece-incall-nb">
-
+      <!-- None -->
     </path>
 
     <path name="scenario-earpiece-incall-wb">
-
+      <!-- None -->
     </path>
 
     <!-- ### Volume ### -->
@@ -233,23 +232,23 @@
     <!-- ### Scenario ### -->
 
     <path name="scenario-speaker-default">
-
+      <!-- None -->
     </path>
 
     <path name="scenario-speaker-and-headphones">
-
+      <!-- None -->
     </path>
 
     <path name="scenario-speaker-incall-nb">
-
+      <!-- None -->
     </path>
 
     <path name="scenario-speaker-incall-wb">
-
+      <!-- None -->
     </path>
 
     <path name="scenario-speaker-record">
-
+      <!-- None -->
     </path>
 
     <!-- ### Volume ### -->
@@ -283,15 +282,15 @@
     <!-- ### Scenario ### -->
 
     <path name="scenario-headphones-default">
-
+      <!-- None -->
     </path>
 
     <path name="scenario-headphones-incall-nb">
-
+      <!-- None -->
     </path>
 
     <path name="scenario-headphones-incall-wb">
-
+      <!-- None -->
     </path>
 
     <!-- ### Volume ### -->
