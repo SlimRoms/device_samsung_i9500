@@ -254,7 +254,7 @@
     <!-- ### Volume ### -->
 
     <path name="volume-speaker-default">
-      <ctl name="Speaker Digital Volume" value="112" />
+      <ctl name="Speaker Digital Volume" value="118" />
       <ctl name="SPKOUTL Input 1 Volume" value="32" />
       <ctl name="SPKOUTL Input 2 Volume" value="32" />
     </path>
@@ -297,14 +297,14 @@
 
     <path name="volume-headphones-default">
       <ctl name="Noise Gate Switch" value="0" />
-      <ctl name="HPOUT1 Digital Volume" value="112" />
+      <ctl name="HPOUT1 Digital Volume" value="118" />
       <ctl name="HPOUT1L Input 1 Volume" value="32" />
       <ctl name="HPOUT1R Input 1 Volume" value="32" />
     </path>
 
     <path name="volume-headphones-incall">
       <ctl name="Noise Gate Switch" value="0" />
-      <ctl name="HPOUT1 Digital Volume" value="112" />
+      <ctl name="HPOUT1 Digital Volume" value="118" />
       <ctl name="HPOUT1L Input 1 Volume" value="32" />
       <ctl name="HPOUT1R Input 1 Volume" value="32" />
       <ctl name="HPOUT1L Input 2 Volume" value="32" />
