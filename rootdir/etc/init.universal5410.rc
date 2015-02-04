@@ -695,7 +695,9 @@ on property:sys.perf.profile=0
 	write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor powersave
 	write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor powersave
 	write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor powersave
+	write /sys/devices/platform/pvrsrvkm.0/sgx_dvfs_min_lock 177
 	write /sys/devices/platform/pvrsrvkm.0/sgx_dvfs_max_lock 177
+	write /sys/class/devfreq/exynos5-busfreq-mif/min_freq 100000
 	write /sys/class/devfreq/exynos5-busfreq-mif/max_freq 400000
 	write /sys/class/thermal/thermal_zone0/boost_mode 0
 
@@ -705,7 +707,9 @@ on property:sys.perf.profile=1
 	write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor ondemand
 	write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor ondemand
 	write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor ondemand
+	write /sys/devices/platform/pvrsrvkm.0/sgx_dvfs_min_lock 177
 	write /sys/devices/platform/pvrsrvkm.0/sgx_dvfs_max_lock 532
+	write /sys/class/devfreq/exynos5-busfreq-mif/min_freq 100000
 	write /sys/class/devfreq/exynos5-busfreq-mif/max_freq 800000
 	write /sys/class/thermal/thermal_zone0/boost_mode 1
 
