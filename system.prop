@@ -10,9 +10,6 @@ ro.zygote.disable_gl_preload=1
 # Force GPU Rendering
 persist.sys.ui.hw=1
 
-# Disable Dirty Regions Rendering
-debug.hwui.render_dirty_regions=false
-
 ## Screen ##
 
 # 1080p Screen Density
