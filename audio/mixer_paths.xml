@@ -139,11 +139,6 @@
 
     <ctl name="Input Ramp Up" value="8ms/6dB" />
 
-    <!-- HW DRE default Off -->
-    <ctl name="HPOUT1 DRE Switch" value="0" />
-    <ctl name="HPOUT2 DRE Switch" value="0" />
-    <ctl name="EPOUT DRE Switch" value="0" />
-
     <!-- Disable Earpiece -->
     <ctl name="RCV Switch" value="0" />
 	
@@ -202,7 +197,7 @@
     <!-- ### Volume ### -->
 
     <path name="volume-earpiece-default">
-      <ctl name="EPOUT Digital Volume" value="108" />
+      <ctl name="EPOUT Digital Volume" value="112" />
       <ctl name="EPOUT Input 1 Volume" value="32" />
       <ctl name="EPOUT Input 2 Volume" value="32" />
       <ctl name="EPOUT Input 3 Volume" value="32" />
@@ -254,7 +249,7 @@
     <!-- ### Volume ### -->
 
     <path name="volume-speaker-default">
-      <ctl name="Speaker Digital Volume" value="118" />
+      <ctl name="Speaker Digital Volume" value="116" />
       <ctl name="SPKOUTL Input 1 Volume" value="32" />
       <ctl name="SPKOUTL Input 2 Volume" value="32" />
     </path>
@@ -297,14 +292,14 @@
 
     <path name="volume-headphones-default">
       <ctl name="Noise Gate Switch" value="0" />
-      <ctl name="HPOUT1 Digital Volume" value="118" />
+      <ctl name="HPOUT1 Digital Volume" value="128" />
       <ctl name="HPOUT1L Input 1 Volume" value="32" />
       <ctl name="HPOUT1R Input 1 Volume" value="32" />
     </path>
 
     <path name="volume-headphones-incall">
       <ctl name="Noise Gate Switch" value="0" />
-      <ctl name="HPOUT1 Digital Volume" value="118" />
+      <ctl name="HPOUT1 Digital Volume" value="128" />
       <ctl name="HPOUT1L Input 1 Volume" value="32" />
       <ctl name="HPOUT1R Input 1 Volume" value="32" />
       <ctl name="HPOUT1L Input 2 Volume" value="32" />
@@ -535,13 +530,13 @@
     <!-- ### Volume ### -->
 
     <path name="volume-builtin-mic-default">
-      <ctl name="IN1L Volume" value="18" />
+      <ctl name="IN1L Volume" value="25" />
       <ctl name="IN1L Digital Volume" value="150" />
       <ctl name="LHPF1 Input 1 Volume" value="32" />
     </path>
 
     <path name="volume-builtin-mic-incall">
-      <ctl name="IN1L Volume" value="25" />
+      <ctl name="IN1L Volume" value="31" />
       <ctl name="IN1L Digital Volume" value="150" />
       <ctl name="LHPF1 Input 1 Volume" value="32" />
     </path>
@@ -714,14 +709,14 @@
     <!-- ### Volume ### -->
 
     <path name="volume-headset-in-default">
-      <ctl name="IN1R Volume" value="30" />
-      <ctl name="IN1R Digital Volume" value="128" />
+      <ctl name="IN1R Volume" value="25" />
+      <ctl name="IN1R Digital Volume" value="150" />
       <ctl name="LHPF1 Input 1 Volume" value="32" />
     </path>
 
     <path name="volume-headset-in-incall">
-      <ctl name="IN1R Volume" value="25" />
-      <ctl name="IN1R Digital Volume" value="128" />
+      <ctl name="IN1R Volume" value="31" />
+      <ctl name="IN1R Digital Volume" value="150" />
       <ctl name="HPOUT1L Input 3 Volume" value="6" />
       <ctl name="HPOUT1R Input 3 Volume" value="6" />
       <ctl name="LHPF1 Input 1 Volume" value="32" />
