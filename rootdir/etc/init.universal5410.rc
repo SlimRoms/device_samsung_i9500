@@ -643,11 +643,11 @@ service scranton_RD /system/bin/scranton_RD
 	oneshot
 
 # Workaround for broken in-call audio
-#service bootsnd /system/bin/tinyplay /system/etc/sound/silence.wav -D 0 -d 0 -p 880
-#	class late_start
-#	user root
-#	group audio
-#	oneshot
+	service bootsnd /system/bin/tinyplay /system/etc/sound/silence.wav -D 0 -d 0 -p 880
+	class late_start
+	user root
+	group audio
+	oneshot
 
 # MobiCore
 service mobicore /system/bin/mcDriverDaemon \
