@@ -120,6 +120,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
 	com.android.future.usb.accessory
 
+PRODUCT_PROPERTY_OVERRIDES += \
+	persist.sys.isUsbOtgEnabled=true
+
 # MobiCore
 PRODUCT_PACKAGES += \
 	mcDriverDaemon
