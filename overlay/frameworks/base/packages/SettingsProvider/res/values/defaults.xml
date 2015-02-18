@@ -26,6 +26,7 @@
     <bool name="def_dtmf_tones_enabled">false</bool>
     <!-- Default for UI touch sounds enabled -->
     <bool name="def_sound_effects_enabled">false</bool>
-
+    <!-- Default value of Settings.System.NOISE_SUPPRESSION -->
+    <bool name="def_noise_suppression">true</bool>
 </resources>
 
