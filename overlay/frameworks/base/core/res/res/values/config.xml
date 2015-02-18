@@ -345,4 +345,13 @@
     <string name="config_perf_profile_prop">sys.perf.profile</string>
     <string name="config_perf_profile_default_entry">1</string>
 
+    <!-- If there is no sysfs-based control mechanism, enable this -->
+    <bool name="useCameraInterface">false</bool>
+
+    <!-- Full path to the sysfs toggle -->
+    <string name="flashDevice">/sys/class/leds/torch-sec1/brightness</string>
+
+    <!-- On setting -->
+    <integer name="valueOn">255</integer>
+	
 </resources>
