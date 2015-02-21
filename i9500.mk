@@ -28,7 +28,6 @@ TARGET_SCREEN_WIDTH := 540
 # Ramdisk
 PRODUCT_PACKAGES += \
 	fstab.universal5410 \
-	twrp.fstab \
 	init.universal5410.rc \
 	init.universal5410.usb.rc \
 	init.universal5410.wifi.rc \
@@ -37,6 +36,9 @@ PRODUCT_PACKAGES += \
 # Recovery Ramdisk
 PRODUCT_PACKAGES += \
 	init.recovery.universal5410.rc
+
+PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/twrp.fstab:recovery/root/etc/twrp.fstab
 
 # Audio
 PRODUCT_COPY_FILES += \
