@@ -185,26 +185,38 @@ PRODUCT_PACKAGES += \
 
 # Wi-Fi
 PRODUCT_PACKAGES += \
+	dhcpcd.conf \
+	libwpa_client \
 	hostapd \
-	hostapd_default.conf \
 	wpa_supplicant \
 	wpa_supplicant.conf \
-	libwpa_client \
-	dhcpcd.conf \
+	wpa_supplicant_overlay.conf \
+	p2p_supplicant_overlay.conf \
+	hostapd_default.conf \
+	hostapd.accept \
+	hostapd.deny
 	libnetcmdiface \
 	macloader
 	
 PRODUCT_PROPERTY_OVERRIDES += \
 	wifi.interface=wlan0
 
-# IPv6 tethering
+# Allow tethering without provisioning app
+PRODUCT_PROPERTY_OVERRIDES += \
+	net.tethering.noprovisioning=true
+
+# Misc dependency packages
 PRODUCT_PACKAGES += \
 	ebtables \
-	ethertypes
+	ethertypes \
+	curl \
+	libnl_2 \
+	libbson \
+	libxml2
 
 # Set default USB interface
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-	persist.sys.usb.config=mtp
+	persist.sys.usb.config=mtp,adb
 
 # The OpenGL ES API level that is natively supported by this device.
 # This is a 16.16 fixed point number
