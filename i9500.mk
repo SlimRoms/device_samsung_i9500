@@ -38,7 +38,7 @@ PRODUCT_PACKAGES += \
 	init.recovery.universal5410.rc
 
 PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/twrp.fstab:recovery/root/etc/twrp.fstab
+	$(LOCAL_PATH)/recovery/etc/twrp.fstab:recovery/root/etc/twrp.fstab
 
 # Audio
 PRODUCT_COPY_FILES += \
