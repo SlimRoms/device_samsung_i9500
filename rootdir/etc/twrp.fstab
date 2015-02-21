@@ -1,0 +1,14 @@
+# mount point 	fstype 		device 													options (length for cryptfs encryption footer)
+/system			ext4		/dev/block/platform/dw_mmc.0/by-name/SYSTEM
+
+/cache			auto		/dev/block/platform/dw_mmc.0/by-name/CACHE
+
+/data			auto		/dev/block/platform/dw_mmc.0/by-name/USERDATA			length=-16384
+
+/efs			ext4		/dev/block/platform/dw_mmc.0/by-name/EFS				flags=backup=1;display=EFS
+
+/boot			emmc		/dev/block/platform/dw_mmc.0/by-name/BOOT
+/recovery		emmc		/dev/block/platform/dw_mmc.0/by-name/RECOVERY			flags=backup=1
+
+# SD card
+/external_sd	auto		/dev/block/mmcblk1p1 /dev/block/mmcblk1					flags=display="External Storage";storage;wipeingui;removable
