@@ -7,9 +7,6 @@
 # Disable GL Library Preload
 ro.zygote.disable_gl_preload=1
 
-# Force GPU Rendering
-persist.sys.ui.hw=1
-
 ## Screen ##
 
 # 1080p Screen Density
