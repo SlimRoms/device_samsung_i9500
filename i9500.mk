@@ -163,7 +163,8 @@ PRODUCT_PACKAGES += \
 
 # Extra Apps
 PRODUCT_PACKAGES += \
-	Screencast
+	Screencast \
+	AdvancedDisplay
 
 # Radio
 PRODUCT_PACKAGES += \
