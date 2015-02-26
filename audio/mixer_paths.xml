@@ -194,6 +194,10 @@
       <!-- None -->
     </path>
 
+    <path name="scenario-earpiece-loopback">
+      <!-- None -->
+    </path>
+
     <!-- ### Volume ### -->
 
     <path name="volume-earpiece-default">
@@ -498,6 +502,18 @@
 
     <!-- ### Scenario ### -->
     <path name="scenario-builtin-mic-default">
+      <ctl name="LHPF1 Input 1" value="IN1L" />
+      <ctl name="AIF2TX1 Input 1" value="ASRC1L" />
+      <ctl name="AIF2TX2 Input 1" value="ASRC1R" />
+    </path>
+
+    <path name="scenario-builtin-mic-earpiece-communication">
+      <ctl name="LHPF1 Input 1" value="IN1L" />
+      <ctl name="AIF2TX1 Input 1" value="ASRC1L" />
+      <ctl name="AIF2TX2 Input 1" value="ASRC1R" />
+    </path>
+
+    <path name="scenario-builtin-mic-speaker-communication">
       <ctl name="LHPF1 Input 1" value="IN1L" />
       <ctl name="AIF2TX1 Input 1" value="ASRC1L" />
       <ctl name="AIF2TX2 Input 1" value="ASRC1R" />
@@ -929,7 +945,7 @@
 
     <path name="communication-speaker">
       <path name="device-speaker" />
-      <path name="verb-default" />
+      <path name="verb-incall" />
 
       <path name="scenario-speaker-default" />
       <path name="volume-speaker-default" />
@@ -937,15 +953,15 @@
 
     <path name="communication-earpiece">
       <path name="device-earpiece" />
-      <path name="verb-default" />
+      <path name="verb-incall" />
 
-      <path name="scenario-earpiece-default" />
+      <path name="scenario-earpiece-loopback" />
       <path name="volume-earpiece-default" />
     </path>
 
     <path name="communication-headphones">
       <path name="device-headphones" />
-      <path name="verb-default" />
+      <path name="verb-incall" />
 
       <path name="scenario-headphones-default" />
       <path name="volume-headphones-default" />
@@ -1081,10 +1097,19 @@
       <path name="channel-left" />
     </path>
 
-    <path name="communication-main-mic">
+    <path name="communication-earpiece-main-mic">
       <path name="device-builtin-mic" />
 
-      <path name="scenario-builtin-mic-default" />
+      <path name="scenario-builtin-mic-earpiece-communication" />
+      <path name="volume-builtin-mic-default" />
+
+      <path name="channel-left" />
+    </path>
+
+    <path name="communication-speaker-main-mic">
+      <path name="device-builtin-mic" />
+
+      <path name="scenario-builtin-mic-speaker-communication" />
       <path name="volume-builtin-mic-default" />
 
       <path name="channel-left" />
