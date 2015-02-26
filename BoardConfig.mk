@@ -43,7 +43,6 @@ TARGET_ARCH_VARIANT := armv7-a-neon
 TARGET_ARCH_VARIANT_CPU := cortex-a15
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
-TARGET_CPU_SMP := true
 TARGET_CPU_VARIANT := cortex-a15
 
 # Enable QC's libm optimizations
@@ -67,9 +66,6 @@ BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
 
 # ANT+
 BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
-
-# Enable Minikin text layout engine (will be the default soon)
-USE_MINIKIN := true
 
 # Include an expanded selection of fonts
 EXTENDED_FONT_FOOTPRINT := true
