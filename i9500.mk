@@ -220,7 +220,7 @@ PRODUCT_PACKAGES += \
 
 # Set default USB interface
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-	persist.sys.usb.config=mtp,adb
+	persist.sys.usb.config=mtp
 
 # The OpenGL ES API level that is natively supported by this device.
 # This is a 16.16 fixed point number
