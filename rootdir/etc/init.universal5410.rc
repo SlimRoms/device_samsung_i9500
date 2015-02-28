@@ -658,7 +658,7 @@ service mobicore /system/bin/mcDriverDaemon \
 	user drmrpc
 	group drmrpc
 
-service battery_charger /charger
+service battery_charger /sbin/healthd -c
 	class charger
 	critical
 
