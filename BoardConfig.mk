@@ -186,9 +186,9 @@ TW_MAX_BRIGHTNESS := 255
 BOARD_CHARGER_ENABLE_SUSPEND := true
 BOARD_CHARGER_DISABLE_INIT_BLANK := true
 BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/power_supply/battery/batt_lp_charging
-RED_LED_PATH := "/sys/class/leds/led_r/brightness"
-GREEN_LED_PATH := "/sys/class/leds/led_g/brightness"
-BLUE_LED_PATH := "/sys/class/leds/led_b/brightness"
+RED_LED_PATH := "/sys/class/sec/led/led_r/brightness"
+GREEN_LED_PATH := "/sys/class/sec/led/led_g/brightness"
+BLUE_LED_PATH := "/sys/class/sec/led/led_b/brightness"
 BACKLIGHT_PATH := "/sys/class/backlight/panel/brightness"
 CHARGING_ENABLED_PATH := "/sys/class/power_supply/battery/batt_lp_charging"
 
