@@ -496,6 +496,12 @@ on post-fs-data
 	setprop vold.post_fs_data_done 1
 
 on boot
+# Set up KSM
+	write /sys/kernel/mm/ksm/deferred_timer 1
+	write /sys/kernel/mm/ksm/pages_to_scan 100
+	write /sys/kernel/mm/ksm/sleep_millisecs 500
+	write /sys/kernel/mm/ksm/run 1
+
 # Enable pulsing led on boot
 	write /sys/class/sec/led/led_pattern 6
 
