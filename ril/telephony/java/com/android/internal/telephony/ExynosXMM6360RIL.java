@@ -131,10 +131,12 @@ public class ExynosXMM6360RIL extends RIL implements CommandsInterface {
 
     public ExynosXMM6360RIL(Context context, int networkMode, int cdmaSubscription) {
         super(context, networkMode, cdmaSubscription, null);
+        mQANElements = 6;
     }
 
     public ExynosXMM6360RIL(Context context, int networkMode, int cdmaSubscription, Integer instanceId) {
         super(context, networkMode, cdmaSubscription, instanceId);
+        mQANElements = 6;
     }
 
     static String requestToString(int request) {
