@@ -45,6 +45,12 @@ TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_CPU_VARIANT := cortex-a15
 
+BOARD_GLOBAL_CFLAGS += -mtune=cortex-a15.cortex-a7
+BOARD_GLOBAL_CPPFLAGS += -mtune=cortex-a15.cortex-a7
+
+BOARD_GLOBAL_CFLAGS += -mvectorize-with-neon-quad
+BOARD_GLOBAL_CPPFLAGS += -mvectorize-with-neon-quad
+
 # Enable QC's libm optimizations
 TARGET_USE_QCOM_BIONIC_OPTIMIZATION := true
 
