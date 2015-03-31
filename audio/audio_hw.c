@@ -115,7 +115,7 @@ struct pcm_config pcm_config_sco_wide = {
 
 struct pcm_config pcm_config_voice = {
     .channels = 2,
-    .rate = 8000,
+    .rate = 16000,
     .period_size = 1024,
     .period_count = 2,
     .format = PCM_FORMAT_S16_LE,
@@ -685,9 +685,11 @@ static void adev_set_wb_amr_callback(void *data, int enable)
             ALOGV("%s: %s Incall Wide Band support",
                   __func__,
                   enable ? "Turn on" : "Turn off");
+#if 0
             stop_voice_call(adev);
             select_devices(adev);
             start_voice_call(adev);
+#endif
         }
     }
 
