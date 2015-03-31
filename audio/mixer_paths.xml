@@ -635,6 +635,8 @@
     <path name="volume-headphones-default">
       <ctl name="Noise Gate Switch" value="0" />
       <ctl name="HPOUT1 Digital Volume" value="128" />
+      <ctl name="HPOUT1L Impedance Volume" value="112" />
+      <ctl name="HPOUT1R Impedance Volume" value="112" />
       <ctl name="HPOUT1L Input 1 Volume" value="32" />
       <ctl name="HPOUT1R Input 1 Volume" value="32" />
     </path>
@@ -642,6 +644,8 @@
     <path name="volume-headphones-incall">
       <ctl name="Noise Gate Switch" value="0" />
       <ctl name="HPOUT1 Digital Volume" value="128" />
+      <ctl name="HPOUT1L Impedance Volume" value="112" />
+      <ctl name="HPOUT1R Impedance Volume" value="112" />
       <ctl name="HPOUT1L Input 1 Volume" value="32" />
       <ctl name="HPOUT1R Input 1 Volume" value="32" />
       <ctl name="HPOUT1L Input 2 Volume" value="32" />
@@ -795,7 +799,6 @@
     <!-- ### Device ### -->
     <path name="device-aux-digital">
       <ctl name="HDMI Switch" value="1" />
-      <ctl name="HPOUT2 Digital Switch" value="1" />
     </path>
 
     <!-- ### Scenario ### -->
@@ -814,6 +817,7 @@
 
     <path name="device-analogue-dock">
       <ctl name="VPS Switch" value="1" />
+	  <ctl name="HPOUT2 Digital Switch" value="1" />
     </path>
 
     <!-- ### Scenario ### -->
