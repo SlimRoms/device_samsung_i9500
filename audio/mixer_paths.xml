@@ -1,7 +1,7 @@
 <mixer>
     <!-- ########## Initial mixer settings ########## -->
 
-    <ctl name="Speaker Digital Volume" value="112" />
+    <ctl name="Speaker Digital Volume" value="128" />
     <ctl name="Speaker High Performance Switch" value="0" />
 	
     <ctl name="DSP Virtual Output Mux" value="None" />
@@ -32,7 +32,7 @@
     <ctl name="AEC Loopback" value="HPOUT1L" />
 
     <ctl name="AIF1TX1 Input 1" value="None" />
-    <ctl name="AIF1TX1 Input 2" value="None" />
+    <ctl name="AIF1TX1 Input 2" value="ASRC2L" />
     <ctl name="AIF1TX1 Input 3" value="None" />
     <ctl name="AIF1TX1 Input 4" value="None" />
     <ctl name="AIF1TX1 Input 1 Volume" value="32" />
@@ -41,7 +41,7 @@
     <ctl name="AIF1TX1 Input 4 Volume" value="32" />
 
     <ctl name="AIF1TX2 Input 1" value="None" />
-    <ctl name="AIF1TX2 Input 2" value="None" />
+    <ctl name="AIF1TX2 Input 2" value="ASRC2R" />
     <ctl name="AIF1TX2 Input 3" value="None" />
     <ctl name="AIF1TX2 Input 4" value="None" />
     <ctl name="AIF1TX2 Input 1 Volume" value="32" />
@@ -142,7 +142,7 @@
     <ctl name="AIF3TX2 Input 4 Volume" value="32" />
 	
     <ctl name="ASRC1L Input" value="LHPF1" />
-    <ctl name="ASRC1R Input" value="LHPF1" />
+    <ctl name="ASRC1R Input" value="LHPF2" />
 
     <ctl name="ASRC2L Input" value="AIF2RX1" />
     <ctl name="ASRC2R Input" value="AIF2RX2" />
@@ -269,7 +269,7 @@
     <ctl name="HPOUT2 Digital Volume" value="128" />
     <ctl name="HPOUT2 OSR" value="High performance" />
     <ctl name="HPOUT2 Digital Switch" value="0" />
-	
+
     <ctl name="HPOUT2L Input 1" value="AIF1RX1" />
     <ctl name="HPOUT2L Input 2" value="None" />
     <ctl name="HPOUT2L Input 3" value="None" />
