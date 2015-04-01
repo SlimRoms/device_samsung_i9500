@@ -155,6 +155,7 @@ PRODUCT_PACKAGES += \
 	libExynosOMX_Core \
 	libOMX.Exynos.MPEG4.Decoder \
 	libOMX.Exynos.AVC.Decoder \
+	libOMX.Exynos.MPEG2.Decoder \
 	libOMX.Exynos.VP8.Decoder \
 	libOMX.Exynos.MPEG4.Encoder \
 	libOMX.Exynos.AVC.Encoder \
