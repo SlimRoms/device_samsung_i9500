@@ -45,16 +45,13 @@ TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_CPU_VARIANT := cortex-a15
 
-#BOARD_GLOBAL_CFLAGS += -mtune=cortex-a15.cortex-a7
-#BOARD_GLOBAL_CPPFLAGS += -mtune=cortex-a15.cortex-a7
-
 # Board already specifies -mcpu, but it won't hurt to add mtune, too
-BOARD_GLOBAL_CFLAGS += -mtune=cortex-a15
-BOARD_GLOBAL_CPPFLAGS += -mtune=cortex-a15
+#BOARD_GLOBAL_CFLAGS += -mtune=cortex-a15
+#BOARD_GLOBAL_CPPFLAGS += -mtune=cortex-a15
 
 # Specify L1/L2 caches used for Exynos 5410
-BOARD_GLOBAL_CFLAGS += --param l1-cache-line-size=32 --param l1-cache-size=32
-BOARD_GLOBAL_CPPFLAGS += --param l1-cache-line-size=32 --param l1-cache-size=32
+#BOARD_GLOBAL_CFLAGS += --param l1-cache-line-size=32 --param l1-cache-size=32
+#BOARD_GLOBAL_CPPFLAGS += --param l1-cache-line-size=32 --param l1-cache-size=32
 
 # Hint the compiler that we're using a quad-core CPU
 BOARD_GLOBAL_CFLAGS += -mvectorize-with-neon-quad
