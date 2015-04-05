@@ -3,7 +3,7 @@
 
     <ctl name="Speaker Digital Volume" value="128" />
     <ctl name="Speaker High Performance Switch" value="0" />
-	
+
     <ctl name="DSP Virtual Output Mux" value="None" />
     <ctl name="DSP1 Aux 1" value="None" />
     <ctl name="DSP1 Aux 2" value="None" />
@@ -51,7 +51,7 @@
     <ctl name="Mic Input 4 Volume" value="32" />
 
     <ctl name="3rd Mic Switch" value="0" />
-	
+
     <ctl name="AEC Loopback" value="HPOUT1L" />
 
     <ctl name="AIF1TX1 Input 1" value="None" />
@@ -126,7 +126,7 @@
     <ctl name="AIF1TX8 Input 3 Volume" value="32" />
     <ctl name="AIF1TX8 Input 4 Volume" value="32" />
 
-    <ctl name="AIF2 Mode" value="Slave" />	
+    <ctl name="AIF2 Mode" value="Slave" />
 
     <ctl name="AIF2TX1 Input 1" value="ASRC1L" />
     <ctl name="AIF2TX1 Input 2" value="AIF3RX1" />
@@ -163,7 +163,7 @@
     <ctl name="AIF3TX2 Input 2 Volume" value="32" />
     <ctl name="AIF3TX2 Input 3 Volume" value="32" />
     <ctl name="AIF3TX2 Input 4 Volume" value="32" />
-	
+
     <ctl name="ASRC1L Input" value="LHPF1" />
     <ctl name="ASRC1R Input" value="LHPF2" />
 
@@ -171,12 +171,12 @@
     <ctl name="ASRC2R Input" value="AIF2RX2" />
 
     <ctl name="DRC1" value="0x00,0x18,0x09,0x33,0x00,0x18,0x00,0x00,0x00,0x00" />
-	
+
     <ctl name="DRC1L Input 1" value="None" />
     <ctl name="DRC1L Input 2" value="None" />
     <ctl name="DRC1L Input 3" value="None" />
     <ctl name="DRC1L Input 4" value="None" />
-	
+
     <ctl name="DRC1R Input 1" value="None" />
     <ctl name="DRC1R Input 2" value="None" />
     <ctl name="DRC1R Input 3" value="None" />
@@ -184,7 +184,7 @@
 
     <ctl name="DRE Low Level ABS" value="15" />
     <ctl name="DRE Threshold" value="63" />
-	
+
     <ctl name="EPOUT DRE Switch" value="1" />
     <ctl name="EPOUT Digital Volume" value="128" />
     <ctl name="EPOUT Digital Switch" value="0" />
@@ -220,7 +220,7 @@
     <ctl name="EQ1 Input 1" value="None" />
     <ctl name="EQ1 Input 2" value="None" />
     <ctl name="EQ1 Input 3" value="None" />
-    <ctl name="EQ1 Input 4" value="None" />	
+    <ctl name="EQ1 Input 4" value="None" />
 
     <ctl name="EQ2 B1 Volume" value="12" />
     <ctl name="EQ2 B2 Volume" value="12" />
@@ -229,7 +229,7 @@
     <ctl name="EQ2 B5 Volume" value="12" />
 
     <ctl name="EQ2 Coefficeints" value="0x62,0x18,0x63,0x00,0x0f,0xc8,0x03,0xfe,0x00,0xe0,0x1e,0xc4,0xf1,0x36,0x04,0x09,0x04,0xcc,0x1c,0x9b,0xf3,0x37,0x04,0x0b,0x0c,0xbb,0x16,0xf8,0xf7,0xd9,0x04,0x0a,0x1f,0x14,0x05,0x8c,0x05,0x63,0x40,0x00,0x0b,0x75" />
-	
+
     <ctl name="EQ2 Input 1" value="None" />
     <ctl name="EQ2 Input 2" value="None" />
     <ctl name="EQ2 Input 3" value="None" />
@@ -254,7 +254,7 @@
     <ctl name="EQ4 B4 Volume" value="12" />
     <ctl name="EQ4 B5 Volume" value="12" />
 
-    <ctl name="EQ4 Coefficeints" value="0x62,0x18,0x63,0x00,0x0f,0xc8,0x03,0xfe,0x00,0xe0,0x1e,0xc4,0xf1,0x36,0x04,0x09,0x04,0xcc,0x1c,0x9b,0xf3,0x37,0x04,0x0b,0x0c,0xbb,0x16,0xf8,0xf7,0xd9,0x04,0x0a,0x1f,0x14,0x05,0x8c,0x05,0x63,0x40,0x00,0x0b,0x75" />	
+    <ctl name="EQ4 Coefficeints" value="0x62,0x18,0x63,0x00,0x0f,0xc8,0x03,0xfe,0x00,0xe0,0x1e,0xc4,0xf1,0x36,0x04,0x09,0x04,0xcc,0x1c,0x9b,0xf3,0x37,0x04,0x0b,0x0c,0xbb,0x16,0xf8,0xf7,0xd9,0x04,0x0a,0x1f,0x14,0x05,0x8c,0x05,0x63,0x40,0x00,0x0b,0x75" />
 
     <ctl name="EQ4 Input 1" value="None" />
     <ctl name="EQ4 Input 2" value="None" />
@@ -262,11 +262,11 @@
     <ctl name="EQ4 Input 4" value="None" />
 
     <ctl name="FX Rate" value="SYNCCLK rate 1" />
-	
+
     <ctl name="HDMI Switch" value="0" />
 
     <ctl name="HP Switch" value="0" />
-	
+
     <ctl name="HPOUT1 DRE Switch" value="1" />
     <ctl name="HPOUT1 Digital Volume" value="128" />
     <ctl name="HPOUT1 OSR" value="High performance" />
@@ -350,175 +350,175 @@
     <ctl name="HPOUT2R NG SPKDAT1R Switch" value="0" />
     <ctl name="HPOUT2R NG SPKOUTL Switch" value="0" />
     <ctl name="HPOUT2R NG SPKOUTR Switch" value="0" />
-	
+
     <ctl name="Headset Mic Switch" value="0" />
 
     <ctl name="IN1 High Performance Switch" value="1" />
     <ctl name="IN1L Volume" value="30" />
-	<ctl name="IN1L Digital Volume" value="30" />
+    <ctl name="IN1L Digital Volume" value="30" />
     <ctl name="IN1R Volume" value="30" />
-	<ctl name="IN1R Digital Volume" value="30" />
-	
+    <ctl name="IN1R Digital Volume" value="30" />
+
     <ctl name="IN2 High Performance Switch" value="1" />
     <ctl name="IN2L Volume" value="30" />
-	<ctl name="IN2L Digital Volume" value="30" />
+    <ctl name="IN2L Digital Volume" value="30" />
     <ctl name="IN2R Volume" value="30" />
-	<ctl name="IN2R Digital Volume" value="30" />
+    <ctl name="IN2R Digital Volume" value="30" />
 
     <ctl name="IN3 High Performance Switch" value="1" />
     <ctl name="IN3L Volume" value="0" />
-	<ctl name="IN3L Digital Volume" value="30" />
+    <ctl name="IN3L Digital Volume" value="30" />
     <ctl name="IN3R Volume" value="0" />
-	<ctl name="IN3R Digital Volume" value="30" />
+    <ctl name="IN3R Digital Volume" value="30" />
 
-	<ctl name="ISRC1 FSL" value="SYNCCLK rate 1" />
-	
-	<ctl name="ISRC1DEC1 Input" value="None" />
-	<ctl name="ISRC1DEC2 Input" value="None" />
-	<ctl name="ISRC1INT1 Input" value="None" />
-	<ctl name="ISRC1INT2 Input" value="None" />
-	
-	<ctl name="ISRC2 FSL" value="SYNCCLK rate 1" />
+    <ctl name="ISRC1 FSL" value="SYNCCLK rate 1" />
 
-	<ctl name="ISRC2DEC1 Input" value="None" />
-	<ctl name="ISRC2DEC2 Input" value="None" />
-	<ctl name="ISRC2INT1 Input" value="None" />
-	<ctl name="ISRC2INT2 Input" value="None" />
+    <ctl name="ISRC1DEC1 Input" value="None" />
+    <ctl name="ISRC1DEC2 Input" value="None" />
+    <ctl name="ISRC1INT1 Input" value="None" />
+    <ctl name="ISRC1INT2 Input" value="None" />
 
-	<ctl name="Input Ramp Down" value="1ms/6dB" />
-	<ctl name="Input Ramp Up" value="8ms/6dB" />
-	
-	<ctl name="LHPF1 COEFF FILTER" value="64Hz" />
-	<ctl name="LHPF1 Coefficients" value="0xf0,0x3a" />
-	<ctl name="LHPF1 Input 1" value="None" />
-	<ctl name="LHPF1 Input 2" value="None" />
-	<ctl name="LHPF1 Input 3" value="None" />
-	<ctl name="LHPF1 Input 4" value="None" />
+    <ctl name="ISRC2 FSL" value="SYNCCLK rate 1" />
+
+    <ctl name="ISRC2DEC1 Input" value="None" />
+    <ctl name="ISRC2DEC2 Input" value="None" />
+    <ctl name="ISRC2INT1 Input" value="None" />
+    <ctl name="ISRC2INT2 Input" value="None" />
+
+    <ctl name="Input Ramp Down" value="1ms/6dB" />
+    <ctl name="Input Ramp Up" value="8ms/6dB" />
+
+    <ctl name="LHPF1 COEFF FILTER" value="64Hz" />
+    <ctl name="LHPF1 Coefficients" value="0xf0,0x3a" />
+    <ctl name="LHPF1 Input 1" value="None" />
+    <ctl name="LHPF1 Input 2" value="None" />
+    <ctl name="LHPF1 Input 3" value="None" />
+    <ctl name="LHPF1 Input 4" value="None" />
     <ctl name="LHPF1 Input 1 Volume" value="32" />
     <ctl name="LHPF1 Input 2 Volume" value="32" />
     <ctl name="LHPF1 Input 3 Volume" value="32" />
     <ctl name="LHPF1 Input 4 Volume" value="32" />
-	<ctl name="LHPF1 Mode" value="High-pass" />
+    <ctl name="LHPF1 Mode" value="High-pass" />
 
-	<ctl name="LHPF2 COEFF FILTER" value="64Hz" />
-	<ctl name="LHPF2 Coefficients" value="0xf0,0x3a" />
-	<ctl name="LHPF2 Input 1" value="None" />
-	<ctl name="LHPF2 Input 2" value="None" />
-	<ctl name="LHPF2 Input 3" value="None" />
-	<ctl name="LHPF2 Input 4" value="None" />
+    <ctl name="LHPF2 COEFF FILTER" value="64Hz" />
+    <ctl name="LHPF2 Coefficients" value="0xf0,0x3a" />
+    <ctl name="LHPF2 Input 1" value="None" />
+    <ctl name="LHPF2 Input 2" value="None" />
+    <ctl name="LHPF2 Input 3" value="None" />
+    <ctl name="LHPF2 Input 4" value="None" />
     <ctl name="LHPF2 Input 1 Volume" value="32" />
     <ctl name="LHPF2 Input 2 Volume" value="32" />
     <ctl name="LHPF2 Input 3 Volume" value="32" />
     <ctl name="LHPF2 Input 4 Volume" value="32" />
-	<ctl name="LHPF2 Mode" value="High-pass" />
+    <ctl name="LHPF2 Mode" value="High-pass" />
 
-	<ctl name="LHPF3 Coefficients" value="0x00,0x00" />
-	<ctl name="LHPF3 Input 1" value="None" />
-	<ctl name="LHPF3 Input 2" value="None" />
-	<ctl name="LHPF3 Input 3" value="None" />
-	<ctl name="LHPF3 Input 4" value="None" />
+    <ctl name="LHPF3 Coefficients" value="0x00,0x00" />
+    <ctl name="LHPF3 Input 1" value="None" />
+    <ctl name="LHPF3 Input 2" value="None" />
+    <ctl name="LHPF3 Input 3" value="None" />
+    <ctl name="LHPF3 Input 4" value="None" />
     <ctl name="LHPF3 Input 1 Volume" value="32" />
     <ctl name="LHPF3 Input 2 Volume" value="32" />
     <ctl name="LHPF3 Input 3 Volume" value="32" />
     <ctl name="LHPF3 Input 4 Volume" value="32" />
-	<ctl name="LHPF3 Mode" value="Low-pass" />
+    <ctl name="LHPF3 Mode" value="Low-pass" />
 
-	<ctl name="LHPF4 Coefficients" value="0x00,0x00" />
-	<ctl name="LHPF4 Input 1" value="None" />
-	<ctl name="LHPF4 Input 2" value="None" />
-	<ctl name="LHPF4 Input 3" value="None" />
-	<ctl name="LHPF4 Input 4" value="None" />
+    <ctl name="LHPF4 Coefficients" value="0x00,0x00" />
+    <ctl name="LHPF4 Input 1" value="None" />
+    <ctl name="LHPF4 Input 2" value="None" />
+    <ctl name="LHPF4 Input 3" value="None" />
+    <ctl name="LHPF4 Input 4" value="None" />
     <ctl name="LHPF4 Input 1 Volume" value="32" />
     <ctl name="LHPF4 Input 2 Volume" value="32" />
     <ctl name="LHPF4 Input 3 Volume" value="32" />
     <ctl name="LHPF4 Input 4 Volume" value="32" />
-	<ctl name="LHPF4 Mode" value="Low-pass" />
+    <ctl name="LHPF4 Mode" value="Low-pass" />
 
-	<ctl name="Main Mic Switch" value="0" />
-	
-	<ctl name="Noise Gate Switch" value="0" />
-	<ctl name="Noise Gate Hold" value="30ms" />
+    <ctl name="Main Mic Switch" value="0" />
+
+    <ctl name="Noise Gate Switch" value="0" />
+    <ctl name="Noise Gate Hold" value="30ms" />
     <ctl name="Noise Gate Threshold Volume" value="3" />
 
-	<ctl name="Noise Generator Volume" value="0" />
-	
-	<ctl name="Noise Input 1" value="None" />
-	<ctl name="Noise Input 2" value="None" />
-	<ctl name="Noise Input 3" value="None" />
-	<ctl name="Noise Input 4" value="None" />
+    <ctl name="Noise Generator Volume" value="0" />
+
+    <ctl name="Noise Input 1" value="None" />
+    <ctl name="Noise Input 2" value="None" />
+    <ctl name="Noise Input 3" value="None" />
+    <ctl name="Noise Input 4" value="None" />
     <ctl name="Noise Input 1 Volume" value="32" />
     <ctl name="Noise Input 2 Volume" value="32" />
     <ctl name="Noise Input 3 Volume" value="32" />
     <ctl name="Noise Input 4 Volume" value="32" />
 
-	<ctl name="Output Compensation Switch" value="0" />
-	<ctl name="Output Ramp Down" value="1ms/6dB" />
-	<ctl name="Output Ramp Up" value="1ms/6dB" />
+    <ctl name="Output Compensation Switch" value="0" />
+    <ctl name="Output Ramp Down" value="1ms/6dB" />
+    <ctl name="Output Ramp Up" value="1ms/6dB" />
 
-	<ctl name="PWM1 Input 1" value="None" />
-	<ctl name="PWM1 Input 2" value="None" />
-	<ctl name="PWM1 Input 3" value="None" />
-	<ctl name="PWM1 Input 4" value="None" />
+    <ctl name="PWM1 Input 1" value="None" />
+    <ctl name="PWM1 Input 2" value="None" />
+    <ctl name="PWM1 Input 3" value="None" />
+    <ctl name="PWM1 Input 4" value="None" />
 
-	<ctl name="PWM2 Input 1" value="None" />
-	<ctl name="PWM2 Input 2" value="None" />
-	<ctl name="PWM2 Input 3" value="None" />
-	<ctl name="PWM2 Input 4" value="None" />
+    <ctl name="PWM2 Input 1" value="None" />
+    <ctl name="PWM2 Input 2" value="None" />
+    <ctl name="PWM2 Input 3" value="None" />
+    <ctl name="PWM2 Input 4" value="None" />
 
-	<ctl name="RCV Switch" value="0" />
+    <ctl name="RCV Switch" value="0" />
 
-	<ctl name="SLIMTX1 Input 1" value="None" />
-	<ctl name="SLIMTX1 Input 2" value="None" />
-	<ctl name="SLIMTX1 Input 3" value="None" />
-	<ctl name="SLIMTX1 Input 4" value="None" />	
+    <ctl name="SLIMTX1 Input 1" value="None" />
+    <ctl name="SLIMTX1 Input 2" value="None" />
+    <ctl name="SLIMTX1 Input 3" value="None" />
+    <ctl name="SLIMTX1 Input 4" value="None" />
 
-	<ctl name="SLIMTX2 Input 1" value="None" />
-	<ctl name="SLIMTX2 Input 2" value="None" />
-	<ctl name="SLIMTX2 Input 3" value="None" />
-	<ctl name="SLIMTX2 Input 4" value="None" />	
-	
-	<ctl name="SLIMTX3 Input 1" value="None" />
-	<ctl name="SLIMTX3 Input 2" value="None" />
-	<ctl name="SLIMTX3 Input 3" value="None" />
-	<ctl name="SLIMTX3 Input 4" value="None" />	
-	
-	<ctl name="SLIMTX4 Input 1" value="None" />
-	<ctl name="SLIMTX4 Input 2" value="None" />
-	<ctl name="SLIMTX4 Input 3" value="None" />
-	<ctl name="SLIMTX4 Input 4" value="None" />	
-	
-	<ctl name="SLIMTX5 Input 1" value="None" />
-	<ctl name="SLIMTX5 Input 2" value="None" />
-	<ctl name="SLIMTX5 Input 3" value="None" />
-	<ctl name="SLIMTX5 Input 4" value="None" />	
-	
-	<ctl name="SLIMTX6 Input 1" value="None" />
-	<ctl name="SLIMTX6 Input 2" value="None" />
-	<ctl name="SLIMTX6 Input 3" value="None" />
-	<ctl name="SLIMTX6 Input 4" value="None" />	
-	
-	<ctl name="SLIMTX7 Input 1" value="None" />
-	<ctl name="SLIMTX7 Input 2" value="None" />
-	<ctl name="SLIMTX7 Input 3" value="None" />
-	<ctl name="SLIMTX7 Input 4" value="None" />	
-	
-	<ctl name="SLIMTX8 Input 1" value="None" />
-	<ctl name="SLIMTX8 Input 2" value="None" />
-	<ctl name="SLIMTX8 Input 3" value="None" />
-	<ctl name="SLIMTX8 Input 4" value="None" />	
-	
-	<ctl name="SPK Switch" value="0" />
+    <ctl name="SLIMTX2 Input 1" value="None" />
+    <ctl name="SLIMTX2 Input 2" value="None" />
+    <ctl name="SLIMTX2 Input 3" value="None" />
+    <ctl name="SLIMTX2 Input 4" value="None" />
+
+    <ctl name="SLIMTX3 Input 1" value="None" />
+    <ctl name="SLIMTX3 Input 2" value="None" />
+    <ctl name="SLIMTX3 Input 3" value="None" />
+    <ctl name="SLIMTX3 Input 4" value="None" />
+
+    <ctl name="SLIMTX4 Input 1" value="None" />
+    <ctl name="SLIMTX4 Input 2" value="None" />
+    <ctl name="SLIMTX4 Input 3" value="None" />
+    <ctl name="SLIMTX4 Input 4" value="None" />
+
+    <ctl name="SLIMTX5 Input 1" value="None" />
+    <ctl name="SLIMTX5 Input 2" value="None" />
+    <ctl name="SLIMTX5 Input 3" value="None" />
+    <ctl name="SLIMTX5 Input 4" value="None" />
+
+    <ctl name="SLIMTX6 Input 1" value="None" />
+    <ctl name="SLIMTX6 Input 2" value="None" />
+    <ctl name="SLIMTX6 Input 3" value="None" />
+    <ctl name="SLIMTX6 Input 4" value="None" />
+
+    <ctl name="SLIMTX7 Input 1" value="None" />
+    <ctl name="SLIMTX7 Input 2" value="None" />
+    <ctl name="SLIMTX7 Input 3" value="None" />
+    <ctl name="SLIMTX7 Input 4" value="None" />
+
+    <ctl name="SLIMTX8 Input 1" value="None" />
+    <ctl name="SLIMTX8 Input 2" value="None" />
+    <ctl name="SLIMTX8 Input 3" value="None" />
+    <ctl name="SLIMTX8 Input 4" value="None" />
+
+    <ctl name="SPK Switch" value="0" />
     <ctl name="Speaker Digital Switch" value="0" />
-	
-	<ctl name="SPKDAT1 Switch" value="0" />
+
+    <ctl name="SPKDAT1 Switch" value="0" />
     <ctl name="SPKDAT1 Digital Volume" value="128" />
     <ctl name="SPKDAT1 Digital Switch" value="0" />
     <ctl name="SPKDAT1 High Performance Switch" value="0" />
-	
-	<ctl name="SPKDAT1L Input 1" value="None" />
-	<ctl name="SPKDAT1L Input 2" value="None" />
-	<ctl name="SPKDAT1L Input 3" value="None" />
-	<ctl name="SPKDAT1L Input 4" value="None" />
+
+    <ctl name="SPKDAT1L Input 1" value="None" />
+    <ctl name="SPKDAT1L Input 2" value="None" />
+    <ctl name="SPKDAT1L Input 3" value="None" />
+    <ctl name="SPKDAT1L Input 4" value="None" />
     <ctl name="SPKDAT1L Input 1 Volume" value="32" />
     <ctl name="SPKDAT1L Input 2 Volume" value="32" />
     <ctl name="SPKDAT1L Input 3 Volume" value="32" />
@@ -533,10 +533,10 @@
     <ctl name="SPKDAT1L NG SPKOUTL Switch" value="0" />
     <ctl name="SPKDAT1L NG SPKOUTR Switch" value="0" />
 
-	<ctl name="SPKDAT1R Input 1" value="None" />
-	<ctl name="SPKDAT1R Input 2" value="None" />
-	<ctl name="SPKDAT1R Input 3" value="None" />
-	<ctl name="SPKDAT1R Input 4" value="None" />
+    <ctl name="SPKDAT1R Input 1" value="None" />
+    <ctl name="SPKDAT1R Input 2" value="None" />
+    <ctl name="SPKDAT1R Input 3" value="None" />
+    <ctl name="SPKDAT1R Input 4" value="None" />
     <ctl name="SPKDAT1R Input 1 Volume" value="32" />
     <ctl name="SPKDAT1R Input 2 Volume" value="32" />
     <ctl name="SPKDAT1R Input 3 Volume" value="32" />
@@ -551,10 +551,10 @@
     <ctl name="SPKDAT1R NG SPKOUTL Switch" value="0" />
     <ctl name="SPKDAT1R NG SPKOUTR Switch" value="0" />
 
-	<ctl name="SPKOUTL Input 1" value="AIF1RX1" />
-	<ctl name="SPKOUTL Input 2" value="AIF1RX2" />
-	<ctl name="SPKOUTL Input 3" value="None" />
-	<ctl name="SPKOUTL Input 4" value="None" />
+    <ctl name="SPKOUTL Input 1" value="AIF1RX1" />
+    <ctl name="SPKOUTL Input 2" value="AIF1RX2" />
+    <ctl name="SPKOUTL Input 3" value="None" />
+    <ctl name="SPKOUTL Input 4" value="None" />
     <ctl name="SPKOUTL Input 1 Volume" value="32" />
     <ctl name="SPKOUTL Input 2 Volume" value="32" />
     <ctl name="SPKOUTL Input 3 Volume" value="32" />
@@ -569,10 +569,10 @@
     <ctl name="SPKOUTL NG SPKOUTL Switch" value="0" />
     <ctl name="SPKOUTL NG SPKOUTR Switch" value="0" />
 
-	<ctl name="SPKOUTR Input 1" value="None" />
-	<ctl name="SPKOUTR Input 2" value="None" />
-	<ctl name="SPKOUTR Input 3" value="None" />
-	<ctl name="SPKOUTR Input 4" value="None" />
+    <ctl name="SPKOUTR Input 1" value="None" />
+    <ctl name="SPKOUTR Input 2" value="None" />
+    <ctl name="SPKOUTR Input 3" value="None" />
+    <ctl name="SPKOUTR Input 4" value="None" />
     <ctl name="SPKOUTR Input 1 Volume" value="32" />
     <ctl name="SPKOUTR Input 2 Volume" value="32" />
     <ctl name="SPKOUTR Input 3 Volume" value="32" />
@@ -589,11 +589,11 @@
 
     <ctl name="Sample Rate 2" value="8kHz" />
     <ctl name="Sample Rate 3" value="8kHz" />
-	
+
     <ctl name="Sub Mic Switch" value="0" />
-	
-	<ctl name="VPS Switch" value="0" />
-	
+
+    <ctl name="VPS Switch" value="0" />
+
     <!--
     #######################################################
     ### Earpiece
@@ -908,7 +908,7 @@
 
     <path name="device-analogue-dock">
       <ctl name="VPS Switch" value="1" />
-	  <ctl name="HPOUT2 Digital Switch" value="1" />
+      <ctl name="HPOUT2 Digital Switch" value="1" />
     </path>
 
     <!-- ### Scenario ### -->
@@ -1416,7 +1416,7 @@
 
     <path name="bt-sco-headset">
       <path name="device-sco-headset-out" />
-		<ctl name="AIF2 Mode" value="Slave" />
+      <ctl name="AIF2 Mode" value="Slave" />
 
       <path name="scenario-sco-headset-out-default" />
       <path name="volume-sco-headset-out-default" />
