@@ -187,13 +187,15 @@ PRODUCT_PACKAGES += \
 	hostapd \
 	wpa_supplicant \
 	wpa_supplicant.conf \
-	wpa_supplicant_overlay.conf \
-	p2p_supplicant_overlay.conf \
 	hostapd_default.conf \
 	hostapd.accept \
 	hostapd.deny \
 	libnetcmdiface \
 	macloader
+
+PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/configs/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
+	$(LOCAL_PATH)/configs/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf
 	
 PRODUCT_PROPERTY_OVERRIDES += \
 	wifi.interface=wlan0
@@ -292,6 +294,3 @@ $(call inherit-product-if-exists, device/samsung/i9500/configs/phone-xxhdpi-2048
 
 # call the proprietary setup
 $(call inherit-product-if-exists, vendor/samsung/i9500/i9500-vendor.mk)
-
-# call bcm wlan config
-$(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/config/config-bcm.mk)
