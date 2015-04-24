@@ -685,7 +685,7 @@ static void adev_set_wb_amr_callback(void *data, int enable)
             ALOGV("%s: %s Incall Wide Band support",
                   __func__,
                   enable ? "Turn on" : "Turn off");
-#if 0
+#ifndef VOICE_CALL_WIDEBAND_DISABLED
             stop_voice_call(adev);
             select_devices(adev);
             start_voice_call(adev);

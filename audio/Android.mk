@@ -23,6 +23,14 @@ LOCAL_MODULE_TAGS := optional
 
 LOCAL_SRC_FILES := audio_hw.c ril_interface.c
 
+ifeq ($(BOARD_HDMI_INCAPABLE), true)
+	LOCAL_CFLAGS += -DHDMI_INCAPABLE
+endif
+
+ifeq ($(BOARD_AUDIO_CALL_WIDEBAND_DISABLED), true)
+	LOCAL_CFLAGS += -DVOICE_CALL_WIDEBAND_DISABLED
+endif
+
 LOCAL_C_INCLUDES += \
 	$(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/include \
 	external/tinyalsa/include \
