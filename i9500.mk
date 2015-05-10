@@ -239,6 +239,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	dalvik.vm.isa.arm.features=lpae,div
 
 # Hardware Permissions
+=======
+# Permissions
 PRODUCT_COPY_FILES += \
 	external/ant-wireless/antradio-library/com.dsi.ant.antradio_library.xml:system/etc/permissions/com.dsi.ant.antradio_library.xml \
 	frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
