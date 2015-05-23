@@ -92,8 +92,7 @@ PRODUCT_PACKAGES += \
 
 # GPU
 PRODUCT_PACKAGES += \
-	pvrsrvctl \
-	libcorkscrew
+	pvrsrvctl
 
 # Keylayouts
 PRODUCT_COPY_FILES += \
