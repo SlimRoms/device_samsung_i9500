@@ -1,4 +1,3 @@
-#
 # Copyright (C) 2015 The CyanogenMod Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,10 +11,30 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-#
 
 LOCAL_PATH := $(call my-dir)
 
-ifneq ($(filter i9500, $(TARGET_DEVICE)),)
-include $(call all-makefiles-under,$(LOCAL_PATH))
-endif
+# Audience voice preprocessing library
+include $(CLEAR_VARS)
+
+LOCAL_MODULE := libaudience_voicefx
+LOCAL_MODULE_TAGS := optional
+
+LOCAL_C_INCLUDES += \
+	$(call include-path-for, audio-effects) \
+	$(call include-path-for, audio-utils)
+
+LOCAL_SRC_FILES:= \
+	eS325VoiceProcessing.cpp
+
+LOCAL_SHARED_LIBRARIES := \
+	libutils \
+	liblog
+
+include $(BUILD_SHARED_LIBRARY)
+
+LOCAL_SRC_FILES := mixer_paths.xml
+
+LOCAL_MODULE_PATH := $(TARGET_OUT_ETC)
+
+include $(BUILD_PREBUILT)

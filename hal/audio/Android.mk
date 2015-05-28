@@ -1,4 +1,4 @@
-# Copyright (C) 2013 The CyanogenMod Project
+# Copyright (C) 2015 The CyanogenMod Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -34,42 +34,18 @@ endif
 LOCAL_C_INCLUDES += \
 	$(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/include \
 	external/tinyalsa/include \
+	device/samsung/i9500/libs/voicefx \
 	$(call include-path-for, audio-effects) \
 	$(call include-path-for, audio-utils) \
 	$(call include-path-for, audio-route)
 
-LOCAL_SHARED_LIBRARIES := liblog libcutils libtinyalsa libaudioutils libdl \
-	libaudience_voicefx libaudioroute
-
-include $(BUILD_SHARED_LIBRARY)
-
-
-# Audience voice preprocessing library
-include $(CLEAR_VARS)
-
-LOCAL_MODULE := libaudience_voicefx
-LOCAL_MODULE_TAGS := optional
-
-LOCAL_SRC_FILES := eS325VoiceProcessing.cpp
-
-LOCAL_C_INCLUDES += \
-	$(call include-path-for, audio-effects)
-
 LOCAL_SHARED_LIBRARIES := \
-	liblog libutils
+	liblog \
+	libcutils \
+	libtinyalsa \
+	libaudioutils \
+	libdl \
+	libaudience_voicefx \
+	libaudioroute
 
 include $(BUILD_SHARED_LIBRARY)
-
-
-# Mixer configurations
-include $(CLEAR_VARS)
-
-LOCAL_MODULE := mixer_paths.xml
-LOCAL_MODULE_TAGS := optional eng
-LOCAL_MODULE_CLASS := ETC
-
-LOCAL_SRC_FILES := mixer_paths.xml
-
-LOCAL_MODULE_PATH := $(TARGET_OUT_ETC)
-
-include $(BUILD_PREBUILT)

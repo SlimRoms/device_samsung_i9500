@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2013 The CyanogenMod Project
+# Copyright (C) 2015 The CyanogenMod Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,6 +13,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
+# inherit from the proprietary version
+-include vendor/samsung/i9500/BoardConfigVendor.mk
 
 LOCAL_PATH := device/samsung/i9500
 
@@ -44,14 +47,6 @@ TARGET_ARCH_VARIANT_CPU := cortex-a15
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_CPU_VARIANT := cortex-a15
-
-# Board already specifies -mcpu, but it won't hurt to add mtune, too
-#BOARD_GLOBAL_CFLAGS += -mtune=cortex-a15
-#BOARD_GLOBAL_CPPFLAGS += -mtune=cortex-a15
-
-# Specify L1/L2 caches used for Exynos 5410
-#BOARD_GLOBAL_CFLAGS += --param l1-cache-line-size=32 --param l1-cache-size=32
-#BOARD_GLOBAL_CPPFLAGS += --param l1-cache-line-size=32 --param l1-cache-size=32
 
 # Hint the compiler that we're using a quad-core CPU
 BOARD_GLOBAL_CFLAGS += -mvectorize-with-neon-quad
@@ -120,7 +115,7 @@ BOARD_HARDWARE_CLASS := device/samsung/i9500/cmhw
 USE_OPENGL_RENDERER := true
 BOARD_EGL_SYSTEMUI_PBSIZE_HACK := true
 BOARD_EGL_WORKAROUND_BUG_10194508 := true
-BOARD_EGL_CFG := $(LOCAL_PATH)/configs/egl.cfg
+BOARD_EGL_CFG := $(LOCAL_PATH)/configs/egl/egl.cfg
 COMMON_GLOBAL_CFLAGS += -DUSES_PVR_GPU
 MAX_EGL_CACHE_KEY_SIZE := 12*1024
 MAX_EGL_CACHE_SIZE := 512*1024
@@ -185,16 +180,25 @@ TARGET_USERIMAGES_USE_F2FS := true
 
 # TWRP Specific
 DEVICE_RESOLUTION := 1080x1920
+
 RECOVERY_SDCARD_ON_DATA := true
 BOARD_HAS_NO_REAL_SDCARD := true
+
 TW_INTERNAL_STORAGE_PATH := "/data/media/0"
 TW_INTERNAL_STORAGE_MOUNT_POINT := "data"
 TW_EXTERNAL_STORAGE_PATH := "/external_sd"
 TW_EXTERNAL_STORAGE_MOUNT_POINT := "external_sd"
+
 TW_NO_REBOOT_BOOTLOADER := true
 TW_HAS_DOWNLOAD_MODE := true
+
 TW_BRIGHTNESS_PATH := "/sys/class/backlight/panel/brightness"
 TW_MAX_BRIGHTNESS := 255
+
+TW_INCLUDE_JB_CRYPTO := true
+TW_INCLUDE_L_CRYPTO := true
+
+TW_NO_EXFAT_FUSE := true
 
 # Charging mode
 BOARD_CHARGER_ENABLE_SUSPEND := true
@@ -209,6 +213,3 @@ CHARGING_ENABLED_PATH := "/sys/class/power_supply/battery/batt_lp_charging"
 
 # Releasetools
 #TARGET_RELEASETOOLS_EXTENSIONS := $(LOCAL_PATH)
-
-# inherit from the proprietary version
--include vendor/samsung/i9500/BoardConfigVendor.mk
