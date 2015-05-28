@@ -32,9 +32,3 @@ LOCAL_SHARED_LIBRARIES := \
 	liblog
 
 include $(BUILD_SHARED_LIBRARY)
-
-LOCAL_SRC_FILES := mixer_paths.xml
-
-LOCAL_MODULE_PATH := $(TARGET_OUT_ETC)
-
-include $(BUILD_PREBUILT)
