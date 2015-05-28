@@ -1887,8 +1887,9 @@ static int adev_open_input_stream(struct audio_hw_device *dev,
     in->channel_mask = config->channel_mask;
     /* TODO support low latency pcm config -> AUDIO_INPUT_FLAG_FAST */
 
-    in->buffer = malloc(pcm_config_in.period_size * pcm_config_in.channels
-                                               * audio_stream_in_frame_size(&in->stream.common));
+    in->buffer = malloc(pcm_config_in.period_size * 
+                        pcm_config_in.channels * 
+                        audio_stream_in_frame_size(&in->stream.common));
 
     if (!in->buffer) {
         ret = -ENOMEM;
