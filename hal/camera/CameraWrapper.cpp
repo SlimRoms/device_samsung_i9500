@@ -121,6 +121,19 @@ static char *camera_fixup_getparams(int id, const char *settings)
     params.dump();
 #endif
 
+    //Hide nv12-venus from Android.
+    if (strcmp (params.getPreviewFormat(), "nv12-venus") == 0)
+          params.set("preview-format", "yuv420sp");
+
+    int minfps, maxfps;
+    params.getPreviewFpsRange(&minfps, &maxfps);
+    if (minfps >= 60000)
+    {
+		params.set("preview-frame-rate-values", "15,24,30,60");
+	    params.set("fast-fps-mode", "1");
+	    params.set("preview-frame-rate", "60");
+	}
+
     android::String8 strParams = params.flatten();
     char *ret = strdup(strParams.string());
 
@@ -152,6 +165,15 @@ static char *camera_fixup_setparams(int id, const char *settings)
     ALOGV("%s: fixed parameters:", __FUNCTION__);
     params.dump();
 #endif
+
+    int minfps, maxfps;
+    params.getPreviewFpsRange(&minfps, &maxfps);
+    if (minfps >= 60000)
+    {
+		params.set("preview-frame-rate-values", "15,24,30,60");
+	    params.set("fast-fps-mode", "1");
+	    params.set("preview-frame-rate", "60");
+	}
 
     android::String8 strParams = params.flatten();
     if (fixed_set_params[id])
