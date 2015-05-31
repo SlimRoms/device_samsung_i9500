@@ -980,7 +980,7 @@
     <!-- ### Volume ### -->
 
     <path name="volume-builtin-mic-default">
-      <ctl name="IN1L Volume" value="31" />
+      <ctl name="IN1L Volume" value="18" />
       <ctl name="IN1L Digital Volume" value="150" />
       <ctl name="LHPF1 Input 1 Volume" value="32" />
     </path>
@@ -1040,7 +1040,7 @@
     <!-- ### Volume ### -->
 
     <path name="volume-back-mic-default">
-      <ctl name="IN2L Volume" value="31" />
+      <ctl name="IN2L Volume" value="17" />
       <ctl name="IN2L Digital Volume" value="150" />
       <ctl name="LHPF2 Input 1 Volume" value="32" />
     </path>
@@ -1114,7 +1114,7 @@
     <!-- ### Volume ### -->
 
     <path name="volume-third-mic-default">
-      <ctl name="IN2R Volume" value="31" />
+      <ctl name="IN2R Volume" value="20" />
       <ctl name="IN2R Digital Volume" value="150" />
       <ctl name="LHPF1 Input 1 Volume" value="32" />
     </path>
