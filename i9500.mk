@@ -79,6 +79,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
 	charger_res_images
 
+# Doze
+PRODUCT_PACKAGES += \
+    SamsungDoze
+
 # GPS
 PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/configs/gps/gps.cer:system/etc/gps.cer \
