@@ -163,8 +163,8 @@ PRODUCT_PACKAGES += \
 	AdvancedDisplay
 
 # Radio
-PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/ril/sbin/cbd:root/sbin/cbd
+PRODUCT_PACKAGES += \
+	cbd
 
 PRODUCT_PACKAGES += \
 	libsecril-client \
