@@ -17,6 +17,8 @@
 #include "camera/CameraParametersExtraDurationTimer.h"
 
 #define CAMERA_PARAMETERS_EXTRA_C \
+	const char CameraParameters::KEY_CITYID[] = "cityid"; \
+	const char CameraParameters::KEY_WEATHER[] = "weather"; \
     const char CameraParameters::PIXEL_FORMAT_YUV420SP_NV21[] = "yuv420sp"; \
     const char CameraParameters::EFFECT_CARTOONIZE[] = "cartoonize"; \
     const char CameraParameters::EFFECT_POINT_RED_YELLOW[] = "point-red-yellow"; \
@@ -60,6 +62,8 @@ CAMERA_PARAMETERS_EXTRA_C_DURATION_TIMER \
  */
 
 #define CAMERA_PARAMETERS_EXTRA_H \
+    static const char KEY_CITYID[]; \
+    static const char KEY_WEATHER[]; \
     static const char PIXEL_FORMAT_YUV420SP_NV21[]; \
     static const char EFFECT_CARTOONIZE[]; \
     static const char EFFECT_POINT_RED_YELLOW[]; \
