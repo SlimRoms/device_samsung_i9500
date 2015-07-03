@@ -120,6 +120,9 @@ static char *camera_fixup_getparams(int __attribute__((unused)) id,
         params.set("max-sharpness", params.get("sharpness-max"));
     }
 
+    android::String8 strParams = params.flatten();
+    char *ret = strdup(strParams.string());
+
 #ifdef LOG_PARAMETERS
     ALOGV("%s: fixed parameters:", __FUNCTION__);
     params.dump();
