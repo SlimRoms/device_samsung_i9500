@@ -21,7 +21,8 @@
 *
 */
 
-//#define LOG_NDEBUG 0
+#define LOG_NDEBUG 0
+#define LOG_PARAMETERS
 
 #define LOG_TAG "CameraWrapper"
 #include <cutils/log.h>
@@ -49,7 +50,7 @@ static struct hw_module_methods_t camera_module_methods = {
 
 camera_module_t HAL_MODULE_INFO_SYM = {
     .common = {
-         tag: HARDWARE_MODULE_TAG,
+         .tag: HARDWARE_MODULE_TAG,
          .module_api_version = CAMERA_MODULE_API_VERSION_1_0,
          .hal_api_version = HARDWARE_HAL_API_VERSION,
          .id = CAMERA_HARDWARE_MODULE_ID,
@@ -100,7 +101,7 @@ static char *camera_fixup_getparams(int id, const char *settings)
     android::CameraParameters params;
     params.unflatten(android::String8(settings));
 
-#if !LOG_NDEBUG
+#ifdef LOG_PARAMETERS
     ALOGV("%s: original parameters:", __FUNCTION__);
     params.dump();
 #endif
@@ -116,23 +117,10 @@ static char *camera_fixup_getparams(int id, const char *settings)
         params.set("max-sharpness", params.get("sharpness-max"));
     }
 
-#if !LOG_NDEBUG
+#ifdef LOG_PARAMETERS
     ALOGV("%s: fixed parameters:", __FUNCTION__);
     params.dump();
 #endif
-
-    //Hide nv12-venus from Android.
-    if (strcmp (params.getPreviewFormat(), "nv12-venus") == 0)
-        params.set("preview-format", "yuv420sp");
-
-    int minfps, maxfps;
-    params.getPreviewFpsRange(&minfps, &maxfps);
-    if (minfps >= 60000)
-    {
-	params.set("preview-frame-rate-values", "15,24,30,60");
-	params.set("fast-fps-mode", "1");
-	params.set("preview-frame-rate", "60");
-    }
 
     android::String8 strParams = params.flatten();
     char *ret = strdup(strParams.string());
@@ -145,7 +133,7 @@ static char *camera_fixup_setparams(int id, const char *settings)
     android::CameraParameters params;
     params.unflatten(android::String8(settings));
 
-#if !LOG_NDEBUG
+#ifdef LOG_PARAMETERS
     ALOGV("%s: original parameters:", __FUNCTION__);
     params.dump();
 #endif
@@ -161,19 +149,10 @@ static char *camera_fixup_setparams(int id, const char *settings)
         params.set("sharpness-max", params.get("max-sharpness"));
     }
 
-#if !LOG_NDEBUG
+#ifdef LOG_PARAMETERS
     ALOGV("%s: fixed parameters:", __FUNCTION__);
     params.dump();
 #endif
-
-    int minfps, maxfps;
-    params.getPreviewFpsRange(&minfps, &maxfps);
-    if (minfps >= 60000)
-    {
-    	params.set("preview-frame-rate-values", "15,24,30,60");
-	params.set("fast-fps-mode", "1");
-	params.set("preview-frame-rate", "60");
-    }
 
     android::String8 strParams = params.flatten();
     if (fixed_set_params[id])
