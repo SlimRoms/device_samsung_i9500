@@ -181,13 +181,14 @@ struct audio_device {
     int es325_new_mode;
     int es325_mode;
 
-    int hdmi_drv_fd;
+    int hdmi_drv_fd;    /* either an fd >= 0 or -1 */
     audio_channel_mask_t in_channel_mask;
 
     /* RIL */
     struct ril_handle ril;
 
     struct stream_out *outputs[OUTPUT_TOTAL];
+    pthread_mutex_t lock_outputs; /* see note below on mutex acquisition order */
 };
 
 struct stream_out {
@@ -329,12 +330,16 @@ static int get_input_source_id(audio_source_t source, bool wb_amr)
     }
 }
 
-static int do_out_standby(struct stream_out *out);
+static void do_out_standby(struct stream_out *out);
 static void adev_set_call_audio_path(struct audio_device *adev);
 
 /**
- * NOTE: when multiple mutexes have to be acquired, always respect the
- * following order: hw device > in stream > out stream
+ * NOTE: when multiple mutexes have to be acquired, always respect the following order:
+ *   lock_outputs for hw device outputs list only
+ *   in stream
+ *   out stream(s) in enum output_type order
+ *   hw device
+ * TODO investigate whether we ever actually take both in stream and out stream
  */
 
 /* Helper functions */
@@ -515,9 +520,7 @@ static void select_devices(struct audio_device *adev)
     adev_set_call_audio_path(adev);
 }
 
-/* Must be called with HDMI out stream and hw device mutexes locked,
- * and all other out stream mutexes unlocked.
- */
+/* must be called with hw device outputs list, all out streams, and hw device mutexes locked */
 static void force_non_hdmi_out_standby(struct audio_device *adev)
 {
     enum output_type type;
@@ -527,9 +530,8 @@ static void force_non_hdmi_out_standby(struct audio_device *adev)
         out = adev->outputs[type];
         if (type == OUTPUT_HDMI || !out)
             continue;
-        pthread_mutex_lock(&out->lock);
+        /* This will never recurse more than 2 levels deep. */
         do_out_standby(out);
-        pthread_mutex_unlock(&out->lock);
     }
 }
 
@@ -750,7 +752,7 @@ static void adev_set_call_audio_path(struct audio_device *adev)
     ril_set_call_audio_path(&adev->ril, device_type, ORIGINAL_PATH);
 }
 
-/* must be called with hw device and output stream mutexes locked */
+/* must be called with hw device outputs list, output stream, and hw device mutexes locked */
 static int start_output_stream(struct stream_out *out)
 {
     struct audio_device *adev = out->dev;
@@ -818,7 +820,7 @@ static int start_output_stream(struct stream_out *out)
     return 0;
 }
 
-/* must be called with hw device and input stream mutexes locked */
+/* must be called with input stream and hw device mutexes locked */
 static int start_input_stream(struct stream_in *in)
 {
     struct audio_device *adev = in->dev;
@@ -1031,6 +1033,7 @@ static audio_devices_t output_devices(struct stream_out *out)
     for (type = 0; type < OUTPUT_TOTAL; ++type) {
         struct stream_out *other = dev->outputs[type];
         if (other && (other != out) && !other->standby) {
+            // TODO no longer accurate
             /* safe to access other stream without a mutex,
              * because we hold the dev lock,
              * which prevents the other stream from being closed
@@ -1042,8 +1045,8 @@ static audio_devices_t output_devices(struct stream_out *out)
     return devices;
 }
 
-/* must be called with out stream and hw device mutex locked */
-static int do_out_standby(struct stream_out *out)
+/* must be called with hw device outputs list, all out streams, and hw device mutex locked */
+static void do_out_standby(struct stream_out *out)
 {
     struct audio_device *adev = out->dev;
     int i;
@@ -1076,24 +1079,47 @@ static int do_out_standby(struct stream_out *out)
         if (adev->out_device)
             select_devices(adev);
     }
+}
 
-    return 0;
+/* lock outputs list, all output streams, and device */
+static void lock_all_outputs(struct audio_device *adev)
+{
+    enum output_type type;
+    pthread_mutex_lock(&adev->lock_outputs);
+    for (type = 0; type < OUTPUT_TOTAL; ++type) {
+        struct stream_out *out = adev->outputs[type];
+        if (out)
+            pthread_mutex_lock(&out->lock);
+    }
+    pthread_mutex_lock(&adev->lock);
+}
+
+/* unlock device, all output streams (except specified stream), and outputs list */
+static void unlock_all_outputs(struct audio_device *adev, struct stream_out *except)
+{
+    /* unlock order is irrelevant, but for cleanliness we unlock in reverse order */
+    pthread_mutex_unlock(&adev->lock);
+    enum output_type type = OUTPUT_TOTAL;
+    do {
+        struct stream_out *out = adev->outputs[--type];
+        if (out && out != except)
+            pthread_mutex_unlock(&out->lock);
+    } while (type != (enum output_type) 0);
+    pthread_mutex_unlock(&adev->lock_outputs);
 }
 
 static int out_standby(struct audio_stream *stream)
 {
     struct stream_out *out = (struct stream_out *)stream;
-    int ret;
+    struct audio_device *adev = out->dev;
 
-    pthread_mutex_lock(&out->dev->lock);
-    pthread_mutex_lock(&out->lock);
+    lock_all_outputs(adev);
 
-    ret = do_out_standby(out);
+    do_out_standby(out);
 
-    pthread_mutex_unlock(&out->lock);
-    pthread_mutex_unlock(&out->dev->lock);
+    unlock_all_outputs(adev, NULL);
 
-    return ret;
+    return 0;
 }
 
 static int out_dump(const struct audio_stream *stream, int fd)
@@ -1119,8 +1145,7 @@ static int out_set_parameters(struct audio_stream *stream, const char *kvpairs)
     if (ret >= 0) {
         val = atoi(value);
 
-        pthread_mutex_lock(&adev->lock);
-        pthread_mutex_lock(&out->lock);
+        lock_all_outputs(adev);
 
         if ((out->device != val) && (val != 0)) {
             /* Force standby if moving to/from SPDIF or if the output
@@ -1154,8 +1179,7 @@ static int out_set_parameters(struct audio_stream *stream, const char *kvpairs)
             }
         }
 
-        pthread_mutex_unlock(&out->lock);
-        pthread_mutex_unlock(&adev->lock);
+        unlock_all_outputs(adev, NULL);
     }
 
     str_parms_destroy(parms);
@@ -1216,7 +1240,13 @@ static int out_set_volume(struct audio_stream_out *stream, float left,
     struct stream_out *out = (struct stream_out *)stream;
     struct audio_device *adev = out->dev;
 
-    if (out == adev->outputs[OUTPUT_HDMI]) {
+    /* The mutex lock is not needed, because the client
+     * is not allowed to close the stream concurrently with this API
+     *  pthread_mutex_lock(&adev->lock_outputs);
+     */
+    bool is_HDMI = out == adev->outputs[OUTPUT_HDMI];
+    /*  pthread_mutex_unlock(&adev->lock_outputs); */
+    if (is_HDMI) {
         /* only take left channel into account: the API is for stereo anyway */
         out->muted = (left == 0.0f);
         return 0;
@@ -1232,23 +1262,29 @@ static ssize_t out_write(struct audio_stream_out *stream, const void* buffer,
     struct audio_device *adev = out->dev;
     int i;
 
-    /*
+    /* FIXME This comment is no longer correct
      * acquiring hw device mutex systematically is useful if a low
      * priority thread is waiting on the output stream mutex - e.g.
      * executing out_set_parameters() while holding the hw device
      * mutex
      */
-    pthread_mutex_lock(&adev->lock);
     pthread_mutex_lock(&out->lock);
     if (out->standby) {
+        pthread_mutex_unlock(&out->lock);
+        lock_all_outputs(adev);
+        if (!out->standby) {
+            unlock_all_outputs(adev, out);
+            goto false_alarm;
+        }
         ret = start_output_stream(out);
-        if (ret != 0) {
-            pthread_mutex_unlock(&adev->lock);
-            goto exit;
+        if (ret < 0) {
+            unlock_all_outputs(adev, NULL);
+            goto final_exit;
         }
         out->standby = false;
+        unlock_all_outputs(adev, out);
     }
-    pthread_mutex_unlock(&adev->lock);
+false_alarm:
 
     if (out->disabled) {
         ret = -EPIPE;
@@ -1270,6 +1306,7 @@ static ssize_t out_write(struct audio_stream_out *stream, const void* buffer,
 
 exit:
     pthread_mutex_unlock(&out->lock);
+final_exit:
 
     if (ret != 0) {
         usleep(bytes * 1000000 / audio_stream_out_frame_size(stream) /
@@ -1342,7 +1379,7 @@ static int in_set_format(struct audio_stream *stream, audio_format_t format)
 }
 
 /* must be called with in stream and hw device mutex locked */
-static int do_in_standby(struct stream_in *in)
+static void do_in_standby(struct stream_in *in)
 {
     struct audio_device *adev = in->dev;
 
@@ -1361,23 +1398,21 @@ static int do_in_standby(struct stream_in *in)
     }
 
     eS325_SetActiveIoHandle(ES325_IO_HANDLE_NONE);
-    return 0;
 }
 
 static int in_standby(struct audio_stream *stream)
 {
     struct stream_in *in = (struct stream_in *)stream;
-    int ret;
 
-    pthread_mutex_lock(&in->dev->lock);
     pthread_mutex_lock(&in->lock);
+    pthread_mutex_lock(&in->dev->lock);
 
-    ret = do_in_standby(in);
+    do_in_standby(in);
 
-    pthread_mutex_unlock(&in->lock);
     pthread_mutex_unlock(&in->dev->lock);
+    pthread_mutex_unlock(&in->lock);
 
-    return ret;
+    return 0;
 }
 
 static int in_dump(const struct audio_stream *stream, int fd)
@@ -1397,8 +1432,8 @@ static int in_set_parameters(struct audio_stream *stream, const char *kvpairs)
 
     parms = str_parms_create_str(kvpairs);
 
-    pthread_mutex_lock(&adev->lock);
     pthread_mutex_lock(&in->lock);
+    pthread_mutex_lock(&adev->lock);
     ret = str_parms_get_str(parms, AUDIO_PARAMETER_STREAM_INPUT_SOURCE,
                             value, sizeof(value));
     if (ret >= 0) {
@@ -1433,8 +1468,8 @@ static int in_set_parameters(struct audio_stream *stream, const char *kvpairs)
         select_devices(adev);
     }
 
-    pthread_mutex_unlock(&in->lock);
     pthread_mutex_unlock(&adev->lock);
+    pthread_mutex_unlock(&in->lock);
 
     str_parms_destroy(parms);
     return ret;
@@ -1492,17 +1527,15 @@ static ssize_t in_read(struct audio_stream_in *stream, void* buffer,
      * executing in_set_parameters() while holding the hw device
      * mutex
      */
-    pthread_mutex_lock(&adev->lock);
     pthread_mutex_lock(&in->lock);
     if (in->standby) {
+        pthread_mutex_lock(&adev->lock);
         ret = start_input_stream(in);
-        if (ret == 0)
-            in->standby = 0;
+        pthread_mutex_unlock(&adev->lock);
+        if (ret < 0)
+            goto exit;
+        in->standby = false;
     }
-    pthread_mutex_unlock(&adev->lock);
-
-    if (ret < 0)
-        goto exit;
 
     /*if (in->num_preprocessors != 0)
         ret = process_frames(in, buffer, frames_rq);
@@ -1543,13 +1576,13 @@ static int in_add_audio_effect(const struct audio_stream *stream,
     effect_descriptor_t descr;
     if ((*effect)->get_descriptor(effect, &descr) == 0) {
 
-        pthread_mutex_lock(&in->dev->lock);
         pthread_mutex_lock(&in->lock);
+        pthread_mutex_lock(&in->dev->lock);
 
         eS325_AddEffect(&descr, in->io_handle);
 
-        pthread_mutex_unlock(&in->lock);
         pthread_mutex_unlock(&in->dev->lock);
+        pthread_mutex_unlock(&in->lock);
     }
 
     return 0;
@@ -1562,13 +1595,13 @@ static int in_remove_audio_effect(const struct audio_stream *stream,
     effect_descriptor_t descr;
     if ((*effect)->get_descriptor(effect, &descr) == 0) {
 
-        pthread_mutex_lock(&in->dev->lock);
         pthread_mutex_lock(&in->lock);
+        pthread_mutex_lock(&in->dev->lock);
 
         eS325_RemoveEffect(&descr, in->io_handle);
 
-        pthread_mutex_unlock(&in->lock);
         pthread_mutex_unlock(&in->dev->lock);
+        pthread_mutex_unlock(&in->lock);
     }
 
     return 0;
@@ -1650,14 +1683,14 @@ static int adev_open_output_stream(struct audio_hw_device *dev,
 
     out->standby = true;
 
-    pthread_mutex_lock(&adev->lock);
+    pthread_mutex_lock(&adev->lock_outputs);
     if (adev->outputs[type]) {
-        pthread_mutex_unlock(&adev->lock);
+        pthread_mutex_unlock(&adev->lock_outputs);
         ret = -EBUSY;
         goto err_open;
     }
     adev->outputs[type] = out;
-    pthread_mutex_unlock(&adev->lock);
+    pthread_mutex_unlock(&adev->lock_outputs);
 
     *stream_out = &out->stream;
 
@@ -1677,14 +1710,14 @@ static void adev_close_output_stream(struct audio_hw_device *dev,
 
     out_standby(&stream->common);
     adev = (struct audio_device *)dev;
-    pthread_mutex_lock(&adev->lock);
+    pthread_mutex_lock(&adev->lock_outputs);
     for (type = 0; type < OUTPUT_TOTAL; ++type) {
         if (adev->outputs[type] == (struct stream_out *) stream) {
             adev->outputs[type] = NULL;
             break;
         }
     }
-    pthread_mutex_unlock(&adev->lock);
+    pthread_mutex_unlock(&adev->lock_outputs);
     free(stream);
 }
 
