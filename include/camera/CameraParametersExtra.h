@@ -14,89 +14,42 @@
  * limitations under the License.
  */
 
-#include "camera/CameraParametersExtraDurationTimer.h"
+#ifndef ANDROID_CAMERA_PARAMETERS_EXTRA_H
+#define ANDROID_CAMERA_PARAMETERS_EXTRA_H
 
+// parameters adopted from omnirom 4.4
 #define CAMERA_PARAMETERS_EXTRA_C \
-    const char CameraParameters::KEY_CITYID[] = "cityid"; \
-    const char CameraParameters::KEY_WEATHER[] = "weather"; \
-    const char CameraParameters::PIXEL_FORMAT_YUV420SP_NV21[] = "yuv420sp"; \
-    const char CameraParameters::EFFECT_CARTOONIZE[] = "cartoonize"; \
-    const char CameraParameters::EFFECT_POINT_RED_YELLOW[] = "point-red-yellow"; \
-    const char CameraParameters::EFFECT_POINT_GREEN[] = "point-green"; \
-    const char CameraParameters::EFFECT_POINT_BLUE[] = "point-blue"; \
-    const char CameraParameters::EFFECT_VINTAGE_COLD[] = "vintage-cold"; \
-    const char CameraParameters::EFFECT_VINTAGE_WARM[] = "vintage-warm"; \
-    const char CameraParameters::EFFECT_WASHED[] = "washed"; \
-    const char CameraParameters::ISO_AUTO[] = "auto"; \
-    const char CameraParameters::ISO_NIGHT[] = "night"; \
-    const char CameraParameters::ISO_SPORTS[] = "sports"; \
-    const char CameraParameters::ISO_6400[] = "6400"; \
-    const char CameraParameters::ISO_3200[] = "3200"; \
-    const char CameraParameters::ISO_1600[] = "1600"; \
-    const char CameraParameters::ISO_800[] = "800"; \
-    const char CameraParameters::ISO_400[] = "400"; \
-    const char CameraParameters::ISO_200[] = "200"; \
-    const char CameraParameters::ISO_100[] = "100"; \
-    const char CameraParameters::ISO_80[] = "80"; \
-    const char CameraParameters::ISO_50[] = "50"; \
-    const char CameraParameters::KEY_SUPPORTED_METERING_MODE[] = "metering-values"; \
-    const char CameraParameters::METERING_CENTER[] = "center"; \
-    const char CameraParameters::METERING_MATRIX[] = "matrix"; \
-    const char CameraParameters::METERING_SPOT[] = "spot"; \
-    const char CameraParameters::METERING_OFF[] = "off"; \
-    const char CameraParameters::KEY_DYNAMIC_RANGE_CONTROL[] = "dynamic-range-control"; \
-    const char CameraParameters::KEY_SUPPORTED_PHASE_AF[] = "phase-af-values"; \
-    const char CameraParameters::KEY_PHASE_AF[] = "phase-af"; \
-    const char CameraParameters::KEY_SUPPORTED_RT_HDR[] = "rt-hdr-values"; \
-    const char CameraParameters::KEY_RT_HDR[] = "rt-hdr"; \
-\
-int CameraParameters::getInt64(const char *key) const { return -1; } \
-extern "C" { \
-    void acquire_dvfs_lock(void) { } \
-    void release_dvfs_lock(void) { } \
-} \
-CAMERA_PARAMETERS_EXTRA_C_DURATION_TIMER \
-\
-/* LAST_LINE OF CAMERA_PARAMETERS_EXTRA_C, every line before this one *MUST* have
- * a backslash \ at the end of the line or else everything will break.
- */
+	const char CameraParameters::KEY_SUPPORTED_ISO_MODES[] = "iso-values"; \
+	const char CameraParameters::KEY_ISO_MODE[] = "iso"; \
+	const char CameraParameters::KEY_ANTI_SHAKE_MODE[] = "anti-shake"; \
+	const char CameraParameters::KEY_METERING[] = "metering"; \
+	const char CameraParameters::KEY_WDR[] = "wdr"; \
+	const char CameraParameters::KEY_WEATHER[] = "weather"; \
+	const char CameraParameters::KEY_CITYID[] = "contextualtag-cityid"; \
+	const char CameraParameters::EFFECT_CARTOONIZE[] = "cartoonize"; \
+	const char CameraParameters::EFFECT_POINT_RED_YELLOW[] = "point-red-yellow"; \
+	const char CameraParameters::EFFECT_POINT_GREEN[] = "point-green"; \
+	const char CameraParameters::EFFECT_POINT_BLUE[] = "point-blue"; \
+	const char CameraParameters::EFFECT_VINTAGE_COLD[] = "vintage-cold"; \
+	const char CameraParameters::EFFECT_VINTAGE_WARM[] = "vintage-warm"; \
+	const char CameraParameters::EFFECT_WASHED[] = "washed"; \
+	int CameraParameters::getInt64(const char *key) const { return -1; };
 
 #define CAMERA_PARAMETERS_EXTRA_H \
-    static const char KEY_CITYID[]; \
+    int getInt64(const char *key) const; \
+    static const char KEY_SUPPORTED_ISO_MODES[]; \
+    static const char KEY_ISO_MODE[]; \
+    static const char KEY_ANTI_SHAKE_MODE[]; \
+    static const char KEY_METERING[]; \
+    static const char KEY_WDR[]; \
     static const char KEY_WEATHER[]; \
-    static const char PIXEL_FORMAT_YUV420SP_NV21[]; \
+    static const char KEY_CITYID[]; \
     static const char EFFECT_CARTOONIZE[]; \
     static const char EFFECT_POINT_RED_YELLOW[]; \
     static const char EFFECT_POINT_GREEN[]; \
     static const char EFFECT_POINT_BLUE[]; \
     static const char EFFECT_VINTAGE_COLD[]; \
     static const char EFFECT_VINTAGE_WARM[]; \
-    static const char EFFECT_WASHED[]; \
-    static const char ISO_AUTO[]; \
-    static const char ISO_NIGHT[]; \
-    static const char ISO_SPORTS[]; \
-    static const char ISO_6400[]; \
-    static const char ISO_3200[]; \
-    static const char ISO_1600[]; \
-    static const char ISO_800[]; \
-    static const char ISO_400[]; \
-    static const char ISO_200[]; \
-    static const char ISO_100[]; \
-    static const char ISO_80[]; \
-    static const char ISO_50[]; \
-    static const char KEY_SUPPORTED_METERING_MODE[]; \
-    static const char METERING_CENTER[]; \
-    static const char METERING_MATRIX[]; \
-    static const char METERING_SPOT[]; \
-    static const char METERING_OFF[]; \
-    static const char KEY_DYNAMIC_RANGE_CONTROL[]; \
-    static const char KEY_SUPPORTED_PHASE_AF[]; \
-    static const char KEY_PHASE_AF[]; \
-    static const char KEY_SUPPORTED_RT_HDR[]; \
-    static const char KEY_RT_HDR[]; \
-    \
-    int getInt64(const char *key) const; \
-    \
-    /* LAST_LINE OF CAMERA_PARAMETERS_EXTRA_H, every line before this one *MUST* have
-     * a backslash \ at the end of the line or else everything will break.
-     */
+    static const char EFFECT_WASHED[];
+
+#endif
