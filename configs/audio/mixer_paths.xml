@@ -980,7 +980,7 @@
     <!-- ### Volume ### -->
 
     <path name="volume-builtin-mic-default">
-      <ctl name="IN1L Volume" value="18" />
+      <ctl name="IN1L Volume" value="26" />
       <ctl name="IN1L Digital Volume" value="150" />
       <ctl name="LHPF1 Input 1 Volume" value="32" />
     </path>
@@ -1040,7 +1040,7 @@
     <!-- ### Volume ### -->
 
     <path name="volume-back-mic-default">
-      <ctl name="IN2L Volume" value="17" />
+      <ctl name="IN2L Volume" value="25" />
       <ctl name="IN2L Digital Volume" value="150" />
       <ctl name="LHPF2 Input 1 Volume" value="32" />
     </path>
@@ -1504,7 +1504,7 @@
       <path name="channel-left" />
     </path>
 
-    <path name="media-main-mic">
+    <path name="media-second-mic">
       <path name="device-builtin-mic" />
 
       <path name="scenario-builtin-mic-default" />
@@ -1513,7 +1513,7 @@
       <path name="channel-left" />
     </path>
 
-    <path name="media-second-mic">
+    <path name="media-main-mic">
       <path name="device-back-mic" />
 
       <path name="scenario-back-mic-default" />
