@@ -175,6 +175,35 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	ro.telephony.call_ring.multiple=false \
 	ro.telephony.call_ring.delay=3000
 
+# Synapse Ramdisk Stuff
+PRODUCT_PACKAGES += \
+	synapse.sh
+
+PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/synapse/config.json.generate:root/res/synapse/config.json.generate \
+	$(LOCAL_PATH)/synapse/config.json.generate.adv:root/res/synapse/config.json.generate.adv \
+	$(LOCAL_PATH)/synapse/config.json.generate.battery:root/res/synapse/config.json.generate.battery \
+	$(LOCAL_PATH)/synapse/config.json.generate.bprop:root/res/synapse/config.json.generate.bprop \
+	$(LOCAL_PATH)/synapse/config.json.generate.cpu:root/res/synapse/config.json.generate.cpu \
+	$(LOCAL_PATH)/synapse/config.json.generate.governor:root/res/synapse/config.json.generate.governor \
+	$(LOCAL_PATH)/synapse/config.json.generate.gpu:root/res/synapse/config.json.generate.gpu \
+	$(LOCAL_PATH)/synapse/config.json.generate.io:root/res/synapse/config.json.generate.io \
+	$(LOCAL_PATH)/synapse/config.json.generate.led:root/res/synapse/config.json.generate.led \
+	$(LOCAL_PATH)/synapse/config.json.generate.mem:root/res/synapse/config.json.generate.mem \
+	$(LOCAL_PATH)/synapse/uci:root/res/synapse/uci \
+	$(LOCAL_PATH)/synapse/actions/bracket-option:root/res/synapse/actions/bracket-option \
+	$(LOCAL_PATH)/synapse/actions/buildprop:root/res/synapse/actions/buildprop \
+	$(LOCAL_PATH)/synapse/actions/charge-source:root/res/synapse/actions/charge-source \
+	$(LOCAL_PATH)/synapse/actions/colour:root/res/synapse/actions/colour \
+	$(LOCAL_PATH)/synapse/actions/dropcaches:root/res/synapse/actions/dropcaches \
+	$(LOCAL_PATH)/synapse/actions/dropcaches_prof:root/res/synapse/actions/dropcaches_prof \
+	$(LOCAL_PATH)/synapse/actions/generic:root/res/synapse/actions/generic \
+	$(LOCAL_PATH)/synapse/actions/governor:root/res/synapse/actions/governor \
+	$(LOCAL_PATH)/synapse/actions/gpuvolt:root/res/synapse/actions/gpuvolt \
+	$(LOCAL_PATH)/synapse/actions/ioset:root/res/synapse/actions/ioset \
+	$(LOCAL_PATH)/synapse/actions/led:root/res/synapse/actions/led \
+	$(LOCAL_PATH)/synapse/actions/voltage:root/res/synapse/actions/voltage
+
 # Samsung STK
 PRODUCT_PACKAGES += \
 	SamsungServiceMode

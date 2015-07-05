@@ -677,6 +677,12 @@ service battery_charger /sbin/healthd -c
 	class charger
 	critical
 
+# Synapse Kernel Control
+service synapse /synapse.sh
+    class core
+    user root
+    oneshot
+
 on property:sys.boot_completed=1
 	write /sys/block/mmcblk0/queue/scheduler row
 # Disable pulsing led on boot complete
