@@ -445,6 +445,9 @@ on post-fs
 	chown bluetooth net_bt_stack /sys/class/rfkill/rfkill0/type
 	chmod 0660 /sys/class/rfkill/rfkill0/state
 
+# Permissions for Synapse
+	chmod 0777 /synapse.sh
+
 # Create EFS imei folder
 	mkdir /efs/imei 0775 radio system
 	
