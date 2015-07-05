@@ -2,7 +2,7 @@
 
 cat << CTAG
 {
-	name:ADV,
+	name:Miscellaneous,
 		elements:[
 			`if [ -f "/sys/kernel/mm/ksm/run" ]; then
 			KSM=\`$BB cat /sys/kernel/mm/ksm/run\`
