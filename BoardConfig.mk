@@ -198,10 +198,11 @@ TW_HAS_DOWNLOAD_MODE := true
 TW_BRIGHTNESS_PATH := "/sys/class/backlight/panel/brightness"
 TW_MAX_BRIGHTNESS := 255
 
-TW_INCLUDE_L_CRYPTO := true
+#TW_INCLUDE_L_CRYPTO := true
 
 TW_NO_EXFAT_FUSE := true
 TW_EXCLUDE_SUPERSU := true
+TW_EXCLUDE_ENCRYPTED_BACKUPS := true
 TW_DISABLE_TTF := true
 
 # Charging mode
