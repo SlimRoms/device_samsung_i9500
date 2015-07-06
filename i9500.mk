@@ -177,6 +177,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Synapse Ramdisk Stuff
 PRODUCT_PACKAGES += \
+	Synapse \
 	synapse.sh
 
 PRODUCT_COPY_FILES += \
