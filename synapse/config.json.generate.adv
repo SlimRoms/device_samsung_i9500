@@ -48,7 +48,7 @@ cat << CTAG
 			`if [ -f "/sys/kernel/mm/uksm/run" ]; then
 			UKSM=\`$BB cat /sys/kernel/mm/uksm/run\`
 			SLEEP=\`$BB cat /sys/kernel/mm/uksm/sleep_millisecs\`
-			UKSMGOV=\`$BB echo $($UKM/actions/bracket-option /sys/kernel/mm/uksm/cpu_governor)\`
+			UKSMGOV=\`$BB echo $(/res/synapse/actions/bracket-option /sys/kernel/mm/uksm/cpu_governor)\`
 			MAXCPU=\`$BB cat /sys/kernel/mm/uksm/max_cpu_percentage\`
 				$BB echo '{ SPane:{
 					title:"Ultra Kernel Samepage Merging"

@@ -190,11 +190,14 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/synapse/config.json.generate.io:root/res/synapse/config.json.generate.io \
 	$(LOCAL_PATH)/synapse/config.json.generate.led:root/res/synapse/config.json.generate.led \
 	$(LOCAL_PATH)/synapse/config.json.generate.mem:root/res/synapse/config.json.generate.mem \
+	$(LOCAL_PATH)/synapse/config.json.generate.tools:root/res/synapse/config.json.generate.tools \
+	$(LOCAL_PATH)/synapse/sqlite3:root/res/synapse/sqlite3 \
 	$(LOCAL_PATH)/synapse/uci:root/res/synapse/uci \
 	$(LOCAL_PATH)/synapse/actions/bracket-option:root/res/synapse/actions/bracket-option \
 	$(LOCAL_PATH)/synapse/actions/buildprop:root/res/synapse/actions/buildprop \
 	$(LOCAL_PATH)/synapse/actions/charge-source:root/res/synapse/actions/charge-source \
 	$(LOCAL_PATH)/synapse/actions/colour:root/res/synapse/actions/colour \
+	$(LOCAL_PATH)/synapse/actions/devtools:root/res/synapse/actions/devtools \
 	$(LOCAL_PATH)/synapse/actions/dropcaches:root/res/synapse/actions/dropcaches \
 	$(LOCAL_PATH)/synapse/actions/dropcaches_prof:root/res/synapse/actions/dropcaches_prof \
 	$(LOCAL_PATH)/synapse/actions/generic:root/res/synapse/actions/generic \
@@ -202,6 +205,7 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/synapse/actions/gpuvolt:root/res/synapse/actions/gpuvolt \
 	$(LOCAL_PATH)/synapse/actions/ioset:root/res/synapse/actions/ioset \
 	$(LOCAL_PATH)/synapse/actions/led:root/res/synapse/actions/led \
+	$(LOCAL_PATH)/synapse/actions/printk:root/res/synapse/actions/printk \
 	$(LOCAL_PATH)/synapse/actions/voltage:root/res/synapse/actions/voltage
 
 # Samsung STK
