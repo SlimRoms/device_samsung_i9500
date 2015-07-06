@@ -182,16 +182,16 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/synapse/config.json.generate:root/res/synapse/config.json.generate \
-	$(LOCAL_PATH)/synapse/config.json.generate.adv:root/res/synapse/config.json.generate.adv \
-	$(LOCAL_PATH)/synapse/config.json.generate.battery:root/res/synapse/config.json.generate.battery \
-	$(LOCAL_PATH)/synapse/config.json.generate.bprop:root/res/synapse/config.json.generate.bprop \
+	$(LOCAL_PATH)/synapse/config.json.generate.charger:root/res/synapse/config.json.generate.charger \
 	$(LOCAL_PATH)/synapse/config.json.generate.cpu:root/res/synapse/config.json.generate.cpu \
 	$(LOCAL_PATH)/synapse/config.json.generate.governor:root/res/synapse/config.json.generate.governor \
 	$(LOCAL_PATH)/synapse/config.json.generate.gpu:root/res/synapse/config.json.generate.gpu \
 	$(LOCAL_PATH)/synapse/config.json.generate.io:root/res/synapse/config.json.generate.io \
 	$(LOCAL_PATH)/synapse/config.json.generate.led:root/res/synapse/config.json.generate.led \
 	$(LOCAL_PATH)/synapse/config.json.generate.mem:root/res/synapse/config.json.generate.mem \
+	$(LOCAL_PATH)/synapse/config.json.generate.misc:root/res/synapse/config.json.generate.misc \
 	$(LOCAL_PATH)/synapse/config.json.generate.tools:root/res/synapse/config.json.generate.tools \
+	$(LOCAL_PATH)/synapse/config.json.generate.tweaks:root/res/synapse/config.json.generate.tweaks \
 	$(LOCAL_PATH)/synapse/sqlite3:root/res/synapse/sqlite3 \
 	$(LOCAL_PATH)/synapse/uci:root/res/synapse/uci \
 	$(LOCAL_PATH)/synapse/actions/bracket-option:root/res/synapse/actions/bracket-option \
