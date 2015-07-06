@@ -206,6 +206,7 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/synapse/actions/ioset:root/res/synapse/actions/ioset \
 	$(LOCAL_PATH)/synapse/actions/led:root/res/synapse/actions/led \
 	$(LOCAL_PATH)/synapse/actions/printk:root/res/synapse/actions/printk \
+	$(LOCAL_PATH)/synapse/actions/sqlite:root/res/synapse/actions/sqlite \
 	$(LOCAL_PATH)/synapse/actions/voltage:root/res/synapse/actions/voltage
 
 # Samsung STK
