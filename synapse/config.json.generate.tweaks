@@ -2,7 +2,7 @@
 
 cat << CTAG
 {
-	name:BUILD.PROP,
+	name:Tweaks,
 		elements:[
 			{ SPane:{
 				title:"build.prop Tweaks",

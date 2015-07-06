@@ -1,6 +1,6 @@
 cat << CTAG
 {
-    name:MEMORY,
+    name:Memory,
 		elements:[
 			{ SPane:{
 				title:"Virtual Memory",

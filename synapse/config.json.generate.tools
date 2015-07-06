@@ -2,7 +2,7 @@
 
 cat << CTAG
 {
-	name:TOOLS,
+	name:Tools,
 		elements:[
 			`if [ -f "/data/data/com.android.providers.settings/databases/settings.db" ]; then
 				$BB echo '{ SPane:{

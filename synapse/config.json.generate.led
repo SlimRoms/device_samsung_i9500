@@ -2,7 +2,7 @@
 
 cat << CTAG
 {
-    name:LED,
+    name:LEDs,
     elements:[
 	{ SPane:{ 
 		title:"Brightness",

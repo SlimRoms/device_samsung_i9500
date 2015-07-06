@@ -4,18 +4,6 @@ TIMESTAMP=`date +%Y-%m-%d.%H.%M.%S`;
 LOGS=/sdcard/logs;
 
 case $1 in
-	selinux)	
-		if [[ ! -z $2 ]]; then
-			if [ $2 = "Enforcing" ]; then
-				setenforce 1;
-			elif [ $2 = "Permissive" ]; then
-				setenforce 0;
-			fi;
-		fi;
-
-		$BB echo `getenforce`;
-		#/sys/fs/selinux/enforce
-	;;
 	optimizedb)
 		for i in `$BB find /data -iname "*.db"`; do 
 			/res/synapse/sqlite3 $i 'VACUUM;' 2> /dev/null;

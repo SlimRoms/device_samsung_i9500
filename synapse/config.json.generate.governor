@@ -2,7 +2,7 @@
 
 cat << CTAG
 {
-    name:"CPUFreq governor",
+    name:"CPUFreq Governor",
     elements:[
 	{ SPane:{
 		title:"Governor"

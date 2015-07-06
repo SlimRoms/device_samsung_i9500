@@ -1,18 +1,6 @@
 case $(basename $0) in
-cpuvolt)
-	P=/sys/devices/system/cpu/cpu0/cpufreq/UV_uV_table
-	;;
 gpuvolt)
 	P=/sys/devices/platform/pvrsrvkm.0/sgx_dvfs_volt_table
-	;;
-intvolt)
-	P=/sys/class/devfreq/exynos5-busfreq-int/volt_table
-	;;
-mifvolt)
-	P=/sys/class/devfreq/exynos5-busfreq-mif/volt_table
-	;;
-memiovolt)
-	P=/sys/class/devfreq/exynos5-busfreq-mif/memio_volt_table
 	;;
 esac
 
