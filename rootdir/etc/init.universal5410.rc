@@ -619,7 +619,7 @@ service fuse_usbdisk /system/bin/sdcard -u 1023 -g 1023 -t 4 -d /mnt/media_rw/us
 	disabled
 
 # CBD Radio Daemon
-service cpboot-daemon /sbin/cbd -d -txmm626 -bh -mh -p13
+service cpboot-daemon /sbin/cbd -d -txmm626 -b h -m h -p13
 	class main
 	user root
 	group radio cache inet misc audio sdcard_rw log sdcard_r shell
