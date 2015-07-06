@@ -217,28 +217,28 @@ BACKLIGHT_PATH := "/sys/class/backlight/panel/brightness"
 CHARGING_ENABLED_PATH := "/sys/class/power_supply/battery/batt_lp_charging"
 
 # SELinux
-BOARD_SEPOLICY_DIRS := \
-	device/samsung/i9500/sepolicy
-
-BOARD_SEPOLICY_UNION := \
-	app.te \
-	cpboot-daemon.te \
-	domain.te \
-	exyrngd.te \
-	file.te \
-	file_contexts \
-	gpsd.te \
-	kernel.te \
-	lmkd.te \
-	init.te \
-	macloader.te \
-	recovery.te \
-	system_server.te \
-	rild.te \
-	ueventd.te \
-	uncrypt.te \
-	vold.te \
-	wpa.te
+#BOARD_SEPOLICY_DIRS := \
+#	device/samsung/i9500/sepolicy
+#
+#BOARD_SEPOLICY_UNION := \
+#	app.te \
+#	cpboot-daemon.te \
+#	domain.te \
+#	exyrngd.te \
+#	file.te \
+#	file_contexts \
+#	gpsd.te \
+#	kernel.te \
+#	lmkd.te \
+#	init.te \
+#	macloader.te \
+#	recovery.te \
+#	system_server.te \
+#	rild.te \
+#	ueventd.te \
+#	uncrypt.te \
+#	vold.te \
+#	wpa.te
 
 # Releasetools
 #TARGET_RELEASETOOLS_EXTENSIONS := $(LOCAL_PATH)
