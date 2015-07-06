@@ -20,7 +20,7 @@
 #include <fcntl.h>
 #include <ctype.h>
 
-#define LOG_TAG "JA3G PowerHAL"
+#define LOG_TAG "power"
 #include <utils/Log.h>
 
 #include <hardware/hardware.h>
@@ -143,7 +143,7 @@ struct power_module HAL_MODULE_INFO_SYM = {
         .module_api_version = POWER_MODULE_API_VERSION_0_2,
         .hal_api_version = HARDWARE_HAL_API_VERSION,
         .id = POWER_HARDWARE_MODULE_ID,
-        .name = "JA3G Power HAL",
+        .name = "JA3G Power Module",
         .author = "The CyanogenMod Project",
         .methods = &power_module_methods,
     },

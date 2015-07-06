@@ -22,9 +22,9 @@
 */
 
 #define LOG_NDEBUG 0
-#define LOG_PARAMETERS
+//#define LOG_PARAMETERS
 
-#define LOG_TAG "CameraWrapper"
+#define LOG_TAG "camera"
 #include <cutils/log.h>
 
 #include <utils/threads.h>

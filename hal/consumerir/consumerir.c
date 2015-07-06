@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#define LOG_TAG "ConsumerIrHal"
+#define LOG_TAG "consumerir"
 
 #include <stdlib.h>
 #include <malloc.h>
@@ -180,7 +180,7 @@ consumerir_module_t HAL_MODULE_INFO_SYM = {
         .module_api_version = CONSUMERIR_MODULE_API_VERSION_1_0,
         .hal_api_version    = HARDWARE_HAL_API_VERSION,
         .id                 = CONSUMERIR_HARDWARE_MODULE_ID,
-        .name               = "Consumer IR Module",
+        .name               = "Exynos5410 Consumer IR Module",
         .author             = "The CyanogenMod Project",
         .methods            = &consumerir_module_methods,
     },
