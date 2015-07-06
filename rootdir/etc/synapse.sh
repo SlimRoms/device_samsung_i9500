@@ -13,5 +13,3 @@ ln -s /res/synapse/uci /sbin/uci
 mkdir -p /mnt/ntfs
 chmod 777 /mnt/ntfs
 mount -o mode=0777,gid=1000 -t tmpfs tmpfs /mnt/ntfs
-
-mount -t rootfs -o remount,ro rootfs
