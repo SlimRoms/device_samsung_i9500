@@ -2,7 +2,7 @@
 <ROM>
   <!-- Your ROM Name -->
   <RomName>GearCM</RomName>
-  <VersionName>12.1</VersionName>
+  <VersionName>20150707</VersionName>
   <!-- Your ROM version. MUST be incrementally larger than previous versions -->
   <!-- Do NOT use letters in your version number. Integers only -->
   <!-- Previous version will be read from the build.prop -->
@@ -14,15 +14,15 @@
     <!-- HTTP link will open a web page -->
     <!-- Direct Link overrides HTTP link -->
   <!-- <DirectUrl>DIRECT LINKS HERE</DirectUrl> -->
-  <HttpUrl>https://www.androidfilehost.com/?fid=24052804347769730</HttpUrl>
+  <HttpUrl>Coming Soon</HttpUrl>
   <!-- What version are you issuing? -->
   <Android>5.1.1</Android>
   <!-- Providing File Checking for direct downloads. You SHOULD offer this for your users whether using HTTP or Direct -->
   <!-- OPTIONAL: Enter <CheckMD5 nil="true" /> offer MD5 checking -->
-  <CheckMD5>b9fe86fcbdb8fabad48ef5611af9a367</CheckMD5>
+  <CheckMD5>Coming Soon</CheckMD5>
   <!-- The filesize of your ROM -->
   <!-- Please enter this in BYTES only. Otherwise an incorrect value will be shown -->
-  <FileSize type="integer">35572940</FileSize>
+  <FileSize type="integer">288358400</FileSize>
   <!-- Developer or Team name. You can put anything here, even a couple of names -->
   <!-- OPTIONAL: Enter <Developer nil="true" /> to hide this -->
   <Developer>GearCM</Developer>
@@ -35,5 +35,5 @@
   <!-- Put the changelog here... Use Markdown to format it -->
   <!-- Again, surround special characters with the CDATA tags or your XML will NOT parse -->
   <Changelog>### Changelog 20150707
-* Test</Changelog>
+* Coming Soon</Changelog>
 </ROM>
