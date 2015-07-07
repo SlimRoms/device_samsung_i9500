@@ -14,12 +14,12 @@
     <!-- HTTP link will open a web page -->
     <!-- Direct Link overrides HTTP link -->
   <!-- <DirectUrl>DIRECT LINKS HERE</DirectUrl> -->
-  <HttpUrl>Coming Soon</HttpUrl>
+  <HttpUrl>https://www.androidfilehost.com/?fid=24052804347770083</HttpUrl>
   <!-- What version are you issuing? -->
   <Android>5.1.1</Android>
   <!-- Providing File Checking for direct downloads. You SHOULD offer this for your users whether using HTTP or Direct -->
   <!-- OPTIONAL: Enter <CheckMD5 nil="true" /> offer MD5 checking -->
-  <CheckMD5>Coming Soon</CheckMD5>
+  <CheckMD5>8f9545e9063dac39ee8a06cdd05a5eb7</CheckMD5>
   <!-- The filesize of your ROM -->
   <!-- Please enter this in BYTES only. Otherwise an incorrect value will be shown -->
   <FileSize type="integer">288358400</FileSize>
