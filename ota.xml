@@ -35,8 +35,16 @@
   <!-- Put the changelog here... Use Markdown to format it -->
   <!-- Again, surround special characters with the CDATA tags or your XML will NOT parse -->
   <Changelog>### Changelog 20150707
-* Coming Soon
-* SYNAPSE: Coming Soon
-* KERNEL: Coming Soon
+* Updated CM Sources
+* Fixed horrible and distorted speaker sound
+* Added OTA Updates support
+* SYNAPSE: added CPU A7/A15 Control
+* SYNAPSE: added Wolfson Sound Control
+* SYNAPSE: added AMOLED Screen Control
+* KERNEL: updated IKCS driver to Exynos5420 state
+* KERNEL: added A7/A15 CPU Overclock/Underclock
+* KERNEL: added AMOLED Screen Control driver
+* KERNEL: added Wolfson Sound Control driver
+* KERNEL: updated UDP driver
 </Changelog>
 </ROM>
