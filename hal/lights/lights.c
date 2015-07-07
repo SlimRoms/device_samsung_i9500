@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 The Android Open Source Project
+ * Copyright (C) 2015 The Android Open Source Project
  *                    The CyanogenMod Project
  *                    Alberto Guanti <albertoguanti@gmail.com>
  *

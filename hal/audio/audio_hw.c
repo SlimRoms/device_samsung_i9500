@@ -1,7 +1,7 @@
 /*
- * Copyright (C) 2012 The Android Open Source Project
- * Copyright (C) 2012 Wolfson Microelectronics plc
- * Copyright (C) 2013-2015 The CyanogenMod Project
+ * Copyright (C) 2015 The Android Open Source Project
+ * Copyright (C) 2015 Wolfson Microelectronics plc
+ * Copyright (C) 2015-2015 The CyanogenMod Project
  *               Daniel Hillenbrand <codeworkx@cyanogenmod.com>
  *               Guillaume "XpLoDWilD" Lesniak <xplodgui@gmail.com>
  *               Andreas Schneider <asn@cryptomilk.org>
