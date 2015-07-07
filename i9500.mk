@@ -161,6 +161,10 @@ PRODUCT_PACKAGES += \
 	Screencast \
 	AdvancedDisplay
 
+# OTA Updates
+PRODUCT_PACKAGES += \
+	OTAUpdates
+
 # Radio
 PRODUCT_PACKAGES += \
 	cbd
