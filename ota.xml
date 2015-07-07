@@ -36,7 +36,7 @@
   <!-- Again, surround special characters with the CDATA tags or your XML will NOT parse -->
   <Changelog>### Changelog 20150707
 * Coming Soon
-* SYNAPSE: Coming Soon
-* KERNEL: Coming Soon
+* 'SYNAPSE' Coming Soon
+* 'KERNEL' Coming Soon
 </Changelog>
 </ROM>
