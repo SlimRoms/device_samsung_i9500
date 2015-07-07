@@ -25,7 +25,7 @@
   <FileSize type="integer">288358400</FileSize>
   <!-- Developer or Team name. You can put anything here, even a couple of names -->
   <!-- OPTIONAL: Enter <Developer nil="true" /> to hide this -->
-  <Developer>GearCM</Developer>
+  <Developer>GearCM, Alberto96</Developer>
   <!-- Your ROM or Developer Website. Can be a personal site or your XDA/forum thread -->
   <!-- OPTIONAL: Enter <Website nil="true" /> to hide this -->
   <WebsiteURL>http://forum.xda-developers.com/galaxy-s4/i9500-orig-develop/gearcm-optimized-cyanogenmod-12-1-t3091958</WebsiteURL>
@@ -35,5 +35,8 @@
   <!-- Put the changelog here... Use Markdown to format it -->
   <!-- Again, surround special characters with the CDATA tags or your XML will NOT parse -->
   <Changelog>### Changelog 20150707
-* Coming Soon</Changelog>
+* Coming Soon
+* SYNAPSE: Coming Soon
+* KERNEL: Coming Soon
+</Changelog>
 </ROM>
