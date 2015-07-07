@@ -1,3 +1,5 @@
+#!/system/xbin/busybox sh
+
 cat << CTAG
 {
 	name:I/O,
