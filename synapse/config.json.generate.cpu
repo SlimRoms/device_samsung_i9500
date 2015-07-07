@@ -57,6 +57,20 @@ cat << CTAG
 `
 		}
 	}},
+	{ SPane:{
+		title:"IKS scaling"
+        }},
+	{ SSeekBar:{
+       		title:"A7 max frequency",
+		description:"Set the maximum freqency of the little cores.",
+       		unit:"MHz",
+		step:50000,
+		weight:0.002,
+		min:600000,
+		max:750000,
+		default:`cat /sys/devices/system/cpu/cpufreq/iks-cpufreq/CA7_max_freq`,
+		action:"generic /sys/devices/system/cpu/cpufreq/iks-cpufreq/CA7_max_freq"
+	}},
     ]
 }
 CTAG
