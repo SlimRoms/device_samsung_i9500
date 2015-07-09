@@ -2,11 +2,11 @@
 <ROM>
   <!-- Your ROM Name -->
   <RomName>GearCM</RomName>
-  <VersionName>20150707</VersionName>
+  <VersionName>20150709</VersionName>
   <!-- Your ROM version. MUST be incrementally larger than previous versions -->
   <!-- Do NOT use letters in your version number. Integers only -->
   <!-- Previous version will be read from the build.prop -->
-  <VersionNumber type="integer">20150707</VersionNumber>
+  <VersionNumber type="integer">20150709</VersionNumber>
   <!-- Linking to your files -->
     <!-- <DirectUrl><![CDATA[http://www.example.com?file=file.zip?somethingelse&anotherthing]]></DirectUrl> -->
     <!-- Use the above format if your URL has special characters in then, like an (&) ampersand -->
@@ -14,18 +14,18 @@
     <!-- HTTP link will open a web page -->
     <!-- Direct Link overrides HTTP link -->
   <!-- <DirectUrl>DIRECT LINKS HERE</DirectUrl> -->
-  <HttpUrl>https://www.androidfilehost.com/?fid=24052804347770083</HttpUrl>
+  <HttpUrl>https://www.androidfilehost.com/?fid=24052804347771113</HttpUrl>
   <!-- What version are you issuing? -->
   <Android>5.1.1</Android>
   <!-- Providing File Checking for direct downloads. You SHOULD offer this for your users whether using HTTP or Direct -->
   <!-- OPTIONAL: Enter <CheckMD5 nil="true" /> offer MD5 checking -->
-  <CheckMD5>8f9545e9063dac39ee8a06cdd05a5eb7</CheckMD5>
+  <CheckMD5>75102fc6364e8b116a3e1843fdfad598</CheckMD5>
   <!-- The filesize of your ROM -->
   <!-- Please enter this in BYTES only. Otherwise an incorrect value will be shown -->
   <FileSize type="integer">288358400</FileSize>
   <!-- Developer or Team name. You can put anything here, even a couple of names -->
   <!-- OPTIONAL: Enter <Developer nil="true" /> to hide this -->
-  <Developer>GearCM, Alberto96</Developer>
+  <Developer>GearCM: Alberto96, NBruderman</Developer>
   <!-- Your ROM or Developer Website. Can be a personal site or your XDA/forum thread -->
   <!-- OPTIONAL: Enter <Website nil="true" /> to hide this -->
   <WebsiteURL>http://forum.xda-developers.com/galaxy-s4/i9500-orig-develop/gearcm-optimized-cyanogenmod-12-1-t3091958</WebsiteURL>
@@ -34,17 +34,12 @@
   <DonateURL>http://forum.xda-developers.com/donatetome.php?u=2386505</DonateURL>
   <!-- Put the changelog here... Use Markdown to format it -->
   <!-- Again, surround special characters with the CDATA tags or your XML will NOT parse -->
-  <Changelog>### Changelog 20150707
+  <Changelog>### Changelog 20150709
 * Updated CM Sources
-* Fixed horrible and distorted speaker sound
-* Added OTA Updates support
-* SYNAPSE: added CPU A7/A15 Control
-* SYNAPSE: added Wolfson Sound Control
-* SYNAPSE: added AMOLED Screen Control
-* KERNEL: updated IKCS driver to Exynos5420 state
-* KERNEL: added A7/A15 CPU Overclock/Underclock
-* KERNEL: added AMOLED Screen Control driver
-* KERNEL: added Wolfson Sound Control driver
-* KERNEL: updated UDP driver
+* Fixed "no SIM Card" issue
+* KERNEL: revert GPU memory change (fixes Random Reboots)
+* KERNEL: back to Stock Thermal Management (fixes Performance Regression)
+* KERNEL: fixed wrong battery capacity (latest Samsung LL sources have this bug)
+* KERNEL: little ptrace fix
 </Changelog>
 </ROM>
