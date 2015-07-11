@@ -51,7 +51,7 @@ cat << CTAG
 		title:"AC/Mains Charge Current",
 		description:"AC or mains charge current supplied to battery during charging.",
 		min:400, max:3000, unit:"mA", step:50,
-		default:`cat /sys/devices/platform/sec-battery/ac_input_curr`,
+		default:`cat /sys/devices/platform/sec-battery/ac_chrg_curr`,
                 action:"generic /sys/devices/platform/sec-battery/ac_chrg_curr"
 	}},
 
