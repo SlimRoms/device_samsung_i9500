@@ -200,6 +200,7 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/synapse/config.json.generate.tweaks:root/res/synapse/config.json.generate.tweaks \
 	$(LOCAL_PATH)/synapse/sqlite3:root/res/synapse/sqlite3 \
 	$(LOCAL_PATH)/synapse/uci:root/res/synapse/uci \
+	$(LOCAL_PATH)/synapse/actions/boolean:root/res/synapse/actions/boolean \
 	$(LOCAL_PATH)/synapse/actions/bracket-option:root/res/synapse/actions/bracket-option \
 	$(LOCAL_PATH)/synapse/actions/buildprop:root/res/synapse/actions/buildprop \
 	$(LOCAL_PATH)/synapse/actions/charge-source:root/res/synapse/actions/charge-source \
