@@ -681,7 +681,7 @@ service battery_charger /sbin/healthd -c
 	critical
 
 # Synapse Kernel Control
-service synapse /sbin/synapse.sh
+service gearinit /sbin/gearinit.sh
     class core
     user root
     oneshot

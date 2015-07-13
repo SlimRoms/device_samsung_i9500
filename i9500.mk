@@ -167,13 +167,13 @@ PRODUCT_PACKAGES += \
 
 # SuperSU
 PRODUCT_PACKAGES += \
-	SuperSU_apk \
-	SuperSU_installed \
-	SuperSU_install-rec \
-	SuperSU_init \
-	SuperSU_libsupol \
-	SuperSU_subinary \
-	SuperSU_supolicy
+	SuperSU \
+	.installed_su_daemon \
+	install-recovery \
+	99SuperSUDaemon \
+	libsupol.so \
+	su \
+	supolicy
 
 # Radio
 PRODUCT_COPY_FILES += \
