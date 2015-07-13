@@ -165,6 +165,16 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
 	OTAUpdates
 
+# SuperSU
+PRODUCT_PACKAGES += \
+	SuperSU_apk \
+	SuperSU_installed \
+	SuperSU_install-rec \
+	SuperSU_init \
+	SuperSU_libsupol \
+	SuperSU_subinary \
+	SuperSU_supolicy
+
 # Radio
 PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/ril/sbin/cbd:system/bin/cbd
@@ -274,9 +284,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.build.selinux=0
 	
-# Enable Root for ADB & Apps	
+# Disable CM Superuser	
 PRODUCT_PROPERTY_OVERRIDES += \
-	persist.sys.root_access=1
+	persist.sys.root_access=0
 
 # Development & ADB authentication settings
 ADDITIONAL_DEFAULT_PROPERTIES += \

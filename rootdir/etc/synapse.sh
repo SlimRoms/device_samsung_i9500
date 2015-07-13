@@ -23,4 +23,35 @@ mount -o mode=0777,gid=1000 -t tmpfs tmpfs /mnt/ntfs
 
 mount -w -o remount /system
 rm -f /system/bin/auditd
-mount -r -o remount /system
+
+set -e
+
+cp -p "/system/xbin/su" "/system/xbin/daemonsu"
+cp -p "/system/xbin/su" "/system/xbin/sugote"
+
+if [[ -f "/system/bin/mksh" ]]; then
+	cp -p "/system/bin/mksh" "/system/xbin/sugote-mksh"
+else
+	cp -p "/system/bin/sh" "/system/xbin/sugote-mksh"
+fi
+
+mkdir -p "/system/bin/.ext"
+chmod 0777 "/system/bin/.ext"
+cp -p "/system/xbin/su" "/system/bin/.ext/.su"
+
+rm -f "/system/bin/app_process"
+ln -s "/system/xbin/daemonsu" "/system/bin/app_process"
+
+for BIT in "64" "32"; do
+	if [[ -f "/system/bin/app_process${BIT}" ]]; then
+		if [[ ! -f "/system/bin/app_process${BIT}_original" ]]; then
+			mv "/system/bin/app_process${BIT}" "/system/bin/app_process${BIT}_original"
+			ln -s "/system/xbin/daemonsu" "/system/bin/app_process${BIT}"
+		fi
+		if [[ ! -f "/system/bin/app_process_init" ]]; then
+			cp -p "/system/bin/app_process${BIT}_original" "/system/bin/app_process_init"
+		fi
+	fi
+done
+
+exit 0
