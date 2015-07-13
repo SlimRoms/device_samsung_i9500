@@ -1,4 +1,4 @@
-BB=/system/xbin/busybox;
+BB=/sbin/busybox;
 
 TIMESTAMP=`date +%Y-%m-%d.%H.%M.%S`;
 LOGS=/sdcard/logs;

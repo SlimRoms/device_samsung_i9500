@@ -1,8 +1,9 @@
-#!/system/xbin/busybox sh
+#!/sbin/busybox sh
 
 mount -t rootfs -o remount,rw rootfs
 
-chmod 777 -R /res/synapse
+chown -R root.root /res/synapse
+chmod -R 777 /res/synapse
 ln -s /res/synapse/uci /sbin/uci
 /sbin/uci
 

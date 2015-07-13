@@ -185,6 +185,7 @@ PRODUCT_PACKAGES += \
 	synapse.sh
 
 PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/rootdir/etc/busybox:root/sbin/busybox \
 	$(LOCAL_PATH)/synapse/config.json.generate:root/res/synapse/config.json.generate \
 	$(LOCAL_PATH)/synapse/config.json.generate.audio:root/res/synapse/config.json.generate.audio \
 	$(LOCAL_PATH)/synapse/config.json.generate.charger:root/res/synapse/config.json.generate.charger \
