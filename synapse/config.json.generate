@@ -2,6 +2,11 @@
 
 BB=/sbin/busybox;
 
+bool() {
+  [ `$BB cat $1` == "Y" ] && $BB echo "1";
+  [ `$BB cat $1` == "N" ] && $BB echo "0";
+}
+
 cat << CTAG
 
 {
