@@ -1,3 +1,5 @@
+BB=/system/xbin/busybox;
+
 if [[ ! -z $2 ]]; then
 	let "RC=($((16$2)) & 16711680) >> 16";
 	let "GC=($((16$2)) & 65280) >> 8";

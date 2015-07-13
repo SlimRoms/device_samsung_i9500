@@ -1,3 +1,5 @@
+BB=/system/xbin/busybox;
+
 refresh () {
 	 am startservice -n com.af.synapse/.lib.ActionService -e json '{ SDirectoryParser: { id:"/sys/devices/system/cpu/cpufreq"}}' &> /dev/null
 }

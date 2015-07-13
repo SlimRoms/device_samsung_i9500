@@ -1,5 +1,7 @@
 #!/system/xbin/busybox sh
 
+BB=/system/xbin/busybox;
+
 readColour() {
 	P=/sys/class/misc/mdnie/hook_control/
 	echo $(printf "#%02X%02X%02X\n" $(cat $P/$1_red) $(cat $P/$1_green) $(cat $P/$1_blue))

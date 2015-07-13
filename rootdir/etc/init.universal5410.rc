@@ -619,7 +619,7 @@ service fuse_usbdisk /system/bin/sdcard -u 1023 -g 1023 -t 4 -d /mnt/media_rw/us
 	disabled
 
 # CBD Radio Daemon
-service cpboot-daemon /system/bin/cbd -d -txmm626 -b h -m h -p13
+service cpboot-daemon /system/bin/cbd -d -txmm626 -b h -m h -p 13
 	class main
 	user root
 	group radio cache inet misc audio sdcard_rw log sdcard_r shell
@@ -662,7 +662,7 @@ service scranton_RD /system/bin/scranton_RD
 	oneshot
 
 # Workaround for broken in-call audio
-	service bootsnd /system/bin/tinyplay /system/etc/sound/silence.wav -D 0 -d 0 -p 880
+service bootsnd /system/bin/tinyplay /system/etc/sound/silence.wav -D 0 -d 0 -p 880
 	class late_start
 	user root
 	group audio

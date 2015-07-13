@@ -1,3 +1,5 @@
+BB=/system/xbin/busybox;
+
 case $(basename $0) in
 gpuvolt)
 	P=/sys/devices/platform/pvrsrvkm.0/sgx_dvfs_volt_table

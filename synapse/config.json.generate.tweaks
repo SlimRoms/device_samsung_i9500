@@ -1,5 +1,7 @@
 #!/system/xbin/busybox sh
 
+BB=/system/xbin/busybox;
+
 cat << CTAG
 {
 	name:Tweaks,
