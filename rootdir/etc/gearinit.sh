@@ -26,9 +26,6 @@ rm -f /system/bin/auditd
 
 set -e
 
-cp -p "/system/xbin/su" "/system/xbin/daemonsu"
-cp -p "/system/xbin/su" "/system/xbin/sugote"
-
 if [[ -f "/system/bin/mksh" ]]; then
 	cp -p "/system/bin/mksh" "/system/xbin/sugote-mksh"
 else
