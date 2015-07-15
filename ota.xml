@@ -2,11 +2,11 @@
 <ROM>
   <!-- Your ROM Name -->
   <RomName>GearCM</RomName>
-  <VersionName>20150714</VersionName>
+  <VersionName>20150715</VersionName>
   <!-- Your ROM version. MUST be incrementally larger than previous versions -->
   <!-- Do NOT use letters in your version number. Integers only -->
   <!-- Previous version will be read from the build.prop -->
-  <VersionNumber type="integer">20150714</VersionNumber>
+  <VersionNumber type="integer">20150715</VersionNumber>
   <!-- Linking to your files -->
     <!-- <DirectUrl><![CDATA[http://www.example.com?file=file.zip?somethingelse&anotherthing]]></DirectUrl> -->
     <!-- Use the above format if your URL has special characters in then, like an (&) ampersand -->
@@ -14,12 +14,12 @@
     <!-- HTTP link will open a web page -->
     <!-- Direct Link overrides HTTP link -->
   <!-- <DirectUrl>DIRECT LINKS HERE</DirectUrl> -->
-  <HttpUrl>https://www.androidfilehost.com/?fid=24052804347774065</HttpUrl>
+  <HttpUrl>https://www.androidfilehost.com/?fid=24052804347774657</HttpUrl>
   <!-- What version are you issuing? -->
   <Android>5.1.1</Android>
   <!-- Providing File Checking for direct downloads. You SHOULD offer this for your users whether using HTTP or Direct -->
   <!-- OPTIONAL: Enter <CheckMD5 nil="true" /> offer MD5 checking -->
-  <CheckMD5>de71976b668cf989b1ee780e7df2e308</CheckMD5>
+  <CheckMD5>388c5829300c693b2f26c37679e42856</CheckMD5>
   <!-- The filesize of your ROM -->
   <!-- Please enter this in BYTES only. Otherwise an incorrect value will be shown -->
   <FileSize type="integer">288358400</FileSize>
@@ -34,20 +34,8 @@
   <DonateURL>http://forum.xda-developers.com/donatetome.php?u=2386505</DonateURL>
   <!-- Put the changelog here... Use Markdown to format it -->
   <!-- Again, surround special characters with the CDATA tags or your XML will NOT parse -->
-  <Changelog>### Changelog 20150714
- * IMPORTANT: Full Wipe is recommended (let's say nearly necessary)
+  <Changelog>### Changelog 20150715
  * Updated CM Sources
- * Fixed random -No SIM Card- bug caused by Synapse
- * Fixed root access on first boot
- * Switched to SuperSU (CM's Superuser wasn't working correctly with Synapse)
- * Improved UI and JPEG Performance
- * Improved Bluetooth stability and performance
- * InCallUI doesn't have micro-lags anymore
- * SYNAPSE: Fixed No UCI Support bug
- * SYNAPSE: added Software CRC Toggle (enabled by default)
- * KERNEL: update Wi-Fi Country Codes
- * KERNEL: optimized battery life, stability and performance
- * KERNEL: use latest SaberMod GCC 5.1 Toolchain
- * KERNEL: reduce mmc wakelocks
+ * Restored SystemUI (Recents Apps) performance tweak
 </Changelog>
 </ROM>
