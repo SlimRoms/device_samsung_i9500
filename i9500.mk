@@ -309,7 +309,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
 	dalvik.vm.isa.arm.features=lpae,div \
 	dalvik.vm.dex2oat-filter=everything \
-	dalvik.vm.image-dex2oat-filter=everything
+	dalvik.vm.image-dex2oat-filter=everything \
+	dalvik.vm.dex2oat-flags=--no-watch-dog
 
 # Hardware Permissions
 PRODUCT_COPY_FILES += \
