@@ -307,7 +307,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # ART Optimizations for Cortex-A15
 PRODUCT_PROPERTY_OVERRIDES += \
-	dalvik.vm.isa.arm.features=lpae,div
+	dalvik.vm.isa.arm.features=lpae,div \
+	dalvik.vm.dex2oat-filter=everything \
+	dalvik.vm.image-dex2oat-filter=everything
 
 # Hardware Permissions
 PRODUCT_COPY_FILES += \
