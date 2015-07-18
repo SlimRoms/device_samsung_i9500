@@ -45,14 +45,14 @@ cat << CTAG
 	}},
 	{ SSeekBar:{
 		title:"AC/Mains Input Current",
-		min:400, max:3000, unit:"mA", step:50,
+		min:400, max:2100, unit:"mA", step:50,
 		default:`cat /sys/devices/platform/sec-battery/ac_input_curr`,
                 action:"generic /sys/devices/platform/sec-battery/ac_input_curr"
 	}},
 	{ SSeekBar:{
 		title:"AC/Mains Charge Current",
 		description:"AC or mains charge current supplied to battery during charging.",
-		min:400, max:3000, unit:"mA", step:50,
+		min:400, max:2100, unit:"mA", step:50,
 		default:`cat /sys/devices/platform/sec-battery/ac_chrg_curr`,
                 action:"generic /sys/devices/platform/sec-battery/ac_chrg_curr"
 	}},
@@ -63,13 +63,13 @@ cat << CTAG
 
 	{ SSeekBar:{
 		title:"AC/Mains Input Current (Screen-on)",
-		min:400, max:3000, unit:"mA", step:50,
+		min:400, max:2100, unit:"mA", step:50,
 		default:`cat /sys/devices/platform/sec-battery/siop_input_limit`,
                 action:"generic /sys/devices/platform/sec-battery/siop_input_limit"
 	}},
 	{ SSeekBar:{
 		title:"AC/Mains Charge Current (Screen-on)",
-		min:400, max:3000, unit:"mA", step:50,
+		min:400, max:2100, unit:"mA", step:50,
 		default:`cat /sys/devices/platform/sec-battery/siop_charge_limit`,
                 action:"generic /sys/devices/platform/sec-battery/siop_charge_limit"
 	}},
