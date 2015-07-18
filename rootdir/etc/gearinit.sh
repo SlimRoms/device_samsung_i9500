@@ -17,9 +17,6 @@ echo 0 > /sys/class/misc/wolfson_control/eq_sp_gain_3
 echo 4 > /sys/class/misc/wolfson_control/eq_sp_gain_4
 echo 3 > /sys/class/misc/wolfson_control/eq_sp_gain_5
 
-echo 0 > /sys/class/misc/wolfson_control/switch_eq_speaker
-echo 1 > /sys/class/misc/wolfson_control/switch_eq_speaker
-echo 0 > /sys/class/misc/wolfson_control/switch_eq_speaker
 echo 1 > /sys/class/misc/wolfson_control/switch_eq_speaker
 
 # PVR GPU Tweaks

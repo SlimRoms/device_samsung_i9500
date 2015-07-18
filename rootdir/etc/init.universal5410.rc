@@ -692,6 +692,9 @@ on property:sys.boot_completed=1
 	write /sys/class/sec/led/led_pattern 0
 # Switch to balanced mode after boot for better UX
 	setprop sys.perf.profile 1
+# Speaker EQ Hack
+	write /sys/class/misc/wolfson_control/switch_eq_speaker 0
+	write /sys/class/misc/wolfson_control/switch_eq_speaker 1
 
 # Start TZPR provisioning version check app but only
 # if sys.mobicoredaemon.enable property is set.
