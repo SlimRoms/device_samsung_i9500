@@ -11,6 +11,20 @@ cat << CTAG
 		description:"By editing the following configurables you can change the performance behaviour of the GPU."
         }},
 	{ SSeekBar:{
+       		title:"GPU min freq",
+		description:"Set the minimum freqency the GPU scales up to.",
+		default:`cat /sys/devices/platform/pvrsrvkm.0/sgx_dvfs_min_lock`,
+                unit:"MHz",
+		action:"generic /sys/devices/platform/pvrsrvkm.0/sgx_dvfs_min_lock",
+		values:[
+`
+			while read FREQ; do
+			  [[ ! -z $FREQ ]] && echo "$FREQ, "
+			done < /sys/devices/platform/pvrsrvkm.0/sgx_dvfs_table
+`
+		]
+	}},
+	{ SSeekBar:{
        		title:"GPU max freq",
 		description:"Set the maximum freqency the GPU scales up to.",
 		default:`cat /sys/devices/platform/pvrsrvkm.0/sgx_dvfs_max_lock`,
