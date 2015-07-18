@@ -199,31 +199,31 @@ BOARD_CHARGER_ENABLE_SUSPEND := true
 BOARD_CHARGER_DISABLE_INIT_BLANK := true
 BOARD_CHARGER_SHOW_PERCENTAGE := true
 BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/power_supply/battery/batt_lp_charging
-RED_LED_PATH := "/sys/class/sec/led/led_r/brightness"
-GREEN_LED_PATH := "/sys/class/sec/led/led_g/brightness"
-BLUE_LED_PATH := "/sys/class/sec/led/led_b/brightness"
+RED_LED_PATH := "/sys/class/sec/led/led_r"
+GREEN_LED_PATH := "/sys/class/sec/led/led_g"
+BLUE_LED_PATH := "/sys/class/sec/led/led_b"
 BACKLIGHT_PATH := "/sys/class/backlight/panel/brightness"
 CHARGING_ENABLED_PATH := "/sys/class/power_supply/battery/batt_lp_charging"
 
 # SELinux
-BOARD_SEPOLICY_DIRS += \
-    device/samsung/i9500/sepolicy
-
-BOARD_SEPOLICY_UNION := \
-    device.te \
-    drmserver.te \
-    file_contexts \
-    file.te \
-    gpsd.te \
-    mediaserver.te \
-    property_contexts \
-    property.te \
-    pvrsrvctl.te \
-    rild.te \
-    shell.te \
-    system_server.te \
-    ueventd.te \
-    wpa.te
+#BOARD_SEPOLICY_DIRS += \
+#    device/samsung/i9500/sepolicy
+#
+#BOARD_SEPOLICY_UNION := \
+#    device.te \
+#    drmserver.te \
+#    file_contexts \
+#    file.te \
+#    gpsd.te \
+#    mediaserver.te \
+#    property_contexts \
+#    property.te \
+#    pvrsrvctl.te \
+#    rild.te \
+#    shell.te \
+#    system_server.te \
+#    ueventd.te \
+#    wpa.te
 
 # Releasetools
 #TARGET_RELEASETOOLS_EXTENSIONS := $(LOCAL_PATH)
