@@ -445,14 +445,6 @@ on post-fs
 	chown bluetooth net_bt_stack /sys/class/rfkill/rfkill0/type
 	chmod 0660 /sys/class/rfkill/rfkill0/state
 
-	chmod 0600 /dev/btlock
-	chown bluetooth bluetooth /dev/btlock
-
-	chmod 0660 /proc/bluetooth/sleep/lpm
-	chmod 0220 /proc/bluetooth/sleep/btwrite
-	chown bluetooth net_bt_stack /proc/bluetooth/sleep/lpm
-	chown bluetooth net_bt_stack /proc/bluetooth/sleep/btwrite
-
 # Permissions for Synapse
 	chmod 0777 /sbin/gearinit.sh
 
