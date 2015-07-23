@@ -191,9 +191,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	ro.telephony.call_ring.multiple=false \
 	ro.telephony.call_ring.delay=3000
 
-# Synapse Ramdisk Stuff
+# GearCM init
 PRODUCT_PACKAGES += \
-	Synapse \
 	gearinit.sh
 
 PRODUCT_COPY_FILES += \
