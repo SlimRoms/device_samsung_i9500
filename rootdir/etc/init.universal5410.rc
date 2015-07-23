@@ -445,8 +445,16 @@ on post-fs
 	chown bluetooth net_bt_stack /sys/class/rfkill/rfkill0/type
 	chmod 0660 /sys/class/rfkill/rfkill0/state
 
+	chmod 0600 /dev/btlock
+	chown bluetooth bluetooth /dev/btlock
+
+	chmod 0660 /proc/bluetooth/sleep/lpm
+	chmod 0220 /proc/bluetooth/sleep/btwrite
+	chown bluetooth net_bt_stack /proc/bluetooth/sleep/lpm
+	chown bluetooth net_bt_stack /proc/bluetooth/sleep/btwrite
+
 # Permissions for Synapse
-	chmod 0777 /sbin/synapse.sh
+	chmod 0777 /sbin/gearinit.sh
 
 # Create EFS imei folder
 	mkdir /efs/imei 0775 radio system
@@ -509,10 +517,17 @@ on boot
 	write /sys/class/sec/led/led_pattern 6
 
 # Reduce reserved lowmem from ~48MB to ~12MB
-	write /proc/sys/vm/lowmem_reserve_ratio "128 128"
+	write /proc/sys/vm/lowmem_reserve_ratio "96 96"
+	
+# Increase min_free_kbytes from 3183 to 5120
+	write /proc/sys/vm/min_free_kbytes 5120
 
 # Reduce Screen Brightness while booting
 	write /sys/class/backlight/panel/brightness 10
+
+# Set up kernel tracing, but disable it by default
+	chmod 0222 /sys/kernel/debug/tracing/trace_marker
+	write /sys/kernel/debug/tracing/tracing_on 0
 
 # Clean-Up GPS Stuff
 	rm /data/gps_started
@@ -536,8 +551,8 @@ on boot
 	write /sys/class/thermal/thermal_zone0/boost_mode 1
 
 # Set higher USB charging values as AC ones
-	write /sys/devices/platform/sec-battery/sdp_input_curr 1500
-	write /sys/devices/platform/sec-battery/sdp_chrg_curr 1300
+	write /sys/devices/platform/sec-battery/sdp_input_curr 900
+	write /sys/devices/platform/sec-battery/sdp_chrg_curr 800
 
 # Reset mDNIe mode & scenario
 	write /sys/class/mdnie/mdnie/scenario 0
@@ -551,6 +566,9 @@ on boot
 	write /sys/devices/system/cpu/cpufreq/interactive/min_sample_time 40000
 	write /sys/devices/system/cpu/cpufreq/interactive/sampling_down_factor 100000
 	write /sys/devices/system/cpu/cpufreq/interactive/target_loads 85
+
+# Define default initial receive window size in segments.
+	setprop net.tcp.default_init_rwnd 60
 
 # Assign TCP buffer thresholds to be ceiling value of technology maximums
 # Increased technology maximums should be reflected here.
