@@ -101,7 +101,7 @@
 /dev/bcm2079x             0660   nfc        nfc
 
 # BT lock
-/dev/btlock               0600   bluetooth  bluetooth
+/dev/btlock               0660   bluetooth  bluetooth
 
 # AKM8963
 /dev/akm8963              0600   system     radio
