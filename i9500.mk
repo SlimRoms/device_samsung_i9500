@@ -195,6 +195,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PACKAGES += \
 	gearinit.sh
 
+# Synapse Kernel Control
+PRODUCT_PACKAGES += \
+	Synapse
+	
 PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/rootdir/etc/busybox:root/sbin/busybox \
 	$(LOCAL_PATH)/synapse/config.json.generate:root/res/synapse/config.json.generate \
