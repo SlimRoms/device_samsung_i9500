@@ -210,6 +210,7 @@ CHARGING_ENABLED_PATH := "/sys/class/power_supply/battery/batt_lp_charging"
 #    device/samsung/i9500/sepolicy
 #
 #BOARD_SEPOLICY_UNION := \
+#    bluetooth.te \
 #    device.te \
 #    drmserver.te \
 #    file_contexts \
