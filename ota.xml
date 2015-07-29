@@ -2,11 +2,11 @@
 <ROM>
   <!-- Your ROM Name -->
   <RomName>GearCM</RomName>
-  <VersionName>20150727v2</VersionName>
+  <VersionName>20150729</VersionName>
   <!-- Your ROM version. MUST be incrementally larger than previous versions -->
   <!-- Do NOT use letters in your version number. Integers only -->
   <!-- Previous version will be read from the build.prop -->
-  <VersionNumber type="integer">20150728</VersionNumber>
+  <VersionNumber type="integer">20150729</VersionNumber>
   <!-- Linking to your files -->
     <!-- <DirectUrl><![CDATA[http://www.example.com?file=file.zip?somethingelse&anotherthing]]></DirectUrl> -->
     <!-- Use the above format if your URL has special characters in then, like an (&) ampersand -->
@@ -14,15 +14,15 @@
     <!-- HTTP link will open a web page -->
     <!-- Direct Link overrides HTTP link -->
   <!-- <DirectUrl>DIRECT LINKS HERE</DirectUrl> -->
-  <HttpUrl>https://www.androidfilehost.com/?fid=24052804347782051</HttpUrl>
+  <HttpUrl>https://www.androidfilehost.com/?fid=24052804347783637</HttpUrl>
   <!-- What version are you issuing? -->
   <Android>5.1.1</Android>
   <!-- Providing File Checking for direct downloads. You SHOULD offer this for your users whether using HTTP or Direct -->
   <!-- OPTIONAL: Enter <CheckMD5 nil="true" /> offer MD5 checking -->
-  <CheckMD5>01bb3d772a50f7adfccc6a1cbf81492b</CheckMD5>
+  <CheckMD5>700b0128bff9d263da7c1d80c4ac6af4</CheckMD5>
   <!-- The filesize of your ROM -->
   <!-- Please enter this in BYTES only. Otherwise an incorrect value will be shown -->
-  <FileSize type="integer">288358400</FileSize>
+  <FileSize type="integer">285212672</FileSize>
   <!-- Developer or Team name. You can put anything here, even a couple of names -->
   <!-- OPTIONAL: Enter <Developer nil="true" /> to hide this -->
   <Developer>GearCM: Alberto96, NBruderman</Developer>
@@ -34,9 +34,13 @@
   <DonateURL>http://forum.xda-developers.com/donatetome.php?u=2386505</DonateURL>
   <!-- Put the changelog here... Use Markdown to format it -->
   <!-- Again, surround special characters with the CDATA tags or your XML will NOT parse -->
-  <Changelog>### Changelog 20150727v2
+  <Changelog>### Changelog 20150729
  * Updated CM Sources
- * Consider this build as a 20150727v2 build (OTA doesn't accept "v2" typo)
- * Fixed "No SIM Card" bug for some of Synapse app users (tested)
+ * Fixed HDMI audio using MHL adapter
+ * Switched to newest LL Camera Proprietaries (instead of old JB ones)
+ * Fixed S/W Encoders (no more inverted colors while sharing videos using Social Media apps)
+ * Added Low Latency Audio support
+ * Improved Audio Driver stability and performance
+ * Please take a look at the updated "Known Issues" paragraph.
 </Changelog>
 </ROM>
