@@ -658,7 +658,7 @@ static int start_voice_call(struct audio_device *adev)
 
     adev->pcm_voice_tx = pcm_open(PCM_CARD,
                                   PCM_DEVICE_VOICE,
-                                  PCM_IN | PCM_MONOTONIC,
+                                  PCM_IN,
                                   voice_config);
     if (adev->pcm_voice_tx != NULL && !pcm_is_ready(adev->pcm_voice_tx)) {
         ALOGE("%s: cannot open PCM voice TX stream: %s",
