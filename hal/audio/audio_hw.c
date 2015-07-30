@@ -78,7 +78,7 @@
 struct pcm_config pcm_config = {
     .channels = 2,
     .rate = 48000,
-    .period_size = 256,
+    .period_size = 240,
     .period_count = 2,
     .format = PCM_FORMAT_S16_LE,
 };
@@ -86,15 +86,15 @@ struct pcm_config pcm_config = {
 struct pcm_config pcm_config_deep = {
     .channels = 2,
     .rate = 48000,
-    .period_size = 1024,
-    .period_count = 4,
+    .period_size = 3840,
+    .period_count = 2,
     .format = PCM_FORMAT_S16_LE,
 };
 
 struct pcm_config pcm_config_in = {
     .channels = 2,
     .rate = 48000,
-    .period_size = 1024,
+    .period_size = 960,
     .period_count = 2,
     .format = PCM_FORMAT_S16_LE,
 };
@@ -102,7 +102,7 @@ struct pcm_config pcm_config_in = {
 struct pcm_config pcm_config_in_low_latency = {
     .channels = 2,
     .rate = 48000,
-    .period_size = 256,
+    .period_size = 240,
     .period_count = 2,
     .format = PCM_FORMAT_S16_LE,
 };
@@ -110,7 +110,7 @@ struct pcm_config pcm_config_in_low_latency = {
 struct pcm_config pcm_config_sco = {
     .channels = 1,
     .rate = 8000,
-    .period_size = 128,
+    .period_size = 120,
     .period_count = 2,
     .format = PCM_FORMAT_S16_LE,
 };
@@ -118,7 +118,7 @@ struct pcm_config pcm_config_sco = {
 struct pcm_config pcm_config_sco_wide = {
     .channels = 1,
     .rate = 16000,
-    .period_size = 128,
+    .period_size = 120,
     .period_count = 2,
     .format = PCM_FORMAT_S16_LE,
 };
@@ -130,7 +130,7 @@ struct pcm_config pcm_config_voice = {
 #else
     .rate = 16000,
 #endif
-    .period_size = 1024,
+    .period_size = 960,
     .period_count = 2,
     .format = PCM_FORMAT_S16_LE,
 };
@@ -138,7 +138,7 @@ struct pcm_config pcm_config_voice = {
 struct pcm_config pcm_config_voice_wide = {
     .channels = 2,
     .rate = 16000,
-    .period_size = 1024,
+    .period_size = 960,
     .period_count = 2,
     .format = PCM_FORMAT_S16_LE,
 };
@@ -146,7 +146,7 @@ struct pcm_config pcm_config_voice_wide = {
 struct pcm_config pcm_config_hdmi_multi = {
     .channels = 6, /* changed when the stream is opened */
     .rate = HDMI_MULTI_DEFAULT_SAMPLING_RATE,
-    .period_size = 1024,
+    .period_size = 960,
     .period_count = 4,
     .format = PCM_FORMAT_S16_LE,
 };
