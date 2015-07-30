@@ -161,7 +161,7 @@ enum output_type {
 struct audio_device {
     struct audio_hw_device hw_device;
 
-    pthread_mutex_t lock;       /* see note below on mutex acquisition order */
+    pthread_mutex_t lock; /* see note below on mutex acquisition order */
     audio_devices_t out_device; /* "or" of stream_out.device for all active output streams */
     audio_devices_t in_device;
     bool mic_mute;
@@ -170,6 +170,8 @@ struct audio_device {
     int cur_route_id;     /* current route ID: combination of input source
                            * and output device IDs */
     audio_mode_t mode;
+
+    audio_channel_mask_t in_channel_mask;
 
     /* Call audio */
     struct pcm *pcm_voice_rx;
@@ -190,9 +192,6 @@ struct audio_device {
     int es325_mode;
 
     int hdmi_drv_fd;    /* either an fd >= 0 or -1 */
-    audio_channel_mask_t in_channel_mask;
-    audio_input_flags_t flags;
-    struct pcm_config *config;
 	
     /* RIL */
     struct ril_handle ril;
@@ -270,6 +269,8 @@ const struct string_to_enum out_channels_name_to_enum_table[] = {
     STRING_TO_ENUM(AUDIO_CHANNEL_OUT_5POINT1),
     STRING_TO_ENUM(AUDIO_CHANNEL_OUT_7POINT1),
 };
+
+/* Routing functions */
 
 static int get_output_device_id(audio_devices_t device)
 {
@@ -573,7 +574,7 @@ static void start_bt_sco(struct audio_device *adev)
 
     adev->pcm_sco_rx = pcm_open(PCM_CARD,
                                 PCM_DEVICE_SCO,
-                                PCM_OUT,
+                                PCM_OUT | PCM_MONOTONIC,
                                 sco_config);
     if (adev->pcm_sco_rx != NULL && !pcm_is_ready(adev->pcm_sco_rx)) {
         ALOGE("%s: cannot open PCM SCO RX stream: %s",
@@ -755,7 +756,7 @@ static void adev_set_call_audio_path(struct audio_device *adev)
             }
             break;
         default:
-            /* if output device isn't supported, use handset by default */
+            /* if output device isn't supported, use earpiece by default */
             device_type = SOUND_AUDIO_PATH_EARPIECE;
             break;
     }
@@ -770,6 +771,7 @@ static void adev_set_call_audio_path(struct audio_device *adev)
 static int start_output_stream(struct stream_out *out)
 {
     struct audio_device *adev = out->dev;
+    int type;
 
     ALOGV("%s: starting stream", __func__);
 
@@ -880,7 +882,7 @@ static int start_input_stream(struct stream_in *in)
 static size_t get_input_buffer_size(unsigned int sample_rate,
                                     audio_format_t format,
                                     unsigned int channel_count,
-									bool is_low_latency)
+                                    bool is_low_latency)
 {
     const struct pcm_config *config = is_low_latency ?
             &pcm_config_in_low_latency : &pcm_config_in;
@@ -1018,7 +1020,7 @@ static size_t out_get_buffer_size(const struct audio_stream *stream)
     struct stream_out *out = (struct stream_out *)stream;
 
     return out->config.period_size *
-           audio_stream_out_frame_size((const struct audio_stream_out *)stream);
+            audio_stream_out_frame_size((const struct audio_stream_out *)stream);
 }
 
 static audio_channel_mask_t out_get_channels(const struct audio_stream *stream)
@@ -1161,9 +1163,7 @@ static int out_set_parameters(struct audio_stream *stream, const char *kvpairs)
                             value, sizeof(value));
     if (ret >= 0) {
         val = atoi(value);
-
         lock_all_outputs(adev);
-
         if ((out->device != val) && (val != 0)) {
             /* Force standby if moving to/from SPDIF or if the output
              * device changes when in SPDIF mode */
@@ -1203,7 +1203,7 @@ static int out_set_parameters(struct audio_stream *stream, const char *kvpairs)
     return ret;
 }
 
-static char *out_get_parameters(const struct audio_stream *stream, const char *keys)
+static char * out_get_parameters(const struct audio_stream *stream, const char *keys)
 {
     struct stream_out *out = (struct stream_out *)stream;
     struct str_parms *query = str_parms_create_str(keys);
@@ -1233,7 +1233,7 @@ static char *out_get_parameters(const struct audio_stream *stream, const char *k
             i++;
         }
         str_parms_add_str(reply, AUDIO_PARAMETER_STREAM_SUP_CHANNELS, value);
-        str = strdup(str_parms_to_str(reply));
+        str = str_parms_to_str(reply);
     } else {
         str = strdup(keys);
     }
@@ -1417,7 +1417,7 @@ static size_t in_get_buffer_size(const struct audio_stream *stream)
     return get_input_buffer_size(in->requested_rate,
                                  AUDIO_FORMAT_PCM_16_BIT,
                                  audio_channel_count_from_in_mask(in_get_channels(stream)),
-								 (in->flags & AUDIO_INPUT_FLAG_FAST) != 0);
+                                 (in->flags & AUDIO_INPUT_FLAG_FAST) != 0);
 }
 
 static audio_format_t in_get_format(const struct audio_stream *stream)
@@ -1696,7 +1696,7 @@ static int adev_open_output_stream(struct audio_hw_device *dev,
         out->channel_mask = config->channel_mask;
         out->config = pcm_config_hdmi_multi;
         out->config.rate = config->sample_rate;
-        out->config.channels = audio_channel_count_from_in_mask(config->channel_mask);
+        out->config.channels = audio_channel_count_from_out_mask(config->channel_mask);
         out->pcm_device = PCM_DEVICE;
         type = OUTPUT_HDMI;
     } else if (flags & AUDIO_OUTPUT_FLAG_DEEP_BUFFER) {
@@ -2141,7 +2141,7 @@ static int adev_open(const hw_module_t* module, const char* name,
     }
     if (property_get("audio_hal.in_period_size", value, NULL) > 0)
         pcm_config_in.period_size = atoi(value);
-	
+
     return 0;
 }
 
