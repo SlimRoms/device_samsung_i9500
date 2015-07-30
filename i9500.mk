@@ -51,8 +51,7 @@ PRODUCT_PACKAGES += \
 	audio.primary.universal5410 \
 	audio.r_submix.default \
 	audio.usb.default \
-	tinymix \
-	tinyplay
+	tinymix
 
 PRODUCT_PROPERTY_OVERRIDES += \
 	audio.offload.disable=1
