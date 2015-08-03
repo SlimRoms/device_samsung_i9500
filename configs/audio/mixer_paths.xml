@@ -209,6 +209,7 @@ INPUT_CHANNEL_MAP {
 
   <path name="speaker">
     <ctl name="SPK Switch" value="1" />
+    <ctl name="Speaker Digital Switch" value="1" />
   </path>
 
   <path name="earpiece">
@@ -266,6 +267,20 @@ INPUT_CHANNEL_MAP {
     <ctl name="IN1R Volume" value="30" />
     <ctl name="IN1R Digital Volume" value="150" />
   </path>
+  
+  <path name="volume-speaker-default">
+    <ctl name="Speaker Digital Volume" value="120" />
+    <ctl name="SPKOUTL Input 1 Volume" value="32" />
+    <ctl name="SPKOUTL Input 2 Volume" value="32" />
+  </path>
+ 
+  <path name="volume-speaker-incall">
+    <ctl name="Speaker Digital Volume" value="144" />
+    <ctl name="SPKOUTL Input 1 Volume" value="10" />
+    <ctl name="SPKOUTL Input 2 Volume" value="10" />
+    <ctl name="SPKOUTL Input 3 Volume" value="32" />
+    <ctl name="SPKOUTL Input 4 Volume" value="32" />
+  </path>
 
   <path name="sco-in">
     <ctl name="AIF2TX1 Input 2" value="AIF3RX1" />
@@ -281,6 +296,7 @@ INPUT_CHANNEL_MAP {
   <!-- Playback paths -->
   <path name="voice-speaker">
       <path name="speaker" />
+      <path name="volume-speaker-incall" />
       <ctl name="AIF2 Mode" value="Slave" />
       <ctl name="SPKOUTL Input 3" value="ASRC2L" />
   </path>
@@ -300,6 +316,7 @@ INPUT_CHANNEL_MAP {
 
   <path name="media-speaker">
       <path name="speaker" />
+      <path name="volume-speaker-default" />
   </path>
 
   <path name="media-earpiece">
@@ -312,6 +329,7 @@ INPUT_CHANNEL_MAP {
 
   <path name="voice-rec-speaker">
       <path name="speaker" />
+      <path name="volume-speaker-default" />
   </path>
 
   <path name="voice-rec-headphones">
@@ -320,6 +338,7 @@ INPUT_CHANNEL_MAP {
 
   <path name="communication-speaker">
       <path name="speaker" />
+      <path name="volume-speaker-incall" />
   </path>
 
   <path name="communication-earpiece">
@@ -332,6 +351,7 @@ INPUT_CHANNEL_MAP {
 
   <path name="speaker-and-headphones">
       <path name="speaker" />
+      <path name="volume-speaker-default" />
       <path name="headphones" />
   </path>
 
