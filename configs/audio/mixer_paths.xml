@@ -269,7 +269,7 @@ INPUT_CHANNEL_MAP {
   </path>
   
   <path name="volume-speaker-default">
-    <ctl name="Speaker Digital Volume" value="120" />
+    <ctl name="Speaker Digital Volume" value="132" />
     <ctl name="SPKOUTL Input 1 Volume" value="32" />
     <ctl name="SPKOUTL Input 2 Volume" value="32" />
   </path>
