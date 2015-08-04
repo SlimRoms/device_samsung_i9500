@@ -643,7 +643,7 @@ static int start_voice_call(struct audio_device *adev)
 
     ALOGV("%s: Opening voice PCMs", __func__);
 
-    if (adev->wb_amr || !use_8k_voice)
+    if (adev->wb_amr || !use_8k_voice) {
         voice_config = &pcm_config_voice_wide;
     } else {
         voice_config = &pcm_config_voice;
