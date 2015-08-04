@@ -24,11 +24,14 @@
 #define LOG_NDEBUG 0
 
 #include <errno.h>
+#include <fcntl.h>
 #include <pthread.h>
 #include <stdint.h>
 #include <stdlib.h>
+#include <sys/stat.h>
 #include <sys/time.h>
-#include <fcntl.h>
+#include <sys/types.h>
+#include <dlfcn.h>
 
 #include <cutils/log.h>
 #include <cutils/properties.h>
@@ -78,7 +81,7 @@
 struct pcm_config pcm_config = {
     .channels = 2,
     .rate = 48000,
-    .period_size = 256,
+    .period_size = 240,
     .period_count = 2,
     .format = PCM_FORMAT_S16_LE,
 };
@@ -86,15 +89,15 @@ struct pcm_config pcm_config = {
 struct pcm_config pcm_config_deep = {
     .channels = 2,
     .rate = 48000,
-    .period_size = 1024,
-    .period_count = 4,
+    .period_size = 3840,
+    .period_count = 2,
     .format = PCM_FORMAT_S16_LE,
 };
 
 struct pcm_config pcm_config_in = {
     .channels = 2,
     .rate = 48000,
-    .period_size = 1024,
+    .period_size = 960,
     .period_count = 2,
     .format = PCM_FORMAT_S16_LE,
 };
@@ -102,7 +105,7 @@ struct pcm_config pcm_config_in = {
 struct pcm_config pcm_config_in_low_latency = {
     .channels = 2,
     .rate = 48000,
-    .period_size = 256,
+    .period_size = 240,
     .period_count = 2,
     .format = PCM_FORMAT_S16_LE,
 };
@@ -130,7 +133,7 @@ struct pcm_config pcm_config_voice = {
 #else
     .rate = 16000,
 #endif
-    .period_size = 1024,
+    .period_size = 960,
     .period_count = 2,
     .format = PCM_FORMAT_S16_LE,
 };
@@ -138,7 +141,7 @@ struct pcm_config pcm_config_voice = {
 struct pcm_config pcm_config_voice_wide = {
     .channels = 2,
     .rate = 16000,
-    .period_size = 1024,
+    .period_size = 960,
     .period_count = 2,
     .format = PCM_FORMAT_S16_LE,
 };
@@ -631,6 +634,7 @@ static void stop_bt_sco(struct audio_device *adev) {
 static int start_voice_call(struct audio_device *adev)
 {
     struct pcm_config *voice_config;
+    bool use_8k_voice = property_get_bool("persist.voice.use.8k", false);
 
     if (adev->pcm_voice_rx != NULL || adev->pcm_voice_tx != NULL) {
         ALOGW("%s: Voice PCMs already open!\n", __func__);
@@ -639,7 +643,7 @@ static int start_voice_call(struct audio_device *adev)
 
     ALOGV("%s: Opening voice PCMs", __func__);
 
-    if (adev->wb_amr) {
+    if (adev->wb_amr || !use_8k_voice)
         voice_config = &pcm_config_voice_wide;
     } else {
         voice_config = &pcm_config_voice;
@@ -713,10 +717,10 @@ static void adev_set_wb_amr_callback(void *data, int enable)
 
         /* reopen the modem PCMs at the new rate */
         if (adev->in_call) {
+#ifndef STATIC_VOICE_CALL_WIDEBAND
             ALOGV("%s: %s Incall Wide Band support",
                   __func__,
                   enable ? "Turn on" : "Turn off");
-#ifndef STATIC_VOICE_CALL_WIDEBAND
             stop_voice_call(adev);
             select_devices(adev);
             start_voice_call(adev);
@@ -1161,9 +1165,9 @@ static int out_set_parameters(struct audio_stream *stream, const char *kvpairs)
 
     ret = str_parms_get_str(parms, AUDIO_PARAMETER_STREAM_ROUTING,
                             value, sizeof(value));
+    lock_all_outputs(adev);
     if (ret >= 0) {
         val = atoi(value);
-        lock_all_outputs(adev);
         if ((out->device != val) && (val != 0)) {
             /* Force standby if moving to/from SPDIF or if the output
              * device changes when in SPDIF mode */
@@ -1233,7 +1237,7 @@ static char * out_get_parameters(const struct audio_stream *stream, const char *
             i++;
         }
         str_parms_add_str(reply, AUDIO_PARAMETER_STREAM_SUP_CHANNELS, value);
-        str = str_parms_to_str(reply);
+        str = strdup(str_parms_to_str(reply));
     } else {
         str = strdup(keys);
     }
@@ -1766,7 +1770,7 @@ static void adev_close_output_stream(struct audio_hw_device *dev,
     out_standby(&stream->common);
     adev = (struct audio_device *)dev;
     pthread_mutex_lock(&adev->lock_outputs);
-    for (type = 0; type < OUTPUT_TOTAL; ++type) {
+    for (type = 0; type < OUTPUT_TOTAL; type++) {
         if (adev->outputs[type] == (struct stream_out *) stream) {
             adev->outputs[type] = NULL;
             break;
@@ -1780,6 +1784,7 @@ static int adev_set_parameters(struct audio_hw_device *dev, const char *kvpairs)
 {
     struct audio_device *adev = (struct audio_device *)dev;
     struct str_parms *parms;
+    char *str;
     char value[32];
     int ret;
 
