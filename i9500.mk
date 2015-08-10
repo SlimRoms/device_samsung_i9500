@@ -85,7 +85,7 @@ PRODUCT_PACKAGES += \
 
 # Doze
 PRODUCT_PACKAGES += \
-    SamsungDoze
+	SamsungDoze
 
 # GPS
 PRODUCT_COPY_FILES += \
