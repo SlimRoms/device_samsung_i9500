@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ROM>
   <!-- Your ROM Name -->
-  <RomName>GearCM</RomName>
-  <VersionName>20150731</VersionName>
+  <RomName>GearCM 12.1</RomName>
+  <VersionName>20150810</VersionName>
   <!-- Your ROM version. MUST be incrementally larger than previous versions -->
   <!-- Do NOT use letters in your version number. Integers only -->
   <!-- Previous version will be read from the build.prop -->
-  <VersionNumber type="integer">20150731</VersionNumber>
+  <VersionNumber type="integer">20150810</VersionNumber>
   <!-- Linking to your files -->
     <!-- <DirectUrl><![CDATA[http://www.example.com?file=file.zip?somethingelse&anotherthing]]></DirectUrl> -->
     <!-- Use the above format if your URL has special characters in then, like an (&) ampersand -->
@@ -14,12 +14,12 @@
     <!-- HTTP link will open a web page -->
     <!-- Direct Link overrides HTTP link -->
   <!-- <DirectUrl>DIRECT LINKS HERE</DirectUrl> -->
-  <HttpUrl>https://www.androidfilehost.com/?fid=24052804347784593</HttpUrl>
+  <HttpUrl>https://www.androidfilehost.com/?fid=24052804347791265</HttpUrl>
   <!-- What version are you issuing? -->
   <Android>5.1.1</Android>
   <!-- Providing File Checking for direct downloads. You SHOULD offer this for your users whether using HTTP or Direct -->
   <!-- OPTIONAL: Enter <CheckMD5 nil="true" /> offer MD5 checking -->
-  <CheckMD5>fec4ab0bc178bba1fda7686ee3c8e7fd</CheckMD5>
+  <CheckMD5>8bfd4d526ad5baacc41e11807e435b4e</CheckMD5>
   <!-- The filesize of your ROM -->
   <!-- Please enter this in BYTES only. Otherwise an incorrect value will be shown -->
   <FileSize type="integer">285212672</FileSize>
@@ -34,10 +34,15 @@
   <DonateURL>http://forum.xda-developers.com/donatetome.php?u=2386505</DonateURL>
   <!-- Put the changelog here... Use Markdown to format it -->
   <!-- Again, surround special characters with the CDATA tags or your XML will NOT parse -->
-  <Changelog>### Changelog 20150731
+  <Changelog>### Changelog 20150810
  * Updated CM Sources
- * Fixed, and now definitely, sound disappearing bug. If you don't believe me anymore, try this build ;)
- * Audio Driver Latency has been optimized, now even better
- * Improved Camera performance 
+ * Enhanced Audio Input/Output values (Speaker, Microphones, Earpiece).
+ * Reduced/Fixed Echo in-call
+ * mDNIe set to Auto by default
+ * Fixed VOIP apps such as Skype (testers required)
+ * SYNAPSE: removed CPU/GPU Overclock/Underclock
+ * KERNEL: using whole new kernel, based on latest CM repo plus my optimizations
+ * KERNEL: removed CPU/GPU Overclock/Underclock
+ * KERNEL: improved Stability, reduced CPU temperature while on Full Load
 </Changelog>
 </ROM>
