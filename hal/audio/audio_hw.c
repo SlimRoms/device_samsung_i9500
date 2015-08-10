@@ -277,12 +277,8 @@ const struct string_to_enum out_channels_name_to_enum_table[] = {
 
 static int get_output_device_id(audio_devices_t device)
 {
-    if (device == AUDIO_DEVICE_NONE) {
-        ALOGV("%s: AUDIO_DEVICE_NONE\n", __func__);
+    if (device == AUDIO_DEVICE_NONE)
         return OUT_DEVICE_NONE;
-    }
-
-    ALOGV("%s: popcount: %d\n", __func__, popcount(device));
 
     if (popcount(device) == 2) {
         if ((device == (AUDIO_DEVICE_OUT_SPEAKER |
@@ -338,7 +334,7 @@ static int get_input_source_id(audio_source_t source, bool wb_amr)
         ALOGV("%s: AUDIO_SOURCE_VOICE_COMMUNICATION\n", __func__);
         return IN_SOURCE_VOICE_COMMUNICATION;
     case AUDIO_SOURCE_VOICE_CALL:
-        ALOGV("%s: AUDIO_SOURCE_VOICE_CALL\n", __func__);
+        ALOGV("%s: AUDIO_SOURCE_VOICE_CALL:\n", __func__);
         if (wb_amr) {
             return IN_SOURCE_VOICE_CALL_WB;
         }
@@ -577,7 +573,7 @@ static void start_bt_sco(struct audio_device *adev)
 
     adev->pcm_sco_rx = pcm_open(PCM_CARD,
                                 PCM_DEVICE_SCO,
-                                PCM_OUT | PCM_MONOTONIC,
+                                PCM_OUT,
                                 sco_config);
     if (adev->pcm_sco_rx != NULL && !pcm_is_ready(adev->pcm_sco_rx)) {
         ALOGE("%s: cannot open PCM SCO RX stream: %s",
@@ -735,8 +731,6 @@ static void adev_set_call_audio_path(struct audio_device *adev)
 {
     enum ril_audio_path device_type;
 
-    ALOGV("%s: out_device=0x%08x", __func__, adev->out_device);
-
     switch(adev->out_device) {
         case AUDIO_DEVICE_OUT_SPEAKER:
             device_type = SOUND_AUDIO_PATH_SPEAKER;
@@ -834,7 +828,7 @@ static int start_output_stream(struct stream_out *out)
         set_hdmi_channels(adev, out->config.channels);
     }
 
-    ALOGV("%s: stream out device: 0x%08x, actual: 0x%08x",
+    ALOGV("%s: stream out device: %d, actual: %d",
           __func__, out->device, adev->out_device);
 
     return 0;
@@ -1165,9 +1159,11 @@ static int out_set_parameters(struct audio_stream *stream, const char *kvpairs)
 
     ret = str_parms_get_str(parms, AUDIO_PARAMETER_STREAM_ROUTING,
                             value, sizeof(value));
-    lock_all_outputs(adev);
     if (ret >= 0) {
         val = atoi(value);
+
+        lock_all_outputs(adev);
+
         if ((out->device != val) && (val != 0)) {
             /* Force standby if moving to/from SPDIF or if the output
              * device changes when in SPDIF mode */
@@ -1700,7 +1696,7 @@ static int adev_open_output_stream(struct audio_hw_device *dev,
         out->channel_mask = config->channel_mask;
         out->config = pcm_config_hdmi_multi;
         out->config.rate = config->sample_rate;
-        out->config.channels = audio_channel_count_from_out_mask(config->channel_mask);
+        out->config.channels = popcount(config->channel_mask);
         out->pcm_device = PCM_DEVICE;
         type = OUTPUT_HDMI;
     } else if (flags & AUDIO_OUTPUT_FLAG_DEEP_BUFFER) {
