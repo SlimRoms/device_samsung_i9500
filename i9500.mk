@@ -60,6 +60,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	af.fast_track_multiplier=1
 
 # Bluetooth
+PRODUCT_PROPERTY_OVERRIDES += \
+	bluetooth.hfp.client=1
+
 PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/bluetooth/bcm4335_prepatch.hcd:system/vendor/firmware/bcm4335_prepatch.hcd
 
