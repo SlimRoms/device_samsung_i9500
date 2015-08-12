@@ -737,7 +737,7 @@ on property:sys.perf.profile=1
 	write /sys/devices/platform/pvrsrvkm.0/sgx_dvfs_max_lock 532
 	write /sys/class/devfreq/exynos5-busfreq-mif/min_freq 100000
 	write /sys/class/devfreq/exynos5-busfreq-mif/max_freq 800000
-	write /sys/class/thermal/thermal_zone0/boost_mode 1
+	write /sys/class/thermal/thermal_zone0/boost_mode 0
 
 # Performance
 on property:sys.perf.profile=2
