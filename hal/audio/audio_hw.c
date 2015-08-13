@@ -250,7 +250,7 @@ struct stream_in {
 
     uint16_t ramp_vol;
     uint16_t ramp_step;
-    uint16_t ramp_frames;
+    size_t ramp_frames;
 
     audio_channel_mask_t channel_mask;
     audio_input_flags_t flags;
@@ -590,8 +590,10 @@ static void start_bt_sco(struct audio_device *adev)
 
 err_sco_tx:
     pcm_close(adev->pcm_sco_tx);
+	adev->pcm_sco_tx = NULL;
 err_sco_rx:
     pcm_close(adev->pcm_sco_rx);
+	adev->pcm_sco_rx = NULL;
 }
 
 /* must be called with the hw device mutex locked, OK to hold other mutexes */
@@ -657,6 +659,10 @@ static int start_voice_call(struct audio_device *adev)
     pcm_start(adev->pcm_voice_rx);
     pcm_start(adev->pcm_voice_tx);
 
+    /* start SCO stream if needed */
+    if (adev->out_device & AUDIO_DEVICE_OUT_ALL_SCO)
+        start_bt_sco(adev);
+	
     return 0;
 
 err_voice_tx:
@@ -676,17 +682,38 @@ err_voice_rx:
 static void stop_voice_call(struct audio_device *adev)
 {
     ALOGV("%s: Closing voice PCMs", __func__);
+    int status = 0;
+
+    ALOGV("%s: Closing active PCMs", __func__);
 
     if (adev->pcm_voice_rx) {
         pcm_stop(adev->pcm_voice_rx);
         pcm_close(adev->pcm_voice_rx);
         adev->pcm_voice_rx = NULL;
+		status++;
     }
 
     if (adev->pcm_voice_tx) {
         pcm_stop(adev->pcm_voice_tx);
         pcm_close(adev->pcm_voice_tx);
         adev->pcm_voice_tx = NULL;
+        status++;
+    }
+
+    if (adev->pcm_sco_rx) {
+        pcm_stop(adev->pcm_sco_rx);
+        pcm_close(adev->pcm_sco_rx);
+        adev->pcm_sco_rx = NULL;
+        status++;
+    }
+    
+    if (adev->pcm_sco_tx) {
+        pcm_stop(adev->pcm_sco_tx);
+        pcm_close(adev->pcm_sco_tx);
+        adev->pcm_sco_tx = NULL;
+        status++;
+
+        ALOGV("%s: Successfully closed %d active PCMs", __func__, status);
     }
 }
 
@@ -1122,45 +1149,38 @@ static int out_set_parameters(struct audio_stream *stream, const char *kvpairs)
 
     ret = str_parms_get_str(parms, AUDIO_PARAMETER_STREAM_ROUTING,
                             value, sizeof(value));
+	lock_all_outputs(adev);
     if (ret >= 0) {
         val = atoi(value);
-
-        lock_all_outputs(adev);
-
         if ((out->device != val) && (val != 0)) {
-            /* Force standby if moving to/from SPDIF or if the output
-             * device changes when in SPDIF mode */
-            if (((val & AUDIO_DEVICE_OUT_DGTL_DOCK_HEADSET) ^
-                 (adev->out_device & AUDIO_DEVICE_OUT_DGTL_DOCK_HEADSET)) ||
-                (adev->out_device & AUDIO_DEVICE_OUT_DGTL_DOCK_HEADSET)) {
-                do_out_standby(out);
-            }
+				/* Force standby if moving to/from SPDIF or if the output
+				 * device changes when in SPDIF mode */
+				if (((val & AUDIO_DEVICE_OUT_DGTL_DOCK_HEADSET) ^
+					 (adev->out_device & AUDIO_DEVICE_OUT_DGTL_DOCK_HEADSET)) ||
+					(adev->out_device & AUDIO_DEVICE_OUT_DGTL_DOCK_HEADSET)) {
+					do_out_standby(out);
+				}
 
-            /* force output standby to start or stop SCO pcm stream if needed */
-            if ((val & AUDIO_DEVICE_OUT_ALL_SCO) ^
-                (out->device & AUDIO_DEVICE_OUT_ALL_SCO)) {
-                do_out_standby(out);
-            }
+				/* force output standby to start or stop SCO pcm stream if needed */
+				if ((val & AUDIO_DEVICE_OUT_ALL_SCO) ^
+					(out->device & AUDIO_DEVICE_OUT_ALL_SCO)) {
+					do_out_standby(out);
+				}
 
-            out->device = val;
-            adev->out_device = val;
-            select_devices(adev);
+				out->device = val;
+				adev->out_device = output_devices(out) | val;
+				select_devices(adev);
 
-            if (!out->standby && (out == adev->outputs[OUTPUT_HDMI] ||
-                !adev->outputs[OUTPUT_HDMI] ||
-                adev->outputs[OUTPUT_HDMI]->standby)) {
-                adev->out_device = output_devices(out) | val;
-                select_devices(adev);
-            }
+				if (!out->standby && (out == adev->outputs[OUTPUT_HDMI] ||
+					!adev->outputs[OUTPUT_HDMI] ||
+					adev->outputs[OUTPUT_HDMI]->standby)) {
+					adev->out_device = output_devices(out) | val;
+					select_devices(adev);
+				}
 
-            /* start SCO stream if needed */
-            if (val & AUDIO_DEVICE_OUT_ALL_SCO) {
-                start_bt_sco(adev);
             }
         }
-
-        unlock_all_outputs(adev, NULL);
-    }
+    unlock_all_outputs(adev, NULL);
 
     str_parms_destroy(parms);
     return ret;
@@ -1196,7 +1216,7 @@ static char * out_get_parameters(const struct audio_stream *stream, const char *
             i++;
         }
         str_parms_add_str(reply, AUDIO_PARAMETER_STREAM_SUP_CHANNELS, value);
-        str = strdup(str_parms_to_str(reply));
+        str = str_parms_to_str(reply);
     } else {
         str = strdup(keys);
     }
