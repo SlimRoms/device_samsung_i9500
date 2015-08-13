@@ -128,11 +128,7 @@ struct pcm_config pcm_config_sco_wide = {
 
 struct pcm_config pcm_config_voice = {
     .channels = 2,
-#ifndef STATIC_VOICE_CALL_WIDEBAND
-    .rate = 8000,
-#else
     .rate = 16000,
-#endif
     .period_size = 960,
     .period_count = 2,
     .format = PCM_FORMAT_S16_LE,
