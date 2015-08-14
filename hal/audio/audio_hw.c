@@ -653,7 +653,7 @@ static int start_voice_call(struct audio_device *adev)
 
     pcm_start(adev->pcm_voice_rx);
     pcm_start(adev->pcm_voice_tx);
-	
+
     return 0;
 
 err_voice_tx:
@@ -697,7 +697,7 @@ static void stop_voice_call(struct audio_device *adev)
         adev->pcm_sco_rx = NULL;
         status++;
     }
-    
+
     if (adev->pcm_sco_tx) {
         pcm_stop(adev->pcm_sco_tx);
         pcm_close(adev->pcm_sco_tx);
@@ -1172,6 +1172,8 @@ static int out_set_parameters(struct audio_stream *stream, const char *kvpairs)
 				/* start SCO stream if needed */
 				if (val & AUDIO_DEVICE_OUT_ALL_SCO) {
 					start_bt_sco(adev);
+				}
+
             }
         }
     unlock_all_outputs(adev, NULL);
