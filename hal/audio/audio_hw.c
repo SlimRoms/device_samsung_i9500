@@ -653,10 +653,6 @@ static int start_voice_call(struct audio_device *adev)
 
     pcm_start(adev->pcm_voice_rx);
     pcm_start(adev->pcm_voice_tx);
-
-    /* start SCO stream if needed */
-    if (adev->out_device & AUDIO_DEVICE_OUT_ALL_SCO)
-        start_bt_sco(adev);
 	
     return 0;
 
@@ -1162,13 +1158,20 @@ static int out_set_parameters(struct audio_stream *stream, const char *kvpairs)
 					do_out_standby(out);
 				}
 
+				out->device = val;
+				adev->out_device = val;
+				select_devices(adev);
+				
 				if (!out->standby && (out == adev->outputs[OUTPUT_HDMI] ||
 					!adev->outputs[OUTPUT_HDMI] ||
 					adev->outputs[OUTPUT_HDMI]->standby)) {
 					adev->out_device = output_devices(out) | val;
 					select_devices(adev);
 				}
-				out->device = val;
+
+				/* start SCO stream if needed */
+				if (val & AUDIO_DEVICE_OUT_ALL_SCO) {
+					start_bt_sco(adev);
             }
         }
     unlock_all_outputs(adev, NULL);
