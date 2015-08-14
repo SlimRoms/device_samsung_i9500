@@ -81,7 +81,7 @@
 struct pcm_config pcm_config = {
     .channels = 2,
     .rate = 48000,
-    .period_size = 240,
+    .period_size = 256,
     .period_count = 2,
     .format = PCM_FORMAT_S16_LE,
 };
@@ -89,7 +89,7 @@ struct pcm_config pcm_config = {
 struct pcm_config pcm_config_deep = {
     .channels = 2,
     .rate = 48000,
-    .period_size = 3840,
+    .period_size = 1024,
     .period_count = 2,
     .format = PCM_FORMAT_S16_LE,
 };
@@ -97,7 +97,7 @@ struct pcm_config pcm_config_deep = {
 struct pcm_config pcm_config_in = {
     .channels = 2,
     .rate = 48000,
-    .period_size = 960,
+    .period_size = 1024,
     .period_count = 2,
     .format = PCM_FORMAT_S16_LE,
 };
@@ -105,14 +105,14 @@ struct pcm_config pcm_config_in = {
 struct pcm_config pcm_config_in_low_latency = {
     .channels = 2,
     .rate = 48000,
-    .period_size = 240,
+    .period_size = 256,
     .period_count = 2,
     .format = PCM_FORMAT_S16_LE,
 };
 
 struct pcm_config pcm_config_sco = {
     .channels = 1,
-    .rate = 8000,
+    .rate = 16000,
     .period_size = 128,
     .period_count = 2,
     .format = PCM_FORMAT_S16_LE,
@@ -129,7 +129,7 @@ struct pcm_config pcm_config_sco_wide = {
 struct pcm_config pcm_config_voice = {
     .channels = 2,
     .rate = 16000,
-    .period_size = 960,
+    .period_size = 1024,
     .period_count = 2,
     .format = PCM_FORMAT_S16_LE,
 };
@@ -137,7 +137,7 @@ struct pcm_config pcm_config_voice = {
 struct pcm_config pcm_config_voice_wide = {
     .channels = 2,
     .rate = 16000,
-    .period_size = 960,
+    .period_size = 1024,
     .period_count = 2,
     .format = PCM_FORMAT_S16_LE,
 };
@@ -620,7 +620,6 @@ static void stop_bt_sco(struct audio_device *adev) {
 static int start_voice_call(struct audio_device *adev)
 {
     struct pcm_config *voice_config;
-    bool use_8k_voice = property_get_bool("persist.voice.use.8k", false);
 
     if (adev->pcm_voice_rx != NULL || adev->pcm_voice_tx != NULL) {
         ALOGW("%s: Voice PCMs already open!\n", __func__);
@@ -686,7 +685,7 @@ static void stop_voice_call(struct audio_device *adev)
         pcm_stop(adev->pcm_voice_rx);
         pcm_close(adev->pcm_voice_rx);
         adev->pcm_voice_rx = NULL;
-		status++;
+        status++;
     }
 
     if (adev->pcm_voice_tx) {
@@ -1145,7 +1144,7 @@ static int out_set_parameters(struct audio_stream *stream, const char *kvpairs)
 
     ret = str_parms_get_str(parms, AUDIO_PARAMETER_STREAM_ROUTING,
                             value, sizeof(value));
-	lock_all_outputs(adev);
+    lock_all_outputs(adev);
     if (ret >= 0) {
         val = atoi(value);
         if ((out->device != val) && (val != 0)) {
@@ -1163,17 +1162,13 @@ static int out_set_parameters(struct audio_stream *stream, const char *kvpairs)
 					do_out_standby(out);
 				}
 
-				out->device = val;
-				adev->out_device = output_devices(out) | val;
-				select_devices(adev);
-
 				if (!out->standby && (out == adev->outputs[OUTPUT_HDMI] ||
 					!adev->outputs[OUTPUT_HDMI] ||
 					adev->outputs[OUTPUT_HDMI]->standby)) {
 					adev->out_device = output_devices(out) | val;
 					select_devices(adev);
 				}
-
+				out->device = val;
             }
         }
     unlock_all_outputs(adev, NULL);
