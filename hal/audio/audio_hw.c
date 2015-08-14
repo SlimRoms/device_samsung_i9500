@@ -1144,38 +1144,39 @@ static int out_set_parameters(struct audio_stream *stream, const char *kvpairs)
     if (ret >= 0) {
         val = atoi(value);
         if ((out->device != val) && (val != 0)) {
-				/* Force standby if moving to/from SPDIF or if the output
-				 * device changes when in SPDIF mode */
-				if (((val & AUDIO_DEVICE_OUT_DGTL_DOCK_HEADSET) ^
-					 (adev->out_device & AUDIO_DEVICE_OUT_DGTL_DOCK_HEADSET)) ||
-					(adev->out_device & AUDIO_DEVICE_OUT_DGTL_DOCK_HEADSET)) {
-					do_out_standby(out);
-				}
 
-				/* force output standby to start or stop SCO pcm stream if needed */
-				if ((val & AUDIO_DEVICE_OUT_ALL_SCO) ^
-					(out->device & AUDIO_DEVICE_OUT_ALL_SCO)) {
-					do_out_standby(out);
-				}
+			/* Force standby if moving to/from SPDIF or if the output
+			 * device changes when in SPDIF mode */
+			if (((val & AUDIO_DEVICE_OUT_DGTL_DOCK_HEADSET) ^
+				 (adev->out_device & AUDIO_DEVICE_OUT_DGTL_DOCK_HEADSET)) ||
+				(adev->out_device & AUDIO_DEVICE_OUT_DGTL_DOCK_HEADSET)) {
+				do_out_standby(out);
+			}
 
-				out->device = val;
-				adev->out_device = val;
+			/* force output standby to start or stop SCO pcm stream if needed */
+			if ((val & AUDIO_DEVICE_OUT_ALL_SCO) ^
+				(out->device & AUDIO_DEVICE_OUT_ALL_SCO)) {
+				do_out_standby(out);
+			}
+
+			out->device = val;
+			adev->out_device = val;
+			select_devices(adev);
+
+			if (!out->standby && (out == adev->outputs[OUTPUT_HDMI] ||
+				!adev->outputs[OUTPUT_HDMI] ||
+				adev->outputs[OUTPUT_HDMI]->standby)) {
+				adev->out_device = output_devices(out) | val;
 				select_devices(adev);
+			}
 
-				if (!out->standby && (out == adev->outputs[OUTPUT_HDMI] ||
-					!adev->outputs[OUTPUT_HDMI] ||
-					adev->outputs[OUTPUT_HDMI]->standby)) {
-					adev->out_device = output_devices(out) | val;
-					select_devices(adev);
-				}
+			/* start SCO stream if needed */
+			if (val & AUDIO_DEVICE_OUT_ALL_SCO) {
+				start_bt_sco(adev);
+			}
 
-				/* start SCO stream if needed */
-				if (val & AUDIO_DEVICE_OUT_ALL_SCO) {
-					start_bt_sco(adev);
-				}
-
-            }
         }
+    }
     unlock_all_outputs(adev, NULL);
 
     str_parms_destroy(parms);
