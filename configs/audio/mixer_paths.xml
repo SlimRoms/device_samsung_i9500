@@ -1535,7 +1535,7 @@
       <path name="device-builtin-mic" />
 
       <path name="scenario-builtin-mic-earpiece-communication" />
-      <path name="volume-builtin-mic-default" />
+      <path name="volume-builtin-mic-incall" />
 
       <path name="channel-left" />
     </path>
@@ -1544,7 +1544,7 @@
       <path name="device-builtin-mic" />
 
       <path name="scenario-builtin-mic-speaker-communication" />
-      <path name="volume-builtin-mic-default" />
+      <path name="volume-builtin-mic-incall" />
 
       <path name="channel-left" />
     </path>
