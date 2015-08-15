@@ -37,7 +37,7 @@ TARGET_NO_BOOTLOADER := true
 
 # Platform
 TARGET_BOARD_PLATFORM := exynos5
-TARGET_SLSI_VARIANT := insignal
+TARGET_SLSI_VARIANT := cm
 TARGET_SOC := exynos5410
 
 # Architecture
