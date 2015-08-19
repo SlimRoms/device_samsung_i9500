@@ -192,7 +192,7 @@ const struct route_config bluetooth_sco = {
 };
 
 const struct route_config hdmi = {
-    "aux-digital",
+    "device-aux-digital",
     "main-mic",
     { ES325_PRESET_OFF,
       ES325_PRESET_OFF }
