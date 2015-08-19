@@ -173,8 +173,6 @@ TARGET_USERIMAGES_USE_F2FS := true
 # TWRP Specific
 TW_THEME := portrait_mdpi
 
-TARGET_RECOVERY_DEVICE_MODULES += prebuilt_file_contexts
-
 RECOVERY_SDCARD_ON_DATA := true
 BOARD_HAS_NO_REAL_SDCARD := true
 
