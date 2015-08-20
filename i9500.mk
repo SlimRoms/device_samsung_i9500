@@ -208,6 +208,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PACKAGES += \
 	gearinit.sh
 
+PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/configs/env/gearcm:system/etc/gearcm
+
 # Synapse Kernel Control
 PRODUCT_PACKAGES += \
 	Synapse

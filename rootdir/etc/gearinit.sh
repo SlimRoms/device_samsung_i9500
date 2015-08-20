@@ -1,5 +1,13 @@
 #!/sbin/busybox sh
 
+if [ ! -f "/system/etc/gearcm" ]
+then
+   echo "Wrong ROM, reboot...";
+   reboot recovery;
+else
+   echo "This is GearCM, continue...";
+fi
+
 # Mount / as RW
 mount -t rootfs -o remount,rw rootfs
 
