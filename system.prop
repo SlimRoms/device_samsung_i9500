@@ -7,16 +7,30 @@
 # Disable GL Library Preload
 ro.zygote.disable_gl_preload=1
 
-## Screen ##
+## NFC ##
 
-# 1080p Screen Density
-ro.sf.lcd_density=480
+# Reduce Debug Level
+nfc.app_log_level=0
+
+## OTA Updates ##
+
+# ROM Manifest
+ro.ota.manifest=https://raw.githubusercontent.com/GearCM/android_device_samsung_i9500/cm-12.1/ota.xml
+
+# ROM Name
+ro.ota.romname=GearCM121
+
+# ROM Version
+ro.ota.version=20150820
 
 ## Radio ##
 
 # Samsung RIL Config
-rild.libpath=/system/lib/libsec-ril.so
 rild.libargs=-d /dev/ttyS0
+rild.libpath=/system/lib/libsec-ril.so
+
+# Max Supported GPRS/EDGE Category
+ro.ril.gprsclass=12
 
 # Max Supported HSDPA Category
 ro.ril.hsdpa.category=24
@@ -24,18 +38,10 @@ ro.ril.hsdpa.category=24
 # Max Supported HSUPA Category
 ro.ril.hsupa.category=6
 
-# Max Supported GPRS/EDGE Category
-ro.ril.gprsclass=12
-
 # Enable HSPA+ 42 Mbps
 ro.ril.hsxpa=3
 
-## NFC ##
+## Screen ##
 
-# Reduce Debug Level
-nfc.app_log_level=0
-
-## OTA Updates ##
-ro.ota.romname=GearCM121
-ro.ota.version=20150820
-ro.ota.manifest=https://raw.githubusercontent.com/GearCM/android_device_samsung_i9500/cm-12.1/ota.xml
+# 1080p Screen Density
+ro.sf.lcd_density=480
