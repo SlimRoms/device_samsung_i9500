@@ -115,6 +115,12 @@ static void power_set_interactive(struct power_module *module, int on)
 {
     size_t i;
 
+    /*
+     * Lower maximum frequency when screen is off.
+     */
+    sysfs_write("/sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq",
+                on ? "1600000" : "600000");
+
     ALOGD("%s: %s input devices", __func__, on ? "enabling" : "disabling");
 
     if (! have_found_paths) {
