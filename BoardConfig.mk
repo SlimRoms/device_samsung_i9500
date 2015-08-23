@@ -14,9 +14,6 @@
 # limitations under the License.
 #
 
-# inherit from the proprietary version
--include vendor/samsung/i9500/BoardConfigVendor.mk
-
 LOCAL_PATH := device/samsung/i9500
 
 BOARD_VENDOR := samsung
@@ -25,15 +22,14 @@ BOARD_VENDOR := samsung
 TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
 
 # Assert
-TARGET_OTA_ASSERT_DEVICE := ja3g,i9500,GT-I9500
-
-# Build
-TARGET_USES_BLOCK_BASED_OTA := false
-TARGET_NEEDS_NON_PIE_SUPPORT := true
+TARGET_OTA_ASSERT_DEVICE := ja3g,ja3gxx,i9500,GT-I9500
 
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := universal5410
 TARGET_NO_BOOTLOADER := true
+
+# Build
+TARGET_USES_BLOCK_BASED_OTA := false
 
 # Platform
 TARGET_BOARD_PLATFORM := exynos5
@@ -48,7 +44,7 @@ TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_CPU_VARIANT := cortex-a15
 
-# Hint the compiler that we're using a quad-core CPU
+# Compiler Tweaks
 BOARD_GLOBAL_CFLAGS += -mvectorize-with-neon-quad
 BOARD_GLOBAL_CPPFLAGS += -mvectorize-with-neon-quad
 
@@ -57,6 +53,9 @@ BOARD_KERNEL_BASE := 0x10000000
 BOARD_KERNEL_PAGESIZE := 2048
 TARGET_KERNEL_CONFIG := cyanogenmod_i9500_defconfig
 TARGET_KERNEL_SOURCE := kernel/samsung/exynos5410
+
+# ANT+
+BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
 
 # Audio
 BOARD_HAVE_PRE_KITKAT_AUDIO_POLICY_BLOB := true
@@ -68,17 +67,22 @@ BOARD_HAVE_BLUETOOTH_BCM := true
 BOARD_BLUEDROID_VENDOR_CONF := $(LOCAL_PATH)/bluetooth/libbt_vndcfg.txt
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
 
-# ANT+
-BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
-
-# Fonts
-EXTENDED_FONT_FOOTPRINT := true
-
-# Logging
-TARGET_USES_LOGD := false
-
 # Camera
 BOARD_NEEDS_MEMORYHEAPION := true
+
+# Charger
+BOARD_CHARGER_ENABLE_SUSPEND := true
+BOARD_CHARGER_DISABLE_INIT_BLANK := true
+BOARD_CHARGER_SHOW_PERCENTAGE := true
+BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/power_supply/battery/batt_lp_charging
+RED_LED_PATH := "/sys/class/leds/led_r/brightness"
+GREEN_LED_PATH := "/sys/class/leds/led_g/brightness"
+BLUE_LED_PATH := "/sys/class/leds/led_b/brightness"
+BACKLIGHT_PATH := "/sys/class/backlight/panel/brightness"
+CHARGING_ENABLED_PATH := "/sys/class/power_supply/battery/batt_lp_charging"
+
+# CMHW
+BOARD_HARDWARE_CLASS := device/samsung/i9500/cmhw
 
 # Exynos5410 Hardware
 BOARD_USE_ALP_AUDIO := true
@@ -91,92 +95,45 @@ BOARD_USE_STOREMETADATA := true
 BOARD_USES_GSC_VIDEO := true
 COMMON_GLOBAL_CFLAGS += -DUSE_NATIVE_SEC_NV12TILED
 
-# CMHW
-BOARD_HARDWARE_CLASS := device/samsung/i9500/cmhw
-
-# Graphics
-USE_OPENGL_RENDERER := true
-BOARD_EGL_SYSTEMUI_PBSIZE_HACK := true
-BOARD_EGL_WORKAROUND_BUG_10194508 := true
-COMMON_GLOBAL_CFLAGS += -DSURFACE_IS_BGR32
-MAX_EGL_CACHE_KEY_SIZE := 12*1024
-MAX_EGL_CACHE_SIZE := 2048*1024
-NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
-TARGET_SAMSUNG_GRALLOC_EXTERNAL_USECASES := true
-HWUI_COMPILE_FOR_PERF := true
-
-# NFC
-BOARD_NFC_HAL_SUFFIX := universal5410
-
-# Radio
-BOARD_PROVIDES_LIBRIL := true
-BOARD_MODEM_TYPE := xmm6360
-BOARD_RIL_CLASS := ../../../device/samsung/i9500/ril
-
-# Wifi
-BOARD_HAVE_SAMSUNG_WIFI          := true
-BOARD_WLAN_DEVICE                := bcmdhd
-WPA_SUPPLICANT_VERSION           := VER_0_8_X
-BOARD_WPA_SUPPLICANT_DRIVER      := NL80211
-BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
-BOARD_HOSTAPD_DRIVER             := NL80211
-BOARD_HOSTAPD_PRIVATE_LIB        := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
-WIFI_DRIVER_FW_PATH_PARAM        := "/sys/module/dhd/parameters/firmware_path"
-WIFI_DRIVER_FW_PATH_STA          := "/system/etc/wifi/bcmdhd_sta.bin"
-WIFI_DRIVER_FW_PATH_AP           := "/system/etc/wifi/bcmdhd_apsta.bin"
-WIFI_DRIVER_NVRAM_PATH_PARAM     := "/sys/module/dhd/parameters/nvram_path"
-WIFI_DRIVER_NVRAM_PATH           := "/system/etc/wifi/nvram_net.txt"
-WIFI_BAND                        := 802_11_ABG
-
-# Filesystems
+# FileSystem
 BOARD_BOOTIMAGE_PARTITION_SIZE := 8388608
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 8388608
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 2898264064
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 9604939776
 BOARD_FLASH_BLOCK_SIZE := 4096
 
+# Fonts
+EXTENDED_FONT_FOOTPRINT := true
+
+# Graphics
+BOARD_EGL_SYSTEMUI_PBSIZE_HACK := true
+BOARD_EGL_WORKAROUND_BUG_10194508 := true
+COMMON_GLOBAL_CFLAGS += -DSURFACE_IS_BGR32
+HWUI_COMPILE_FOR_PERF := true
+MAX_EGL_CACHE_KEY_SIZE := 12*1024
+MAX_EGL_CACHE_SIZE := 2048*1024
+NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
+USE_OPENGL_RENDERER := true
+
+# NFC
+BOARD_NFC_HAL_SUFFIX := universal5410
+
 # PowerHAL
 TARGET_POWERHAL_VARIANT := universal5410
 
+# Radio
+BOARD_PROVIDES_LIBRIL := true
+BOARD_MODEM_TYPE := xmm6360
+BOARD_RIL_CLASS := ../../../device/samsung/i9500/ril
+
 # Recovery
 BOARD_HAS_LARGE_FILESYSTEM := true
+BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
 COMMON_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD
 TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/etc/fstab.universal5410
 TARGET_RECOVERY_DEVICE_MODULES += init.recovery.usb.rc
-
-BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
-
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
-
-# TWRP Specific
-TW_THEME := portrait_hdpi
-
-RECOVERY_SDCARD_ON_DATA := true
-BOARD_HAS_NO_REAL_SDCARD := true
-
-TW_NO_REBOOT_BOOTLOADER := true
-TW_HAS_DOWNLOAD_MODE := true
-
-TW_BRIGHTNESS_PATH := "/sys/class/backlight/panel/brightness"
-TW_MAX_BRIGHTNESS := 255
-
-TW_INCLUDE_L_CRYPTO := true
-
-TW_EXCLUDE_DEFAULT_USB_INIT := true
-TW_NO_EXFAT_FUSE := true
-TW_NO_USB_STORAGE := true
-
-# Charging mode
-BOARD_CHARGER_ENABLE_SUSPEND := true
-BOARD_CHARGER_DISABLE_INIT_BLANK := true
-BOARD_CHARGER_SHOW_PERCENTAGE := true
-BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/power_supply/battery/batt_lp_charging
-RED_LED_PATH := "/sys/class/leds/led_r/brightness"
-GREEN_LED_PATH := "/sys/class/leds/led_g/brightness"
-BLUE_LED_PATH := "/sys/class/leds/led_b/brightness"
-BACKLIGHT_PATH := "/sys/class/backlight/panel/brightness"
-CHARGING_ENABLED_PATH := "/sys/class/power_supply/battery/batt_lp_charging"
 
 # SELinux
 #BOARD_SEPOLICY_DIRS += \
@@ -198,3 +155,31 @@ CHARGING_ENABLED_PATH := "/sys/class/power_supply/battery/batt_lp_charging"
 #    system_server.te \
 #    ueventd.te \
 #    wpa.te
+
+# TWRP Specific
+TW_THEME := portrait_hdpi
+RECOVERY_SDCARD_ON_DATA := true
+BOARD_HAS_NO_REAL_SDCARD := true
+TW_NO_REBOOT_BOOTLOADER := true
+TW_HAS_DOWNLOAD_MODE := true
+TW_BRIGHTNESS_PATH := "/sys/class/backlight/panel/brightness"
+TW_MAX_BRIGHTNESS := 255
+TW_INCLUDE_L_CRYPTO := true
+TW_EXCLUDE_DEFAULT_USB_INIT := true
+TW_NO_EXFAT_FUSE := true
+TW_NO_USB_STORAGE := true
+
+# WiFi
+BOARD_HAVE_SAMSUNG_WIFI          := true
+BOARD_WLAN_DEVICE                := bcmdhd
+WPA_SUPPLICANT_VERSION           := VER_0_8_X
+BOARD_WPA_SUPPLICANT_DRIVER      := NL80211
+BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
+BOARD_HOSTAPD_DRIVER             := NL80211
+BOARD_HOSTAPD_PRIVATE_LIB        := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
+WIFI_DRIVER_FW_PATH_PARAM        := "/sys/module/dhd/parameters/firmware_path"
+WIFI_DRIVER_FW_PATH_STA          := "/system/etc/wifi/bcmdhd_sta.bin"
+WIFI_DRIVER_FW_PATH_AP           := "/system/etc/wifi/bcmdhd_apsta.bin"
+WIFI_DRIVER_NVRAM_PATH_PARAM     := "/sys/module/dhd/parameters/nvram_path"
+WIFI_DRIVER_NVRAM_PATH           := "/system/etc/wifi/nvram_net.txt"
+WIFI_BAND                        := 802_11_ABG
