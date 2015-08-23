@@ -30,7 +30,7 @@
 #define INPUT_PREFIX "/sys/class/input/input"
 #define MAX_PATH_SIZE (strlen(INPUT_PREFIX) + 20)
 
-static const char *names[] = { "sec_touchscreen", "sec_touchkey" };
+static const char *names[] = { "sec_touchscreen", "sec_touchkey", "gpio-keys" };
 #define N_NAMES (sizeof(names) / sizeof(names[0]))
 static char *paths[N_NAMES];
 static int have_found_paths;
