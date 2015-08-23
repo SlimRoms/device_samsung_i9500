@@ -33,7 +33,7 @@ ro.ril.hsxpa=3
 ## NFC ##
 
 # Reduce Debug Level
-nfc.app_log_level=2
+nfc.app_log_level=0
 
 ## OTA Updates ##
 ro.ota.romname=GearCM121
