@@ -128,18 +128,6 @@ WIFI_DRIVER_NVRAM_PATH_PARAM     := "/sys/module/dhd/parameters/nvram_path"
 WIFI_DRIVER_NVRAM_PATH           := "/system/etc/wifi/nvram_net.txt"
 WIFI_BAND                        := 802_11_ABG
 
-CONFIG_EAP_TLS                   := true
-CONFIG_EAP_TTLS                  := true
-CONFIG_EAP_PEAP                  := true
-CONFIG_EAP_MD5                   := true
-CONFIG_EAP_MSCHAPV2              := true
-CONFIG_EAP_SIM                   := true
-CONFIG_EAP_LEAP                  := true
-CONFIG_EAP_PSK                   := true
-CONFIG_EAP_AKA                   := true
-CONFIG_EAP_PWD                   := true
-CONFIG_EAP_IKEV2                 := true
-
 # Filesystems
 BOARD_BOOTIMAGE_PARTITION_SIZE := 8388608
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 8388608
