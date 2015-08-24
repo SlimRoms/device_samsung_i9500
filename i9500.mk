@@ -63,6 +63,7 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/configs/audio/mixer_paths.xml:system/etc/mixer_paths.xml
 
 PRODUCT_PACKAGES += \
+	AudioWorkaround \
 	audio.a2dp.default \
 	audio.primary.universal5410 \
 	audio.r_submix.default \
