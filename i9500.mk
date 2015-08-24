@@ -150,6 +150,7 @@ PRODUCT_COPY_FILES += \
 
 # GPU
 PRODUCT_PACKAGES += \
+	pvrsrvctl \
 	libcorkscrew
 
 PRODUCT_PROPERTY_OVERRIDES += \
