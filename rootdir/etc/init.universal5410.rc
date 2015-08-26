@@ -476,7 +476,6 @@ on post-fs-data
 
 # Restore permissions for GPS/Wi-Fi
 	mkdir /data/system 0775 system system
-	rm /data/system/wpa_supplicant
 	
 # Create data/gps for GPS daemon
 	mkdir /data/system/gps 0771 gps system

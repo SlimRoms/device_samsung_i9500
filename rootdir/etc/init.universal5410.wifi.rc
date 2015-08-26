@@ -1,8 +1,6 @@
 # Wi-Fi init file
 
 on post-fs-data
-	rmdir /data/misc/wifi/wpa_supplicant
-
 # Create the directories used by the Wireless subsystem
 	mkdir /data/misc/dhcp 0775 dhcp dhcp
 	chown dhcp dhcp /data/misc/dhcp
