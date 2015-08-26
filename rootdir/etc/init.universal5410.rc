@@ -474,8 +474,9 @@ on post-fs-data
 	
 	mkdir /data/radio 0770 radio radio
 
-# Restore permissions for GPS
+# Restore permissions for GPS/Wi-Fi
 	mkdir /data/system 0775 system system
+	rm /data/system/wpa_supplicant
 	
 # Create data/gps for GPS daemon
 	mkdir /data/system/gps 0771 gps system
@@ -499,6 +500,14 @@ on post-fs-data
 	setprop vold.post_fs_data_done 1
 
 on boot
+# To prevent out of order acknowledgements from making
+# connection tracking to treat them as not belonging to
+# the connection they belong to.
+# Otherwise, a weird issue happens in which some long
+# connections on high-throughput links get dropped when
+# an ack packet comes out of order
+	write /proc/sys/net/netfilter/nf_conntrack_tcp_be_liberal 1
+
 # Set up KSM
 	write /sys/kernel/mm/ksm/deferred_timer 1
 	write /sys/kernel/mm/ksm/pages_to_scan 100
