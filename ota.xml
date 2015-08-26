@@ -13,12 +13,14 @@
     <!-- Enter <DirectUrl nil="true /> or <HttpUrl nil="true /> to indicate you won't be using a type of URL -->
     <!-- HTTP link will open a web page -->
     <!-- Direct Link overrides HTTP link -->
-  <!-- <DirectUrl>DIRECT LINKS HERE</DirectUrl> -->
-  <HttpUrl>https://www.androidfilehost.com/?fid=24052804347797675</HttpUrl>
+  <DirectUrl><![CDATA[http://delta.renderserver.net/Alberto96/GearCM/Opti_CM12.1/Builds/Stable/cm-12.1-20150820-UNOFFICIAL-GearCM-i9500.zip]]></DirectUrl>
+  <HttpUrl nil="true" />
+  <!-- <HttpUrl>HTTP URL HERE</HttpUrl> -->
   <!-- What version are you issuing? -->
   <Android>5.1.1</Android>
   <!-- Providing File Checking for direct downloads. You SHOULD offer this for your users whether using HTTP or Direct -->
   <!-- OPTIONAL: Enter <CheckMD5 nil="true" /> offer MD5 checking -->
+  <CheckMD5 nil="true" />
   <CheckMD5>aa99771b34480e2afbca104f7c7b5a02</CheckMD5>
   <!-- The filesize of your ROM -->
   <!-- Please enter this in BYTES only. Otherwise an incorrect value will be shown -->
