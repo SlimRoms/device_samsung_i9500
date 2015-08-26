@@ -77,9 +77,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	persist.incall.workaround=true
 
 # Bluetooth
-PRODUCT_PROPERTY_OVERRIDES += \
-	bluetooth.hfp.client=1
-
 PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/bluetooth/bcm4335_prepatch.hcd:system/vendor/firmware/bcm4335_prepatch.hcd
 
