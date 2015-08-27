@@ -212,10 +212,7 @@ struct stream_out {
      * silent when watching a 5.1 movie. */
     bool disabled;
 
-    struct resampler_itfe *resampler;
     struct echo_reference_itfe *echo_reference;
-    int16_t *buffer;
-    size_t buffer_frames;
 
     audio_channel_mask_t channel_mask;
     /* Array of supported channel mask configurations. +1 so that the last entry is always 0 */
@@ -754,7 +751,6 @@ static void adev_set_call_audio_path(struct audio_device *adev)
 static int start_output_stream(struct stream_out *out)
 {
     struct audio_device *adev = out->dev;
-    int type;
 
     ALOGV("%s: starting stream", __func__);
 
@@ -1218,12 +1214,12 @@ static char * out_get_parameters(const struct audio_stream *stream, const char *
         str_parms_add_str(reply, AUDIO_PARAMETER_STREAM_SUP_CHANNELS, value);
         str = str_parms_to_str(reply);
     } else {
-        str = strdup(keys);
+        str = keys;
     }
 
     str_parms_destroy(query);
     str_parms_destroy(reply);
-    return str;
+    return strdup(str);
 }
 
 static uint32_t out_get_latency(const struct audio_stream_out *stream)
@@ -1763,7 +1759,6 @@ static int adev_set_parameters(struct audio_hw_device *dev, const char *kvpairs)
 {
     struct audio_device *adev = (struct audio_device *)dev;
     struct str_parms *parms;
-    char *str;
     char value[32];
     int ret;
 
@@ -2095,8 +2090,6 @@ static int adev_open(const hw_module_t* module, const char* name,
     adev->hw_device.open_input_stream = adev_open_input_stream;
     adev->hw_device.close_input_stream = adev_close_input_stream;
     adev->hw_device.dump = adev_dump;
-    adev->hw_device.set_master_mute = NULL;
-    adev->hw_device.get_master_mute = NULL;
 
     adev->ar = audio_route_init(MIXER_CARD, NULL);
     adev->input_source = AUDIO_SOURCE_DEFAULT;
@@ -2137,7 +2130,7 @@ struct audio_module HAL_MODULE_INFO_SYM = {
         .module_api_version = AUDIO_MODULE_API_VERSION_0_1,
         .hal_api_version = HARDWARE_HAL_API_VERSION,
         .id = AUDIO_HARDWARE_MODULE_ID,
-        .name = "JA3G Audio HW Module",
+        .name = "JA3G Audio HW HAL",
         .author = "The CyanogenMod Project",
         .methods = &hal_module_methods,
     },
