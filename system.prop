@@ -7,6 +7,10 @@
 # Disable GL Library Preload
 ro.zygote.disable_gl_preload=1
 
+# Disable HDCP by default
+persist.hdmi.hdcp_enabled=false
+persist.sys.hdcp_checking=false
+
 ## NFC ##
 
 # Reduce Debug Level
