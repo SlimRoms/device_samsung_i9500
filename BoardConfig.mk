@@ -88,7 +88,6 @@ CHARGING_ENABLED_PATH := "/sys/class/power_supply/battery/batt_lp_charging"
 BOARD_HARDWARE_CLASS := device/samsung/i9500/cmhw
 
 # Exynos5410 Hardware
-BOARD_USE_ALP_AUDIO := true
 BOARD_USE_ANB_OUTBUF_SHARE := true
 BOARD_USE_DMA_BUF := true
 BOARD_USE_GSC_RGB_ENCODER := true
