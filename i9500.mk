@@ -82,8 +82,7 @@ PRODUCT_COPY_FILES += \
 
 # Camera
 PRODUCT_PACKAGES += \
-	camera.universal5410 \
-	libhwjpeg
+	camera.universal5410
 
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 	camera2.portability.force_api=1
@@ -247,15 +246,6 @@ PRODUCT_COPY_FILES += \
 
 # OMX
 PRODUCT_PACKAGES += \
-	libExynosOMX_Core \
-	libOMX.Exynos.AVC.Decoder \
-	libOMX.Exynos.AVC.Encoder \
-	libOMX.Exynos.MP3.Decoder \
-	libOMX.Exynos.MPEG2.Decoder \
-	libOMX.Exynos.MPEG4.Decoder \
-	libOMX.Exynos.MPEG4.Encoder \
-	libOMX.Exynos.VP8.Decoder \
-	libOMX.Exynos.WMV.Decoder \
 	libstagefrighthw
 
 # Power
