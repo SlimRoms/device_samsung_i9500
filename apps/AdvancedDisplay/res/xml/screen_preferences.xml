@@ -21,7 +21,7 @@
                 android:summary="@string/mdnie_mode_summary_head"
                 android:entries="@array/mdnie_mode_entries"
                 android:entryValues="@array/mdnie_mode_entries_values"
-                android:defaultValue="0" />
+                android:defaultValue="4" />
 
     </PreferenceCategory>
 
