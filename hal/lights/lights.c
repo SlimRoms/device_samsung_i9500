@@ -210,7 +210,7 @@ static int set_light_leds(struct light_state_t const *state)
     } else {
         if (is_lit(&g_BatteryStore) && !is_lit(&g_NotificationStore)) {
             activeState = &g_BatteryStore;
-            colorRGB = get_dimmed_color(activeState, 20);
+            colorRGB = get_dimmed_color(activeState, 80);
         } else {
             activeState = &g_NotificationStore;
             colorRGB = get_dimmed_color(activeState, 200);
