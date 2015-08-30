@@ -317,6 +317,7 @@ PRODUCT_PACKAGES += \
 	dhcpcd.conf \
 	hostapd \
 	libnetcmdiface \
+	macloader \
 	wpa_supplicant \
 	wpa_supplicant.conf
 
