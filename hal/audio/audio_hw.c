@@ -705,10 +705,10 @@ static void stop_voice_call(struct audio_device *adev)
     }
 
     /* end SCO stream if needed */
-    if (adev->out_device & AUDIO_DEVICE_OUT_ALL_SCO)
+    if (adev->out_device & AUDIO_DEVICE_OUT_ALL_SCO) {
         stop_bt_sco(adev);
+	}
 
-    }
     ALOGV("%s: Successfully closed %d active PCMs", __func__, status);
 }
 
