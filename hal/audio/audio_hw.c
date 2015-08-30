@@ -112,7 +112,7 @@ struct pcm_config pcm_config_in_low_latency = {
 
 struct pcm_config pcm_config_sco = {
     .channels = 1,
-    .rate = 16000,
+    .rate = 8000,
     .period_size = 128,
     .period_count = 2,
     .format = PCM_FORMAT_S16_LE,
@@ -128,7 +128,7 @@ struct pcm_config pcm_config_sco_wide = {
 
 struct pcm_config pcm_config_voice = {
     .channels = 2,
-    .rate = 16000,
+    .rate = 8000,
     .period_size = 1024,
     .period_count = 2,
     .format = PCM_FORMAT_S16_LE,
@@ -264,6 +264,12 @@ const struct string_to_enum out_channels_name_to_enum_table[] = {
     STRING_TO_ENUM(AUDIO_CHANNEL_OUT_5POINT1),
     STRING_TO_ENUM(AUDIO_CHANNEL_OUT_7POINT1),
 };
+
+/* Wideband call audio check */
+static bool wideband_disabled()
+{
+    return property_get_bool("audio_hal.disable_wideband", false);
+}
 
 /* Routing functions */
 
@@ -554,7 +560,10 @@ static void start_bt_sco(struct audio_device *adev)
 
     ALOGV("%s: Opening SCO PCMs", __func__);
 
-    sco_config = &pcm_config_sco;
+    if (!wideband_disabled())
+        sco_config = &pcm_config_sco_wide;
+    else
+        sco_config = &pcm_config_sco;
 
     adev->pcm_sco_rx = pcm_open(PCM_CARD,
                                 PCM_DEVICE_SCO,
@@ -625,7 +634,10 @@ static int start_voice_call(struct audio_device *adev)
 
     ALOGV("%s: Opening voice PCMs", __func__);
 
-    voice_config = &pcm_config_voice;
+    if (!wideband_disabled())
+        voice_config = &pcm_config_voice_wide;
+    else
+        voice_config = &pcm_config_voice;
 
     /* Open modem PCM channels */
     adev->pcm_voice_rx = pcm_open(PCM_CARD,
