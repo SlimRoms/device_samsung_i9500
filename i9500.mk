@@ -14,6 +14,8 @@
 # limitations under the License.
 #
 
+USE_CAMERA_STUB := true
+
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
 LOCAL_PATH := device/samsung/i9500
@@ -81,9 +83,6 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/bluetooth/bcm4335_prepatch.hcd:system/vendor/firmware/bcm4335_prepatch.hcd
 
 # Camera
-PRODUCT_PACKAGES += \
-	camera.universal5410
-
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 	camera2.portability.force_api=1
 
