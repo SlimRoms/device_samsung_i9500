@@ -46,7 +46,7 @@ TARGET_CPU_VARIANT := cortex-a15
 
 # Compiler Tweaks
 BOARD_GLOBAL_CFLAGS += -mtune=cortex-a15.cortex-a7
-BOARD_GLOBAL_CPPFLAGS += -mtune=cortex-a15.cortex-a7
+#BOARD_GLOBAL_CPPFLAGS += -mtune=cortex-a15.cortex-a7
 
 # Kernel
 BOARD_KERNEL_BASE := 0x10000000
