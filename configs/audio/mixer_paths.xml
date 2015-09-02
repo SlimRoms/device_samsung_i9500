@@ -1550,8 +1550,8 @@
     <path name="communication-headset-mic">
       <path name="device-headset-in" />
 
-      <path name="scenario-headset-in-default" />
-      <path name="volume-headset-in-default" />
+      <path name="scenario-headset-in-incall-wb" />
+      <path name="volume-headset-in-incall" />
 
       <path name="channel-left" />
     </path>
