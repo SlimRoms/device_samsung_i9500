@@ -1,4 +1,4 @@
-#!/sbin/busybox sh
+#!/sbin/busybox_synapse sh
 
 if [ ! -f "/system/etc/gearcm" ]
 then
