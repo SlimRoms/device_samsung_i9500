@@ -1382,7 +1382,7 @@
       <path name="verb-incall" />
 
       <path name="scenario-speaker-default" />
-      <path name="volume-speaker-default" />
+      <path name="volume-speaker-incall" />
     </path>
 
     <path name="communication-earpiece">
@@ -1390,7 +1390,7 @@
       <path name="verb-incall" />
 
       <path name="scenario-earpiece-loopback" />
-      <path name="volume-earpiece-default" />
+      <path name="volume-earpiece-incall" />
     </path>
 
     <path name="communication-headphones">
@@ -1398,7 +1398,7 @@
       <path name="verb-incall" />
 
       <path name="scenario-headphones-default" />
-      <path name="volume-headphones-default" />
+      <path name="volume-headphones-incall" />
     </path>
 
     <path name="speaker-and-headphones">
