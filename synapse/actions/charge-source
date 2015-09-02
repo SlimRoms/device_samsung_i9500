@@ -1,4 +1,4 @@
-BB=/sbin/busybox;
+BB=/sbin/busybox_synapse;
 
 case $((`cat /sys/devices/platform/sec-battery/power_supply/battery/batt_charging_source`)) in
 

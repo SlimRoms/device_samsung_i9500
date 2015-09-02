@@ -1,6 +1,6 @@
-#!/sbin/busybox sh
+#!/sbin/busybox_synapse sh
 
-BB=/sbin/busybox;
+BB=/sbin/busybox_synapse;
 
 bool() {
   [ `$BB cat $1` == "Y" ] && $BB echo "1";

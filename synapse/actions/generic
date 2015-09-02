@@ -1,4 +1,4 @@
-BB=/sbin/busybox;
+BB=/sbin/busybox_synapse;
 
 if [ -f $1 ]; then
 	if [[ ! -z "$2" ]]; then

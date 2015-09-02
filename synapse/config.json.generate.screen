@@ -1,6 +1,6 @@
-#!/sbin/busybox sh
+#!/sbin/busybox_synapse sh
 
-BB=/sbin/busybox;
+BB=/sbin/busybox_synapse;
 
 readColour() {
 	P=/sys/class/misc/mdnie/hook_control/
