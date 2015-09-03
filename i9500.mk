@@ -153,7 +153,8 @@ PRODUCT_PACKAGES += \
 	libcorkscrew
 
 PRODUCT_PROPERTY_OVERRIDES += \
-	ro.opengles.version=131072
+	ro.opengles.version=131072 \
+	ro.hwui.disable_scissor_opt=true
 
 # Hardware Manager
 PRODUCT_PACKAGES += \
