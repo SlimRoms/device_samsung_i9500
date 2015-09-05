@@ -26,7 +26,7 @@ cat << CTAG
 					}},
 						{ SCheckBox:{
 							label:"Software CRC control",
-							description:"Enabling software CRCs on the data blocks can be a significant (30%) performance cost. So we allow it to be disabled.",
+							description:"Enabling software CRCs on the data blocks can be a significant (30%) performance cost. So we allow it to be disabled. Disable at your own risk, could introduce random reboots.",
 							default:'$CRCS',
 							action:"boolean /sys/module/mmc_core/parameters/use_spi_crc"
 						}},'

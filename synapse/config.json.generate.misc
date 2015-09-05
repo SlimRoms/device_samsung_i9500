@@ -128,11 +128,11 @@ cat << CTAG
 			`if [ -f "/sys/module/wakeup/parameters/enable_l2_hsic_ws" ]; then
 			L2HSIC=\`bool /sys/module/wakeup/parameters/enable_l2_hsic_ws\`
 				$BB echo '{ SPane:{
-					title:"Allow l2_hsic wakelock"
+					title:"RIL Wakelock aka l2_hsic"
 				}},
 					{ SCheckBox:{
 						label:"Enable",
-						description:"Disable to prevent l2_hsic wakelock caused by our Modem",
+						description:"Disable to fix battery drain caused by l2_hsic wakelocks. Disable at your own risk, could introduce random reboots.",
 						default:'$L2HSIC',
 						action:"boolean /sys/module/wakeup/parameters/enable_l2_hsic_ws"
 					}},'
