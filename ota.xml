@@ -40,7 +40,7 @@
  * Updated CM Sources
  * Fixed random reboot issues, be sure to wipe "Synapse" app data.
  * GearRecovery 20150906 has been released
- * KERNEL: enabled l2_hsic & Software CRC by default
+ * KERNEL: enabled l2_hsic and Software CRC by default
  * ALERT: Battery LED sometimes flashes without any valid reason, please ignore this bug until it gets fixed. (CM Sources related)
 </Changelog>
 </ROM>
