@@ -12,6 +12,29 @@ cat << CTAG
     name:Screen,
     elements:[
 	{ SPane:{
+		title:"Screen Resolution"
+	}},
+		{ SDescription:{
+			description:"Use these buttons to switch between different screen resolutions. Device will automatically reboot.
+			This Setting while stick after reboot, so if you want to restore Stock Full HD res. you'll need to press Full HD Button."
+		}},
+		{ SButton:{
+			label:"qHD",
+			action:"devtools qhdres"
+		}},
+		{ SButton:{
+			label:"HD",
+			action:"devtools hdres"
+		}},
+		{ SButton:{
+			label:"Full HD",
+			action:"devtools fullhdres"
+		}},
+		{ SButton:{
+			label:"Quad HD",
+			action:"devtools quadhdres"
+		}},
+	{ SPane:{
 		title:"mDNIe global controls",
 		description:"mobile Digital Natural Image engine control. Samsungs hardware image post-processor controls virtually any image manipulation. All control master switches, if left as delta controls, will negate the sequence setting if checked. Master sequence has SCR and CS enabled by default."
         }},
