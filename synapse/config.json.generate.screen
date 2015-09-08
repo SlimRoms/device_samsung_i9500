@@ -15,23 +15,22 @@ cat << CTAG
 		title:"Screen Resolution"
 	}},
 		{ SDescription:{
-			description:"Use these buttons to switch between different screen resolutions. Device will automatically reboot.
-			This Setting while stick after reboot, so if you want to restore Stock Full HD res. you'll need to press Full HD Button."
+			description:"Use these buttons to switch between different screen resolutions. Device will automatically reboot. This Setting will stick after reboot, so if you want to restore Stock Full HD resolution you'll need to press Full HD Button. HD Resolution is the best compromise between graphics quality, performance and battery life - Recommended -. Use this feature if you need to play some heavy games that lags on Full HD resolution or if you want to save battery on normal usage. Quad HD option has been added just if you want maximum screen quality, but remember that performance and battery life will be lower. qHD gives you maximum performance, worst - but not so bad - graphics quality and maximum battery life."
 		}},
 		{ SButton:{
-			label:"qHD",
+			label:"qHD 960x540",
 			action:"devtools qhdres"
 		}},
 		{ SButton:{
-			label:"HD",
+			label:"HD 1280x720",
 			action:"devtools hdres"
 		}},
 		{ SButton:{
-			label:"Full HD",
+			label:"Full HD 1920x1080",
 			action:"devtools fullhdres"
 		}},
 		{ SButton:{
-			label:"Quad HD",
+			label:"Quad HD 2560x1440",
 			action:"devtools quadhdres"
 		}},
 	{ SPane:{
