@@ -149,12 +149,12 @@ PRODUCT_COPY_FILES += \
 
 # GPU
 PRODUCT_PACKAGES += \
-	pvrsrvctl \
-	libcorkscrew
+	libcorkscrew \
+	pvrsrvctl
 
 PRODUCT_PROPERTY_OVERRIDES += \
-	ro.opengles.version=131072 \
-	ro.hwui.disable_scissor_opt=true
+	ro.hwui.disable_scissor_opt=true \
+	ro.opengles.version=131072
 
 # Hardware Manager
 PRODUCT_PACKAGES += \
@@ -235,19 +235,19 @@ PRODUCT_PACKAGES += \
 
 # NFC
 PRODUCT_PACKAGES += \
+	NfcNci \
+	Tag \
 	com.android.nfc_extras \
 	libnfc-nci \
 	libnfc_nci_jni \
-	nfc_nci.bcm2079x.universal5410 \
-	NfcNci \
-	Tag
+	nfc_nci.bcm2079x.universal5410
 
 # NFCEE access control + configuration
 NFCEE_ACCESS_PATH := $(LOCAL_PATH)/configs/nfc/nfcee_access.xml
 
 PRODUCT_COPY_FILES += \
-	$(NFCEE_ACCESS_PATH):system/etc/nfcee_access.xml \
-	$(LOCAL_PATH)/configs/nfc/libnfc-brcm.conf:system/etc/libnfc-brcm.conf
+	$(LOCAL_PATH)/configs/nfc/libnfc-brcm.conf:system/etc/libnfc-brcm.conf \
+	$(NFCEE_ACCESS_PATH):system/etc/nfcee_access.xml
 
 # OMX
 PRODUCT_PACKAGES += \
@@ -267,10 +267,10 @@ PRODUCT_PACKAGES += \
 	SamsungServiceMode
 
 PRODUCT_PROPERTY_OVERRIDES += \
-	ro.telephony.call_ring.multiple=false \
+	mobiledata.interfaces=pdp0,gprs,ppp0,rmnet0,rmnet1 \
 	ro.telephony.call_ring.delay=3000 \
-	ro.telephony.ril_class=ExynosXMM6360RIL \
-	mobiledata.interfaces=pdp0,gprs,ppp0,rmnet0,rmnet1
+	ro.telephony.call_ring.multiple=false \
+	ro.telephony.ril_class=ExynosXMM6360RIL
 
 # SELinux
 ADDITIONAL_DEFAULT_PROPERTIES += \
@@ -283,12 +283,12 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PACKAGES += \
 	.installed_su_daemon \
 	99SuperSUDaemon \
+	SuperSU \
 	daemonsu \
 	install-recovery \
 	libsupol.so \
 	su \
 	sugote \
-	SuperSU \
 	supolicy
 
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -327,8 +327,8 @@ PRODUCT_PACKAGES += \
 	wpa_supplicant.conf
 
 PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/configs/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
-	$(LOCAL_PATH)/configs/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf
+	$(LOCAL_PATH)/configs/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
+	$(LOCAL_PATH)/configs/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf
 
 PRODUCT_PROPERTY_OVERRIDES += \
 	wifi.interface=wlan0
