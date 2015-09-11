@@ -534,7 +534,6 @@ on boot
 	rm /data/sv_cno.info
 
 # GearCM Tweaks (from Perseus)
-	write /sys/devices/system/cpu/sched_mc_power_savings 2
 	write /proc/sys/kernel/randomize_va_space 0
 	write /sys/class/devfreq/exynos5-busfreq-mif/polling_interval 50
 	write /sys/class/devfreq/exynos5-busfreq-mif/time_in_state/upthreshold 70
@@ -555,15 +554,6 @@ on boot
 # Reset mDNIe mode & scenario
 	write /sys/class/mdnie/mdnie/scenario 0
 	write /sys/class/mdnie/mdnie/mode 0
-
-# Configure Interactive CPU Governor
-	write /sys/devices/system/cpu/cpufreq/interactive/above_hispeed_delay "20000 1000000:40000 1500000:20000"
-	write /sys/devices/system/cpu/cpufreq/interactive/check_fast_target_loads "50 1000000:66"
-	write /sys/devices/system/cpu/cpufreq/interactive/go_hispeed_load 9999999
-	write /sys/devices/system/cpu/cpufreq/interactive/io_is_busy 0
-	write /sys/devices/system/cpu/cpufreq/interactive/min_sample_time 40000
-	write /sys/devices/system/cpu/cpufreq/interactive/sampling_down_factor 100000
-	write /sys/devices/system/cpu/cpufreq/interactive/target_loads 85
 
 # Define default initial receive window size in segments.
 	setprop net.tcp.default_init_rwnd 60
