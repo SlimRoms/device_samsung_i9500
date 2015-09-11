@@ -195,6 +195,10 @@ PRODUCT_PACKAGES += \
 	hwcomposer.exynos5 \
 	libion
 
+# IO Scheduler
+PRODUCT_PROPERTY_OVERRIDES += \
+	sys.io.scheduler=bfq
+
 # IR
 PRODUCT_PACKAGES += \
 	consumerir.universal5410
