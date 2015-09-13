@@ -298,6 +298,8 @@
         <item>255</item>
     </integer-array>
 
+    <integer name="config_keyboardBrightnessSettingDefault">255</integer>
+
     <!-- Boolean indicating if current platform supports BLE peripheral mode -->
     <bool name="config_bluetooth_le_peripheral_mode_supported">true</bool>
 
