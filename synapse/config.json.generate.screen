@@ -15,7 +15,7 @@ cat << CTAG
 		title:"Screen Resolution"
 	}},
 		{ SDescription:{
-			description:"Use these buttons to switch between different screen resolutions. Device will automatically reboot. This Setting will stick after reboot, so if you want to restore Stock Full HD resolution you'll need to press Full HD Button. HD Resolution is the best compromise between graphics quality, performance and battery life - Recommended -. Use this feature if you need to play some heavy games that lags on Full HD resolution or if you want to save battery on normal usage. Quad HD option has been added just if you want maximum screen quality, but remember that performance and battery life will be lower. qHD gives you maximum performance, worst - but not so bad - graphics quality and maximum battery life."
+			description:"Use these buttons to switch between different screen resolutions. Device will automatically reboot and this Setting is permanent, so if you want to restore Stock Full HD resolution you'll need to press Full HD Button. HD is the best compromise between graphics quality, performance and battery life - Recommended -. Use this feature if you need to play some heavy games that lag on Full HD resolution or if you want to save battery on normal usage. Quad HD option has been added just if you want maximum screen quality, but remember that performance and battery life will be lower. qHD gives you maximum performance, worst - but not so bad - graphics quality and maximum battery life."
 		}},
 		{ SButton:{
 			label:"qHD 960x540",
@@ -37,6 +37,20 @@ cat << CTAG
 		title:"mDNIe global controls",
 		description:"mobile Digital Natural Image engine control. Samsungs hardware image post-processor controls virtually any image manipulation. All control master switches, if left as delta controls, will negate the sequence setting if checked. Master sequence has SCR and CS enabled by default."
         }},
+	{ SSeekBar:{
+		title:"Mode",
+		description:"0 = Dynamic, 1 = Standard, 2 = Natural, 3 = Movie, 4 = Auto",
+		max:4,
+		default:0,
+		action:"generic /sys/class/mdnie/mdnie/mode"
+	}},
+	{ SSeekBar:{
+		title:"Scenario",
+		description:"0 = UI, 1 = Video, 2 = Video Warm, 3 = Video Cold, 4 = Camera, 5 = Navigation, 6 = Gallery, 7 = VT, 8 = Browser, 9 = E-book, 10 = E-Mail",
+		max:10,
+		default:0,
+		action:"generic /sys/class/mdnie/mdnie/scenario"
+	}},
 	{ SCheckBox:{
 		description:"Register intercept acts like a hook and will enable catching scenario settings and modifying them through delta controls. If a scenario does not have a setting (register) in its base sequence, then it cannot be modified by the hook.",
 		label:"Enable register hook",
@@ -49,7 +63,7 @@ cat << CTAG
 	}},
 	{ SPane:{
 		title:"Smearing fix",
-		description:"i950X devices have an issue with the AMOLED controller in which, if individial pixels get power-gated for true black, they occur a latency delay when getting powered on again, resulting in a visible smearing effect. The following controls provide a method of applying a slight grey on the black channel to avoid this problem."
+		description:"i950X devices have an issue with the AMOLED controller in which, if individual pixels get power-gated for true black, they occur a latency delay when getting powered on again, resulting in a visible smearing effect. The following controls provide a method of applying a slight grey on the black channel to avoid this problem."
         }},
 	{ SSeekBar:{
 		title:"Greyscale addend",
@@ -69,7 +83,7 @@ cat << CTAG
 	}},
 	{ SSeekBar:{
 		title:"Takeover point",
-		description:"The stock backlight driver ignores brightness values below 10 (0-255) and values below that point do not have any effect on brightness. The takeover point is the point in the brightness curve where the digital brightness reduction takes effect. The brightness reduction is weighted linearly from full configured value to zero on the range of zero brigtness to the takeover point. If the takeover point is beyond 10, then both hardware and digital brightness reduction can take place. This can help with having a less abrupt brightness curve caused by the digital reduction.",
+		description:"The stock backlight driver ignores brightness values below 10 (0-255) and values below that point do not have any effect on brightness. The takeover point is the point in the brightness curve where the digital brightness reduction takes effect. The brightness reduction is weighted linearly from full configured value to zero on the range of zero brightness to the takeover point. If the takeover point is beyond 10, then both hardware and digital brightness reduction can take place. This can help with having a less abrupt brightness curve caused by the digital reduction.",
 		max:64,
 		default:`cat /sys/class/misc/mdnie/brightness_takeover_point`,
 		action:"generic /sys/class/misc/mdnie/brightness_takeover_point"

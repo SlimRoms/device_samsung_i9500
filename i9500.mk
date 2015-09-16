@@ -156,10 +156,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	ro.hwui.disable_scissor_opt=true \
 	ro.opengles.version=131072
 
-# Hardware Manager
-PRODUCT_PACKAGES += \
-	AdvancedDisplay
-
 # Hardware Permissions
 PRODUCT_COPY_FILES += \
 	external/ant-wireless/antradio-library/com.dsi.ant.antradio_library.xml:system/etc/permissions/com.dsi.ant.antradio_library.xml \
@@ -240,12 +236,9 @@ PRODUCT_PACKAGES += \
 	libnfc_nci_jni \
 	nfc_nci.bcm2079x.universal5410
 
-# NFCEE access control + configuration
-NFCEE_ACCESS_PATH := $(LOCAL_PATH)/configs/nfc/nfcee_access.xml
-
 PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/configs/nfc/libnfc-brcm.conf:system/etc/libnfc-brcm.conf \
-	$(NFCEE_ACCESS_PATH):system/etc/nfcee_access.xml
+	$(LOCAL_PATH)/configs/nfc/nfcee_access.xml:system/etc/nfcee_access.xml
 
 # OMX
 PRODUCT_PACKAGES += \
