@@ -2136,7 +2136,7 @@ static int adev_open(const hw_module_t* module, const char* name,
 
     char value[PROPERTY_VALUE_MAX];
     if (property_get("audio_hal.period_size", value, NULL) > 0) {
-        pcm_config.period_size = atoi(value);
+        pcm_config_fast.period_size = atoi(value);
         pcm_config_in.period_size = pcm_config.period_size;
     }
     if (property_get("audio_hal.in_period_size", value, NULL) > 0)
