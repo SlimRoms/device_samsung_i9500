@@ -183,6 +183,7 @@ struct audio_device {
     bool in_call;
     bool tty_mode;
     bool bluetooth_nrec;
+    bool wb_amr;
 
     int es325_preset;
     int es325_new_mode;
