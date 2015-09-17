@@ -126,7 +126,7 @@ BOARD_NFC_HAL_SUFFIX := universal5410
 TARGET_POWERHAL_VARIANT := universal5410
 
 # Radio
-BOARD_MODEM_TYPE := xmm6360
+BOARD_MODEM_TYPE := xmm7260
 BOARD_PROVIDES_LIBRIL := true
 BOARD_RIL_CLASS := ../../../device/samsung/i9500/ril
 
