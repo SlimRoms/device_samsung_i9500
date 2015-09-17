@@ -1159,9 +1159,6 @@ static int out_set_parameters(struct audio_stream *stream, const char *kvpairs)
     lock_all_outputs(adev);
     if (ret >= 0) {
         val = atoi(value);
-
-        lock_all_outputs(adev);
-
         if ((out->device != val) && (val != 0)) {
 
 			/* Force standby if moving to/from SPDIF or if the output
