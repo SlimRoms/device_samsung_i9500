@@ -185,12 +185,6 @@ struct audio_device {
     bool bluetooth_nrec;
     bool wb_amr;
 
-    bool use_dyn_wb_amr = property_get_bool("persist.call.dynamic.wb_amr", false);
-
-    if (!use_dyn_wb_amr) {
-        bool force_wb_amr = true;
-    }
-
     int es325_preset;
     int es325_new_mode;
     int es325_mode;
@@ -565,10 +559,18 @@ static void start_bt_sco(struct audio_device *adev)
 
     ALOGV("%s: Opening SCO PCMs", __func__);
 
-    if (adev->wb_amr || force_wb_amr) {
+    bool use_dyn_wb_amr = property_get_bool("persist.call.dynamic.wb_amr", false);
+
+    if (!use_dyn_wb_amr) {
         sco_config = &pcm_config_sco_wide;
+        ALOGV("%s: Forced In-Call Wideband AMR", __func__);
     } else {
-        sco_config = &pcm_config_sco;
+		ALOGV("%s: Using Dynamic Wideband AMR", __func__);
+        if (adev->wb_amr) {
+            sco_config = &pcm_config_sco_wide;
+        } else {
+            sco_config = &pcm_config_sco;
+        }
     }
 
     adev->pcm_sco_rx = pcm_open(PCM_CARD,
@@ -640,10 +642,18 @@ static int start_voice_call(struct audio_device *adev)
 
     ALOGV("%s: Opening voice PCMs", __func__);
 
-    if (adev->wb_amr || force_wb_amr) {
-        voice_config = &pcm_config_voice_wide;
+    bool use_dyn_wb_amr = property_get_bool("persist.call.dynamic.wb_amr", false);
+
+    if (!use_dyn_wb_amr) {
+		voice_config = &pcm_config_voice_wide;
+        ALOGV("%s: Forced In-Call Wideband AMR", __func__);
     } else {
-        voice_config = &pcm_config_voice;
+        ALOGV("%s: Using Dynamic Wideband AMR", __func__);
+        if (adev->wb_amr) {
+            voice_config = &pcm_config_voice_wide;
+        } else {
+            voice_config = &pcm_config_voice;
+        }
     }
 
     /* Open modem PCM channels */
@@ -724,6 +734,8 @@ static void adev_set_wb_amr_callback(void *data, int enable)
     struct audio_device *adev = (struct audio_device *)data;
 
     pthread_mutex_lock(&adev->lock);
+
+    bool use_dyn_wb_amr = property_get_bool("persist.call.dynamic.wb_amr", false);
 
     if (adev->wb_amr != enable) {
         adev->wb_amr = enable;
