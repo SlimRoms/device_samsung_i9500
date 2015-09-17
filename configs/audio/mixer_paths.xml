@@ -874,7 +874,7 @@
 
     <!-- ### Volume ### -->
 
-    <path name="volume-sco-carkit-out-default">
+    <path name="volume-sco-carkit-default">
       <ctl name="AIF3TX1 Input 1 Volume" value="32" />
       <ctl name="AIF3TX1 Input 2 Volume" value="32" />
       <ctl name="AIF3TX2 Input 1 Volume" value="32" />
@@ -1339,6 +1339,34 @@
       <path name="volume-headphones-incall" />
     </path>
 
+    <path name="voice-bt-sco">
+      <path name="device-sco" />
+
+      <path name="scenario-sco-incall-nb" />
+      <path name="volume-sco-incall" />
+    </path>
+
+    <path name="voice-bt-sco-wb">
+      <path name="device-sco" />
+
+      <path name="scenario-sco-incall-wb" />
+      <path name="volume-sco-incall" />
+    </path>
+
+    <path name="voice-bt-sco-headset-out">
+      <path name="device-sco-headset-out" />
+
+      <path name="scenario-sco-headset-out-incall-nb" />
+      <path name="volume-sco-headset-out-default" />
+    </path>
+
+    <path name="voice-bt-sco-headset-out-wb">
+      <path name="device-sco-headset-out" />
+
+      <path name="scenario-sco-headset-out-incall-wb" />
+      <path name="volume-sco-headset-out-default" />
+    </path>
+
     <path name="media-earpiece">
       <path name="device-earpiece" />
       <path name="verb-default" />
@@ -1363,6 +1391,20 @@
       <path name="volume-headphones-default" />
     </path>
 
+    <path name="media-bt-sco">
+      <path name="device-sco" />
+
+      <path name="scenario-sco-default" />
+      <path name="volume-sco-default" />
+    </path>
+
+    <path name="media-bt-sco-headset-out">
+      <path name="device-sco-headset-out" />
+
+      <path name="scenario-sco-headset-out-default" />
+      <path name="volume-sco-headset-out-default" />
+    </path>
+
     <path name="voice-rec-speaker">
       <path name="device-speaker" />
 
@@ -1382,7 +1424,7 @@
       <path name="verb-incall" />
 
       <path name="scenario-speaker-default" />
-      <path name="volume-speaker-incall" />
+      <path name="volume-speaker-default" />
     </path>
 
     <path name="communication-earpiece">
@@ -1390,7 +1432,7 @@
       <path name="verb-incall" />
 
       <path name="scenario-earpiece-loopback" />
-      <path name="volume-earpiece-incall" />
+      <path name="volume-earpiece-default" />
     </path>
 
     <path name="communication-headphones">
@@ -1398,7 +1440,7 @@
       <path name="verb-incall" />
 
       <path name="scenario-headphones-default" />
-      <path name="volume-headphones-incall" />
+      <path name="volume-headphones-default" />
     </path>
 
     <path name="speaker-and-headphones">
@@ -1414,18 +1456,11 @@
       <path name="volume-headphones-default" />
     </path>
 
-    <path name="bt-sco-headset">
-      <path name="device-sco-headset-out" />
+    <path name="bt-sco-carkit">
+      <path name="device-sco-carkit" />
 
-      <path name="scenario-sco-headset-out-default" />
-      <path name="volume-sco-headset-out-default" />
-    </path>
-
-    <path name="bt-sco-headset-wb">
-      <path name="device-sco-headset-out" />
-
-      <path name="scenario-sco-headset-out-incall-wb" />
-      <path name="volume-sco-headset-out-default" />
+      <path name="scenario-sco-carkit-default" />
+      <path name="volume-sco-carkit-default" />
     </path>
 
     <!-- ### Capture ### -->
@@ -1502,7 +1537,23 @@
       <path name="channel-left" />
     </path>
 
-    <path name="media-second-mic">
+    <path name="voice-bt-sco-headset-mic">
+      <path name="device-sco-headset-in" />
+
+      <path name="scenario-sco-headset-in-incall-nb" />
+
+      <path name="channel-none" />
+    </path>
+
+    <path name="voice-bt-sco-headset-mic-wb">
+      <path name="device-sco-headset-in" />
+
+      <path name="scenario-sco-headset-in-incall-wb" />
+
+      <path name="channel-none" />
+    </path>
+
+    <path name="media-main-mic">
       <path name="device-builtin-mic" />
 
       <path name="scenario-builtin-mic-default" />
@@ -1511,7 +1562,7 @@
       <path name="channel-left" />
     </path>
 
-    <path name="media-main-mic">
+    <path name="media-second-mic">
       <path name="device-back-mic" />
 
       <path name="scenario-back-mic-default" />
@@ -1529,11 +1580,19 @@
       <path name="channel-left" />
     </path>
 
+    <path name="media-bt-sco-headset-mic">
+      <path name="device-sco-headset-in" />
+
+      <path name="scenario-sco-headset-in-default" />
+
+      <path name="channel-none" />
+    </path>
+
     <path name="communication-earpiece-main-mic">
       <path name="device-builtin-mic" />
 
       <path name="scenario-builtin-mic-earpiece-communication" />
-      <path name="volume-builtin-mic-incall" />
+      <path name="volume-builtin-mic-default" />
 
       <path name="channel-left" />
     </path>
@@ -1542,7 +1601,7 @@
       <path name="device-builtin-mic" />
 
       <path name="scenario-builtin-mic-speaker-communication" />
-      <path name="volume-builtin-mic-incall" />
+      <path name="volume-builtin-mic-default" />
 
       <path name="channel-left" />
     </path>
@@ -1551,18 +1610,9 @@
       <path name="device-headset-in" />
 
       <path name="scenario-headset-in-default" />
-      <path name="volume-headset-in-incall" />
+      <path name="volume-headset-in-default" />
 
       <path name="channel-left" />
-    </path>
-
-    <!-- TODO Add voice-bt-sco-mic and media-bt-sco-mic -->
-    <path name="bt-sco-mic">
-      <path name="device-sco-headset-in" />
-
-      <path name="scenario-sco-headset-in-default" />
-
-      <path name="channel-none" />
     </path>
 
     <path name="none">

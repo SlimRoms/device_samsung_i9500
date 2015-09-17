@@ -1,7 +1,6 @@
 /*
- * Copyright (C) 2015 The Android Open Source Project
- * Copyright (C) 2015 Wolfson Microelectronics plc
- * Copyright (C) 2015 The CyanogenMod Project
+ * Copyright (C) 2012 The Android Open Source Project
+ * Copyright (C) 2013-2015 The CyanogenMod Project
  *               Daniel Hillenbrand <codeworkx@cyanogenmod.com>
  *               Guillaume "XpLoDWilD" Lesniak <xplodgui@gmail.com>
  *               Andreas Schneider <asn@cryptomilk.org>
@@ -78,7 +77,7 @@
 
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof((a)[0]))
 
-struct pcm_config pcm_config = {
+struct pcm_config pcm_config_fast = {
     .channels = 2,
     .rate = 48000,
     .period_size = 256,
@@ -265,14 +264,6 @@ const struct string_to_enum out_channels_name_to_enum_table[] = {
     STRING_TO_ENUM(AUDIO_CHANNEL_OUT_7POINT1),
 };
 
-/* Wideband call audio check */
-static bool wideband_disabled()
-{
-    return property_get_bool("audio_hal.disable_wideband", false);
-}
-
-/* Routing functions */
-
 static int get_output_device_id(audio_devices_t device)
 {
     if (device == AUDIO_DEVICE_NONE)
@@ -305,9 +296,11 @@ static int get_output_device_id(audio_devices_t device)
     case AUDIO_DEVICE_OUT_WIRED_HEADPHONE:
         return OUT_DEVICE_HEADPHONES;
     case AUDIO_DEVICE_OUT_BLUETOOTH_SCO:
-    case AUDIO_DEVICE_OUT_BLUETOOTH_SCO_HEADSET:
-    case AUDIO_DEVICE_OUT_BLUETOOTH_SCO_CARKIT:
         return OUT_DEVICE_BT_SCO;
+    case AUDIO_DEVICE_OUT_BLUETOOTH_SCO_HEADSET:
+        return OUT_DEVICE_BT_SCO_HEADSET_OUT;
+    case AUDIO_DEVICE_OUT_BLUETOOTH_SCO_CARKIT:
+        return OUT_DEVICE_BT_SCO_CARKIT;
     case AUDIO_DEVICE_OUT_AUX_DIGITAL:
         return OUT_DEVICE_AUX_DIGITAL;
     default:
@@ -315,7 +308,7 @@ static int get_output_device_id(audio_devices_t device)
     }
 }
 
-static int get_input_source_id(audio_source_t source)
+static int get_input_source_id(audio_source_t source, bool wb_amr)
 {
     switch (source) {
     case AUDIO_SOURCE_DEFAULT:
@@ -324,6 +317,7 @@ static int get_input_source_id(audio_source_t source)
         ALOGV("%s: AUDIO_SOURCE_MIC\n", __func__);
         return IN_SOURCE_MIC;
     case AUDIO_SOURCE_CAMCORDER:
+        ALOGV("%s: IN_SOURCE_CAMCORDER\n", __func__);
         return IN_SOURCE_CAMCORDER;
     case AUDIO_SOURCE_VOICE_RECOGNITION:
         ALOGV("%s: IN_SOURCE_VOICE_RECOGNITION\n", __func__);
@@ -332,7 +326,11 @@ static int get_input_source_id(audio_source_t source)
         ALOGV("%s: AUDIO_SOURCE_VOICE_COMMUNICATION\n", __func__);
         return IN_SOURCE_VOICE_COMMUNICATION;
     case AUDIO_SOURCE_VOICE_CALL:
-        ALOGV("%s: AUDIO_SOURCE_VOICE_CALL:\n", __func__);
+        if (wb_amr) {
+            ALOGV("%s: AUDIO_SOURCE_VOICE_CALL WIDEBAND\n", __func__);
+            return IN_SOURCE_VOICE_CALL_WB;
+        }
+        ALOGV("%s: AUDIO_SOURCE_VOICE_CALL\n", __func__);
         return IN_SOURCE_VOICE_CALL;
     default:
         return IN_SOURCE_NONE;
@@ -440,7 +438,7 @@ static int set_hdmi_channels(struct audio_device *adev, int channels) {
 static void select_devices(struct audio_device *adev)
 {
     int output_device_id = get_output_device_id(adev->out_device);
-    int input_source_id = get_input_source_id(adev->input_source);
+    int input_source_id = get_input_source_id(adev->input_source, adev->wb_amr);
     const char *output_route = NULL;
     const char *input_route = NULL;
     int new_route_id;
@@ -475,7 +473,7 @@ static void select_devices(struct audio_device *adev)
                 output_device_id = OUT_DEVICE_HEADSET;
                 break;
             case AUDIO_DEVICE_IN_BLUETOOTH_SCO_HEADSET & ~AUDIO_DEVICE_BIT_IN:
-                output_device_id = OUT_DEVICE_BT_SCO;
+                output_device_id = OUT_DEVICE_BT_SCO_HEADSET_OUT;
                 break;
             default:
                 output_device_id = OUT_DEVICE_SPEAKER;
@@ -560,10 +558,11 @@ static void start_bt_sco(struct audio_device *adev)
 
     ALOGV("%s: Opening SCO PCMs", __func__);
 
-    if (!wideband_disabled())
+    if (adev->wb_amr) {
         sco_config = &pcm_config_sco_wide;
-    else
+    } else {
         sco_config = &pcm_config_sco;
+    }
 
     adev->pcm_sco_rx = pcm_open(PCM_CARD,
                                 PCM_DEVICE_SCO,
@@ -634,10 +633,11 @@ static int start_voice_call(struct audio_device *adev)
 
     ALOGV("%s: Opening voice PCMs", __func__);
 
-    if (!wideband_disabled())
+    if (adev->wb_amr) {
         voice_config = &pcm_config_voice_wide;
-    else
+    } else {
         voice_config = &pcm_config_voice;
+    }
 
     /* Open modem PCM channels */
     adev->pcm_voice_rx = pcm_open(PCM_CARD,
@@ -712,6 +712,30 @@ static void stop_voice_call(struct audio_device *adev)
     ALOGV("%s: Successfully closed %d active PCMs", __func__, status);
 }
 
+static void adev_set_wb_amr_callback(void *data, int enable)
+{
+    struct audio_device *adev = (struct audio_device *)data;
+
+    pthread_mutex_lock(&adev->lock);
+
+    if (adev->wb_amr != enable) {
+        adev->wb_amr = enable;
+
+        /* reopen the modem PCMs at the new rate */
+        if (adev->in_call) {
+            ALOGV("%s: %s Incall Wide Band support",
+                  __func__,
+                  enable ? "Turn on" : "Turn off");
+
+            stop_voice_call(adev);
+            select_devices(adev);
+            start_voice_call(adev);
+        }
+    }
+
+    pthread_mutex_unlock(&adev->lock);
+}
+
 static void adev_set_call_audio_path(struct audio_device *adev)
 {
     enum _AudioPath device_type;
@@ -739,7 +763,7 @@ static void adev_set_call_audio_path(struct audio_device *adev)
             }
             break;
         default:
-            /* if output device isn't supported, use earpiece by default */
+            /* if output device isn't supported, use handset by default */
             device_type = SOUND_AUDIO_PATH_HANDSET;
             break;
     }
@@ -982,7 +1006,8 @@ static uint32_t out_get_sample_rate(const struct audio_stream *stream)
     return out->config.rate;
 }
 
-static int out_set_sample_rate(struct audio_stream *stream, uint32_t rate)
+static int out_set_sample_rate(struct audio_stream *stream __unused,
+                               uint32_t rate __unused)
 {
     return -ENOSYS;
 }
@@ -992,7 +1017,7 @@ static size_t out_get_buffer_size(const struct audio_stream *stream)
     struct stream_out *out = (struct stream_out *)stream;
 
     return out->config.period_size *
-            audio_stream_out_frame_size((const struct audio_stream_out *)stream);
+           audio_stream_out_frame_size((const struct audio_stream_out *)stream);
 }
 
 static audio_channel_mask_t out_get_channels(const struct audio_stream *stream)
@@ -1002,12 +1027,13 @@ static audio_channel_mask_t out_get_channels(const struct audio_stream *stream)
     return out->channel_mask;
 }
 
-static audio_format_t out_get_format(const struct audio_stream *stream)
+static audio_format_t out_get_format(const struct audio_stream *stream __unused)
 {
     return AUDIO_FORMAT_PCM_16_BIT;
 }
 
-static int out_set_format(struct audio_stream *stream, audio_format_t format)
+static int out_set_format(struct audio_stream *stream __unused,
+                          audio_format_t format __unused)
 {
     return -ENOSYS;
 }
@@ -1109,7 +1135,7 @@ static int out_standby(struct audio_stream *stream)
     return 0;
 }
 
-static int out_dump(const struct audio_stream *stream, int fd)
+static int out_dump(const struct audio_stream *stream __unused, int fd __unused)
 {
     return 0;
 }
@@ -1132,6 +1158,9 @@ static int out_set_parameters(struct audio_stream *stream, const char *kvpairs)
     lock_all_outputs(adev);
     if (ret >= 0) {
         val = atoi(value);
+
+        lock_all_outputs(adev);
+
         if ((out->device != val) && (val != 0)) {
 
 			/* Force standby if moving to/from SPDIF or if the output
@@ -1176,7 +1205,7 @@ static char * out_get_parameters(const struct audio_stream *stream, const char *
 {
     struct stream_out *out = (struct stream_out *)stream;
     struct str_parms *query = str_parms_create_str(keys);
-    char *str;
+    const char *str;
     char value[256];
     struct str_parms *reply = str_parms_create();
     size_t i, j;
@@ -1220,8 +1249,9 @@ static uint32_t out_get_latency(const struct audio_stream_out *stream)
             out->config.rate;
 }
 
-static int out_set_volume(struct audio_stream_out *stream, float left,
-                          float right)
+static int out_set_volume(struct audio_stream_out *stream,
+                          float left,
+                          float right __unused)
 {
     struct stream_out *out = (struct stream_out *)stream;
     struct audio_device *adev = out->dev;
@@ -1302,24 +1332,26 @@ final_exit:
     return bytes;
 }
 
-static int out_get_render_position(const struct audio_stream_out *stream,
-                                   uint32_t *dsp_frames)
+static int out_get_render_position(const struct audio_stream_out *stream __unused,
+                                   uint32_t *dsp_frames __unused)
 {
     return -EINVAL;
 }
 
-static int out_add_audio_effect(const struct audio_stream *stream, effect_handle_t effect)
+static int out_add_audio_effect(const struct audio_stream *stream __unused,
+                                effect_handle_t effect __unused)
 {
     return 0;
 }
 
-static int out_remove_audio_effect(const struct audio_stream *stream, effect_handle_t effect)
+static int out_remove_audio_effect(const struct audio_stream *stream __unused,
+                                   effect_handle_t effect __unused)
 {
     return 0;
 }
 
-static int out_get_next_write_timestamp(const struct audio_stream_out *stream,
-                                        int64_t *timestamp)
+static int out_get_next_write_timestamp(const struct audio_stream_out *stream __unused,
+                                        int64_t *timestamp __unused)
 {
     return -EINVAL;
 }
@@ -1366,7 +1398,8 @@ static uint32_t in_get_sample_rate(const struct audio_stream *stream)
     return in->requested_rate;
 }
 
-static int in_set_sample_rate(struct audio_stream *stream, uint32_t rate)
+static int in_set_sample_rate(struct audio_stream *stream __unused,
+                              uint32_t rate __unused)
 {
     return 0;
 }
@@ -1389,12 +1422,13 @@ static size_t in_get_buffer_size(const struct audio_stream *stream)
                                  (in->flags & AUDIO_INPUT_FLAG_FAST) != 0);
 }
 
-static audio_format_t in_get_format(const struct audio_stream *stream)
+static audio_format_t in_get_format(const struct audio_stream *stream __unused)
 {
     return AUDIO_FORMAT_PCM_16_BIT;
 }
 
-static int in_set_format(struct audio_stream *stream, audio_format_t format)
+static int in_set_format(struct audio_stream *stream __unused,
+                         audio_format_t format __unused)
 {
     return -ENOSYS;
 }
@@ -1435,7 +1469,7 @@ static int in_standby(struct audio_stream *stream)
     return 0;
 }
 
-static int in_dump(const struct audio_stream *stream, int fd)
+static int in_dump(const struct audio_stream *stream __unused, int fd __unused)
 {
     return 0;
 }
@@ -1495,13 +1529,14 @@ static int in_set_parameters(struct audio_stream *stream, const char *kvpairs)
     return ret;
 }
 
-static char * in_get_parameters(const struct audio_stream *stream,
-                                const char *keys)
+static char *in_get_parameters(const struct audio_stream *stream __unused,
+                               const char *keys __unused)
 {
     return strdup("");
 }
 
-static int in_set_gain(struct audio_stream_in *stream, float gain)
+static int in_set_gain(struct audio_stream_in *stream __unused,
+                       float gain __unused)
 {
     return 0;
 }
@@ -1584,13 +1619,13 @@ exit:
     return bytes;
 }
 
-static uint32_t in_get_input_frames_lost(struct audio_stream_in *stream)
+static uint32_t in_get_input_frames_lost(struct audio_stream_in *stream __unused)
 {
     return 0;
 }
 
-static int in_add_audio_effect(const struct audio_stream *stream,
-                               effect_handle_t effect)
+static int in_add_audio_effect(const struct audio_stream *stream __unused,
+                               effect_handle_t effect __unused)
 {
     struct stream_in *in = (struct stream_in *)stream;
     effect_descriptor_t descr;
@@ -1608,8 +1643,8 @@ static int in_add_audio_effect(const struct audio_stream *stream,
     return 0;
 }
 
-static int in_remove_audio_effect(const struct audio_stream *stream,
-                                  effect_handle_t effect)
+static int in_remove_audio_effect(const struct audio_stream *stream __unused,
+                                  effect_handle_t effect __unused)
 {
     struct stream_in *in = (struct stream_in *)stream;
     effect_descriptor_t descr;
@@ -1628,7 +1663,7 @@ static int in_remove_audio_effect(const struct audio_stream *stream,
 }
 
 static int adev_open_output_stream(struct audio_hw_device *dev,
-                                   audio_io_handle_t handle,
+                                   audio_io_handle_t handle __unused,
                                    audio_devices_t devices,
                                    audio_output_flags_t flags,
                                    struct audio_config *config,
@@ -1672,7 +1707,7 @@ static int adev_open_output_stream(struct audio_hw_device *dev,
         out->pcm_device = PCM_DEVICE;
         type = OUTPUT_DEEP_BUF;
     } else {
-        out->config = pcm_config;
+        out->config = pcm_config_fast;
         out->pcm_device = PCM_DEVICE;
         type = OUTPUT_LOW_LATENCY;
     }
@@ -1779,13 +1814,13 @@ static int adev_set_parameters(struct audio_hw_device *dev, const char *kvpairs)
     return ret;
 }
 
-static char *adev_get_parameters(const struct audio_hw_device *dev,
-                                 const char *keys)
+static char *adev_get_parameters(const struct audio_hw_device *dev __unused,
+                                 const char *keys __unused)
 {
     return strdup("");
 }
 
-static int adev_init_check(const struct audio_hw_device *dev)
+static int adev_init_check(const struct audio_hw_device *dev __unused)
 {
     return 0;
 }
@@ -1808,6 +1843,8 @@ static int adev_set_voice_volume(struct audio_hw_device *dev, float volume)
                 sound_type = SOUND_TYPE_HEADSET;
                 break;
             case AUDIO_DEVICE_OUT_BLUETOOTH_SCO:
+            case AUDIO_DEVICE_OUT_BLUETOOTH_SCO_HEADSET:
+            case AUDIO_DEVICE_OUT_BLUETOOTH_SCO_CARKIT:
             case AUDIO_DEVICE_OUT_ALL_SCO:
                 sound_type = SOUND_TYPE_BTVOICE;
                 break;
@@ -1821,7 +1858,8 @@ static int adev_set_voice_volume(struct audio_hw_device *dev, float volume)
     return 0;
 }
 
-static int adev_set_master_volume(struct audio_hw_device *dev, float volume)
+static int adev_set_master_volume(struct audio_hw_device *dev __unused,
+                                  float volume __unused)
 {
     return -ENOSYS;
 }
@@ -1898,7 +1936,7 @@ static int adev_get_mic_mute(const struct audio_hw_device *dev, bool *state)
     return 0;
 }
 
-static size_t adev_get_input_buffer_size(const struct audio_hw_device *dev,
+static size_t adev_get_input_buffer_size(const struct audio_hw_device *dev __unused,
                                          const struct audio_config *config)
 {
 
@@ -2003,7 +2041,7 @@ err_malloc:
     return ret;
 }
 
-static void adev_close_input_stream(struct audio_hw_device *dev,
+static void adev_close_input_stream(struct audio_hw_device *dev __unused,
                                    struct audio_stream_in *stream)
 {
     struct stream_in *in = (struct stream_in *)stream;
@@ -2017,7 +2055,7 @@ static void adev_close_input_stream(struct audio_hw_device *dev,
     free(stream);
 }
 
-static int adev_dump(const audio_hw_device_t *device, int fd)
+static int adev_dump(const audio_hw_device_t *device __unused, int fd __unused)
 {
     return 0;
 }
@@ -2091,6 +2129,8 @@ static int adev_open(const hw_module_t* module, const char* name,
 
     /* RIL */
     ril_open(&adev->ril);
+    /* register callback for wideband AMR setting */
+    ril_register_set_wb_amr_callback(adev_set_wb_amr_callback, (void *)adev);
 
     *device = &adev->hw_device.common;
 
