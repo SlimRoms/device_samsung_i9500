@@ -240,7 +240,7 @@ const struct route_config communication_headphones = {
     "communication-headphones",
     "communication-earpiece-main-mic",
     { ES325_PRESET_VOIP_HEADPHONES,
-      ES325_PRESET_VOIP_HP_DESKTOP}
+      ES325_PRESET_VOIP_HP_DESKTOP }
 };
 
 const struct route_config communication_headset = {
@@ -252,7 +252,7 @@ const struct route_config communication_headset = {
 
 const struct route_config speaker_and_headphones = {
     "speaker-and-headphones",
-    "main-mic",
+    "media-main-mic",
     { ES325_PRESET_CURRENT,
       ES325_PRESET_CURRENT }
 };
@@ -266,7 +266,7 @@ const struct route_config bt_sco_carkit = {
 
 const struct route_config hdmi = {
     "device-aux-digital",
-    "main-mic",
+    "media-main-mic",
     { ES325_PRESET_OFF,
       ES325_PRESET_OFF }
 };
