@@ -350,7 +350,7 @@ const struct route_config * const route_configs[IN_SOURCE_TAB_SIZE]
         &bt_sco_carkit,             /* OUT_DEVICE_BT_SCO_CARKIT */
         &voice_headphones_wb,       /* OUT_DEVICE_SPEAKER_AND_HEADSET */
         &voice_earpiece_wb,          /* OUT_DEVICE_SPEAKER_AND_EARPIECE */
-		&hdmi                       /* OUT_DEVICE_AUX_DIGITAL */
+        &hdmi                       /* OUT_DEVICE_AUX_DIGITAL */
     }
 };
 
