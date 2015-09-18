@@ -190,7 +190,7 @@ struct audio_device {
     int es325_mode;
 
     int hdmi_drv_fd;    /* either an fd >= 0 or -1 */
-	
+
     /* RIL */
     struct ril_handle ril;
 
@@ -560,18 +560,18 @@ static void start_bt_sco(struct audio_device *adev)
     ALOGV("%s: Opening SCO PCMs", __func__);
 
     bool use_dyn_wb_amr = property_get_bool("persist.call.dynamic.wb_amr", false);
-	bool using_chn_modem = property_get_bool("persist.device.uses.chn_modem", false);
+    bool using_chn_modem = property_get_bool("persist.device.uses.chn_modem", false);
 
     if (!use_dyn_wb_amr) {
-	    if (!using_chn_modem) {
+        if (!using_chn_modem) {
             sco_config = &pcm_config_sco_wide;
             ALOGV("%s: Forced In-Call Wideband AMR", __func__);
-		} else {
+        } else {
             sco_config = &pcm_config_sco;
-            ALOGV("%s: Forced In-Call Narrowband AMR", __func__);		    
-		}
+            ALOGV("%s: Forced In-Call Narrowband AMR", __func__);
+        }
     } else {
-		ALOGV("%s: Using Dynamic Wideband AMR", __func__);
+        ALOGV("%s: Using Dynamic Wideband AMR", __func__);
         if (adev->wb_amr) {
             sco_config = &pcm_config_sco_wide;
         } else {
@@ -606,10 +606,10 @@ static void start_bt_sco(struct audio_device *adev)
 
 err_sco_tx:
     pcm_close(adev->pcm_sco_tx);
-	adev->pcm_sco_tx = NULL;
+    adev->pcm_sco_tx = NULL;
 err_sco_rx:
     pcm_close(adev->pcm_sco_rx);
-	adev->pcm_sco_rx = NULL;
+    adev->pcm_sco_rx = NULL;
 }
 
 /* must be called with the hw device mutex locked, OK to hold other mutexes */
@@ -649,16 +649,16 @@ static int start_voice_call(struct audio_device *adev)
     ALOGV("%s: Opening voice PCMs", __func__);
 
     bool use_dyn_wb_amr = property_get_bool("persist.call.dynamic.wb_amr", false);
-	bool using_chn_modem = property_get_bool("persist.device.uses.chn_modem", false);
+    bool using_chn_modem = property_get_bool("persist.device.uses.chn_modem", false);
 
     if (!use_dyn_wb_amr) {
-	    if (!using_chn_modem) {
-		    voice_config = &pcm_config_voice_wide;
+        if (!using_chn_modem) {
+            voice_config = &pcm_config_voice_wide;
             ALOGV("%s: Forced In-Call Wideband AMR", __func__);
-		} else {
+        } else {
             voice_config = &pcm_config_voice;
             ALOGV("%s: Forced In-Call Narrowband AMR", __func__);
-		}
+        }
     } else {
         ALOGV("%s: Using Dynamic Wideband AMR", __func__);
         if (adev->wb_amr) {
@@ -752,19 +752,18 @@ static void adev_set_wb_amr_callback(void *data, int enable)
     if (adev->wb_amr != enable) {
         adev->wb_amr = enable;
 
-        /* reopen the modem PCMs at the new rate */
-        if (adev->in_call) {
-            ALOGV("%s: %s Incall Wide Band support",
-                  __func__,
-                  enable ? "Turn on" : "Turn off");
-		    if (use_dyn_wb_amr) {
+        if (use_dyn_wb_amr) {
+            /* reopen the modem PCMs at the new rate */
+            if (adev->in_call) {
+                ALOGV("%s: %s Incall Wide Band support",
+                      __func__,
+                      enable ? "Turn on" : "Turn off");
                 stop_voice_call(adev);
                 select_devices(adev);
                 start_voice_call(adev);
-			}
+            }
         }
     }
-
     pthread_mutex_unlock(&adev->lock);
 }
 
@@ -1192,35 +1191,35 @@ static int out_set_parameters(struct audio_stream *stream, const char *kvpairs)
         val = atoi(value);
         if ((out->device != val) && (val != 0)) {
 
-			/* Force standby if moving to/from SPDIF or if the output
-			 * device changes when in SPDIF mode */
-			if (((val & AUDIO_DEVICE_OUT_DGTL_DOCK_HEADSET) ^
-				 (adev->out_device & AUDIO_DEVICE_OUT_DGTL_DOCK_HEADSET)) ||
-				(adev->out_device & AUDIO_DEVICE_OUT_DGTL_DOCK_HEADSET)) {
-				do_out_standby(out);
-			}
+            /* Force standby if moving to/from SPDIF or if the output
+             * device changes when in SPDIF mode */
+            if (((val & AUDIO_DEVICE_OUT_DGTL_DOCK_HEADSET) ^
+                 (adev->out_device & AUDIO_DEVICE_OUT_DGTL_DOCK_HEADSET)) ||
+                (adev->out_device & AUDIO_DEVICE_OUT_DGTL_DOCK_HEADSET)) {
+                do_out_standby(out);
+            }
 
-			/* force output standby to start or stop SCO pcm stream if needed */
-			if ((val & AUDIO_DEVICE_OUT_ALL_SCO) ^
-				(out->device & AUDIO_DEVICE_OUT_ALL_SCO)) {
-				do_out_standby(out);
-			}
+            /* force output standby to start or stop SCO pcm stream if needed */
+            if ((val & AUDIO_DEVICE_OUT_ALL_SCO) ^
+                (out->device & AUDIO_DEVICE_OUT_ALL_SCO)) {
+                do_out_standby(out);
+            }
 
-			out->device = val;
+            out->device = val;
             adev->out_device = output_devices(out) | val;
-			select_devices(adev);
+            select_devices(adev);
 
-			if (!out->standby && (out == adev->outputs[OUTPUT_HDMI] ||
-				!adev->outputs[OUTPUT_HDMI] ||
-				adev->outputs[OUTPUT_HDMI]->standby)) {
-				adev->out_device = output_devices(out) | val;
-				select_devices(adev);
-			}
+            if (!out->standby && (out == adev->outputs[OUTPUT_HDMI] ||
+                !adev->outputs[OUTPUT_HDMI] ||
+                adev->outputs[OUTPUT_HDMI]->standby)) {
+                adev->out_device = output_devices(out) | val;
+                select_devices(adev);
+            }
 
-			/* start SCO stream if needed */
-			if (val & AUDIO_DEVICE_OUT_ALL_SCO) {
-				start_bt_sco(adev);
-			}
+            /* start SCO stream if needed */
+            if (val & AUDIO_DEVICE_OUT_ALL_SCO) {
+                start_bt_sco(adev);
+            }
 
         }
     }
@@ -2155,6 +2154,17 @@ static int adev_open(const hw_module_t* module, const char* name,
 
     adev->mode = AUDIO_MODE_NORMAL;
     adev->voice_volume = 1.0f;
+
+    bool use_dyn_wb_amr = property_get_bool("persist.call.dynamic.wb_amr", false);
+    bool using_chn_modem = property_get_bool("persist.device.uses.chn_modem", false);
+
+    if (!use_dyn_wb_amr) {
+        if (!using_chn_modem) {
+            adev->wb_amr = true;
+        } else {
+            adev->wb_amr = false;
+        }
+    }
 
     /* RIL */
     ril_open(&adev->ril);
