@@ -560,16 +560,10 @@ static void start_bt_sco(struct audio_device *adev)
     ALOGV("%s: Opening SCO PCMs", __func__);
 
     bool use_dyn_wb_amr = property_get_bool("persist.call.dynamic.wb_amr", false);
-    bool using_chn_modem = property_get_bool("persist.device.uses.chn_modem", false);
 
     if (!use_dyn_wb_amr) {
-        if (!using_chn_modem) {
-            sco_config = &pcm_config_sco_wide;
-            ALOGV("%s: Forced In-Call Wideband AMR", __func__);
-        } else {
-            sco_config = &pcm_config_sco;
-            ALOGV("%s: Forced In-Call Narrowband AMR", __func__);
-        }
+        sco_config = &pcm_config_sco;
+        ALOGV("%s: Forced In-Call Narrowband AMR", __func__);
     } else {
         ALOGV("%s: Using Dynamic Wideband AMR", __func__);
         if (adev->wb_amr) {
