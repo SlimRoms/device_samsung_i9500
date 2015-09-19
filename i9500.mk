@@ -259,6 +259,7 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PROPERTY_OVERRIDES += \
 	mobiledata.interfaces=pdp0,gprs,ppp0,rmnet0,rmnet1 \
+	ro.data.large_tcp_window_size=true \
 	ro.telephony.call_ring.delay=3000 \
 	ro.telephony.call_ring.multiple=false \
 	ro.telephony.ril_class=ExynosXMM6360RIL
@@ -322,7 +323,8 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/configs/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf
 
 PRODUCT_PROPERTY_OVERRIDES += \
-	wifi.interface=wlan0
+	wifi.interface=wlan0 \
+	wifi.supplicant_scan_interval=15
 
 # call dalvik heap config
 $(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-dalvik-heap.mk)
