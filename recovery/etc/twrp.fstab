@@ -10,5 +10,4 @@
 /boot			emmc		/dev/block/platform/dw_mmc.0/by-name/BOOT				
 /recovery		emmc		/dev/block/platform/dw_mmc.0/by-name/RECOVERY			flags=backup=1
 
-# SD card
 /external_sd	auto		/dev/block/mmcblk1p1 /dev/block/mmcblk1					flags=display="External Storage";storage;wipeingui;removable
