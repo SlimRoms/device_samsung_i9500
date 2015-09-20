@@ -175,7 +175,7 @@ TW_NO_EXFAT_FUSE := true
 TW_NO_REBOOT_BOOTLOADER := true
 TW_NO_SCREEN_TIMEOUT := true
 TW_NO_USB_STORAGE := true
-TW_THEME := portrait_mdpi
+TW_THEME := portrait_hdpi
 
 # WiFi
 BOARD_HAVE_SAMSUNG_WIFI          := true
