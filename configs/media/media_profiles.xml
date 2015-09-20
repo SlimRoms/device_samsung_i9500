@@ -344,8 +344,8 @@
     -->
     <VideoEncoderCap name="h264" enabled="true"
         minBitRate="64000" maxBitRate="40000000"
-        minFrameWidth="128" maxFrameWidth="8192"
-        minFrameHeight="96" maxFrameHeight="8192"
+        minFrameWidth="128" maxFrameWidth="1920"
+        minFrameHeight="96" maxFrameHeight="1088"
         minFrameRate="15" maxFrameRate="30" />
 
     <VideoEncoderCap name="h263" enabled="true"
