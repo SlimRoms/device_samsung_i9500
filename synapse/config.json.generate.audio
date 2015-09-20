@@ -7,31 +7,6 @@ cat << CTAG
     name:Audio,
     elements:[
 	{ SPane:{ 
-		title:"Headphone Amplification",
-		description:"Headphone amplification increases volume only on headphones and headsets. The controlled input is the digital input volume for the audio DAC."
-	}},
-	{ SSeekBar:{
-		description:"Headphone left channel volume",
-		min:80, max:150, unit:"dB", weight:0.5, offset:128,
-		default:`cat /sys/class/misc/wolfson_control/headphone_left`,
-                action:"generic /sys/class/misc/wolfson_control/headphone_left"
-	}},
-	{ SSeekBar:{
-		description:"Headphone right channel volume",
-		min:80, max:150, unit:"dB", weight:0.5, offset:128,
-		default:`cat /sys/class/misc/wolfson_control/headphone_right`,
-                action:"generic /sys/class/misc/wolfson_control/headphone_right"
-	}},
-	{ SCheckBox:{
-		description:"Enables mono output",
-		label:"Mono mixer",
-		default:`cat /sys/class/misc/wolfson_control/switch_hp_mono`,
-                action:"generic /sys/class/misc/wolfson_control/switch_hp_mono"
-	}},
-
-
-
-	{ SPane:{ 
 		title:"Speaker Amplification",
 		description:"Speaker amplification increases volume on the external speaker and earpiece. Speaker volumes are expressed as deltas to Samsung's audio profiles, so not to completely override them."
 	}},
@@ -57,6 +32,12 @@ cat << CTAG
 	{ SPane:{ 
 		title:"HP Equalizer settings",
 		description:"Controls the hardware equalizer."
+	}},
+	{ SCheckBox:{
+		description:"Enables mono output",
+		label:"Mono mixer",
+		default:`cat /sys/class/misc/wolfson_control/switch_hp_mono`,
+                action:"generic /sys/class/misc/wolfson_control/switch_hp_mono"
 	}},
 	{ SCheckBox:{
 		description:"Enable headphone equalizer for gain controls.",
