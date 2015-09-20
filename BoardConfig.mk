@@ -170,7 +170,6 @@ TW_EXTERNAL_STORAGE_MOUNT_POINT := "external_sd"
 TW_INCLUDE_L_CRYPTO := true
 TW_MAX_BRIGHTNESS := 255
 TW_NO_EXFAT_FUSE := true
-TW_NO_SCREEN_TIMEOUT := true
 TW_THEME := portrait_hdpi
 
 # WiFi
