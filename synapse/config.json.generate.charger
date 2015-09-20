@@ -155,7 +155,7 @@ cat << CTAG
 
 	{ SPane:{ 
 		title:"Miscellaneous charging",
-		description:"Miscaenellous current limits applied to any other unidentifiable charging source."
+		description:"Miscellaneous current limits applied to any other unidentifiable charging source."
 	}},
 	{ SSeekBar:{
 		title:"Misc Input Current",
