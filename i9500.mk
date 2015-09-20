@@ -108,7 +108,7 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/configs/env/gearcm:system/etc/gearcm \
-	$(LOCAL_PATH)/rootdir/etc/busybox:root/sbin/busybox_synapse \
+	$(LOCAL_PATH)/rootdir/etc/busybox:system/xbin/busybox_synapse \
 	$(LOCAL_PATH)/synapse/config.json.generate:root/res/synapse/config.json.generate \
 	$(LOCAL_PATH)/synapse/config.json.generate.audio:root/res/synapse/config.json.generate.audio \
 	$(LOCAL_PATH)/synapse/config.json.generate.charger:root/res/synapse/config.json.generate.charger \

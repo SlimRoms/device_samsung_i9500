@@ -1,6 +1,6 @@
-#!/sbin/busybox_synapse sh
+#!/system/xbin/busybox_synapse sh
 
-BB=/sbin/busybox_synapse;
+BB=/system/xbin/busybox_synapse;
 
 cat << CTAG
 {
