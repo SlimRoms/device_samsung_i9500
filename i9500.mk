@@ -258,10 +258,7 @@ PRODUCT_PACKAGES += \
 	SamsungServiceMode
 
 PRODUCT_PROPERTY_OVERRIDES += \
-	mobiledata.interfaces=pdp0,gprs,ppp0,rmnet0,rmnet1 \
 	ro.data.large_tcp_window_size=true \
-	ro.telephony.call_ring.delay=3000 \
-	ro.telephony.call_ring.multiple=false \
 	ro.telephony.ril_class=ExynosXMM6360RIL
 
 # SELinux
