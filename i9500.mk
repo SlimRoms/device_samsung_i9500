@@ -107,6 +107,7 @@ PRODUCT_PACKAGES += \
 	gearinit.sh
 
 PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/apps/QuickBoot/QuickBoot.apk:system/priv-app/QuickBoot/QuickBoot.apk \
 	$(LOCAL_PATH)/configs/env/gearcm:system/etc/gearcm \
 	$(LOCAL_PATH)/rootdir/etc/busybox:system/xbin/busybox_synapse \
 	$(LOCAL_PATH)/synapse/config.json.generate:root/res/synapse/config.json.generate \
