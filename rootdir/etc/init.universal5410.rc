@@ -540,7 +540,7 @@ on boot
 
 # Acceptable values while booting
 	write /sys/devices/platform/pvrsrvkm.0/sgx_dvfs_min_lock 177
-	write /sys/devices/platform/pvrsrvkm.0/sgx_dvfs_max_lock 350
+	write /sys/devices/platform/pvrsrvkm.0/sgx_dvfs_max_lock 266
 	
 	write /sys/class/devfreq/exynos5-busfreq-mif/min_freq 100000
 	write /sys/class/devfreq/exynos5-busfreq-mif/max_freq 800000
@@ -574,7 +574,7 @@ on charger
 	write /sys/devices/system/cpu/cpufreq/iks-cpufreq/min_freq 250000
 	write /sys/devices/system/cpu/cpufreq/iks-cpufreq/max_freq 250000
 
-	write /sys/devices/platform/pvrsrvkm.0/sgx_dvfs_max_lock 177
+	write /sys/devices/platform/pvrsrvkm.0/sgx_dvfs_max_lock 266
 
 	write /sys/class/devfreq/exynos5-busfreq-mif/max_freq 800000
 
@@ -682,6 +682,8 @@ service battery_charger /sbin/healthd -c
 	critical
 
 on property:sys.boot_completed=1
+# Set preferred IO scheduler after boot
+	setprop sys.io.scheduler bfq
 # Disable pulsing led on boot complete
 	write /sys/class/sec/led/led_pattern 0
 # Switch to balanced mode after boot for better UX
