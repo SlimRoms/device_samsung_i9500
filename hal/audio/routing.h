@@ -91,14 +91,14 @@ const struct route_config voice_earpiece_wb = {
 
 const struct route_config voice_headphones = {
     "voice-headphones",
-    "voice-headphones-main-mic",
+    "voice-earpiece-main-mic",
     { ES325_PRESET_OFF,
       ES325_PRESET_OFF }
 };
 
 const struct route_config voice_headphones_wb = {
     "voice-headphones-wb",
-    "voice-headphones-main-mic-wb",
+    "voice-earpiece-main-mic-wb",
     { ES325_PRESET_OFF,
       ES325_PRESET_OFF }
 };
