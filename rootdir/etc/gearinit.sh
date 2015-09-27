@@ -1,4 +1,4 @@
-#!/system/xbin/busybox_synapse sh
+#!/system/xbin/busybox sh
 
 if [ ! -f "/system/etc/gearcm" ]
 then
@@ -30,14 +30,6 @@ echo 1 > /sys/class/misc/wolfson_control/switch_eq_speaker
 # PVR GPU Tweaks
 echo 0 > /sys/module/pvrsrvkm/parameters/gPVRDebugLevel
 echo 0 > /sys/module/pvrsrvkm/parameters/gPVREnableVSync
-
-# I/O Tweaks
-for i in /sys/block/*/queue/add_random;do echo 0 > $i;done
-
-# Initialize NTFS Driver
-mkdir -p /mnt/ntfs
-chmod 777 /mnt/ntfs
-mount -o mode=0777,gid=1000 -t tmpfs tmpfs /mnt/ntfs
 
 # Remove unused auditd binary
 mount -w -o remount /system
