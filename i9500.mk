@@ -260,10 +260,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # SELinux
 ADDITIONAL_DEFAULT_PROPERTIES += \
-	ro.build.selinux=0
-
-PRODUCT_PROPERTY_OVERRIDES += \
-	ro.build.selinux=0
+	ro.build.selinux=1
 
 # SuperSU
 PRODUCT_PACKAGES += \
