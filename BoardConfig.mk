@@ -142,25 +142,25 @@ TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 
 # SELinux
-#BOARD_SEPOLICY_DIRS += \
-#    device/samsung/i9500/sepolicy
-#
-#BOARD_SEPOLICY_UNION := \
-#    bluetooth.te \
-#    device.te \
-#    drmserver.te \
-#    file_contexts \
-#    file.te \
-#    gpsd.te \
-#    mediaserver.te \
-#    property_contexts \
-#    property.te \
-#    pvrsrvctl.te \
-#    rild.te \
-#    shell.te \
-#    system_server.te \
-#    ueventd.te \
-#    wpa.te
+BOARD_SEPOLICY_DIRS += \
+    device/samsung/i9500/sepolicy
+
+BOARD_SEPOLICY_UNION := \
+    bluetooth.te \
+    device.te \
+    drmserver.te \
+    file_contexts \
+    file.te \
+    gpsd.te \
+    mediaserver.te \
+    property_contexts \
+    property.te \
+    pvrsrvctl.te \
+    rild.te \
+    shell.te \
+    system_server.te \
+    ueventd.te \
+    wpa.te
 
 # TWRP Specific
 BOARD_HAS_NO_REAL_SDCARD := true

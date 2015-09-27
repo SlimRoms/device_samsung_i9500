@@ -31,9 +31,8 @@ echo 1 > /sys/class/misc/wolfson_control/switch_eq_speaker
 echo 0 > /sys/module/pvrsrvkm/parameters/gPVRDebugLevel
 echo 0 > /sys/module/pvrsrvkm/parameters/gPVREnableVSync
 
-# Remove unused auditd binary
+# Mount /system as RW
 mount -w -o remount /system
-rm -f /system/bin/auditd
 
 # Initialize SuperSU
 set -e
