@@ -555,9 +555,6 @@ on boot
 	write /sys/class/mdnie/mdnie/scenario 0
 	write /sys/class/mdnie/mdnie/mode 0
 
-# Define default initial receive window size in segments.
-	setprop net.tcp.default_init_rwnd 60
-
 # Assign TCP buffer thresholds to be ceiling value of technology maximums
 # Increased technology maximums should be reflected here.
 	write /proc/sys/net/core/rmem_max  1048576
