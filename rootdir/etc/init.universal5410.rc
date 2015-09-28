@@ -633,7 +633,7 @@ service cpboot-daemon /system/bin/cbd -d -txmm626 -b h -m h -p 13
 
 # GPS
 service gpsd /system/bin/gpsd -c /system/etc/gps.xml
-	class main
+	class late_start
 	user gps
 	group system inet net_raw sdcard_rw
 
