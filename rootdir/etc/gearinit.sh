@@ -71,7 +71,6 @@ chcon u:object_r:system_file:s0 /system/xbin/supolicy
 chcon u:object_r:system_file:s0 /system/lib/libsupol.so
 chcon u:object_r:system_file:s0 /system/xbin/sugote-mksh
 chcon u:object_r:zygote_exec:s0 /system/bin/app_process32_original
-chcon u:object_r:zygote_exec:s0 /system/bin/app_process64_original
 chcon u:object_r:system_file:s0 /system/bin/app_process_init
 chcon u:object_r:system_file:s0 /system/etc/init.d/99SuperSUDaemon
 chcon u:object_r:system_file:s0 /system/etc/.installed_su_daemon
