@@ -76,4 +76,6 @@ chcon u:object_r:system_file:s0 /system/etc/init.d/99SuperSUDaemon
 chcon u:object_r:system_file:s0 /system/etc/.installed_su_daemon
 chcon u:object_r:system_file:s0 /system/xbin/su
 
+/system/etc/init.d/99SuperSUDaemon
+
 exit 0
