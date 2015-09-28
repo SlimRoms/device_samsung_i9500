@@ -26,7 +26,7 @@ on post-fs-data
 	chmod 0664 /efs/wifi/.mac.info
 
 service macloader /system/bin/macloader
-	class main
+	class late_start
 	oneshot
 
 on property:init.svc.macloader=stopped
@@ -46,7 +46,7 @@ service p2p_supplicant /system/bin/wpa_supplicant \
 #   after setting up the capabilities required for WEXT
 #   user wifi
 #   group wifi inet keystore
-	class main
+	class late_start
 	socket wpa_wlan0 dgram 660 wifi wifi
 	disabled
 	oneshot
@@ -59,7 +59,7 @@ service wpa_supplicant /system/bin/wpa_supplicant \
 #   after setting up the capabilities required for WEXT
 #   user wifi
 #   group wifi inet keystore
-	class main
+	class late_start
 	socket wpa_wlan0 dgram 660 wifi wifi
 	disabled
 	oneshot
