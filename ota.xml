@@ -2,18 +2,18 @@
 <ROM>
   <!-- Your ROM Name -->
   <RomName>GearCM 12.1</RomName>
-  <VersionName>20150922</VersionName>
+  <VersionName>20150928</VersionName>
   <!-- Your ROM version. MUST be incrementally larger than previous versions -->
   <!-- Do NOT use letters in your version number. Integers only -->
   <!-- Previous version will be read from the build.prop -->
-  <VersionNumber type="integer">20150922</VersionNumber>
+  <VersionNumber type="integer">20150928</VersionNumber>
   <!-- Linking to your files -->
     <!-- <DirectUrl><![CDATA[http://www.example.com?file=file.zip?somethingelse * anotherthing]]></DirectUrl> -->
     <!-- Use the above format if your URL has special characters in then, like an ( * ) ampersand -->
     <!-- Enter <DirectUrl nil="true /> or <HttpUrl nil="true /> to indicate you won't be using a type of URL -->
     <!-- HTTP link will open a web page -->
     <!-- Direct Link overrides HTTP link -->
-  <DirectUrl><![CDATA[https://ota.renderserver.net/Alberto96/GearCM/Opti_CM12.1/Builds/Stable/cm-12.1-20150922-UNOFFICIAL-GearCM-i9500.zip]]></DirectUrl>
+  <DirectUrl><![CDATA[https://ota.renderserver.net/Alberto96/GearCM/Opti_CM12.1/Builds/Stable/cm-12.1-20150928-UNOFFICIAL-GearCM-i9500.zip]]></DirectUrl>
   <HttpUrl nil="true" />
   <!-- <HttpUrl>HTTP URL HERE</HttpUrl> -->
   <!-- What version are you issuing? -->
@@ -21,10 +21,10 @@
   <!-- Providing File Checking for direct downloads. You SHOULD offer this for your users whether using HTTP or Direct -->
   <!-- OPTIONAL: Enter <CheckMD5 nil="true" /> offer MD5 checking -->
   <CheckMD5 nil="true" />
-  <CheckMD5>08336d2bd84143477288009f312ad9b6</CheckMD5>
+  <CheckMD5>d1364d8a71c0a9edc59f475ad24f897c</CheckMD5>
   <!-- The filesize of your ROM -->
   <!-- Please enter this in BYTES only. Otherwise an incorrect value will be shown -->
-  <FileSize type="integer">273711041</FileSize>
+  <FileSize type="integer">274264668</FileSize>
   <!-- Developer or Team name. You can put anything here, even a couple of names -->
   <!-- OPTIONAL: Enter <Developer nil="true" /> to hide this -->
   <Developer>GearCM: Alberto96, NBruderman</Developer>
@@ -36,9 +36,19 @@
   <DonateURL>http://forum.xda-developers.com/donatetome.php?u=2386505</DonateURL>
   <!-- Put the changelog here... Use Markdown to format it -->
   <!-- Again, surround special characters with the CDATA tags or your XML will NOT parse -->
-  <Changelog>### Changelog 20150922
+  <Changelog>### Changelog 20150928
  * Updated CM Sources
- * Fixed Mobile Data (downgraded to KK RIL, still better than previous JB RIL though)
+ * Added QuickBoot support (not enabled by default, check developer options)
+ * Fixed Microphone with Headphones (not Headset, Headphones don't have a mic)
+ * Enabled proper echo cancellation and noise suppression to Microphone
+ * Faster boot and optimization of apps
+ * Properly fixed volume buttons to wake up the device
+ * Fixed some GPS instabilities for some users
+ * WiFi has been stabilized even more
+ * Improved Performance and Smoothness here and there
+ * Enabled SELinux as Permissive (Enforcing would break Synapse and require too much work to fix many little issues)
+ * KERNEL: fixed some instabilities that could cause random reboots for some users
+ * KERNEL: improved mmc wakelocks management
  * ALERT: Battery LED sometimes blinks without any valid reason, please ignore this bug until it gets fixed. (CM Sources related)
 </Changelog>
 </ROM>
