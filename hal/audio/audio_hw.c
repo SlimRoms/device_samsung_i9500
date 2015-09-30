@@ -184,6 +184,7 @@ struct audio_device {
     bool tty_mode;
     bool bluetooth_nrec;
     bool wb_amr;
+    bool two_mic_control;
 
     int es325_preset;
     int es325_new_mode;
@@ -526,6 +527,20 @@ static void select_devices(struct audio_device *adev)
     audio_route_update_mixer(adev->ar);
 
     adev_set_call_audio_path(adev);
+
+    /* FIXME: Workarund because noise_suppresion from framework is broken */
+    adev->two_mic_control = true;
+    if (adev->out_device & AUDIO_DEVICE_OUT_ALL_SCO) {
+        adev->two_mic_control = false;
+    }
+
+    if (adev->two_mic_control) {
+        ALOGV("%s: enabling two mic control", __func__);
+        ril_set_two_mic_control(&adev->ril, AUDIENCE, TWO_MIC_SOLUTION_ON);
+    } else {
+        ALOGV("%s: disabling two mic control", __func__);
+        ril_set_two_mic_control(&adev->ril, AUDIENCE, TWO_MIC_SOLUTION_OFF);
+    }
 }
 
 /* must be called with hw device outputs list, all out streams, and hw device mutexes locked */
@@ -1827,14 +1842,16 @@ static int adev_set_parameters(struct audio_hw_device *dev, const char *kvpairs)
         }
     }
 
+    /* FIXME: This does not work with LL, see workaround in this HAL */
     ret = str_parms_get_str(parms, "noise_suppression", value, sizeof(value));
     if (ret >= 0) {
-        if (strcmp(value, "on") == 0) {
-            ALOGV("%s: enabling two mic control", __func__);
-            ril_set_two_mic_control(&adev->ril, AUDIENCE, TWO_MIC_SOLUTION_ON);
+        ALOGV("%s: noise_suppression=%s", __func__, value);
+
+        /* value is either off or auto */
+        if (strcmp(value, "off") == 0) {
+            adev->two_mic_control = false;
         } else {
-            ALOGV("%s: disabling two mic control", __func__);
-            ril_set_two_mic_control(&adev->ril, AUDIENCE, TWO_MIC_SOLUTION_OFF);
+            adev->two_mic_control = true;
         }
     }
 
