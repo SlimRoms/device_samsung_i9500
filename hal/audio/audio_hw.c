@@ -526,6 +526,14 @@ static void select_devices(struct audio_device *adev)
 
     audio_route_update_mixer(adev->ar);
 
+    if (adev->two_mic_control) {
+        ALOGV("%s: enabling two mic control", __func__);
+        ril_set_two_mic_control(&adev->ril, AUDIENCE, TWO_MIC_SOLUTION_ON);
+    } else {
+        ALOGV("%s: disabling two mic control", __func__);
+        ril_set_two_mic_control(&adev->ril, AUDIENCE, TWO_MIC_SOLUTION_OFF);
+    }
+
     adev_set_call_audio_path(adev);
 
     /* FIXME: Workarund because noise_suppresion from framework is broken */
