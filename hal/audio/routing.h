@@ -265,7 +265,7 @@ const struct route_config bt_sco_carkit = {
 };
 
 const struct route_config hdmi = {
-    "device-aux-digital",
+    "digital-output",
     "media-main-mic",
     { ES325_PRESET_OFF,
       ES325_PRESET_OFF }
