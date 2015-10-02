@@ -187,7 +187,7 @@
 
     <ctl name="EPOUT DRE Switch" value="1" />
     <ctl name="EPOUT Digital Volume" value="128" />
-    <ctl name="EPOUT Digital Switch" value="0" />
+    <ctl name="EPOUT Digital Switch" value="1" />
 
     <ctl name="EPOUT Input 1" value="AIF1RX1" />
     <ctl name="EPOUT Input 2" value="AIF1RX2" />
@@ -270,7 +270,7 @@
     <ctl name="HPOUT1 DRE Switch" value="1" />
     <ctl name="HPOUT1 Digital Volume" value="128" />
     <ctl name="HPOUT1 OSR" value="High performance" />
-    <ctl name="HPOUT1 Digital Switch" value="0" />
+    <ctl name="HPOUT1 Digital Switch" value="1" />
 
     <ctl name="HPOUT1L Impedance Volume" value="128" />
     <ctl name="HPOUT1L Input 1" value="AIF1RX1" />
@@ -313,7 +313,7 @@
     <ctl name="HPOUT2 DRE Switch" value="1" />
     <ctl name="HPOUT2 Digital Volume" value="128" />
     <ctl name="HPOUT2 OSR" value="High performance" />
-    <ctl name="HPOUT2 Digital Switch" value="0" />
+    <ctl name="HPOUT2 Digital Switch" value="1" />
 
     <ctl name="HPOUT2L Input 1" value="AIF1RX1" />
     <ctl name="HPOUT2L Input 2" value="None" />
@@ -508,7 +508,7 @@
     <ctl name="SLIMTX8 Input 4" value="None" /> -->
 
     <ctl name="SPK Switch" value="0" />
-    <ctl name="Speaker Digital Switch" value="0" />
+    <ctl name="Speaker Digital Switch" value="1" />
 
     <ctl name="SPKDAT1 Switch" value="0" />
     <ctl name="SPKDAT1 Digital Volume" value="128" />
@@ -604,7 +604,6 @@
 
     <path name="device-earpiece">
       <ctl name="RCV Switch" value="1" />
-      <ctl name="EPOUT Digital Switch" value="1" />
     </path>
 
     <!-- ### Scenario ### -->
@@ -645,7 +644,6 @@
 
     <path name="device-speaker">
       <ctl name="SPK Switch" value="1" />
-      <ctl name="Speaker Digital Switch" value="1" />
     </path>
 
     <!-- ### Scenario ### -->
@@ -694,7 +692,6 @@
 
     <path name="device-headphones">
       <ctl name="HP Switch" value="1" />
-      <ctl name="HPOUT1 Digital Switch" value="1" />
     </path>
 
     <!-- ### Scenario ### -->
@@ -864,7 +861,6 @@
 
     <path name="device-analogue-dock">
       <ctl name="VPS Switch" value="1" />
-      <ctl name="HPOUT2 Digital Switch" value="1" />
     </path>
 
     <!-- ### Scenario ### -->
