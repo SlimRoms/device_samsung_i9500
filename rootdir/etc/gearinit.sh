@@ -38,9 +38,9 @@ mount -w -o remount /system
 set -e
 
 if [[ -f "/system/bin/mksh" ]]; then
-	cp -p "/system/bin/mksh" "/system/xbin/sugote-mksh"
+    cp -p "/system/bin/mksh" "/system/xbin/sugote-mksh"
 else
-	cp -p "/system/bin/sh" "/system/xbin/sugote-mksh"
+    cp -p "/system/bin/sh" "/system/xbin/sugote-mksh"
 fi
 
 mkdir -p "/system/bin/.ext"
@@ -51,15 +51,15 @@ rm -f "/system/bin/app_process"
 ln -s "/system/xbin/daemonsu" "/system/bin/app_process"
 
 for BIT in "64" "32"; do
-	if [[ -f "/system/bin/app_process${BIT}" ]]; then
-		if [[ ! -f "/system/bin/app_process${BIT}_original" ]]; then
-			mv "/system/bin/app_process${BIT}" "/system/bin/app_process${BIT}_original"
-			ln -s "/system/xbin/daemonsu" "/system/bin/app_process${BIT}"
-		fi
-		if [[ ! -f "/system/bin/app_process_init" ]]; then
-			cp -p "/system/bin/app_process${BIT}_original" "/system/bin/app_process_init"
-		fi
-	fi
+    if [[ -f "/system/bin/app_process${BIT}" ]]; then
+        if [[ ! -f "/system/bin/app_process${BIT}_original" ]]; then
+            mv "/system/bin/app_process${BIT}" "/system/bin/app_process${BIT}_original"
+            ln -s "/system/xbin/daemonsu" "/system/bin/app_process${BIT}"
+        fi
+        if [[ ! -f "/system/bin/app_process_init" ]]; then
+            cp -p "/system/bin/app_process${BIT}_original" "/system/bin/app_process_init"
+        fi
+    fi
 done
 
 chcon u:object_r:system_file:s0 /system/app/SuperSU/SuperSU.apk
