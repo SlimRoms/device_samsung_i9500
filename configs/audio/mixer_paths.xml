@@ -629,18 +629,10 @@
 
     <path name="volume-earpiece-default">
       <ctl name="EPOUT Digital Volume" value="112" />
-      <ctl name="EPOUT Input 1 Volume" value="32" />
-      <ctl name="EPOUT Input 2 Volume" value="32" />
-      <ctl name="EPOUT Input 3 Volume" value="32" />
-      <ctl name="EPOUT Input 4 Volume" value="32" />
     </path>
 
     <path name="volume-earpiece-incall">
       <ctl name="EPOUT Digital Volume" value="124" />
-      <ctl name="EPOUT Input 1 Volume" value="32" />
-      <ctl name="EPOUT Input 2 Volume" value="32" />
-      <ctl name="EPOUT Input 3 Volume" value="32" />
-      <ctl name="EPOUT Input 4 Volume" value="32" />
     </path>
 
     <!--
@@ -690,8 +682,6 @@
       <ctl name="Speaker Digital Volume" value="144" />
       <ctl name="SPKOUTL Input 1 Volume" value="10" />
       <ctl name="SPKOUTL Input 2 Volume" value="10" />
-      <ctl name="SPKOUTL Input 3 Volume" value="32" />
-      <ctl name="SPKOUTL Input 4 Volume" value="32" />
     </path>
 
     <!--
@@ -724,23 +714,11 @@
     <!-- ### Volume ### -->
 
     <path name="volume-headphones-default">
-      <ctl name="Noise Gate Switch" value="0" />
-      <ctl name="HPOUT1 Digital Volume" value="128" />
-      <ctl name="HPOUT1L Impedance Volume" value="128" />
-      <ctl name="HPOUT1R Impedance Volume" value="128" />
-      <ctl name="HPOUT1L Input 1 Volume" value="32" />
-      <ctl name="HPOUT1R Input 1 Volume" value="32" />
+      <ctl name="HPOUT1 Digital Volume" value="126" />
     </path>
 
     <path name="volume-headphones-incall">
-      <ctl name="Noise Gate Switch" value="0" />
-      <ctl name="HPOUT1 Digital Volume" value="128" />
-      <ctl name="HPOUT1L Impedance Volume" value="128" />
-      <ctl name="HPOUT1R Impedance Volume" value="128" />
-      <ctl name="HPOUT1L Input 1 Volume" value="32" />
-      <ctl name="HPOUT1R Input 1 Volume" value="32" />
-      <ctl name="HPOUT1L Input 2 Volume" value="32" />
-      <ctl name="HPOUT1R Input 2 Volume" value="32" />
+      <ctl name="HPOUT1 Digital Volume" value="108" />
     </path>
 
 
@@ -762,8 +740,6 @@
       <ctl name="ASRC1R Input" value="AIF1RX2" />
       <ctl name="AIF3TX1 Input 1" value="ASRC1L" />
       <ctl name="AIF3TX2 Input 1" value="ASRC1R" />
-      <ctl name="AIF3TX1 Input 2" value="AIF2RX1" />
-      <ctl name="AIF3TX2 Input 2" value="AIF2RX2" />
     </path>
 
     <path name="scenario-sco-incall-nb">
@@ -771,8 +747,6 @@
       <ctl name="ASRC1R Input" value="AIF1RX2" />
       <ctl name="AIF3TX1 Input 1" value="ASRC1L" />
       <ctl name="AIF3TX2 Input 1" value="ASRC1R" />
-      <ctl name="AIF3TX1 Input 2" value="AIF2RX1" />
-      <ctl name="AIF3TX2 Input 2" value="AIF2RX2" />
     </path>
 
     <path name="scenario-sco-incall-wb">
@@ -780,24 +754,16 @@
       <ctl name="ASRC1R Input" value="AIF1RX2" />
       <ctl name="AIF3TX1 Input 1" value="ASRC1L" />
       <ctl name="AIF3TX2 Input 1" value="ASRC1R" />
-      <ctl name="AIF3TX1 Input 2" value="AIF2RX1" />
-      <ctl name="AIF3TX2 Input 2" value="AIF2RX2" />
     </path>
 
     <!-- ### Volume ### -->
 
     <path name="volume-sco-default">
-      <ctl name="AIF3TX1 Input 1 Volume" value="32" />
-      <ctl name="AIF3TX1 Input 2 Volume" value="32" />
-      <ctl name="AIF3TX2 Input 1 Volume" value="32" />
-      <ctl name="AIF3TX2 Input 2 Volume" value="32" />
+      <!-- None -->
     </path>
 
     <path name="volume-sco-incall">
-      <ctl name="AIF3TX1 Input 1 Volume" value="32" />
-      <ctl name="AIF3TX1 Input 2 Volume" value="32" />
-      <ctl name="AIF3TX2 Input 1 Volume" value="32" />
-      <ctl name="AIF3TX2 Input 2 Volume" value="32" />
+      <!-- None -->
     </path>
 
     <!--
@@ -818,8 +784,6 @@
       <ctl name="ASRC1R Input" value="AIF1RX2" />
       <ctl name="AIF3TX1 Input 1" value="ASRC1L" />
       <ctl name="AIF3TX2 Input 1" value="ASRC1R" />
-      <ctl name="AIF3TX1 Input 2" value="AIF2RX1" />
-      <ctl name="AIF3TX2 Input 2" value="AIF2RX2" />
     </path>
 
     <path name="scenario-sco-headset-out-incall-nb">
@@ -827,8 +791,6 @@
       <ctl name="ASRC1R Input" value="AIF1RX2" />
       <ctl name="AIF3TX1 Input 1" value="ASRC1L" />
       <ctl name="AIF3TX2 Input 1" value="ASRC1R" />
-      <ctl name="AIF3TX1 Input 2" value="AIF2RX1" />
-      <ctl name="AIF3TX2 Input 2" value="AIF2RX2" />
     </path>
 
     <path name="scenario-sco-headset-out-incall-wb">
@@ -836,17 +798,12 @@
       <ctl name="ASRC1R Input" value="AIF1RX2" />
       <ctl name="AIF3TX1 Input 1" value="ASRC1L" />
       <ctl name="AIF3TX2 Input 1" value="ASRC1R" />
-      <ctl name="AIF3TX1 Input 2" value="AIF2RX1" />
-      <ctl name="AIF3TX2 Input 2" value="AIF2RX2" />
     </path>
 
     <!-- ### Volume ### -->
 
     <path name="volume-sco-headset-out-default">
-      <ctl name="AIF3TX1 Input 1 Volume" value="32" />
-      <ctl name="AIF3TX1 Input 2 Volume" value="32" />
-      <ctl name="AIF3TX2 Input 1 Volume" value="32" />
-      <ctl name="AIF3TX2 Input 2 Volume" value="32" />
+      <!-- None -->
     </path>
 
     <!--
@@ -868,17 +825,12 @@
       <ctl name="ASRC1R Input" value="AIF1RX2" />
       <ctl name="AIF3TX1 Input 1" value="ASRC1L" />
       <ctl name="AIF3TX2 Input 1" value="ASRC1R" />
-      <ctl name="AIF3TX1 Input 2" value="AIF2RX1" />
-      <ctl name="AIF3TX2 Input 2" value="AIF2RX2" />
     </path>
 
     <!-- ### Volume ### -->
 
     <path name="volume-sco-carkit-default">
-      <ctl name="AIF3TX1 Input 1 Volume" value="32" />
-      <ctl name="AIF3TX1 Input 2 Volume" value="32" />
-      <ctl name="AIF3TX2 Input 1 Volume" value="32" />
-      <ctl name="AIF3TX2 Input 2 Volume" value="32" />
+      <!-- None -->
     </path>
 
     <!--
@@ -893,10 +845,14 @@
     </path>
 
     <!-- ### Scenario ### -->
-    <!-- None -->
+    <path name="scenario-aux-digital-default">
+      <!-- None -->
+    </path>
 
     <!-- ### Volume ### -->
-    <!-- None -->
+    <path name="volume-aux-digital-default">
+      <!-- None -->
+    </path>
 
     <!--
     #######################################################
@@ -918,8 +874,6 @@
 
     <path name="volume-analogue-dock-out-default">
       <ctl name="HPOUT2 Digital Volume" value="124" />
-      <ctl name="HPOUT2L Input 1 Volume" value="32" />
-      <ctl name="HPOUT2R Input 1 Volume" value="32" />
     </path>
 
     <!--
@@ -982,13 +936,11 @@
     <path name="volume-builtin-mic-default">
       <ctl name="IN1L Volume" value="18" />
       <ctl name="IN1L Digital Volume" value="150" />
-      <ctl name="LHPF1 Input 1 Volume" value="32" />
     </path>
 
     <path name="volume-builtin-mic-incall">
       <ctl name="IN1L Volume" value="18" />
       <ctl name="IN1L Digital Volume" value="136" />
-      <ctl name="LHPF1 Input 1 Volume" value="32" />
     </path>
 
     <!--
@@ -1042,13 +994,11 @@
     <path name="volume-back-mic-default">
       <ctl name="IN2L Volume" value="17" />
       <ctl name="IN2L Digital Volume" value="150" />
-      <ctl name="LHPF2 Input 1 Volume" value="32" />
     </path>
 
     <path name="volume-back-mic-incall">
       <ctl name="IN2L Volume" value="17" />
       <ctl name="IN2L Digital Volume" value="136" />
-      <ctl name="LHPF2 Input 1 Volume" value="32" />
     </path>
 
     <!--
@@ -1116,7 +1066,6 @@
     <path name="volume-third-mic-default">
       <ctl name="IN2R Volume" value="20" />
       <ctl name="IN2R Digital Volume" value="150" />
-      <ctl name="LHPF1 Input 1 Volume" value="32" />
     </path>
 
     <!--
@@ -1161,7 +1110,6 @@
     <path name="volume-headset-in-default">
       <ctl name="IN1R Volume" value="25" />
       <ctl name="IN1R Digital Volume" value="128" />
-      <ctl name="LHPF1 Input 1 Volume" value="32" />
     </path>
 
     <path name="volume-headset-in-incall">
@@ -1169,7 +1117,6 @@
       <ctl name="IN1R Digital Volume" value="124" />
       <ctl name="HPOUT1L Input 3 Volume" value="6" />
       <ctl name="HPOUT1R Input 3 Volume" value="6" />
-      <ctl name="LHPF1 Input 1 Volume" value="32" />
     </path>
 
     <!--
@@ -1186,8 +1133,6 @@
     <!-- ### Scenario ### -->
 
     <path name="scenario-sco-headset-in-default">
-      <ctl name="AIF2TX1 Input 2" value="AIF3RX1" />
-      <ctl name="AIF2TX2 Input 2" value="AIF3RX2" />
       <ctl name="ASRC2L Input" value="AIF3RX1" />
       <ctl name="ASRC2R Input" value="AIF3RX2" />
       <ctl name="AIF2TX1 Input 1" value="None" />
@@ -1195,8 +1140,6 @@
     </path>
 
     <path name="scenario-sco-headset-in-incall-nb">
-      <ctl name="AIF2TX1 Input 2" value="AIF3RX1" />
-      <ctl name="AIF2TX2 Input 2" value="AIF3RX2" />
       <ctl name="ASRC2L Input" value="AIF3RX1" />
       <ctl name="ASRC2R Input" value="AIF3RX2" />
       <ctl name="AIF2TX1 Input 1" value="None" />
@@ -1204,8 +1147,6 @@
     </path>
 
     <path name="scenario-sco-headset-in-incall-wb">
-      <ctl name="AIF2TX1 Input 2" value="AIF3RX1" />
-      <ctl name="AIF2TX2 Input 2" value="AIF3RX2" />
       <ctl name="ASRC2L Input" value="AIF3RX1" />
       <ctl name="ASRC2R Input" value="AIF3RX2" />
       <ctl name="AIF2TX1 Input 1" value="None" />
@@ -1475,6 +1416,9 @@
     <path name="digital-output">
       <path name="device-aux-digital" />
       <path name="verb-default" />
+
+      <path name="scenario-aux-digital-default" />
+      <path name="volume-aux-digital-default" />
     </path>
 
     <!-- ### Capture ### -->
