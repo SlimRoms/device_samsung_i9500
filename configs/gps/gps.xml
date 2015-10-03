@@ -17,7 +17,7 @@
        CpColdStart="false"
        CpGuardTimeSec="1"
        ReAidingOnHotStart="false"
-	   SuplSslMethod="SSLv23_NO_TLSv1_2"
+       SuplSslMethod="SSLv23_NO_TLSv1_2"
        SuplEnable="true"
        SuplUseApn="false"
        SuplTlsCertPath="/system/etc/gps.cer"
@@ -29,7 +29,6 @@
 
        LbsEnable="true"
        LbsServer="BCMLS2.glpals.com"
-       LbsPort="7275"
        HttpSyncLto="true"
        LbsCellEnable="false"
        LtoDir="/data/system/gps/"
@@ -42,7 +41,7 @@
 
   <gll
        LogPriMask="LOG_INFO"
-       LogFacMask="LOG_GLLIO | LOG_GLLAPI | LOG_NMEA | LOG_RAWDATA"
+       LogFacMask="LOG_GLLIO | LOG_RAWDATA | LOG_GLLAPI | LOG_NMEA"
        FrqPlan="FRQ_PLAN_26MHZ_2PPM_26MHZ_300PPB"
        RfType="GL_RF_47521_BRCM_EXT_LNA"
        WarmStandbyTimeout1Seconds="10"
