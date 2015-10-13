@@ -1,4 +1,4 @@
-# Copyright (C) 2014, The CyanogenMod Project <http://www.cyanogenmod.org>
+# Copyright (C) 2015, The CyanogenMod Project <http://www.cyanogenmod.org>
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,8 +14,6 @@
 
 LOCAL_PATH := $(call my-dir)
 
-ifeq ($(TARGET_POWERHAL_VARIANT),universal5410)
-
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := power.universal5410
@@ -25,5 +23,3 @@ LOCAL_SHARED_LIBRARIES := liblog
 LOCAL_MODULE_TAGS := optional
 
 include $(BUILD_SHARED_LIBRARY)
-
-endif # TARGET_POWERHAL_VARIANT == universal5410

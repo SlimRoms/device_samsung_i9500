@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014 The CyanogenMod Project
+ * Copyright (c) 2015 The CyanogenMod Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,19 +23,19 @@
 
 ssize_t unwind_backtrace(void* backtrace, size_t ignore_depth, size_t max_depth)
 {
-	return -1;
+    return -1;
 }
 
 ssize_t unwind_backtrace_thread(pid_t tid, void* backtrace,
         size_t ignore_depth, size_t max_depth)
 {
-	return -1;
+    return -1;
 }
 
 ssize_t unwind_backtrace_ptrace(pid_t tid, const void* context,
         void* backtrace, size_t ignore_depth, size_t max_depth)
 {
-	return -1;
+    return -1;
 }
 
 void get_backtrace_symbols(const void* backtrace, size_t frames,
@@ -56,6 +56,6 @@ void free_backtrace_symbols(void* backtrace_symbols, size_t frames)
 void format_backtrace_line(unsigned frameNumber, const void* frame,
         const void* symbol, char* buffer, size_t bufferSize)
 {
-	if (bufferSize > 0)
-		buffer[0] = 0x00;
+    if (bufferSize > 0)
+        buffer[0] = 0x00;
 }

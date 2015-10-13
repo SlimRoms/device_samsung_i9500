@@ -1,0 +1,1 @@
+add_lunch_combo slim_i9500-userdebug

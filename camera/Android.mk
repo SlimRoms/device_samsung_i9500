@@ -8,7 +8,8 @@ LOCAL_SHARED_LIBRARIES := \
     libhardware liblog libcamera_client libutils
 
 LOCAL_C_INCLUDES += \
-    system/media/camera/include
+    system/media/camera/include \
+	hardware/samsung_slsi-cm/exynos5/include 
 
 LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)/hw
 LOCAL_MODULE := camera.universal5410
