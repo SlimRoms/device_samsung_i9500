@@ -457,8 +457,6 @@ static void select_devices(struct audio_device *adev)
     int new_route_id;
     int new_es325_preset = -1;
 
-    audio_route_reset(adev->ar);
-
 #ifndef HDMI_INCAPABLE
     enable_hdmi_audio(adev, adev->out_device & AUDIO_DEVICE_OUT_AUX_DIGITAL);
 #endif
@@ -466,6 +464,7 @@ static void select_devices(struct audio_device *adev)
     new_route_id = (1 << (input_source_id + OUT_DEVICE_CNT)) + (1 << output_device_id);
     if ((new_route_id == adev->cur_route_id) &&
         (adev->es325_mode == adev->es325_new_mode)) {
+        ALOGV("*** %s: Routing hasn't changed, leaving function.", __func__);
         return;
     }
 
@@ -512,6 +511,27 @@ static void select_devices(struct audio_device *adev)
           output_route ? output_route : "none",
           input_route ? input_route : "none");
 
+    /*
+     * The Arizona Kernel doc describes firmware loading:
+     *
+     * To load a firmware, or to reboot the ADSP with different firmware you
+     * must:
+     * - Disconnect the ADSP from any active audio path so that it will be
+     *   powered-down
+     * - Set the firmware control to the firmware you want to load
+     * - Connect the ADSP to an active audio path so it will be powered-up
+     */
+
+    /* Turn off all devices by resetting to default mixer state */
+    audio_route_reset(adev->ar);
+    audio_route_update_mixer(adev->ar);
+
+    /*
+     * Now apply the new audio routes
+     *
+     * Set the routes, firmware and volumes first and activate the device as the
+     * last step.
+     */
     if (output_route != NULL) {
         audio_route_apply_path(adev->ar, output_route);
     }
@@ -763,6 +783,7 @@ static void stop_call(struct audio_device *adev)
 
     /* Do not change devices if we are switching to WB */
     if (adev->mode != AUDIO_MODE_IN_CALL) {
+        ALOGV("*** %s: Reset route to default", __func__);
         adev->input_source = AUDIO_SOURCE_DEFAULT;
 
         select_devices(adev);
