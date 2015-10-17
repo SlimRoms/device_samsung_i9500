@@ -18,7 +18,7 @@
 #include <fcntl.h>
 
 #define LOG_TAG "eS325VoiceProcessing"
-//#define LOG_NDEBUG 0
+#define LOG_NDEBUG 0
 #include <cutils/log.h>
 
 #include "eS325VoiceProcessing.h"
