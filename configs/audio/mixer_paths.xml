@@ -631,7 +631,7 @@
     </path>
 
     <path name="volume-earpiece-incall">
-        <ctl name="EPOUT Digital Volume" value="124" />
+        <ctl name="EPOUT Digital Volume" value="112" />
     </path>
 
     <!--
