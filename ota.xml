@@ -44,6 +44,5 @@
  * Fixed Performance profile (again), shouldn't cause anymore sudden shutdowns/reboots due to High CPU temp.
  * Improved RIL management
  * KERNEL: properly set maximum readahead
- * ALERT: Battery LED sometimes blinks without any valid reason, please ignore this bug until it gets fixed. (CM Sources related)
 </Changelog>
 </ROM>
