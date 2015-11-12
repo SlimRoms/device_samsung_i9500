@@ -1,4 +1,4 @@
-# Copyright (C) 2015 The CyanogenMod Project
+# Copyright (C) 2015 The SlimRom Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,12 +19,12 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, device/samsung/i9500/i9500.mk)
 
 # Enhanced NFC
-$(call inherit-product, vendor/cm/config/nfc_enhanced.mk)
+$(call inherit-product, vendor/slim/config/nfc_enhanced.mk)
 
-# Inherit some common CM stuff.
-$(call inherit-product, vendor/cm/config/common_full_phone.mk)
+# Inherit some common SLIM stuff.
+$(call inherit-product, vendor/slim/config/common_full_phone.mk)
 
-PRODUCT_NAME := cm_i9500
+PRODUCT_NAME := slim_i9500
 PRODUCT_DEVICE := i9500
 PRODUCT_MANUFACTURER := samsung
 PRODUCT_MODEL := GT-I9500
@@ -38,5 +38,3 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
     TARGET_DEVICE=ja3g \
     BUILD_FINGERPRINT="samsung/ja3gxx/ja3g:5.0.1/LRX22C/I9500XXUHOI1:user/release-keys" \
     PRIVATE_BUILD_DESC="ja3gxx-user 5.0.1 LRX22C I9500XXUHOI1 release-keys"
-
-TARGET_UNOFFICIAL_BUILD_ID := GearCM
